@@ -8,11 +8,13 @@ public class PlayerTest : MonoBehaviour
     private Rigidbody rb;
     private Camera _MainCamera;
     private EventSystem eventSystem;
+    private MainMenu mainMenu;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         _MainCamera = FindFirstObjectByType<Camera>();
+        mainMenu = FindFirstObjectByType<MainMenu>(FindObjectsInactive.Include);
     }
 
     private void Start()
@@ -24,6 +26,21 @@ public class PlayerTest : MonoBehaviour
     {
         Movement();
         CameraRotation();
+
+        PauseGame();
+    }
+
+    private void PauseGame()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            mainMenu.mainMenuHUD.SetActive(true);
+        }
+    }
+
+    public void ResumeGame()
+    {
+        mainMenu.mainMenuHUD.SetActive(false);
     }
 
     private void Movement()
