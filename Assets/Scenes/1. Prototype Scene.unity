@@ -3429,8 +3429,8 @@ GameObject:
   - component: {fileID: 1014124814}
   - component: {fileID: 1014124815}
   - component: {fileID: 1014124812}
-  - component: {fileID: 1014124816}
-  - component: {fileID: 1014124817}
+  - component: {fileID: 1014124819}
+  - component: {fileID: 1014124818}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3507,7 +3507,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.1, z: 0}
---- !u!114 &1014124816
+--- !u!114 &1014124818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3516,35 +3516,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1014124810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5dd5fed005e664496bcf5c47562af1, type: 3}
+  m_Script: {fileID: 11500000, guid: f9af3788dac0f41478d0de8366f1cdc3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  playerSpeed: 10
-  playerCrouchSpeed: 5
---- !u!114 &1014124817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014124810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79e48257435fc74f806912c082fc624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCrouch
-  playerSpeed: 0
-  playerCrouchSpeed: 0
-  _CrouchHeight: 0.125
-  _StandHeight: 0.25
-  _CrouchCenter: {x: 0, y: 0.05, z: 0}
-  _StandCenter: {x: 0, y: 0.1, z: 0}
-  _TransitionSpeed: 0.01
-  _Radius: 0.025
-  _HeadCollision:
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
+  playerSpeed: 5
+  playerCrouchSpeed: 2.5
+  crouchHeight: 0.125
+  standHeight: 0.25
+  crouchCenter: {x: 0, y: 0.05, z: 0}
+  standCenter: {x: 0, y: 0.1, z: 0}
+  transitionSpeed: 0.01
+  headCollision:
     serializedVersion: 2
     m_Bits: 64
-  _CrouchKey: 304
+  crouchKey: 304
+--- !u!114 &1014124819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014124810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71bceb490bdd1b34bbd6e3b47a6da320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
 --- !u!1 &1251276927
 GameObject:
   m_ObjectHideFlags: 0
@@ -4703,7 +4700,7 @@ GameObject:
   - component: {fileID: 1869774011}
   - component: {fileID: 1869774010}
   m_Layer: 6
-  m_Name: rr
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
