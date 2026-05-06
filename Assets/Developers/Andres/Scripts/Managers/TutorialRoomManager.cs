@@ -10,7 +10,7 @@ public class TutorialRoomManager : MonoBehaviour
 
     private void Awake()
     {
-        player = FindFirstObjectByType<PlayerManager>().gameObject;
+        player = FindFirstObjectByType<PlayerTest>().gameObject;
     }
 
     private void Update()
