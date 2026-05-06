@@ -38,11 +38,6 @@ public class PlayerTest : MonoBehaviour
         }
     }
 
-    public void ResumeGame()
-    {
-        mainMenu.mainMenuHUD.SetActive(false);
-    }
-
     private void Movement()
     {
         float moveX = Input.GetAxisRaw("Horizontal");

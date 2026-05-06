@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour, IOpenable
+public class Door : MonoBehaviour, IOpenable, IInteractable
 {
     private bool _DoorIsOpenAble;
 
@@ -21,5 +21,12 @@ public class Door : MonoBehaviour, IOpenable
     public void Close()
     {
 
+    }
+
+    public void Interact() {
+        if (_DoorIsOpenAble)
+            Debug.Log("Opening Door");
+        else
+            Debug.Log("You don't have the key");
     }
 }
