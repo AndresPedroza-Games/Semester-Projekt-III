@@ -1,14 +1,22 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MenuManager
 {
-    public void StartGame()
+    private void Start()
     {
-        SceneManager.LoadScene(1);
+        if (GetScene(0))
+        {
+            _StartBtn.onClick.AddListener(StartGame);
+            _ExitBtn.onClick.AddListener(ExitGame);
+        }
     }
 
-    public void ExitGame()
+    public override void StartGame()
+    {
+        ChangeScene(1);
+    }
+
+    public override void ExitGame()
     {
         Debug.Log("Exit");
     }
