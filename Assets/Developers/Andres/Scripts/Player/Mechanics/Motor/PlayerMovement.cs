@@ -3,8 +3,7 @@ using UnityEngine;
 public class PlayerMovement
 {
     private PlayerMotor _PlayerMotor;
-
-    private Rigidbody rb;
+    private Rigidbody _Rb;
 
     private float playerSpeed;
     private float playerCrouchSpeed;
@@ -14,11 +13,11 @@ public class PlayerMovement
     {
         _PlayerMotor = PlayerMotor.playerMotor;
 
+        _Rb = _PlayerMotor.rb;
+
         playerSpeed = _PlayerMotor.playerSpeed;
         playerCrouchSpeed = _PlayerMotor.playerCrouchSpeed;
         currentSpeed = _PlayerMotor.currentSpeed;
-
-        rb = _PlayerMotor.rb;
     }
 
     public void Movement()
@@ -28,6 +27,6 @@ public class PlayerMovement
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        rb.linearVelocity = new Vector3(moveX, 0f, moveY) * currentSpeed * Time.deltaTime;
+        _Rb.linearVelocity = new Vector3(moveX, 0f, moveY) * currentSpeed * Time.deltaTime;
     }
 }

@@ -11,14 +11,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField] protected Button _ExitBtn;
 
     public GameObject mainMenuHUD;
-    public static MenuManager menuManager;
 
     private void Awake()
     {
         mainMenuHUD = FindFirstObjectByType<MainMenu>(FindObjectsInactive.Include).gameObject;
-
-        if (menuManager == null)
-            menuManager = this;
     }
 
     protected bool GetScene(int index)
@@ -29,11 +25,6 @@ public class MenuManager : MonoBehaviour
     protected void ChangeScene(int scene)
     {
         SceneManager.LoadScene(scene);
-    }
-
-    public void ShowMenu(bool status)
-    {
-        mainMenuHUD.SetActive(status);
     }
 
     public virtual void StartGame() { }

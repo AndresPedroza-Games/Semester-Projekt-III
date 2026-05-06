@@ -4,7 +4,7 @@ public class PlayerManager : MonoBehaviour
 {
     private PlayerMotor _PlayerMotor;
 
-    private bool _GameStatus;
+    private bool _MenuOpen = false;
 
     private void Start()
     {
@@ -26,12 +26,13 @@ public class PlayerManager : MonoBehaviour
 
     private void PauseGame()
     {
-        _GameStatus = !_GameStatus;
-        FreezeCharacter(_GameStatus);
+        _MenuOpen = !_MenuOpen;
+        PauseMenu.pauseMenu.ShowMenu(_MenuOpen);
+        FreezeCharacter(_MenuOpen);
     }
 
     private void FreezeCharacter(bool status)
     {
-        this.enabled = !status;
+        //this.enabled = !status;
     }
 }

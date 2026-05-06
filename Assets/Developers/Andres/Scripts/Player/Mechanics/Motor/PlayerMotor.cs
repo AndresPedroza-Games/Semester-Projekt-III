@@ -9,9 +9,9 @@ public class PlayerMotor : MonoBehaviour
     private PlayerCrouch _PlayerCrouch;
 
     [Header("---Components---")]
-    public Rigidbody rb { get; set; }
     public CharacterController characterController { get; set; }
     public Camera mainCamera { get; set; }
+    public Rigidbody rb { get; set; }
 
     [Header("----Movement Settings----")]
     public float playerSpeed;
@@ -19,11 +19,11 @@ public class PlayerMotor : MonoBehaviour
     public float currentSpeed { get; set;}
 
     [Header("----Crouch Settings----")]
-    public float crouchHeight;
-    public float standHeight;
+    public float crouchHeight { get; set; }
+    public float standHeight { get; set; }
 
-    public Vector3 crouchCenter;
-    public Vector3 standCenter;
+    public Vector3 crouchCenter { get; set; }
+    public Vector3 standCenter { get; set; }
     public float transitionSpeed;
 
     public float radius { get; set;}
@@ -38,6 +38,12 @@ public class PlayerMotor : MonoBehaviour
             playerMotor = this;
 
         GetComponents();
+
+        standHeight = characterController.height;
+        crouchHeight = standHeight / 2f;
+
+        standCenter = characterController.center;
+        crouchCenter = standCenter / 2f;
 
         _PlayerMovement = new PlayerMovement();
         _PlayerMovement.Init();
@@ -59,9 +65,9 @@ public class PlayerMotor : MonoBehaviour
 
     private void GetComponents()
     {
-        rb = GetComponent<Rigidbody>();
         characterController = GetComponent<CharacterController>();
         mainCamera = FindFirstObjectByType<Camera>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void OnDrawGizmos()
