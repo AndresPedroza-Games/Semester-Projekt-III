@@ -1,31 +1,60 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Interactor : MonoBehaviour {
-    private Camera cam;
+
+    [Header("---Interaction---")]
     [SerializeField] private float interactionDistance = 2.5f;
+    [SerializeField] private Image crosshairImage;
+    [SerializeField] private Sprite crosshairDot;
+    [SerializeField] private Sprite crosshairCircle;
+
+    private Camera cam;
+    private LayerMask interactableLayer;
+    private bool isLookingAtInteractable;
 
 
     private void Awake() {
         cam = Camera.main;
+        interactableLayer = LayerMask.GetMask("Interactable");
     }
+
 
     private void OnEnable() {
         InputManager.Instance.Interact.performed += Interact;
     }
+
 
     private void OnDisable() {
         InputManager.Instance.Interact.performed -= Interact;
     }
 
 
-    private void Interact(InputAction.CallbackContext ctx) {
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance)) {
-            if (hit.collider.gameObject.TryGetComponent(out IInteractable interactable)) {
-                interactable.Interact();
-            }
-        }
+    private void Update() {
+        isLookingAtInteractable = LookingAtInteractable();
+
+        Sprite targetSprite = isLookingAtInteractable ? crosshairCircle : crosshairDot;
+
+        if (crosshairImage.sprite != targetSprite)
+            crosshairImage.sprite = targetSprite;
     }
+
+
+
+    private bool LookingAtInteractable() {
+        return Physics.Raycast(cam.transform.position, cam.transform.forward, interactionDistance, interactableLayer);
+    }
+
+
+    private void Interact(InputAction.CallbackContext ctx) {
+        if (!Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance))
+            return;
+
+        if (hit.collider.TryGetComponent(out IInteractable interactable))
+            interactable.Interact();
+    }
+
 
     private void OnDrawGizmos() {
         if (cam == null) {

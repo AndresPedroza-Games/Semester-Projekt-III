@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 186646224}
   - component: {fileID: 186646223}
   - component: {fileID: 186646222}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 23
+    m_Bits: 87
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 089407a4f0f9e5943a9d37faa4904c6b, type: 2}
   m_TargetDisplay: 0
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 430594603}
   - component: {fileID: 430594602}
   - component: {fileID: 430594606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 529915970}
   - component: {fileID: 529915969}
   - component: {fileID: 529915968}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1329,6 +1329,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!114 &1900089324 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7334147065029868259, guid: 21e22fb02de4dfc4eb2fdfa11cd0b931, type: 3}
+  m_PrefabInstance: {fileID: 4158328271113975145}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1926549908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1359,6 +1370,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactor
   interactionDistance: 2.5
+  crosshairImage: {fileID: 1900089324}
+  crosshairDot: {fileID: 21300000, guid: 6bc3a272bc606cd4888505d4820e6737, type: 3}
+  crosshairCircle: {fileID: 21300000, guid: 7fa4c5dc1a2b59348b24cec50c09b7b0, type: 3}
 --- !u!4 &1926549910
 Transform:
   m_ObjectHideFlags: 0
@@ -1616,6 +1630,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2565924989888617970, guid: 21e22fb02de4dfc4eb2fdfa11cd0b931, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565924989888617970, guid: 21e22fb02de4dfc4eb2fdfa11cd0b931, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912990728722799469, guid: 21e22fb02de4dfc4eb2fdfa11cd0b931, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5231302753533378213, guid: 21e22fb02de4dfc4eb2fdfa11cd0b931, type: 3}
       propertyPath: m_Name
       value: PSX_Effect_Canvas
@@ -1700,6 +1726,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7334147065029868259, guid: 21e22fb02de4dfc4eb2fdfa11cd0b931, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6bc3a272bc606cd4888505d4820e6737, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
