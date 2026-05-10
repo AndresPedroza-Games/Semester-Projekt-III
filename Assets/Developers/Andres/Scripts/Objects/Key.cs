@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Key : MonoBehaviour, IPickable
+public class Key : MonoBehaviour, IPickable, IInteractable
 {
     public bool keyIsPicked;
 
@@ -9,5 +9,10 @@ public class Key : MonoBehaviour, IPickable
         keyIsPicked = true;
         EventSystem.eventSystem.KeyPicked();
         Debug.Log("Key Picked");
+    }
+
+    public void Interact() {
+        keyIsPicked = true;
+        EventSystem.eventSystem.KeyPicked();
     }
 }
