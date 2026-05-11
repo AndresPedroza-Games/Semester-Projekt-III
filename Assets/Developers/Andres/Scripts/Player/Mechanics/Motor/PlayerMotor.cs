@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -10,13 +11,21 @@ public class PlayerMotor : MonoBehaviour
 
     [Header("---Components---")]
     public CharacterController characterController { get; set; }
-    public Camera mainCamera { get; set; }
-    public Rigidbody rb { get; set; }
+    public Camera mainCamera { get; private set; }
+    public Transform head;
 
     [Header("----Movement Settings----")]
     public float playerSpeed;
     public float playerCrouchSpeed;
     public float currentSpeed { get; set;}
+
+    private Vector2 moveInput;
+
+    [Header("----Gravity Settings----")]
+    public float gravityMultiplier = 1f;
+    [Range(-50f, -1f)] public float maxFallSpeed = -50f;
+    public float yVelocity { get; set; }
+
 
     [Header("----Crouch Settings----")]
     public float crouchHeight { get; set; }
@@ -27,9 +36,7 @@ public class PlayerMotor : MonoBehaviour
     public float transitionSpeed;
 
     public float radius { get; set;}
-    public LayerMask headCollision;
-    public KeyCode crouchKey = KeyCode.LeftShift;
-
+    public LayerMask headCollision { get; private set; }
     public bool isCrouching { get; set;}
 
     private void Awake()
@@ -39,11 +46,15 @@ public class PlayerMotor : MonoBehaviour
 
         GetComponents();
 
+        headCollision = ~LayerMask.GetMask("Player");
+
         standHeight = characterController.height;
         crouchHeight = standHeight / 2f;
 
         standCenter = characterController.center;
         crouchCenter = standCenter / 2f;
+
+        radius = characterController.radius;
 
         _PlayerMovement = new PlayerMovement();
         _PlayerMovement.Init();
@@ -52,27 +63,51 @@ public class PlayerMotor : MonoBehaviour
         _PlayerCrouch.Init();
     }
 
-    public void Movement()
-    {
-        _PlayerMovement.Movement();
+    private void OnEnable() {
+        InputManager.Instance.Move.performed += OnMoveInputPerformed;
+        InputManager.Instance.Move.canceled += OnMoveInputCanceled;
+
+        InputManager.Instance.Crouch.performed += Crouch;
     }
 
-    public void Crouch()
+    private void OnDisable() {
+        InputManager.Instance.Move.performed -= OnMoveInputPerformed;
+        InputManager.Instance.Move.canceled -= OnMoveInputCanceled;
+
+        InputManager.Instance.Crouch.performed -= Crouch;
+    }
+
+    private void OnMoveInputPerformed(InputAction.CallbackContext ctx) {
+        moveInput = ctx.ReadValue<Vector2>();
+    }
+
+    private void OnMoveInputCanceled(InputAction.CallbackContext ctx) {
+        moveInput = Vector2.zero;
+    }
+
+    public void Movement()
     {
-        if (Input.GetKeyDown(crouchKey))
-            StartCoroutine(_PlayerCrouch.Crouch());
+        _PlayerMovement.Movement(characterController, moveInput);
+    }
+
+    public void HandleGravity() {
+        _PlayerMovement.HandleGravity();
+    }
+
+    public void Crouch(InputAction.CallbackContext ctx)
+    {
+        StartCoroutine(_PlayerCrouch.Crouch());
     }
 
     private void GetComponents()
     {
         characterController = GetComponent<CharacterController>();
-        mainCamera = FindFirstObjectByType<Camera>();
-        rb = GetComponent<Rigidbody>();
+        mainCamera = Camera.main;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position + Vector3.up * (crouchHeight - radius), radius);
+        Gizmos.DrawWireSphere(transform.position + Vector3.up * (standHeight - radius), radius);
     }
 }

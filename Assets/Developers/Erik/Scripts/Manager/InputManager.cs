@@ -7,9 +7,11 @@ public class InputManager : MonoBehaviour {
 
     private PlayerControls Controls;
 
-    public Vector2 MoveInput => Controls.Movement.Move.ReadValue<Vector2>();
+    public InputAction Move => Controls.Movement.Move;
     public InputAction Interact => Controls.Interaction.Interact;
     public InputAction Crouch => Controls.Movement.Crouch;
+
+    public InputAction Pause => Controls.Game.Pause;
 
 
 
