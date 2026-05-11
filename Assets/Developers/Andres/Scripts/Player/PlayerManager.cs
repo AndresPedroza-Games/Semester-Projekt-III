@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -6,25 +7,26 @@ public class PlayerManager : MonoBehaviour
 
     private bool _MenuOpen = false;
 
+    private void OnEnable() {
+        InputManager.Instance.Pause.performed += PauseGame;
+    }
+
+
+    private void OnDisable() {
+        InputManager.Instance.Pause.performed -= PauseGame;
+    }
+
     private void Start()
     {
         _PlayerMotor = GetComponent<PlayerMotor>();
     }
 
-    private void Update()
-    {
-        _PlayerMotor.Crouch();
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-            PauseGame();
-    }
-
-    private void FixedUpdate()
-    {
+    private void Update() {
         _PlayerMotor.Movement();
+        _PlayerMotor.HandleGravity();
     }
 
-    private void PauseGame()
+    private void PauseGame(InputAction.CallbackContext ctx)
     {
         _MenuOpen = !_MenuOpen;
         PauseMenu.pauseMenu.ShowMenu(_MenuOpen);

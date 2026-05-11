@@ -5,7 +5,7 @@ public class PlayerCrouch
 {
     private PlayerMotor _PlayerMotor;
     private CharacterController _CharacterController;
-    private Camera _MainCamera;
+    private Transform _Head;
     private Transform _Transform;
 
     [Header("----Crouch Settings----")]
@@ -38,15 +38,15 @@ public class PlayerCrouch
         _Radius = _PlayerMotor.characterController.radius;
         _HeadCollision = _PlayerMotor.headCollision;
 
+        _Head = _PlayerMotor.head;
+
         _CharacterController = _PlayerMotor.characterController;
-        _MainCamera = _PlayerMotor.mainCamera;
         _Transform = _PlayerMotor.GetComponent<Transform>();
     }
 
-    private Vector3 SetCameraView(float startPos, float endPos)
-    {
+    private Vector3 SetCameraView(float startPos, float endPos) {
         float crouchViewPos = Mathf.Lerp(startPos, endPos, _TransitionSpeed);
-        Vector3 newPos = new Vector3(_MainCamera.transform.position.x, crouchViewPos, _MainCamera.transform.position.z);
+        Vector3 newPos = new (_Head.position.x, crouchViewPos, _Head.position.z);
 
         return newPos;
     }
@@ -78,14 +78,12 @@ public class PlayerCrouch
 
         _PlayerMotor.isCrouching = !_PlayerMotor.isCrouching;
 
-        _MainCamera.transform.position = SetCameraView(targetHeight, _PlayerMotor.isCrouching ? currentHeight : -5f);
-
-        Debug.Log("Is Crouching");
+        _Head.position = SetCameraView(targetHeight, _PlayerMotor.isCrouching ? currentHeight : -5f);
     }
 
     private bool CanStandUp()
     {
-        Vector3 pos = _Transform.position + Vector3.up * (_CrouchHeight - _Radius);
+        Vector3 pos = _Transform.position + Vector3.up * (_StandHeight - _Radius);
 
         return !Physics.CheckSphere(pos, _Radius, _HeadCollision);
     }
