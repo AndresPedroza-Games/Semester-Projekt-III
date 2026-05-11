@@ -14,6 +14,7 @@ public class Interactor : MonoBehaviour {
     private LayerMask interactableLayer;
     private bool isLookingAtInteractable;
 
+    private GameObject currentObject;
 
     private void Awake() {
         cam = Camera.main;
@@ -38,14 +39,34 @@ public class Interactor : MonoBehaviour {
 
         if (crosshairImage.sprite != targetSprite)
             crosshairImage.sprite = targetSprite;
+
+        HighlightGameObject();
     }
-
-
 
     private bool LookingAtInteractable() {
         return Physics.Raycast(cam.transform.position, cam.transform.forward, interactionDistance, interactableLayer);
     }
 
+    private void HighlightGameObject()
+    {
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance, interactableLayer))
+        {
+            currentObject = hit.collider.gameObject;
+
+            if(currentObject.GetComponent<IInteractable>() != null)
+            {
+                currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
+            }
+        }
+        else
+        {
+            if(currentObject != null)
+            {
+                currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0f);
+                currentObject = null;
+            }
+        }
+    }
 
     private void Interact(InputAction.CallbackContext ctx) {
         if (!Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance))
