@@ -15,6 +15,7 @@ public class Interactor : MonoBehaviour {
     private bool isLookingAtInteractable;
 
     private GameObject currentObject;
+    private GameObject newObject;
 
     private void Awake() {
         cam = Camera.main;
@@ -51,10 +52,14 @@ public class Interactor : MonoBehaviour {
     {
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance, interactableLayer))
         {
-            currentObject = hit.collider.gameObject;
+            newObject = hit.collider.gameObject;
 
-            if(currentObject.GetComponent<IInteractable>() != null)
+            if(newObject.GetComponent<IInteractable>() != null)
             {
+                if(currentObject != null)
+                    currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
+
+                currentObject = newObject;
                 currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
             }
         }
