@@ -6,8 +6,6 @@ public class Inventory : MonoBehaviour {
 	public Transform HoldPosition => holdPosition;
 	public Transform dropPosition;
 	public GameObject HoldingObject { get; set; }
-	
-	public bool HasKey { get; set; }
 
 	[SerializeField] private Transform holdPosition;
 

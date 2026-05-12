@@ -1,12 +1,10 @@
 using UnityEngine;
 
 
-
 public class PickupObject : MonoBehaviour, IInteractable, IPickable {
 
 	private Rigidbody rb;
 	private Collider col;
-
 
 
 	private void Awake() {
@@ -15,11 +13,9 @@ public class PickupObject : MonoBehaviour, IInteractable, IPickable {
 	}
 
 
-
 	public void Interact(Interactor interactor) {
 		PickUp(interactor.Inventory);
 	}
-
 
 
 	public void PickUp(Inventory inventory) {
@@ -33,7 +29,6 @@ public class PickupObject : MonoBehaviour, IInteractable, IPickable {
 		transform.position = inventory.HoldPosition.position;
 		transform.SetParent(inventory.HoldPosition.transform);
 	}
-
 
 
 	public void Drop(Inventory inventory) {

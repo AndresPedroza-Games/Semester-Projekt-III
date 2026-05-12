@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -89,6 +90,18 @@ public class PlayerMotor : MonoBehaviour
     {
         _PlayerMovement.Movement(characterController, moveInput);
     }
+
+
+    private void LateUpdate() {
+	    RotatePlayer();
+    }
+
+
+    private void RotatePlayer() {
+	    Vector3 camEuler = mainCamera.transform.eulerAngles;
+	    transform.rotation = Quaternion.Euler(0f, camEuler.y, 0f);
+    }
+
 
     public void HandleGravity() {
         _PlayerMovement.HandleGravity();

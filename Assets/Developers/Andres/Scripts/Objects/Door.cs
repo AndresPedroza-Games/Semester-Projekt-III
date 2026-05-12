@@ -20,6 +20,7 @@ public class Door : MonoBehaviour, IInteractable {
 		//     Debug.Log("You don't have the key");
 
 		doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
+		gameObject.layer = 0;
 	}
 
 

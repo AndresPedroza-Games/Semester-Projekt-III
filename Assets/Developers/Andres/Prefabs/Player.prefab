@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6180659225544085170}
   - component: {fileID: 8616296912708125306}
   - component: {fileID: 8662507306674860224}
+  - component: {fileID: 5619290868464122428}
+  - component: {fileID: 425393409940917341}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -91,6 +93,36 @@ MonoBehaviour:
   gravityMultiplier: 1
   maxFallSpeed: -50
   transitionSpeed: 0.01
+--- !u!114 &5619290868464122428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836171029925591291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b82a5f2c08186cf4aad9c8f638415570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  interactionDistance: 2
+  crosshairImage: {fileID: 0}
+  crosshairDot: {fileID: 21300000, guid: 6bc3a272bc606cd4888505d4820e6737, type: 3}
+  crosshairCircle: {fileID: 21300000, guid: 7fa4c5dc1a2b59348b24cec50c09b7b0, type: 3}
+--- !u!114 &425393409940917341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836171029925591291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbb754d9f8c8a8c49903f2fcb943aa77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
+  dropPosition: {fileID: 0}
+  holdPosition: {fileID: 0}
 --- !u!1 &3932121629478673074
 GameObject:
   m_ObjectHideFlags: 0
