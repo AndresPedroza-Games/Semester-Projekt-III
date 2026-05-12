@@ -1,34 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class InputManager : MonoBehaviour {
 
-    public static InputManager Instance;
+	public static InputManager Instance;
 
-    private PlayerControls Controls;
+	private PlayerControls controls;
 
-    public InputAction Move => Controls.Movement.Move;
-    public InputAction Interact => Controls.Interaction.Interact;
-    public InputAction Crouch => Controls.Movement.Crouch;
+	public InputAction Move => controls.Movement.Move;
+	public InputAction Interact => controls.Interaction.Interact;
+	public InputAction Drop => controls.Interaction.Drop;
+	public InputAction Crouch => controls.Movement.Crouch;
 
-    public InputAction Pause => Controls.Game.Pause;
+	public InputAction Pause => controls.Game.Pause;
 
 
+	private void Awake() {
+		if (Instance != null && Instance != this) {
+			Destroy(gameObject);
+			return;
+		}
+		else {
+			Instance = this;
+		}
 
-    private void Awake() {
-        if (Instance != null && Instance != this) {
-            Destroy(gameObject);
-            return;
-        }
-        else {
-            Instance = this;
-        }
-
-        Controls ??= new PlayerControls();
-        Controls.Enable();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-    }
+		controls ??= new PlayerControls();
+		controls.Enable();
+	}
 
 }
