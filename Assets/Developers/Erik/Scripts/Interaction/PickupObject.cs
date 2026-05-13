@@ -1,6 +1,6 @@
 using UnityEngine;
 
-
+[RequireComponent(typeof(Rigidbody), typeof(Collider))]
 public class PickupObject : MonoBehaviour, IInteractable, IPickable {
 
 	private Rigidbody rb;

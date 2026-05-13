@@ -282,6 +282,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &333585659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8643641444766577967, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
+  m_PrefabInstance: {fileID: 1242045659133586203}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &382278584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,7 +1339,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872249701}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1455,9 +1460,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 872249701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 270adfc6ca524d74b8e257c2899e4b4f, type: 3}
+  m_Script: {fileID: 11500000, guid: a76d54d495dbbe44a83feef018fcde00, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupObject
+  m_EditorClassIdentifier: Assembly-CSharp::Grabbable
 --- !u!1 &875100378
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,9 +1771,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 904398791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 270adfc6ca524d74b8e257c2899e4b4f, type: 3}
+  m_Script: {fileID: 11500000, guid: a76d54d495dbbe44a83feef018fcde00, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupObject
+  m_EditorClassIdentifier: Assembly-CSharp::Grabbable
 --- !u!1 &1024367381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,8 +1953,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 836171029925591291, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1108127643}
   m_SourcePrefab: {fileID: 100100000, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+--- !u!1 &1108127642 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 836171029925591291, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+  m_PrefabInstance: {fileID: 1108127641}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1108127643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1108127642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84227cd6016c3054db57d4505c8ec73a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Grabber
+  holdPoint: {fileID: 333585659}
+  breakForce: 1500
+  breakTorque: 1500
+  positionSpring: 300
+  positionDamper: 40
+  maxForce: 1500
 --- !u!1 &1110225911
 GameObject:
   m_ObjectHideFlags: 0

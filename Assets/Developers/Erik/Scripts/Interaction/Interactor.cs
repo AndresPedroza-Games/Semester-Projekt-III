@@ -11,7 +11,6 @@ public class Interactor : MonoBehaviour {
 	[Header("---Crosshair---")] [SerializeField]
 	private Image crosshairImage;
 
-
 	[SerializeField] private Sprite crosshairDot;
 	[SerializeField] private Sprite crosshairCircle;
 
@@ -23,11 +22,13 @@ public class Interactor : MonoBehaviour {
 	private bool isLookingAtInteractable;
 
 	public Inventory Inventory { get; private set; }
+	public Grabber Grabber { get; private set; }
 
 
 	private void Awake() {
 		cam = Camera.main;
 		Inventory = GetComponent<Inventory>();
+		Grabber = GetComponent<Grabber>();
 		interactableLayer = LayerMask.GetMask("Interactable");
 	}
 
@@ -40,7 +41,7 @@ public class Interactor : MonoBehaviour {
 
 	private void OnDisable() {
 		InputManager.Instance.Interact.performed -= Interact;
-		InputManager.Instance.Drop.performed -= Interact;
+		InputManager.Instance.Drop.performed -= Drop;
 	}
 
 
@@ -93,6 +94,9 @@ public class Interactor : MonoBehaviour {
 
 
 	private void Drop(InputAction.CallbackContext ctx) {
+		if(Grabber.IsHolding)
+			Grabber.Drop();
+		
 		if (Inventory.HoldingObject == null) return;
 
 		if (Inventory.HoldingObject.TryGetComponent(out IPickable pickable))
