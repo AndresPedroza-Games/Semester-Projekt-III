@@ -7,6 +7,9 @@ public class Interactor : MonoBehaviour {
 
 	[Header("---Interaction---")]
 	[SerializeField] private float interactionDistance = 2.5f;
+	public IPickable CurrentPickedObj { get; set; }
+	public Grabber Grabber { get; private set; }
+	public Picker Picker { get; private set; }
 
 	[Header("---Crosshair---")] [SerializeField]
 	private Image crosshairImage;
@@ -21,14 +24,11 @@ public class Interactor : MonoBehaviour {
 	private LayerMask interactableLayer;
 	private bool isLookingAtInteractable;
 
-	public Inventory Inventory { get; private set; }
-	public Grabber Grabber { get; private set; }
-
 
 	private void Awake() {
 		cam = Camera.main;
-		Inventory = GetComponent<Inventory>();
 		Grabber = GetComponent<Grabber>();
+		Picker = GetComponent<Picker>();
 		interactableLayer = LayerMask.GetMask("Interactable");
 	}
 
@@ -58,7 +58,13 @@ public class Interactor : MonoBehaviour {
 
 
 	private bool LookingAtInteractable() {
-		return Physics.Raycast(cam.transform.position, cam.transform.forward, interactionDistance, interactableLayer);
+
+		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance)) {
+			if (hit.collider.gameObject.TryGetComponent(out IInteractable interactable))
+				return interactable.CanInteract(this);
+		}
+
+		return false;
 	}
 
 
@@ -84,24 +90,20 @@ public class Interactor : MonoBehaviour {
 
 
 	private void Interact(InputAction.CallbackContext ctx) {
-
 		if (!Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance))
 			return;
 
 		if (hit.collider.TryGetComponent(out IInteractable interactable))
-			interactable.Interact(this);
+			if (interactable.CanInteract(this))
+				interactable.Interact(this);
 	}
 
 
 	private void Drop(InputAction.CallbackContext ctx) {
-		if(Grabber.IsHolding)
-			Grabber.Drop();
-		
-		if (Inventory.HoldingObject == null) return;
+		if (CurrentPickedObj == null) return;
 
-		if (Inventory.HoldingObject.TryGetComponent(out IPickable pickable))
-			pickable.Drop(Inventory);
-		Inventory.HoldingObject = null;
+		CurrentPickedObj.Drop();
+		CurrentPickedObj = null;
 	}
 
 

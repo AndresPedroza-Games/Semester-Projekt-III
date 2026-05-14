@@ -3,35 +3,48 @@ using UnityEngine;
 
 public class Grabber : MonoBehaviour {
 
-	[Header("---Holdpoint---")]
-	[SerializeField] private GameObject holdPoint;
+	[Header("---Velocity---")]
+	[SerializeField] private bool keepMomentum;
 
+	[Header("---Hold Point---")]
+	[SerializeField] private Transform holdPoint;
 
 	[Header(("---Joint Config---"))]
 	[SerializeField] private float breakForce = 1500f;
 	[SerializeField] private float breakTorque = 1500f;
 
-
 	[Header("---Joint Driver Config---")]
-	[SerializeField] private float positionSpring = 2000f;
-	[SerializeField] private float positionDamper = 200f;
-	[SerializeField] private float maxForce = 100f;
+	[SerializeField] private float positionSpring = 800f;
+	[SerializeField] private float positionDamper = 40f;
+	[SerializeField] private float maxForce = 1000f;
 
-	private Rigidbody holdBody;
+	private GameObject holdBody;
+	private Rigidbody holdRb;
 	private ConfigurableJoint currentJoint;
-	private Rigidbody grabbedRb;
-
-	public bool IsHolding { get; private set; }
+	public Rigidbody GrabbedRb { get; private set; }
 
 
 	private void Start() {
-		holdBody = holdPoint.AddComponent<Rigidbody>();
-		holdBody.isKinematic = true;
+		holdBody = new GameObject("HoldBody");
+		holdBody.AddComponent<Rigidbody>();
+
+		holdRb = holdBody.GetComponent<Rigidbody>();
+		holdRb.isKinematic = true;
+		holdRb.useGravity = false;
+		holdRb.interpolation = RigidbodyInterpolation.Interpolate;
+		holdRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
+		holdBody.transform.position = holdPoint.position;
+	}
+
+
+	private void FixedUpdate() {
+		holdRb.MovePosition(holdPoint.position);
 	}
 
 
 	private void ConfigureJoint() {
-		currentJoint.connectedBody = holdBody;
+		currentJoint.connectedBody = holdRb;
 
 		currentJoint.autoConfigureConnectedAnchor = false;
 
@@ -41,6 +54,13 @@ public class Grabber : MonoBehaviour {
 		currentJoint.xMotion = ConfigurableJointMotion.Limited;
 		currentJoint.yMotion = ConfigurableJointMotion.Limited;
 		currentJoint.zMotion = ConfigurableJointMotion.Limited;
+
+		currentJoint.angularXMotion = ConfigurableJointMotion.Limited;
+		currentJoint.angularYMotion = ConfigurableJointMotion.Limited;
+		currentJoint.angularZMotion = ConfigurableJointMotion.Limited;
+
+		SoftJointLimit limit = new SoftJointLimit { limit = 0.5f };
+		currentJoint.linearLimit = limit;
 
 		currentJoint.breakForce = breakForce;
 		currentJoint.breakTorque = breakTorque;
@@ -54,10 +74,9 @@ public class Grabber : MonoBehaviour {
 
 
 	public void Grab(Rigidbody rb) {
-		if (grabbedRb != null) return;
+		if (GrabbedRb != null) return;
 
-		IsHolding = true;
-		grabbedRb = rb;
+		GrabbedRb = rb;
 
 		rb.useGravity = false;
 
@@ -68,14 +87,25 @@ public class Grabber : MonoBehaviour {
 
 
 	public void Drop() {
-		if (grabbedRb == null) return;
+		if (GrabbedRb == null) return;
 
-		grabbedRb.useGravity = true;
+		if (!keepMomentum)
+			GrabbedRb.linearVelocity = Vector3.zero;
+
+		GrabbedRb.useGravity = true;
 
 		Destroy(currentJoint);
 
-		IsHolding = false;
-		grabbedRb = null;
+		GrabbedRb = null;
 	}
+
+
+	private void OnDrawGizmos() {
+		if (holdPoint != null) {
+			Gizmos.color = Color.orange;
+			Gizmos.DrawWireSphere(holdPoint.position, 0.1f);
+		}
+	}
+
 
 }

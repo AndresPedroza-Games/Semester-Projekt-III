@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8616296912708125306}
   - component: {fileID: 8662507306674860224}
   - component: {fileID: 5619290868464122428}
-  - component: {fileID: 425393409940917341}
+  - component: {fileID: 3783654137410604109}
+  - component: {fileID: 4983510467907786830}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -109,7 +110,7 @@ MonoBehaviour:
   crosshairImage: {fileID: 0}
   crosshairDot: {fileID: 21300000, guid: 6bc3a272bc606cd4888505d4820e6737, type: 3}
   crosshairCircle: {fileID: 21300000, guid: 7fa4c5dc1a2b59348b24cec50c09b7b0, type: 3}
---- !u!114 &425393409940917341
+--- !u!114 &3783654137410604109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,11 +119,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 836171029925591291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbb754d9f8c8a8c49903f2fcb943aa77, type: 3}
+  m_Script: {fileID: 11500000, guid: 84227cd6016c3054db57d4505c8ec73a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Inventory
-  dropPosition: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Grabber
+  keepMomentum: 0
+  holdPoint: {fileID: 0}
+  breakForce: 1500
+  breakTorque: 1500
+  positionSpring: 800
+  positionDamper: 40
+  maxForce: 1000
+--- !u!114 &4983510467907786830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836171029925591291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7b43bacba88e0544b5fa7a9533675c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Picker
   holdPosition: {fileID: 0}
+  dropPosition: {fileID: 0}
 --- !u!1 &3932121629478673074
 GameObject:
   m_ObjectHideFlags: 0

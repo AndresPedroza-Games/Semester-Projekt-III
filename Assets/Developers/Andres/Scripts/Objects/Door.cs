@@ -4,7 +4,9 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable {
 
 	[SerializeField] private Transform doorHinge;
-	[SerializeField] private GameObject requiredKey;
+	[SerializeField] private Key requiredKey;
+
+	private bool canInteract = true;
 
 
 	// private void Start() {
@@ -13,34 +15,35 @@ public class Door : MonoBehaviour, IInteractable {
 	// }
 
 
-	public void Open(GameObject obj) {
-		// if (_DoorIsOpenAble)
-		//     Debug.Log("Opening Door");
-		// else
-		//     Debug.Log("You don't have the key");
+	public bool CanInteract(Interactor interactor) {
+		return canInteract && interactor.CurrentPickedObj != null;
+	}
 
-		doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
-		gameObject.layer = 0;
+
+	public void Interact(Interactor interactor) {
+		if (interactor.CurrentPickedObj == null) return;
+
+		Open(interactor);
+	}
+
+
+	private void Open(Interactor interactor) {
+		if (interactor.CurrentPickedObj.GetGameObject().TryGetComponent(out Key key)) {
+			if (key == requiredKey) {
+				key.UseKey();
+				doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
+
+				canInteract = false;
+
+				interactor.CurrentPickedObj = null;
+			}
+		}
 	}
 
 
 	// I think Events should handle closing the doors
 	public void Close() {
 		doorHinge.rotation = Quaternion.Euler(0f, 90f, 0f);
-	}
-
-
-	public void Interact(Interactor interactor) {
-		if (interactor.Inventory.HoldingObject != null) {
-			GameObject obj = interactor.Inventory.HoldingObject;
-
-			if (obj == requiredKey) {
-				Open(obj);
-				obj.transform.SetParent(null);
-				obj.SetActive(false);
-				interactor.Inventory.HoldingObject = null;
-			}
-		}
 	}
 
 }
