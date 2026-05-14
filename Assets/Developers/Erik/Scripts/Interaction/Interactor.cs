@@ -20,7 +20,7 @@ public class Interactor : MonoBehaviour {
 	private GameObject currentObject;
 	private GameObject newObject;
 
-	private Camera cam;
+	public Camera cam { get; private set; }
 	private LayerMask interactableLayer;
 	private bool isLookingAtInteractable;
 

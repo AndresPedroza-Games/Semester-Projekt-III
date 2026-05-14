@@ -15,6 +15,8 @@ public class Pickable : MonoBehaviour, IInteractable, IPickable {
 
 		Rb = GetComponent<Rigidbody>();
 		Col = GetComponent<Collider>();
+
+		Rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 	}
 
 
