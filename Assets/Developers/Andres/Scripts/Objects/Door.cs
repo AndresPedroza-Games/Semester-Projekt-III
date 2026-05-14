@@ -1,32 +1,49 @@
 using UnityEngine;
 
-public class Door : MonoBehaviour, IOpenable, IInteractable
-{
-    private bool _DoorIsOpenAble;
 
-    private void Start()
-    {
-        EventSystem.eventSystem.openDoor += Open;
-        EventSystem.eventSystem.keyPicked += () => _DoorIsOpenAble = true;
-    }
+public class Door : MonoBehaviour, IInteractable {
 
-    public void Open()
-    {
-        if (_DoorIsOpenAble)
-            Debug.Log("Opening Door");
-        else
-            Debug.Log("You don't have the key");
-    }
+	[SerializeField] private Transform doorHinge;
+	[SerializeField] private Key requiredKey;
 
-    public void Close()
-    {
+	private bool canInteract = true;
 
-    }
 
-    public void Interact() {
-        if (_DoorIsOpenAble)
-            Debug.Log("Opening Door");
-        else
-            Debug.Log("You don't have the key");
-    }
+	// private void Start() {
+	// 	// EventSystem.eventSystem.openDoor += Open;
+	// 	// EventSystem.eventSystem.keyPicked += () => _DoorIsOpenAble = true;
+	// }
+
+
+	public bool CanInteract(Interactor interactor) {
+		return canInteract && interactor.CurrentPickedObj != null;
+	}
+
+
+	public void Interact(Interactor interactor) {
+		if (interactor.CurrentPickedObj == null) return;
+
+		Open(interactor);
+	}
+
+
+	private void Open(Interactor interactor) {
+		if (interactor.CurrentPickedObj.GetGameObject().TryGetComponent(out Key key)) {
+			if (key == requiredKey) {
+				key.UseKey();
+				doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
+
+				canInteract = false;
+
+				interactor.CurrentPickedObj = null;
+			}
+		}
+	}
+
+
+	// I think Events should handle closing the doors
+	public void Close() {
+		doorHinge.rotation = Quaternion.Euler(0f, 90f, 0f);
+	}
+
 }

@@ -2,91 +2,117 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
+
 public class Interactor : MonoBehaviour {
 
-    [Header("---Interaction---")]
-    [SerializeField] private float interactionDistance = 2.5f;
-    [SerializeField] private Image crosshairImage;
-    [SerializeField] private Sprite crosshairDot;
-    [SerializeField] private Sprite crosshairCircle;
+	[Header("---Interaction---")]
+	[SerializeField] private float interactionDistance = 2.5f;
+	public IPickable CurrentPickedObj { get; set; }
+	public Grabber Grabber { get; private set; }
+	public Picker Picker { get; private set; }
 
-    private Camera cam;
-    private LayerMask interactableLayer;
-    private bool isLookingAtInteractable;
+	[Header("---Crosshair---")] [SerializeField]
+	private Image crosshairImage;
 
-    private GameObject currentObject;
-    private GameObject newObject;
+	[SerializeField] private Sprite crosshairDot;
+	[SerializeField] private Sprite crosshairCircle;
 
-    private void Awake() {
-        cam = Camera.main;
-        interactableLayer = LayerMask.GetMask("Interactable");
-    }
+	private GameObject currentObject;
+	private GameObject newObject;
 
-
-    private void OnEnable() {
-        InputManager.Instance.Interact.performed += Interact;
-    }
+	public Camera cam { get; private set; }
+	private LayerMask interactableLayer;
+	private bool isLookingAtInteractable;
 
 
-    private void OnDisable() {
-        InputManager.Instance.Interact.performed -= Interact;
-    }
+	private void Awake() {
+		cam = Camera.main;
+		Grabber = GetComponent<Grabber>();
+		Picker = GetComponent<Picker>();
+		interactableLayer = LayerMask.GetMask("Interactable");
+	}
 
 
-    private void Update() {
-        isLookingAtInteractable = LookingAtInteractable();
-
-        Sprite targetSprite = isLookingAtInteractable ? crosshairCircle : crosshairDot;
-
-        if (crosshairImage.sprite != targetSprite)
-            crosshairImage.sprite = targetSprite;
-
-        HighlightGameObject();
-    }
-
-    private bool LookingAtInteractable() {
-        return Physics.Raycast(cam.transform.position, cam.transform.forward, interactionDistance, interactableLayer);
-    }
-
-    private void HighlightGameObject()
-    {
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance, interactableLayer))
-        {
-            newObject = hit.collider.gameObject;
-
-            if(newObject.GetComponent<IInteractable>() != null)
-            {
-                if(currentObject != null)
-                    currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
-
-                currentObject = newObject;
-                currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
-            }
-        }
-        else
-        {
-            if(currentObject != null)
-            {
-                currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0f);
-                currentObject = null;
-            }
-        }
-    }
-
-    private void Interact(InputAction.CallbackContext ctx) {
-        if (!Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance))
-            return;
-
-        if (hit.collider.TryGetComponent(out IInteractable interactable))
-            interactable.Interact();
-    }
+	private void OnEnable() {
+		InputManager.Instance.Interact.performed += Interact;
+		InputManager.Instance.Drop.performed += Drop;
+	}
 
 
-    private void OnDrawGizmos() {
-        if (cam == null) {
-            cam = Camera.main;
-        }
+	private void OnDisable() {
+		InputManager.Instance.Interact.performed -= Interact;
+		InputManager.Instance.Drop.performed -= Drop;
+	}
 
-        Debug.DrawRay(cam.transform.position, cam.transform.forward * interactionDistance, Color.blue);
-    }
+
+	private void Update() {
+		isLookingAtInteractable = LookingAtInteractable();
+
+		Sprite targetSprite = isLookingAtInteractable ? crosshairCircle : crosshairDot;
+
+		if (crosshairImage.sprite != targetSprite)
+			crosshairImage.sprite = targetSprite;
+
+		HighlightGameObject();
+	}
+
+
+	private bool LookingAtInteractable() {
+
+		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance)) {
+			if (hit.collider.gameObject.TryGetComponent(out IInteractable interactable))
+				return interactable.CanInteract(this);
+		}
+
+		return false;
+	}
+
+
+	private void HighlightGameObject() {
+		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance, interactableLayer)) {
+			newObject = hit.collider.gameObject;
+
+			if (newObject.GetComponent<IInteractable>() != null) {
+				if (currentObject != null)
+					currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
+
+				currentObject = newObject;
+				currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
+			}
+		}
+		else {
+			if (currentObject != null) {
+				currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0f);
+				currentObject = null;
+			}
+		}
+	}
+
+
+	private void Interact(InputAction.CallbackContext ctx) {
+		if (!Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance))
+			return;
+
+		if (hit.collider.TryGetComponent(out IInteractable interactable))
+			if (interactable.CanInteract(this))
+				interactable.Interact(this);
+	}
+
+
+	private void Drop(InputAction.CallbackContext ctx) {
+		if (CurrentPickedObj == null) return;
+
+		CurrentPickedObj.Drop();
+		CurrentPickedObj = null;
+	}
+
+
+	private void OnDrawGizmos() {
+		if (cam == null) {
+			cam = Camera.main;
+		}
+
+		Debug.DrawRay(cam.transform.position, cam.transform.forward * interactionDistance, Color.blue);
+	}
+
 }
