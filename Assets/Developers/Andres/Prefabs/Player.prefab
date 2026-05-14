@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5619290868464122428}
   - component: {fileID: 3783654137410604109}
   - component: {fileID: 4983510467907786830}
+  - component: {fileID: 4667606395251159092}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -141,8 +142,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7b43bacba88e0544b5fa7a9533675c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Picker
-  holdPosition: {fileID: 0}
-  dropPosition: {fileID: 0}
+  holdPoint: {fileID: 0}
+  dropPoint: {fileID: 0}
+--- !u!114 &4667606395251159092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836171029925591291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f28a9535529d94c957605762fc4986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Zoom
+  zoomFOV: 20
+  zoomDuration: 0.2
 --- !u!1 &3932121629478673074
 GameObject:
   m_ObjectHideFlags: 0

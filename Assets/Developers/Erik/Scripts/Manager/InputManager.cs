@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour {
 	public InputAction Interact => controls.Interaction.Interact;
 	public InputAction Drop => controls.Interaction.Drop;
 	public InputAction Crouch => controls.Movement.Crouch;
+	public InputAction Zoom => controls.Interaction.Zoom;
 
 	public InputAction Pause => controls.Game.Pause;
 

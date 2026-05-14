@@ -2073,14 +2073,6 @@ PrefabInstance:
       propertyPath: holdPoint
       value: 
       objectReference: {fileID: 1245453565}
-    - target: {fileID: 4983510467907786830, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: dropPosition
-      value: 
-      objectReference: {fileID: 122403773}
-    - target: {fileID: 4983510467907786830, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: holdPosition
-      value: 
-      objectReference: {fileID: 1245453565}
     - target: {fileID: 5619290868464122428, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: crosshairImage
       value: 
@@ -3260,6 +3252,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 617961083}
+    - target: {fileID: 1603551452332115881, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+      propertyPath: m_Lens.FieldOfView
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3356,6 +3352,10 @@ PrefabInstance:
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3580492876288931306, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
+      propertyPath: field of view
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7780525499101791677, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_Name
