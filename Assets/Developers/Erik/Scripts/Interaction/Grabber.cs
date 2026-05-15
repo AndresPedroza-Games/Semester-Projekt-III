@@ -4,10 +4,13 @@ using UnityEngine;
 public class Grabber : MonoBehaviour {
 
 	[Header("---Velocity---")]
-	[SerializeField] private bool keepMomentum;
+	[SerializeField] private bool keepMomentum = true;
 
 	[Header("---Hold Point---")]
 	[SerializeField] private Transform holdPoint;
+	[SerializeField] private float holdSmoothFollowSpeed = 15f;
+	[Tooltip("Offset is used when the Hold Point is located within a different object")]
+	[SerializeField] [Range(0.1f, 0.5f)] private float offset = 0.1f;
 
 	[Header(("---Joint Config---"))]
 	[SerializeField] private float breakForce = 1500f;
@@ -18,10 +21,24 @@ public class Grabber : MonoBehaviour {
 	[SerializeField] private float positionDamper = 40f;
 	[SerializeField] private float maxForce = 1000f;
 
+
+	private Rigidbody grabbedRb;
+
+	private Interactor interactor;
+
 	private GameObject holdBody;
 	private Rigidbody holdRb;
 	private ConfigurableJoint currentJoint;
-	public Rigidbody GrabbedRb { get; private set; }
+	private LayerMask ignoreLayer;
+
+	private float grabPlayerYRotation;
+	private Quaternion grabbedObjectRotation;
+
+
+	private void Awake() {
+		interactor = GetComponent<Interactor>();
+		ignoreLayer = ~LayerMask.GetMask("Interactable");
+	}
 
 
 	private void Start() {
@@ -39,7 +56,40 @@ public class Grabber : MonoBehaviour {
 
 
 	private void FixedUpdate() {
-		holdRb.MovePosition(holdPoint.position);
+		MoveHoldPoint();
+		RotateObject();
+	}
+
+
+	private void MoveHoldPoint() {
+		Ray ray = new(interactor.cam.transform.position, interactor.cam.transform.forward);
+		float distance = (ray.origin - holdPoint.position).magnitude;
+
+		Vector3 targetPos;
+
+		if (Physics.Raycast(ray, out RaycastHit hit, distance, ignoreLayer)) {
+			Vector3 offsetDir = (ray.origin - hit.point).normalized;
+			targetPos = hit.point + offsetDir * offset;
+		}
+		else {
+			targetPos = holdPoint.position;
+		}
+		Vector3 smoothPos = Vector3.Lerp(holdRb.position, targetPos, holdSmoothFollowSpeed * Time.fixedDeltaTime );
+
+		holdRb.MovePosition(smoothPos);
+	}
+
+
+	private void RotateObject() {
+		if (!grabbedRb) return;
+
+		float currentPlayerY = interactor.cam.transform.eulerAngles.y;
+
+		float deltaY = currentPlayerY - grabPlayerYRotation;
+
+		Quaternion targetRotation = Quaternion.Euler(0f, deltaY, 0f) * grabbedObjectRotation;
+
+		holdRb.MoveRotation(targetRotation);
 	}
 
 
@@ -59,6 +109,15 @@ public class Grabber : MonoBehaviour {
 		currentJoint.angularYMotion = ConfigurableJointMotion.Limited;
 		currentJoint.angularZMotion = ConfigurableJointMotion.Limited;
 
+		currentJoint.rotationDriveMode = RotationDriveMode.Slerp;
+		JointDrive angularDrive = new JointDrive {
+			positionSpring = 300f,
+			positionDamper = 25f,
+			maximumForce = maxForce
+		};
+		currentJoint.slerpDrive = angularDrive;
+		currentJoint.targetRotation = Quaternion.identity;
+
 		SoftJointLimit limit = new SoftJointLimit { limit = 0.5f };
 		currentJoint.linearLimit = limit;
 
@@ -74,11 +133,15 @@ public class Grabber : MonoBehaviour {
 
 
 	public void Grab(Rigidbody rb) {
-		if (GrabbedRb != null) return;
+		if (grabbedRb) return;
 
-		GrabbedRb = rb;
+		grabPlayerYRotation = interactor.cam.transform.eulerAngles.y;
+		grabbedObjectRotation = rb.rotation;
+
+		grabbedRb = rb;
 
 		rb.useGravity = false;
+		//rb.constraints = RigidbodyConstraints.FreezeRotation;
 
 		currentJoint = rb.gameObject.AddComponent<ConfigurableJoint>();
 
@@ -87,23 +150,36 @@ public class Grabber : MonoBehaviour {
 
 
 	public void Drop() {
-		if (GrabbedRb == null) return;
+		if (!grabbedRb) return;
 
 		if (!keepMomentum)
-			GrabbedRb.linearVelocity = Vector3.zero;
+			grabbedRb.linearVelocity = Vector3.zero;
 
-		GrabbedRb.useGravity = true;
+		grabbedRb.useGravity = true;
+		//grabbedRb.constraints = RigidbodyConstraints.None;
 
 		Destroy(currentJoint);
 
-		GrabbedRb = null;
+		grabbedRb = null;
 	}
 
 
 	private void OnDrawGizmos() {
-		if (holdPoint != null) {
-			Gizmos.color = Color.orange;
-			Gizmos.DrawWireSphere(holdPoint.position, 0.1f);
+		if (holdPoint && interactor) {
+			Ray ray = new(interactor.cam.transform.position, interactor.cam.transform.forward);
+			float distance = (ray.origin - holdPoint.position).magnitude;
+			Vector3 targetPos;
+
+			if (Physics.Raycast(ray, out RaycastHit hit, distance, ignoreLayer)) {
+				Vector3 offsetDir = (ray.origin - hit.point).normalized;
+				targetPos = hit.point + offsetDir * offset;
+			}
+			else {
+				targetPos = holdPoint.position;
+			}
+
+			Gizmos.color = Color.purple;
+			Gizmos.DrawWireSphere(targetPos, 0.1f);
 		}
 	}
 

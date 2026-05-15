@@ -8,7 +8,7 @@ public class Picker : MonoBehaviour {
 	[SerializeField] private Transform dropPoint;
 	
 	[Tooltip("Drop Offset is used when the drop position is located within a different object")]
-	[SerializeField] [Range(0.1f, 1.0f)] float dropOffset = 0.1f;
+	[SerializeField] [Range(0.1f, 0.5f)] float dropOffset = 0.1f;
 	
 	private Vector3 altDropPoint;
 
@@ -77,7 +77,7 @@ public class Picker : MonoBehaviour {
 				Vector3 offsetDir = (ray.origin - hit.point).normalized;
 				altDropPoint = hit.point + offsetDir * dropOffset;
 
-				Gizmos.color = Color.yellow;
+				Gizmos.color = Color.red;
 				Gizmos.DrawWireSphere(altDropPoint, 0.1f);
 			}
 		}
