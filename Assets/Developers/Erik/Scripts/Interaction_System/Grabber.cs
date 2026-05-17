@@ -13,7 +13,8 @@ public class Grabber : MonoBehaviour {
 	[SerializeField] [Range(0.1f, 0.5f)] private float offset = 0.1f;
 
 	[Header(("---Joint Break Config---"))]
-	[SerializeField] private float breakDistance = 3f;
+	[Tooltip("Break Distance shouldn't be less then Interaction Distance")]
+	[SerializeField] private float breakDistance = 2f;
 	[SerializeField] private float jointLimit = 0.5f;
 
 	[Header("---Joint Driver Config---")]
@@ -22,10 +23,8 @@ public class Grabber : MonoBehaviour {
 	[SerializeField] private float maxForce = 1000f;
 
 
-	private Rigidbody grabbedRb;
+	private Holdable holdable;
 	private RigidbodyConstraints originalConstraints;
-
-	private Interactor interactor;
 
 	private GameObject holdBody;
 	private Rigidbody holdRb;
@@ -33,10 +32,12 @@ public class Grabber : MonoBehaviour {
 	private LayerMask ignoreLayer;
 
 	private Quaternion rotationOffset;
+	private Camera cam;
 
 
 	private void Awake() {
-		interactor = GetComponent<Interactor>();
+		cam = Camera.main;
+
 		ignoreLayer = ~LayerMask.GetMask("Interactable");
 	}
 
@@ -68,7 +69,7 @@ public class Grabber : MonoBehaviour {
 
 
 	private void MoveHoldPoint() {
-		Ray ray = new(interactor.Cam.transform.position, interactor.Cam.transform.forward);
+		Ray ray = new(cam.transform.position, cam.transform.forward);
 		float distance = (ray.origin - holdPoint.position).magnitude;
 
 		Vector3 targetPos;
@@ -88,30 +89,30 @@ public class Grabber : MonoBehaviour {
 
 
 	private void RotateObject() {
-		if (!grabbedRb)
+		if (!holdable)
 			return;
 
 		float holdY = holdPoint.eulerAngles.y;
 
 		Quaternion targetRotation = Quaternion.Euler(0f, holdY, 0f) * rotationOffset;
 
-		grabbedRb.MoveRotation(Quaternion.Slerp(grabbedRb.rotation, targetRotation, holdSmoothFollowSpeed * Time.fixedDeltaTime));
+		holdable.Rigidbody.MoveRotation(Quaternion.Slerp(holdable.Rigidbody.rotation, targetRotation, holdSmoothFollowSpeed * Time.fixedDeltaTime));
 	}
 
 
-	public void Grab(Rigidbody rb) {
-		if (grabbedRb) return;
+	public void Grab(Holdable newHoldable) {
+		if (holdable) return;
 
-		grabbedRb = rb;
-		rb.useGravity = false;
+		holdable = newHoldable;
+		newHoldable.Rigidbody.useGravity = false;
 		
-		originalConstraints = rb.constraints;
-		rb.constraints = RigidbodyConstraints.FreezeRotation;
+		originalConstraints = newHoldable.Rigidbody.constraints;
+		newHoldable.Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 
-		currentJoint.connectedBody = grabbedRb;
+		currentJoint.connectedBody = holdable.Rigidbody;
 
 		float holdY = holdPoint.eulerAngles.y;
-		float objectY = rb.rotation.eulerAngles.y;
+		float objectY = newHoldable.Rigidbody.rotation.eulerAngles.y;
 		float yOffset = objectY - holdY;
 
 		rotationOffset = Quaternion.Euler(0f, yOffset, 0f);
@@ -119,28 +120,27 @@ public class Grabber : MonoBehaviour {
 
 
 	public void Drop() {
-		if (!grabbedRb) return;
+		if (!holdable) return;
 
 		if (!keepMomentum)
-			grabbedRb.linearVelocity = Vector3.zero;
+			holdable.Rigidbody.linearVelocity = Vector3.zero;
 		
-		grabbedRb.useGravity = true;
-		grabbedRb.constraints = originalConstraints;
+		holdable.Rigidbody.useGravity = true;
+		holdable.Rigidbody.constraints = originalConstraints;
 
 		currentJoint.connectedBody = null;
-		grabbedRb = null;
+		holdable = null;
 	}
 
 
 	private void CheckJointState() {
-		if (!grabbedRb)
+		if (!holdable)
 			return;
 
-		float distance = Vector3.Distance(holdPoint.position, grabbedRb.position);
+		float distance = Vector3.Distance(holdPoint.position, holdable.Rigidbody.position);
 
 		if (distance > breakDistance) {
-			grabbedRb.GetComponent<Grabbable>().Break();
-			Drop();
+			holdable.Release();
 		}
 	}
 
@@ -174,8 +174,11 @@ public class Grabber : MonoBehaviour {
 
 
 	private void OnDrawGizmos() {
-		if (holdPoint && interactor) {
-			Ray ray = new(interactor.Cam.transform.position, interactor.Cam.transform.forward);
+		if (cam == null)
+			cam = Camera.main;
+		
+		if (holdPoint && cam) {
+			Ray ray = new(cam.transform.position, cam.transform.forward);
 			float distance = (ray.origin - holdPoint.position).magnitude;
 			Vector3 targetPos;
 

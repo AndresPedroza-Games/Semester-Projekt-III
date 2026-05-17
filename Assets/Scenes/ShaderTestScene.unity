@@ -363,8 +363,8 @@ GameObject:
   - component: {fileID: 259559441}
   - component: {fileID: 259559440}
   - component: {fileID: 259559439}
-  - component: {fileID: 259559438}
   - component: {fileID: 259559437}
+  - component: {fileID: 259559444}
   m_Layer: 6
   m_Name: Key (1)
   m_TagString: Untagged
@@ -384,18 +384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ce9bca4b3bd8940a336bafb88d5510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Key
---- !u!114 &259559438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 259559436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 270adfc6ca524d74b8e257c2899e4b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupObject
 --- !u!54 &259559439
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -518,6 +506,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259559444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259559436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ebfe4d5d641ff4b9b6102ff381e7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Holdable
+  holdDefinition: {fileID: 11400000, guid: effbc0f642fe7e143abd69433b1171fa, type: 2}
 --- !u!1 &333343882
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,8 +1431,8 @@ GameObject:
   - component: {fileID: 815012619}
   - component: {fileID: 815012618}
   - component: {fileID: 815012617}
-  - component: {fileID: 815012622}
   - component: {fileID: 815012623}
+  - component: {fileID: 815012624}
   m_Layer: 6
   m_Name: Key
   m_TagString: Untagged
@@ -1561,18 +1562,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &815012622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815012615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 270adfc6ca524d74b8e257c2899e4b4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PickupObject
 --- !u!114 &815012623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1585,6 +1574,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ce9bca4b3bd8940a336bafb88d5510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Key
+--- !u!114 &815012624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815012615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ebfe4d5d641ff4b9b6102ff381e7f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Holdable
+  holdDefinition: {fileID: 11400000, guid: effbc0f642fe7e143abd69433b1171fa, type: 2}
 --- !u!1 &872249701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,10 +1737,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 872249701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76d54d495dbbe44a83feef018fcde00, type: 3}
+  m_Script: {fileID: 11500000, guid: d5ebfe4d5d641ff4b9b6102ff381e7f6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Grabbable
-  grabber: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Holdable
+  holdDefinition: {fileID: 11400000, guid: 8aeb682200f257d4e9b7c317e1799c39, type: 2}
 --- !u!1 &875100378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2047,10 +2049,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 904398791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a76d54d495dbbe44a83feef018fcde00, type: 3}
+  m_Script: {fileID: 11500000, guid: d5ebfe4d5d641ff4b9b6102ff381e7f6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Grabbable
-  grabber: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::Holdable
+  holdDefinition: {fileID: 11400000, guid: 8aeb682200f257d4e9b7c317e1799c39, type: 2}
 --- !u!1 &1024367381
 GameObject:
   m_ObjectHideFlags: 0
@@ -2175,26 +2177,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3783654137410604109, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: holdPoint
-      value: 
-      objectReference: {fileID: 122403773}
-    - target: {fileID: 3783654137410604109, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: breakDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4983510467907786830, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: dropPoint
-      value: 
-      objectReference: {fileID: 122403773}
-    - target: {fileID: 4983510467907786830, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: holdPoint
-      value: 
-      objectReference: {fileID: 1245453565}
-    - target: {fileID: 5619290868464122428, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+    - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: crosshairImage
       value: 
       objectReference: {fileID: 1736695871}
+    - target: {fileID: 2632235742325951894, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: dropPoint
+      value: 
+      objectReference: {fileID: 122403773}
+    - target: {fileID: 2632235742325951894, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: holdPoint
+      value: 
+      objectReference: {fileID: 1245453565}
+    - target: {fileID: 8648168936414111143, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: holdPoint
+      value: 
+      objectReference: {fileID: 122403773}
     - target: {fileID: 8858807260829887222, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3371,10 +3369,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 617961083}
-    - target: {fileID: 1603551452332115881, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
-      propertyPath: m_Lens.FieldOfView
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3474,7 +3468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3580492876288931306, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: field of view
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7780525499101791677, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_Name
