@@ -15,27 +15,30 @@ public class Door : MonoBehaviour, IInteractable {
 	// }
 
 
+	// set canInteract bool via Event e.g. OnKeyPickedUp -> canInteract = true
 	public bool CanInteract(Interactor interactor) {
-		return canInteract && interactor.CurrentPickedObj != null;
+		return canInteract && interactor.CurrentHeldObject != null;
 	}
 
 
 	public void Interact(Interactor interactor) {
-		if (interactor.CurrentPickedObj == null) return;
+		if (interactor.CurrentHeldObject == null) return;
 
 		Open(interactor);
 	}
 
 
+	
+	// If canInteract gets set via Event, the door can just be opened without key check
 	private void Open(Interactor interactor) {
-		if (interactor.CurrentPickedObj.GetGameObject().TryGetComponent(out Key key)) {
+		if (interactor.CurrentHeldObject.GetGameObject().TryGetComponent(out Key key)) {
 			if (key == requiredKey) {
 				key.UseKey();
 				doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
 
 				canInteract = false;
 
-				interactor.CurrentPickedObj = null;
+				interactor.CurrentHeldObject = null;
 			}
 		}
 	}

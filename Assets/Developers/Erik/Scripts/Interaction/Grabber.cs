@@ -12,9 +12,9 @@ public class Grabber : MonoBehaviour {
 	[Tooltip("Offset is used when the Hold Point is located within a different object")]
 	[SerializeField] [Range(0.1f, 0.5f)] private float offset = 0.1f;
 
-	[Header(("---Joint Config---"))]
-	[SerializeField] private float breakForce = 1500f;
-	[SerializeField] private float breakTorque = 1500f;
+	[Header(("---Joint Break Config---"))]
+	[SerializeField] private float breakDistance = 3f;
+	[SerializeField] private float jointLimit = 0.5f;
 
 	[Header("---Joint Driver Config---")]
 	[SerializeField] private float positionSpring = 800f;
@@ -23,6 +23,7 @@ public class Grabber : MonoBehaviour {
 
 
 	private Rigidbody grabbedRb;
+	private RigidbodyConstraints originalConstraints;
 
 	private Interactor interactor;
 
@@ -31,8 +32,7 @@ public class Grabber : MonoBehaviour {
 	private ConfigurableJoint currentJoint;
 	private LayerMask ignoreLayer;
 
-	private float grabPlayerYRotation;
-	private Quaternion grabbedObjectRotation;
+	private Quaternion rotationOffset;
 
 
 	private void Awake() {
@@ -43,26 +43,32 @@ public class Grabber : MonoBehaviour {
 
 	private void Start() {
 		holdBody = new GameObject("HoldBody");
-		holdBody.AddComponent<Rigidbody>();
 
-		holdRb = holdBody.GetComponent<Rigidbody>();
+		holdRb = holdBody.AddComponent<Rigidbody>();
 		holdRb.isKinematic = true;
 		holdRb.useGravity = false;
+
 		holdRb.interpolation = RigidbodyInterpolation.Interpolate;
 		holdRb.collisionDetectionMode = CollisionDetectionMode.Continuous;
 
 		holdBody.transform.position = holdPoint.position;
+
+		currentJoint = holdBody.AddComponent<ConfigurableJoint>();
+
+		ConfigureJoint();
+		currentJoint.connectedBody = null;
 	}
 
 
 	private void FixedUpdate() {
+		CheckJointState();
 		MoveHoldPoint();
 		RotateObject();
 	}
 
 
 	private void MoveHoldPoint() {
-		Ray ray = new(interactor.cam.transform.position, interactor.cam.transform.forward);
+		Ray ray = new(interactor.Cam.transform.position, interactor.Cam.transform.forward);
 		float distance = (ray.origin - holdPoint.position).magnitude;
 
 		Vector3 targetPos;
@@ -74,28 +80,72 @@ public class Grabber : MonoBehaviour {
 		else {
 			targetPos = holdPoint.position;
 		}
-		Vector3 smoothPos = Vector3.Lerp(holdRb.position, targetPos, holdSmoothFollowSpeed * Time.fixedDeltaTime );
+
+		Vector3 smoothPos = Vector3.Slerp(holdRb.position, targetPos, holdSmoothFollowSpeed * Time.fixedDeltaTime);
 
 		holdRb.MovePosition(smoothPos);
 	}
 
 
 	private void RotateObject() {
+		if (!grabbedRb)
+			return;
+
+		float holdY = holdPoint.eulerAngles.y;
+
+		Quaternion targetRotation = Quaternion.Euler(0f, holdY, 0f) * rotationOffset;
+
+		grabbedRb.MoveRotation(Quaternion.Slerp(grabbedRb.rotation, targetRotation, holdSmoothFollowSpeed * Time.fixedDeltaTime));
+	}
+
+
+	public void Grab(Rigidbody rb) {
+		if (grabbedRb) return;
+
+		grabbedRb = rb;
+		rb.useGravity = false;
+		
+		originalConstraints = rb.constraints;
+		rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+		currentJoint.connectedBody = grabbedRb;
+
+		float holdY = holdPoint.eulerAngles.y;
+		float objectY = rb.rotation.eulerAngles.y;
+		float yOffset = objectY - holdY;
+
+		rotationOffset = Quaternion.Euler(0f, yOffset, 0f);
+	}
+
+
+	public void Drop() {
 		if (!grabbedRb) return;
 
-		float currentPlayerY = interactor.cam.transform.eulerAngles.y;
+		if (!keepMomentum)
+			grabbedRb.linearVelocity = Vector3.zero;
+		
+		grabbedRb.useGravity = true;
+		grabbedRb.constraints = originalConstraints;
 
-		float deltaY = currentPlayerY - grabPlayerYRotation;
+		currentJoint.connectedBody = null;
+		grabbedRb = null;
+	}
 
-		Quaternion targetRotation = Quaternion.Euler(0f, deltaY, 0f) * grabbedObjectRotation;
 
-		holdRb.MoveRotation(targetRotation);
+	private void CheckJointState() {
+		if (!grabbedRb)
+			return;
+
+		float distance = Vector3.Distance(holdPoint.position, grabbedRb.position);
+
+		if (distance > breakDistance) {
+			grabbedRb.GetComponent<Grabbable>().Break();
+			Drop();
+		}
 	}
 
 
 	private void ConfigureJoint() {
-		currentJoint.connectedBody = holdRb;
-
 		currentJoint.autoConfigureConnectedAnchor = false;
 
 		currentJoint.anchor = Vector3.zero;
@@ -105,24 +155,15 @@ public class Grabber : MonoBehaviour {
 		currentJoint.yMotion = ConfigurableJointMotion.Limited;
 		currentJoint.zMotion = ConfigurableJointMotion.Limited;
 
-		currentJoint.angularXMotion = ConfigurableJointMotion.Limited;
-		currentJoint.angularYMotion = ConfigurableJointMotion.Limited;
-		currentJoint.angularZMotion = ConfigurableJointMotion.Limited;
+		currentJoint.angularXMotion = ConfigurableJointMotion.Free;
+		currentJoint.angularYMotion = ConfigurableJointMotion.Free;
+		currentJoint.angularZMotion = ConfigurableJointMotion.Free;
 
-		currentJoint.rotationDriveMode = RotationDriveMode.Slerp;
-		JointDrive angularDrive = new JointDrive {
-			positionSpring = 300f,
-			positionDamper = 25f,
-			maximumForce = maxForce
-		};
-		currentJoint.slerpDrive = angularDrive;
-		currentJoint.targetRotation = Quaternion.identity;
+		currentJoint.breakForce = Mathf.Infinity;
+		currentJoint.breakTorque = Mathf.Infinity;
 
-		SoftJointLimit limit = new SoftJointLimit { limit = 0.5f };
+		SoftJointLimit limit = new SoftJointLimit { limit = jointLimit };
 		currentJoint.linearLimit = limit;
-
-		currentJoint.breakForce = breakForce;
-		currentJoint.breakTorque = breakTorque;
 
 		JointDrive drive = new JointDrive { positionSpring = positionSpring, positionDamper = positionDamper, maximumForce = maxForce };
 
@@ -132,41 +173,9 @@ public class Grabber : MonoBehaviour {
 	}
 
 
-	public void Grab(Rigidbody rb) {
-		if (grabbedRb) return;
-
-		grabPlayerYRotation = interactor.cam.transform.eulerAngles.y;
-		grabbedObjectRotation = rb.rotation;
-
-		grabbedRb = rb;
-
-		rb.useGravity = false;
-		//rb.constraints = RigidbodyConstraints.FreezeRotation;
-
-		currentJoint = rb.gameObject.AddComponent<ConfigurableJoint>();
-
-		ConfigureJoint();
-	}
-
-
-	public void Drop() {
-		if (!grabbedRb) return;
-
-		if (!keepMomentum)
-			grabbedRb.linearVelocity = Vector3.zero;
-
-		grabbedRb.useGravity = true;
-		//grabbedRb.constraints = RigidbodyConstraints.None;
-
-		Destroy(currentJoint);
-
-		grabbedRb = null;
-	}
-
-
 	private void OnDrawGizmos() {
 		if (holdPoint && interactor) {
-			Ray ray = new(interactor.cam.transform.position, interactor.cam.transform.forward);
+			Ray ray = new(interactor.Cam.transform.position, interactor.Cam.transform.forward);
 			float distance = (ray.origin - holdPoint.position).magnitude;
 			Vector3 targetPos;
 

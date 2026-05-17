@@ -5,7 +5,7 @@ using UnityEngine;
 public class Grabbable : MonoBehaviour, IInteractable, IPickable {
 
 	private Rigidbody rb;
-	private Grabber grabber;
+	public Grabber grabber;
 	private Interactor interactor;
 
 
@@ -24,22 +24,22 @@ public class Grabbable : MonoBehaviour, IInteractable, IPickable {
 	}
 
 
-	public bool CanInteract(Interactor i) {
-		return i.CurrentPickedObj == null;
+	public void Interact(Interactor i) {
+		
 	}
 
 
-	public void Interact(Interactor i) {
+	public bool CanInteract(Interactor i) {
+		return i.CurrentHeldObject == null;
+	}
+
+
+	public void PickUp(Interactor i) {
 		interactor = i;
 		grabber = interactor.Grabber;
-		PickUp();
-
-		interactor.CurrentPickedObj = this;
-	}
-
-
-	public void PickUp() {
+		
 		grabber.Grab(rb);
+		interactor.CurrentHeldObject = this;
 	}
 
 
@@ -47,15 +47,22 @@ public class Grabbable : MonoBehaviour, IInteractable, IPickable {
 		grabber?.Drop();
 		grabber = null;
 
-		if (interactor != null) interactor.CurrentPickedObj = null; 
+		if (interactor) interactor.CurrentHeldObject = null; 
 	}
 
 
-	void OnJointBreak(float force) {
-		Debug.Log("Joint broken with force: " + force);
-
-		Drop();
+	public void Break() {
 		grabber = null;
+
+		if (interactor) interactor.CurrentHeldObject = null;
 	}
+
+
+	// void OnJointBreak(float force) {
+	// 	Debug.Log("Joint broken with force: " + force);
+	//
+	// 	Drop();
+	// 	grabber = null;
+	// }
 
 }

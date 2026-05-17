@@ -20,25 +20,26 @@ public class Pickable : MonoBehaviour, IInteractable, IPickable {
 	}
 
 
+	public void Interact(Interactor i) {
+
+	}
+
+
+	public bool CanInteract(Interactor i) {
+		return i.CurrentHeldObject == null;
+	}
+
+
 	public GameObject GetGameObject() {
 		return this.gameObject;
 	}
-	
-	public bool CanInteract(Interactor interactor) {
-		return interactor.CurrentPickedObj == null;
-	}
 
 
-	public void Interact(Interactor interactor) {
-		picker = interactor.Picker;
-		PickUp();
-
-		interactor.CurrentPickedObj = this;
-	}
-
-
-	public void PickUp() {
+	public void PickUp(Interactor i) {
+		picker = i.Picker;
 		picker.PickUp(this);
+
+		i.CurrentHeldObject = this;
 	}
 
 

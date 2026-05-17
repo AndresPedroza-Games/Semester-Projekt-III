@@ -7,7 +7,7 @@ public class Interactor : MonoBehaviour {
 
 	[Header("---Interaction---")]
 	[SerializeField] private float interactionDistance = 2.5f;
-	public IPickable CurrentPickedObj { get; set; }
+	public IPickable CurrentHeldObject { get; set; }
 	public Grabber Grabber { get; private set; }
 	public Picker Picker { get; private set; }
 
@@ -20,13 +20,13 @@ public class Interactor : MonoBehaviour {
 	private GameObject currentObject;
 	private GameObject newObject;
 
-	public Camera cam { get; private set; }
+	public Camera Cam { get; private set; }
 	private LayerMask interactableLayer;
 	private bool isLookingAtInteractable;
 
 
 	private void Awake() {
-		cam = Camera.main;
+		Cam = Camera.main;
 		Grabber = GetComponent<Grabber>();
 		Picker = GetComponent<Picker>();
 		interactableLayer = LayerMask.GetMask("Interactable");
@@ -35,13 +35,13 @@ public class Interactor : MonoBehaviour {
 
 	private void OnEnable() {
 		InputManager.Instance.Interact.performed += Interact;
-		InputManager.Instance.Drop.performed += Drop;
+		InputManager.Instance.PickUp.performed += HandlePickUp;
 	}
 
 
 	private void OnDisable() {
 		InputManager.Instance.Interact.performed -= Interact;
-		InputManager.Instance.Drop.performed -= Drop;
+		InputManager.Instance.PickUp.performed -= HandlePickUp;
 	}
 
 
@@ -59,7 +59,7 @@ public class Interactor : MonoBehaviour {
 
 	private bool LookingAtInteractable() {
 
-		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance)) {
+		if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, interactionDistance)) {
 			if (hit.collider.gameObject.TryGetComponent(out IInteractable interactable))
 				return interactable.CanInteract(this);
 		}
@@ -69,7 +69,7 @@ public class Interactor : MonoBehaviour {
 
 
 	private void HighlightGameObject() {
-		if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance, interactableLayer)) {
+		if (Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, interactionDistance, interactableLayer)) {
 			newObject = hit.collider.gameObject;
 
 			if (newObject.GetComponent<IInteractable>() != null) {
@@ -89,8 +89,23 @@ public class Interactor : MonoBehaviour {
 	}
 
 
+	private void HandlePickUp(InputAction.CallbackContext ctx) {
+		if (CurrentHeldObject != null) {
+			Drop();
+			return;
+		}
+
+		if (!Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, interactionDistance))
+			return;
+
+		if (hit.collider.TryGetComponent(out IPickable pickable)) {
+			pickable.PickUp(this);
+		}
+	}
+
+
 	private void Interact(InputAction.CallbackContext ctx) {
-		if (!Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, interactionDistance))
+		if (!Physics.Raycast(Cam.transform.position, Cam.transform.forward, out RaycastHit hit, interactionDistance))
 			return;
 
 		if (hit.collider.TryGetComponent(out IInteractable interactable))
@@ -99,20 +114,18 @@ public class Interactor : MonoBehaviour {
 	}
 
 
-	private void Drop(InputAction.CallbackContext ctx) {
-		if (CurrentPickedObj == null) return;
-
-		CurrentPickedObj.Drop();
-		CurrentPickedObj = null;
+	private void Drop() {
+		CurrentHeldObject.Drop();
+		CurrentHeldObject = null;
 	}
 
 
 	private void OnDrawGizmos() {
-		if (cam == null) {
-			cam = Camera.main;
+		if (Cam == null) {
+			Cam = Camera.main;
 		}
 
-		Debug.DrawRay(cam.transform.position, cam.transform.forward * interactionDistance, Color.blue);
+		Debug.DrawRay(Cam.transform.position, Cam.transform.forward * interactionDistance, Color.blue);
 	}
 
 }

@@ -174,18 +174,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Drop",
+                    "name": "Zoom",
                     "type": "Button",
-                    "id": "105fba57-875f-487b-9f7e-e1d767a6ee79",
+                    "id": "9b8e0609-41d3-4732-99e9-062e7405e52b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Zoom",
+                    "name": "PickUp",
                     "type": "Button",
-                    "id": "9b8e0609-41d3-4732-99e9-062e7405e52b",
+                    "id": "bab2c2b9-1e40-4861-8437-46e1415fb734",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -206,23 +206,23 @@
                 },
                 {
                     "name": "",
-                    "id": "28d5808b-1b49-43b7-b0fb-473135d261cb",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Drop",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f6ed32c1-53a7-4fc5-9671-1ef8561b2a08",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e61e011-23cc-4b9d-8954-3b66e02fba69",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

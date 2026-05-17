@@ -29,11 +29,12 @@ public class Picker : MonoBehaviour {
 
 		pickedObj.transform.SetParent(holdPoint);
 		pickedObj.transform.position = holdPoint.position;
+		pickedObj.transform.forward = holdPoint.forward;
 	}
 
 
 	public void Drop() {
-		Ray ray = new(interactor.cam.transform.position, interactor.cam.transform.forward);
+		Ray ray = new(interactor.Cam.transform.position, interactor.Cam.transform.forward);
 		float distance = (ray.origin - dropPoint.position).magnitude;
 
 		if (Physics.Raycast(ray, out RaycastHit hit, distance)) {
@@ -71,7 +72,7 @@ public class Picker : MonoBehaviour {
 		}
 
 		if (interactor != null) {
-			Ray ray = new(interactor.cam.transform.position, interactor.cam.transform.forward);
+			Ray ray = new(interactor.Cam.transform.position, interactor.Cam.transform.forward);
 			float distance = (ray.origin - dropPoint.position).magnitude;
 			if (Physics.Raycast(ray, out RaycastHit hit, distance)) {
 				Vector3 offsetDir = (ray.origin - hit.point).normalized;
