@@ -13,7 +13,7 @@ public class Door : MonoBehaviour, IInteractable {
     private void Start()
     {
 		eventSystemController = EventSystemController.eventSystemController;
-		eventSystemController.onCloseDoor = Close;
+		eventSystemController.onCloseDoor += Close;
     }
 
     public bool CanInteract(Interactor interactor) {
@@ -37,6 +37,8 @@ public class Door : MonoBehaviour, IInteractable {
 				canInteract = false;
 
 				interactor.CurrentPickedObj = null;
+
+				EventSystemController.eventSystemController.OpenDoor(this.gameObject);
 			}
 		}
 	}
@@ -45,6 +47,6 @@ public class Door : MonoBehaviour, IInteractable {
 	// I think Events should handle closing the doors
 	public void Close() {
 		doorHinge.rotation = Quaternion.Euler(0f, 90f, 0f);
+		Debug.Log("Door Closed");
 	}
-
 }

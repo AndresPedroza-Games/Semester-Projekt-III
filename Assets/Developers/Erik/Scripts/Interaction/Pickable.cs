@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -39,14 +40,14 @@ public class Pickable : MonoBehaviour, IInteractable, IPickable {
 
 	public void PickUp() {
 		picker.PickUp(this);
-		EventSystemController.eventSystemController.PickItem();
-	}
+        EventSystemController.eventSystemController.PickItem(this.gameObject);
+    }
 
 
-	public void Drop() {
+    public void Drop() {
 		picker?.Drop();
 		picker = null;
-        EventSystemController.eventSystemController.DropItem();
+        EventSystemController.eventSystemController.DropItem(this.gameObject);
     }
 
 }

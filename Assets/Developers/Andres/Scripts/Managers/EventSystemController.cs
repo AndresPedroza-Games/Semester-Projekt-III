@@ -8,10 +8,12 @@ public class EventSystemController : MonoBehaviour
     [Header("Events")]
     //We can use to add sounds or to change the UI
     public Action onCloseDoor;
-    public Action onItemPicked;
-    public Action onItemDropped;
+    public Action<GameObject> onOpenDoor;
+    public Action<GameObject> onItemPicked;
+    public Action<GameObject> onItemDropped;
 
     public Action onSaveGame;
+    public Action onExitGame;
 
     private void Awake()
     {
@@ -25,22 +27,28 @@ public class EventSystemController : MonoBehaviour
         
     }
 
+    public void OpenDoor(GameObject item)
+    {
+        if (onOpenDoor != null)
+            onOpenDoor.Invoke(item);
+    }
+
     public void CloseDoor()
     {
         if (onCloseDoor != null)
             onCloseDoor.Invoke();
     }
 
-    public void PickItem()
+    public void PickItem(GameObject item)
     {
         if (onItemPicked != null)
-            onItemPicked.Invoke();
+            onItemPicked.Invoke(item);
     }
 
-    public void DropItem()
+    public void DropItem(GameObject item)
     {
         if (onItemDropped != null)
-            onItemDropped.Invoke();
+            onItemDropped.Invoke(item);
     }
 
     public void SaveGame()
