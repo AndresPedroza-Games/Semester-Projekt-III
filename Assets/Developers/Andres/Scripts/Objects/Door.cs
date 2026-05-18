@@ -13,7 +13,7 @@ public class Door : MonoBehaviour, IInteractable {
     private void Start()
     {
 		eventSystemController = EventSystemController.eventSystemController;
-		eventSystemController.onCloseDoor += Close;
+		eventSystemController.onCloseDoor += CloseDoor;
     }
 
 
