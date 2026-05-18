@@ -8,14 +8,15 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private bool canInteract = true;
 
+	private EventSystemController eventSystemController;
 
-	// private void Start() {
-	// 	// EventSystem.eventSystem.openDoor += Open;
-	// 	// EventSystem.eventSystem.keyPicked += () => _DoorIsOpenAble = true;
-	// }
+    private void Start()
+    {
+		eventSystemController = EventSystemController.eventSystemController;
+		eventSystemController.onCloseDoor = Close;
+    }
 
-
-	public bool CanInteract(Interactor interactor) {
+    public bool CanInteract(Interactor interactor) {
 		return canInteract && interactor.CurrentPickedObj != null;
 	}
 

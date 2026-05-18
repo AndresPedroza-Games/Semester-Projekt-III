@@ -24,6 +24,8 @@ public class Interactor : MonoBehaviour {
 	private LayerMask interactableLayer;
 	private bool isLookingAtInteractable;
 
+	private EventSystemController eventSystemController;
+
 
 	private void Awake() {
 		cam = Camera.main;
@@ -32,8 +34,13 @@ public class Interactor : MonoBehaviour {
 		interactableLayer = LayerMask.GetMask("Interactable");
 	}
 
+    private void Start()
+    {
+		eventSystemController = EventSystemController.eventSystemController;
+    }
 
-	private void OnEnable() {
+
+    private void OnEnable() {
 		InputManager.Instance.Interact.performed += Interact;
 		InputManager.Instance.Drop.performed += Drop;
 	}
