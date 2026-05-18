@@ -10,7 +10,7 @@ Shader "Custom/InteractableShader"
 
         [MainTexture] _BaseMap("Base Map", 2D) = "white" {}
 
-        _BorderThickness("Border Thickness", Range(0,0.02)) = 0.01
+        _BorderThickness("Border Thickness", Range(0,0.05)) = 0.01
 
         _NormalMap ("Normal Map", 2D) = "bump" {}
         _NormalStrength("Normal Strength", Float) = 1

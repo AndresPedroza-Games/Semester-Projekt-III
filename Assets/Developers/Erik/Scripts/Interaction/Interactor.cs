@@ -81,10 +81,10 @@ public class Interactor : MonoBehaviour {
 
 			if (newObject.GetComponent<IInteractable>() != null) {
 				if (currentObject != null)
-					currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
+					currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.05f);
 
 				currentObject = newObject;
-				currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.02f);
+				currentObject.GetComponent<Renderer>().material.SetFloat("_BorderThickness", 0.05f);
 			}
 		}
 		else {
