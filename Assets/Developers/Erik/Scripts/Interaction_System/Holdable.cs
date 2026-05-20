@@ -56,6 +56,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable {
 		currentHolder?.ClearCurrentHoldable();
 
 		currentHolder = null;
+
 	}
 
 }

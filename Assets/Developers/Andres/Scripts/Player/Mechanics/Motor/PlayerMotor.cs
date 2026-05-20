@@ -91,6 +91,12 @@ public class PlayerMotor : MonoBehaviour
         _PlayerMovement.Movement(characterController, moveInput);
     }
 
+    private void FixedUpdate()
+    {
+        Movement();
+        HandleGravity();
+    }
+
 
     private void LateUpdate() {
 	    RotatePlayer();

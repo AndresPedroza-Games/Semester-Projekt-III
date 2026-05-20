@@ -4,23 +4,23 @@ using UnityEngine;
 public class InteractionDetector : MonoBehaviour {
 
 	[Header(("---Interaction Distance---"))]
-	[SerializeField] private float interactionDistance = 2.0f;
+	public float interactionDistance = 2.0f;
 
 	private Camera cam;
 	private LayerMask layermask;
 
 	public IInteractable CurrentTarget { get; private set; }
 
+    private Vector3 _LastPositionMouse;
 
-	private void Awake() {
+    private void Awake() {
 		cam = Camera.main;
 
 		gameObject.layer = LayerMask.NameToLayer("Player");
 		layermask = ~LayerMask.GetMask("Player");
 	}
 
-
-	private void Update() {
+    private void Update() {
 		Detect();
 	}
 
@@ -38,8 +38,21 @@ public class InteractionDetector : MonoBehaviour {
 
 		CurrentTarget = interactable;
 	}
-	
-	private void OnDrawGizmos() {
+
+    public Vector3 GetRayPosition(LayerMask layerDetector)
+    {
+        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+
+        if (!Physics.Raycast(ray, out RaycastHit hit, interactionDistance, layermask))
+            return new Vector3(0,0,0);
+
+        if (Physics.Raycast(ray, out hit, interactionDistance, layerDetector))
+            _LastPositionMouse = hit.point;
+
+        return _LastPositionMouse;
+    }
+
+    private void OnDrawGizmos() {
 		if (cam == null) {
 			cam = Camera.main;
 		}

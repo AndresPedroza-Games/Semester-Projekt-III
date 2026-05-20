@@ -19,13 +19,13 @@ public class Interactor : MonoBehaviour {
 	private void OnEnable() {
 		InputManager.Instance.Interact.performed += Interact;
 		InputManager.Instance.PickUp.performed += HandlePickUp;
-	}
+    }
 
 
-	private void OnDisable() {
+    private void OnDisable() {
 		InputManager.Instance.Interact.performed -= Interact;
 		InputManager.Instance.PickUp.performed -= HandlePickUp;
-	}
+    }
 
 
 	private void Update() {
@@ -52,7 +52,6 @@ public class Interactor : MonoBehaviour {
 	// 		}
 	// 	}
 	// }
-
 
 	private void HandlePickUp(InputAction.CallbackContext ctx) {
 		if (holdController.HasObject) {

@@ -8,13 +8,20 @@ public class InputManager : MonoBehaviour {
 
 	private PlayerControls controls;
 
-	public InputAction Move => controls.Movement.Move;
+    [Header("Mechanics")]
+    public InputAction Move => controls.Movement.Move;
 	public InputAction Interact => controls.Interaction.Interact;
 	public InputAction PickUp => controls.Interaction.PickUp;
 	public InputAction Crouch => controls.Movement.Crouch;
 	public InputAction Zoom => controls.Interaction.Zoom;
 
-	public InputAction Pause => controls.Game.Pause;
+	[Header("Board Puzzle")]
+	public InputAction PlacePiece => controls.BoardPuzzle.Place;
+	public InputAction ExitPuzzle => controls.BoardPuzzle.Exit;
+	public InputAction RotatePiece => controls.BoardPuzzle.Rotate;
+
+    [Header("Settings")]
+    public InputAction Pause => controls.Game.Pause;
 
 
 	private void Awake() {

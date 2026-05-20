@@ -255,6 +255,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "BoardPuzzle",
+            "id": "521cd1e8-8163-4b1c-8da4-0743c30a5f5d",
+            "actions": [
+                {
+                    "name": "Place",
+                    "type": "Button",
+                    "id": "599ac43e-037c-4096-888b-5cbc35f68872",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "2f223026-2a29-40e8-b8a9-762af91bba80",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "2781e3e6-7fb1-4491-a58c-f891113f7116",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e5d67042-b2ba-43bd-ac65-e65f2381e0e8",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Place",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0cd0666d-9ffb-4aa8-8996-772d5ad05a98",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67026f22-4b38-488c-bc9b-f7f80e32df09",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
