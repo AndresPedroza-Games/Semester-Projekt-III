@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(HoldController), typeof(InteractionDetector), typeof(InteractionUI))]
-[RequireComponent(typeof(Grabber), typeof(Picker))]
+[RequireComponent(typeof(PhysicsHolder), typeof(Picker))]
 public class Interactor : MonoBehaviour {
 
 	private HoldController holdController;

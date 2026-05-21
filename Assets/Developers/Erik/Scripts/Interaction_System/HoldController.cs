@@ -7,13 +7,14 @@ public class HoldController : MonoBehaviour {
 
 	public bool HasObject => CurrentHoldable != null;
 
-	public Grabber Grabber { get; private set; }
 	public Picker Picker { get; private set; }
+
+	public PhysicsHolder PhysicsHolder { get; private set; }
 
 
 	private void Awake() {
-		Grabber = GetComponent<Grabber>();
 		Picker = GetComponent<Picker>();
+		PhysicsHolder = GetComponent<PhysicsHolder>();
 	}
 
 
