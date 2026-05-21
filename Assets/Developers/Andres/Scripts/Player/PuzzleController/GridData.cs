@@ -19,7 +19,18 @@ public class GridData
         }
     }
 
-    private List<Vector3Int> CalculatePositions(Vector3Int gridPos, Vector2Int pieceSize)
+    public void RemoveObjectAt(Vector3Int gridPos, Vector2Int pieceSize, int id, int pieceIndex)
+    {
+        List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+
+        foreach (var position in positionToOccupy)
+        {
+            if (_PlacedPieces.ContainsKey(position))
+                _PlacedPieces.Remove(position);
+        }
+    }
+
+    public List<Vector3Int> CalculatePositions(Vector3Int gridPos, Vector2Int pieceSize)
     {
         List<Vector3Int> returnValue = new List<Vector3Int>();
 
@@ -34,13 +45,35 @@ public class GridData
         return returnValue;
     }
 
-    public bool CanPlacePiece(Vector3Int gridPos, Vector2Int pieceSize)
+    public bool PieceInsideGrid(Vector3Int gridPos, Vector2Int pieceSize, Vector2Int gridSize)   
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
 
         foreach (var position in positionToOccupy)
         {
-            if (_PlacedPieces.ContainsKey(position))
+            if (position.x < 0 || position.x > gridSize.x || position.z > gridSize.y || position.z < 0)
+                return false;
+        }
+
+        return true;
+    }
+
+    public bool PieceCorrectPosition(Vector3Int gridPos, List<Vector3Int> correctPos, int id)
+    {
+        if(_PlacedPieces.ContainsKey(gridPos))
+            if (_PlacedPieces[gridPos].occupiedPositions == correctPos && _PlacedPieces[gridPos].ID == id)
+                return true;
+
+        return false;
+    }
+
+    public bool CanPlacePiece(Vector3Int gridPos, Vector2Int pieceSize, Vector2Int gridSize)
+    {
+        List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+
+        foreach (var position in positionToOccupy)
+        {
+            if (_PlacedPieces.ContainsKey(position) || !PieceInsideGrid(gridPos, pieceSize, gridSize))
                 return false;
         }
 

@@ -7,7 +7,7 @@ public class EventSystemChildRoom : EventSystemController
 
     public Action onPiecePlaced;
     public Action<GameObject> onPiecePicked;
-    public Action<Transform, Transform> onInteractWithBoard;
+    public Action<Transform, Transform, float> onInteractWithBoard;
     public Action onExitBoard;
     public Action onRotatePiece;
     public Action onPuzzleSolved;
@@ -24,10 +24,10 @@ public class EventSystemChildRoom : EventSystemController
             onPiecePlaced.Invoke();
     }
 
-    public void InteractWithBoard(Transform cameraPos, Transform board)
+    public void InteractWithBoard(Transform cameraPos, Transform board, float fov)
     {
         if (onInteractWithBoard != null)
-            onInteractWithBoard.Invoke(cameraPos, board);
+            onInteractWithBoard.Invoke(cameraPos, board, fov);
     }
 
     public void PickPiece(GameObject piece)

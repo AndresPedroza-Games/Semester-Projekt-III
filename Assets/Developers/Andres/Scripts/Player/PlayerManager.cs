@@ -24,11 +24,12 @@ public class PlayerManager : MonoBehaviour
         _EventSystemChildRoom.onInteractWithBoard += Inspect;
     }
 
-    private void Inspect(Transform cameraPos, Transform lookAt)
+    private void Inspect(Transform cameraPos, Transform lookAt, float fov)
     {
         cinemachine.transform.position = cameraPos.position;
         cinemachine.LookAt = lookAt;
         cinemachine.Follow = null;
+        cinemachine.m_Lens.FieldOfView = fov;
         FreezeCharacter(true,100f);
     }
 

@@ -11,7 +11,7 @@ public class Board : MonoBehaviour, IInteractable
 
     private EventSystemChildRoom _EventSystemChildRoom;
     private List<GameObject> _PiecesInv = new List<GameObject>();
-    private List<GameObject> _CreatedPieces = new List<GameObject>();
+    public List<GameObject> createdPieces = new List<GameObject>();
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class Board : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-       _EventSystemChildRoom.InteractWithBoard(_CameraPosition, _PuzzleBoard);
+       _EventSystemChildRoom.InteractWithBoard(_CameraPosition, _PuzzleBoard,25f);
         GetComponentInChildren<PlacementSystem>().isInteracting = true;
         CreatePieces();
     }
@@ -37,7 +37,7 @@ public class Board : MonoBehaviour, IInteractable
             return;
 
         _PiecesInv.Add(piece);
-        piece.GetComponent<Holdable>().enabled = false;
+        //piece.GetComponent<Holdable>().
 
         Debug.Log("Piece added to list");
     }
@@ -60,16 +60,25 @@ public class Board : MonoBehaviour, IInteractable
             if (pieceData == null)
                 continue;
 
-            bool alreadyCreated = _CreatedPieces
+            bool alreadyCreated = createdPieces
                 .Any(p => p.name.Contains(pieceData.prefab.name));
 
             if (alreadyCreated)
                 continue;
 
-            GameObject createdPiece = Instantiate(pieceData.prefab,_PieceSpawn.position,Quaternion.identity);
+            GameObject createdPiece = Instantiate(pieceData.prefab,_PieceSpawn.position,RandomRotation());
 
-            _CreatedPieces.Add(createdPiece);
+            createdPieces.Add(createdPiece);
         }
+    }
+
+    private Quaternion RandomRotation()
+    {
+        int randomNumber = Random.Range(0,4) * 90;
+
+        Quaternion result = Quaternion.Euler(0f,randomNumber,0f);
+
+        return result;
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -346,6 +346,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2875518074634525016, guid: e6f5c1855628e2344acbd3c0ef3001da, type: 3}
+      propertyPath: pieceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 7bb7dbdff48cf314e8962a7c9130d603, type: 2}
     - target: {fileID: 6516989959882696354, guid: e6f5c1855628e2344acbd3c0ef3001da, type: 3}
       propertyPath: m_Name
       value: CubeYellow_Mini_Piece
@@ -1429,6 +1433,7 @@ MonoBehaviour:
   _PuzzleBoard: {fileID: 490242885}
   _PieceSpawn: {fileID: 830474348}
   tilePieceData: {fileID: 11400000, guid: a13c23d68cb42b240a8033d7ac264b6d, type: 2}
+  createdPieces: []
 --- !u!65 &1392875748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2010,6 +2015,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2329204371344754788, guid: fe5b5f3ac008ecf4da1fd62c933d9383, type: 3}
+      propertyPath: pieceData
+      value: 
+      objectReference: {fileID: 11400000, guid: 27e0ad35189dcf6419a6628cf0064e75, type: 2}
     - target: {fileID: 9135328745309060248, guid: fe5b5f3ac008ecf4da1fd62c933d9383, type: 3}
       propertyPath: m_Name
       value: Piece

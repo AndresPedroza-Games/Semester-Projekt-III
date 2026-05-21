@@ -49,6 +49,7 @@ public class PuzzleController : MonoBehaviour
             _EventSystemChildRoom.ExitBoard();
             _CineMachine.Follow = _Head;
             _CineMachine.LookAt = null;
+            _CineMachine.m_Lens.FieldOfView = 50f;
             _PlayerManager.FreezeCharacter(false, 2f);
             Debug.Log("Exit");
         }

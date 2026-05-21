@@ -4,6 +4,8 @@ public class TilePiece : MonoBehaviour, IInteractable
 {
     private EventSystemChildRoom _EventSystemChildRoom;
 
+    public PieceData pieceData;
+
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
