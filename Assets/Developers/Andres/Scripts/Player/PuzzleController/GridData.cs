@@ -45,13 +45,13 @@ public class GridData
         return returnValue;
     }
 
-    public bool PieceInsideGrid(Vector3Int gridPos, Vector2Int pieceSize, Vector2Int gridSize)   
+    public bool PieceInsideGrid(Vector3Int gridPos, Vector2Int pieceSize, Vector2 gridSize)   
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
 
         foreach (var position in positionToOccupy)
         {
-            if (position.x < 0 || position.x > gridSize.x || position.z > gridSize.y || position.z < 0)
+            if (position.x < gridSize.x || position.x > gridSize.y || position.z > gridSize.y || position.z < gridSize.x)
                 return false;
         }
 
@@ -67,7 +67,7 @@ public class GridData
         return false;
     }
 
-    public bool CanPlacePiece(Vector3Int gridPos, Vector2Int pieceSize, Vector2Int gridSize)
+    public bool CanPlacePiece(Vector3Int gridPos, Vector2Int pieceSize, Vector2 gridSize)
     {
         List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
 

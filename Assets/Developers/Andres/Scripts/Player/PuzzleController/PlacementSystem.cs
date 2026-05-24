@@ -7,7 +7,7 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField] private GameObject _TilePreview;
     [SerializeField] private Grid _Grid;
 
-    [SerializeField] private Vector2Int _GridSize = new Vector2Int(5,5);
+    [SerializeField] private Vector2 _GridSize;
     [SerializeField] private LayerMask layerDetector;
 
     private InteractionDetector _InteractionDetector;
@@ -42,6 +42,8 @@ public class PlacementSystem : MonoBehaviour
         _EventSystemChildRoom.onPiecePlaced += AddToGrid;
 
         _Board = GetComponentInParent<Board>();
+
+        _GridSize = new Vector2(-5,4);
     }
 
     private void Update()
@@ -65,6 +67,8 @@ public class PlacementSystem : MonoBehaviour
         _TilePreview.transform.position = new Vector3(_SnappedPos.x,0f, _SnappedPos.z);
 
         _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.red;
+
+        Debug.Log(_GridPos);
     }
 
     private void PickPiece(GameObject piece)
