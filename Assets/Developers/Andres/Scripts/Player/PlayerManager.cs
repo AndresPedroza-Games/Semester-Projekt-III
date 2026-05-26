@@ -30,13 +30,12 @@ public class PlayerManager : MonoBehaviour
         cinemachine.LookAt = lookAt;
         cinemachine.Follow = null;
         cinemachine.m_Lens.FieldOfView = fov;
-        FreezeCharacter(true,100f);
+        FreezeCharacter(true);
     }
 
-    public void FreezeCharacter(bool status, float distance)
+    public void FreezeCharacter(bool status)
     {
         _PlayerMotor.enabled = !status;
-        GetComponentInChildren<InteractionDetector>().interactionDistance = distance;
         Debug.Log("Player Freeze");
     }
 

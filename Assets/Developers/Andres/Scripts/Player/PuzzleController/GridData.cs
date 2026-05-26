@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class GridData
 {
-    private Dictionary<Vector3Int, PlacementData> _PlacedPieces = new Dictionary<Vector3Int, PlacementData>();
+    private Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
 
-    public void AddObjectAt(Vector3Int gridPos, Vector2Int pieceSize, int id, int pieceIndex)
+    public void AddObjectAt(Vector3 gridPos, Vector2Int pieceSize, int id, int pieceIndex)
     {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
         PlacementData data = new PlacementData(positionToOccupy,id,pieceIndex);
 
         foreach (var position in positionToOccupy)
@@ -19,9 +19,9 @@ public class GridData
         }
     }
 
-    public void RemoveObjectAt(Vector3Int gridPos, Vector2Int pieceSize, int id, int pieceIndex)
+    public void RemoveObjectAt(Vector3Int gridPos, Vector2Int pieceSize)
     {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
 
         foreach (var position in positionToOccupy)
         {
@@ -30,24 +30,24 @@ public class GridData
         }
     }
 
-    public List<Vector3Int> CalculatePositions(Vector3Int gridPos, Vector2Int pieceSize)
+    public List<Vector3> CalculatePositions(Vector3 gridPos, Vector2Int pieceSize)
     {
-        List<Vector3Int> returnValue = new List<Vector3Int>();
+        List<Vector3> returnValue = new List<Vector3>();
 
         for (int x = 0; x < pieceSize.x; x++)
         {
             for (int y = 0; y < pieceSize.y; y++)
             {
-                returnValue.Add(gridPos + new Vector3Int(x, 0, y));
+                returnValue.Add(gridPos + new Vector3(x, 0, y));
             }
         }
 
         return returnValue;
     }
 
-    public bool PieceInsideGrid(Vector3Int gridPos, Vector2Int pieceSize, Vector2 gridSize)   
+    public bool PieceInsideGrid(Vector3 gridPos, Vector2Int pieceSize, Vector2 gridSize)   
     {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
 
         foreach (var position in positionToOccupy)
         {
@@ -58,18 +58,22 @@ public class GridData
         return true;
     }
 
-    public bool PieceCorrectPosition(Vector3Int gridPos, List<Vector3Int> correctPos, int id)
+    public bool PieceCorrectPosition(Vector3 gridPos, Vector2Int pieceSize, List<Vector3Int> correctPos)
     {
-        if(_PlacedPieces.ContainsKey(gridPos))
-            if (_PlacedPieces[gridPos].occupiedPositions == correctPos && _PlacedPieces[gridPos].ID == id)
+        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+
+        for (int index = 0; index < positionToOccupy.Count; index++)
+        {
+            if (positionToOccupy[index] == correctPos[index])
                 return true;
+        }
 
         return false;
     }
 
-    public bool CanPlacePiece(Vector3Int gridPos, Vector2Int pieceSize, Vector2 gridSize)
+    public bool CanPlacePiece(Vector3 gridPos, Vector2Int pieceSize, Vector2 gridSize)
     {
-        List<Vector3Int> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
 
         foreach (var position in positionToOccupy)
         {
@@ -83,11 +87,11 @@ public class GridData
 
 public class PlacementData
 {
-    public List<Vector3Int> occupiedPositions;
+    public List<Vector3> occupiedPositions;
     public int ID { get; private set; }
     public int PlacedPieceIndex { get; private set; }
 
-    public PlacementData(List<Vector3Int> occupiedPos, int id, int placedObjectindx)
+    public PlacementData(List<Vector3> occupiedPos, int id, int placedObjectindx)
     {
         occupiedPositions = occupiedPos;
         ID = id;

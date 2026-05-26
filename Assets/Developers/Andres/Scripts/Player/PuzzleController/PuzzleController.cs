@@ -44,13 +44,13 @@ public class PuzzleController : MonoBehaviour
 
     private void ExitBoard(InputAction.CallbackContext ctx)
     {
-        if (FindFirstObjectByType<PlacementSystem>().isInteracting)
+        if (PlacementSystem.isInteracting)
         {
             _EventSystemChildRoom.ExitBoard();
             _CineMachine.Follow = _Head;
             _CineMachine.LookAt = null;
             _CineMachine.m_Lens.FieldOfView = 50f;
-            _PlayerManager.FreezeCharacter(false, 2f);
+            _PlayerManager.FreezeCharacter(false);
             Debug.Log("Exit");
         }
     }

@@ -7,6 +7,6 @@ public class PieceData : ScriptableObject
     [field: SerializeField] public string pieceName { get; private set; }
     [field: SerializeField] public int ID { get; private set; }
     [field: SerializeField] public Vector2Int size { get; private set; }
-    [field: SerializeField] public List<Vector3Int> finalPos { get; private set; }
+    [field: SerializeField] public List<Vector3Int> correctPos { get; private set;}
     [field: SerializeField] public GameObject prefab { get; private set; }
 }

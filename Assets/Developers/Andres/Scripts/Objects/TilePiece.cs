@@ -20,18 +20,25 @@ public class TilePiece : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        _EventSystemChildRoom.PickPiece(this.gameObject);
-        Debug.Log("Piece picked");
+        if (PlacementSystem.isInteracting)
+        {
+            _EventSystemChildRoom.PickPiece(this.gameObject);
+            Debug.Log("Piece picked");
+        }
     }
 
     private void PlaceTile()
     {
-        transform.position = new Vector3(transform.position.x, 0f, transform.position.z);
+        if(PlacementSystem.isInteracting)
+            transform.position = new Vector3(transform.position.x, 1.15f, transform.position.z);
     }
 
     private void RotatePiece()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90f, transform.rotation.eulerAngles.z);
-        Debug.Log("Rotate");
+        if (PlacementSystem.isInteracting)
+        {
+            transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 90f, transform.rotation.eulerAngles.z);
+            Debug.Log("Rotate");
+        }
     }
 }

@@ -13,24 +13,22 @@ public class PlacementSystem : MonoBehaviour
     private InteractionDetector _InteractionDetector;
     private EventSystemChildRoom _EventSystemChildRoom;
 
+    private List<GameObject> _PiecesCorrectPosition = new List<GameObject>();
+
     private GameObject _SelectedObject;
-    public bool isInteracting;
+    public static bool isInteracting;
 
-    private GridData _CubeData;
-    private GridData _CubeYellowData;
-    private GridData _SelectedData;
-    private Board _Board;
+    private GridData _PieceData;
 
-    private Vector3Int _SnappedPos;
+    private Vector3 _SnappedPos;
     private Vector3 _MousePos;
     private Vector3Int _GridPos;
 
+    private int _SelectedObjectIndex;
+
     private void Awake()
     {
-        _CubeData = new GridData();
-        _CubeYellowData = new GridData();
-
-        _SelectedData = _CubeData;
+        _PieceData = new GridData();
     }
 
     private void Start()
@@ -40,10 +38,7 @@ public class PlacementSystem : MonoBehaviour
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _EventSystemChildRoom.onPiecePicked += PickPiece;
         _EventSystemChildRoom.onPiecePlaced += AddToGrid;
-
-        _Board = GetComponentInParent<Board>();
-
-        _GridSize = new Vector2(-5,4);
+        _EventSystemChildRoom.onExitBoard += () => _TilePreview.SetActive(false);
     }
 
     private void Update()
@@ -54,17 +49,19 @@ public class PlacementSystem : MonoBehaviour
 
     private void MousePosition()
     {
+        _TilePreview.SetActive(true);
+
         _MousePos = _InteractionDetector.GetRayPosition(layerDetector);
         _GridPos = _Grid.WorldToCell(_MousePos);
-        _SnappedPos = Vector3Int.RoundToInt(_Grid.GetCellCenterWorld(_GridPos));
+        _SnappedPos = _Grid.GetCellCenterWorld(_GridPos);
 
         if (_SelectedObject != null)
         {
-            Vector3 lastPos = new Vector3(_SelectedObject.transform.position.x,1f, _SelectedObject.transform.position.z);
-            _SelectedObject.transform.position = _SelectedData.PieceInsideGrid(_GridPos, new Vector2Int(1, 1), _GridSize) ? new Vector3(_SnappedPos.x,1f, _SnappedPos.z) : lastPos;
+            Vector3 lastPos = new Vector3(_SelectedObject.transform.position.x,1.3f, _SelectedObject.transform.position.z);
+            _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _GridSize) ? new Vector3(_SnappedPos.x,1.3f, _SnappedPos.z) : lastPos;
         }
 
-        _TilePreview.transform.position = new Vector3(_SnappedPos.x,0f, _SnappedPos.z);
+        _TilePreview.transform.position = new Vector3(_SnappedPos.x,1.3f, _SnappedPos.z);
 
         _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.red;
 
@@ -74,40 +71,49 @@ public class PlacementSystem : MonoBehaviour
     private void PickPiece(GameObject piece)
     {
         _SelectedObject = piece;
-        _SelectedData.RemoveObjectAt(_GridPos, new Vector2Int(1, 1),1,1);
+        _PieceData.RemoveObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size);
+
+        _SelectedObjectIndex = _TilePieceData.piecesData.FindIndex(data => data.ID == _SelectedObject.GetComponent<PieceData>().ID);
     }
 
     private void AddToGrid()
     {
         if(_SelectedObject != null && CanPlacePiece(_GridPos))
         {
-            _SelectedData.AddObjectAt(_GridPos, new Vector2Int(1, 1), _SelectedObject.GetComponent<TilePiece>().pieceData.ID, 1);
-            _SelectedObject = null;
+            _PieceData.AddObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _TilePieceData.piecesData[_SelectedObjectIndex].ID, 1);
             Debug.Log("Piece placed");
             Debug.Log(_GridPos);
 
             if (AllPiecesCorrectPosition())
+            {
                 _EventSystemChildRoom.PuzzleSolved();
+                Debug.Log("Puzzle Solved");
+            }
+
+            _SelectedObject = null;
         }
         else
             Debug.Log("Can't place");
     }
 
-    private bool CanPlacePiece(Vector3Int gridPos)
+    private bool CanPlacePiece(Vector3 gridPos)
     {
-        return _SelectedData.CanPlacePiece(gridPos, new Vector2Int(1,1), _GridSize);
+        return _PieceData.CanPlacePiece(gridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _GridSize);
     }
 
     private bool AllPiecesCorrectPosition()
     {
-        foreach (var position in _Board.createdPieces)
+        return _PieceData.PieceCorrectPosition(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _TilePieceData.piecesData[_SelectedObjectIndex].correctPos);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        IInteractable isInteractable = collision.gameObject.GetComponent<IInteractable>();
+
+        if (isInteractable != null)
         {
-            Vector3Int gridPos = _Grid.WorldToCell(position.transform.position);
-
-            if (_SelectedData.PieceCorrectPosition(gridPos, position.GetComponent<TilePiece>().pieceData.finalPos, position.GetComponent<TilePiece>().pieceData.ID))
-               return true;
+            GetComponentInParent<Board>().AddPieceToList(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
-
-        return false;
     }
 }

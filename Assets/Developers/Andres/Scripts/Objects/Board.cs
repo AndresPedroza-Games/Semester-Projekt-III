@@ -16,14 +16,13 @@ public class Board : MonoBehaviour, IInteractable
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
-        _EventSystemChildRoom.onExitBoard += () => GetComponentInChildren<PlacementSystem>().isInteracting = false;
+        _EventSystemChildRoom.onExitBoard += () => PlacementSystem.isInteracting = false;
     }
 
     public void Interact()
     {
        _EventSystemChildRoom.InteractWithBoard(_CameraPosition, _PuzzleBoard,25f);
-        GetComponentInChildren<PlacementSystem>().isInteracting = true;
-        CreatePieces();
+        PlacementSystem.isInteracting = true;
     }
 
     public bool CanInteract(HoldController holdController)
@@ -31,12 +30,13 @@ public class Board : MonoBehaviour, IInteractable
         return !holdController.HasObject;
     }
 
-    private void AddPieceToList(GameObject piece)
+    public void AddPieceToList(GameObject piece)
     {
         if (_PiecesInv.Contains(piece))
             return;
 
         _PiecesInv.Add(piece);
+        CreatePieces();
         //piece.GetComponent<Holdable>().
 
         Debug.Log("Piece added to list");
@@ -81,11 +81,4 @@ public class Board : MonoBehaviour, IInteractable
         return result;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        IInteractable isInteractable = collision.gameObject.GetComponent<IInteractable>();
-
-        if (isInteractable != null)
-            AddPieceToList(collision.gameObject);
-    }
 }
