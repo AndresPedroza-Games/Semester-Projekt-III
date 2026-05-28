@@ -56,7 +56,7 @@ public class PlayerMotor : MonoBehaviour
         crouchCenter = standCenter / 2f;
 
         radius = characterController.radius;
-        isCrouching = false;
+        isCrouching = true;
 
         _PlayerMovement = new PlayerMovement();
         _PlayerMovement.Init();
