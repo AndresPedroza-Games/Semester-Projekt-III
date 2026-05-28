@@ -30,7 +30,7 @@ public class PlayerMovement
         forward.Normalize();
         right.Normalize();
 
-        currentSpeed = !_PlayerMotor.isCrouching ? playerSpeed : playerCrouchSpeed;
+        currentSpeed = _PlayerMotor.isCrouching ? playerSpeed : playerCrouchSpeed;
         Vector3 horizontal = (forward * moveInput.y + right * moveInput.x).normalized;
         Vector3 vertical = Vector3.up * _PlayerMotor.yVelocity;
 

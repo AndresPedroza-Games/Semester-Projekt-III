@@ -65,7 +65,7 @@ public class PlacementSystem : MonoBehaviour
 
         _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.red;
 
-        Debug.Log(_GridPos);
+        Debug.Log(_SnappedPos);
     }
 
     private void PickPiece(GameObject piece)
@@ -73,7 +73,7 @@ public class PlacementSystem : MonoBehaviour
         _SelectedObject = piece;
         _PieceData.RemoveObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size);
 
-        _SelectedObjectIndex = _TilePieceData.piecesData.FindIndex(data => data.ID == _SelectedObject.GetComponent<PieceData>().ID);
+        _SelectedObjectIndex = _TilePieceData.piecesData.FindIndex(data => data.ID == _SelectedObject.GetComponent<TilePiece>().pieceData.ID);
     }
 
     private void AddToGrid()

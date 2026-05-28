@@ -2425,7 +2425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ce9bca4b3bd8940a336bafb88d5510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Key
-  keyIsPicked: 0
 --- !u!135 &617113766
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2674,6 +2673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09b2bce0bade2b4c9f30da07a2ec8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+  doorHinge: {fileID: 0}
+  requiredKey: {fileID: 0}
 --- !u!43 &766314535
 Mesh:
   m_ObjectHideFlags: 0
@@ -4756,7 +4757,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: 0
@@ -5015,6 +5016,10 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1763109837}
+    - target: {fileID: 8662507306674860224, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: transitionSpeed
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8662507306674860224, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: firstPersonCamera
       value: 

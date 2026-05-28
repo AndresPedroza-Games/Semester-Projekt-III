@@ -44,17 +44,12 @@ public class PlayerCrouch
         _Transform = _PlayerMotor.GetComponent<Transform>();
     }
 
-    private Vector3 SetCameraView(float startPos, float endPos) {
-        float crouchViewPos = Mathf.Lerp(startPos, endPos, _TransitionSpeed);
-        Vector3 newPos = new (_Head.position.x, crouchViewPos, _Head.position.z);
-
-        return newPos;
-    }
-
     public IEnumerator Crouch()
     {
         if (!CanStandUp())
             yield break;
+
+        _PlayerMotor.isCrouching = !_PlayerMotor.isCrouching;       
 
         float timeElapsed = 0f;
 
@@ -64,10 +59,19 @@ public class PlayerCrouch
         Vector3 targetCenter = _PlayerMotor.isCrouching ? _StandCenter : _CrouchCenter;
         Vector3 currentCenter = _CharacterController.center;
 
-        while(timeElapsed < _TransitionSpeed)
+        Vector3 startCamPos = _Head.localPosition;
+
+        Vector3 targetCamPos = _PlayerMotor.isCrouching ? new Vector3( _Head.localPosition.x,_StandHeight,_Head.localPosition.z): new Vector3(_Head.localPosition.x,_CrouchHeight,_Head.localPosition.z);
+
+        while (timeElapsed < _TransitionSpeed)
         {
-            _CharacterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _TransitionSpeed);
-            _CharacterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _TransitionSpeed);
+            float t = timeElapsed / _TransitionSpeed;
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            _CharacterController.height = Mathf.Lerp(currentHeight, targetHeight, t);
+            _CharacterController.center = Vector3.Lerp(currentCenter, targetCenter, t);
+
+            _Head.localPosition = Vector3.Lerp(startCamPos, targetCamPos, t);
 
             timeElapsed += Time.deltaTime;
             yield return null;
@@ -76,9 +80,7 @@ public class PlayerCrouch
         _CharacterController.height = targetHeight;
         _CharacterController.center = targetCenter;
 
-        _PlayerMotor.isCrouching = !_PlayerMotor.isCrouching;
-
-        _Head.position = SetCameraView(targetHeight, _PlayerMotor.isCrouching ? currentHeight : -5f);
+        _Head.localPosition = targetCamPos;
     }
 
     private bool CanStandUp()

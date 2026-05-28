@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 913555452518783796}
   - component: {fileID: -8397648744514029281}
+  - component: {fileID: 7499446101529179003}
   m_Layer: 0
   m_Name: CubeYellow_Normal_Piece
   m_TagString: Untagged
@@ -46,6 +47,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilePiece
   pieceData: {fileID: 11400000, guid: 7bb7dbdff48cf314e8962a7c9130d603, type: 2}
+--- !u!65 &7499446101529179003
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6320521833418783729}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.17527823, y: 0.10092589, z: 0.20456803}
+  m_Center: {x: 0.00081484765, y: -0.0035108235, z: 0.0009358227}
 --- !u!1 &7541680046244356240
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,8 +79,6 @@ GameObject:
   - component: {fileID: 3971866220946068990}
   - component: {fileID: 1848707409696096604}
   - component: {fileID: 6950468891467681204}
-  - component: {fileID: 1493081038498272737}
-  - component: {fileID: 8108691956539967446}
   m_Layer: 0
   m_Name: Design
   m_TagString: Untagged
@@ -138,37 +158,3 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1493081038498272737
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7541680046244356240}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8108691956539967446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7541680046244356240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 849b336fbd4ac974ca4a5863106d27da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TilePiece
-  pieceData: {fileID: 11400000, guid: 7bb7dbdff48cf314e8962a7c9130d603, type: 2}

@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &199139752498278356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4554022505456001287}
+  - component: {fileID: 3560341306348333435}
+  m_Layer: 3
+  m_Name: PuzzleController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4554022505456001287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199139752498278356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8858807260829887222}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3560341306348333435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199139752498278356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f47f7d38b25d1d47a749023a89fc2b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PuzzleController
+  _Head: {fileID: 8232042639273650274}
 --- !u!1 &836171029925591291
 GameObject:
   m_ObjectHideFlags: 0
@@ -36,6 +81,7 @@ Transform:
   - {fileID: 8591442102243271471}
   - {fileID: 8232042639273650274}
   - {fileID: 2028406251927286004}
+  - {fileID: 4554022505456001287}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!143 &6180659225544085170
@@ -75,8 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bceb490bdd1b34bbd6e3b47a6da320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
-  _CineMachine: {fileID: 0}
-  _Head: {fileID: 8232042639273650274}
+  cinemachine: {fileID: 0}
 --- !u!114 &8662507306674860224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,7 +139,7 @@ MonoBehaviour:
   playerCrouchSpeed: 0.5
   gravityMultiplier: 1
   maxFallSpeed: -50
-  transitionSpeed: 0.01
+  transitionSpeed: 1
 --- !u!114 &4667606395251159092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +260,10 @@ PrefabInstance:
     - target: {fileID: 7356311577264376810, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356311577264376810, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
+      propertyPath: interactionDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8735680824453703098, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Enabled
