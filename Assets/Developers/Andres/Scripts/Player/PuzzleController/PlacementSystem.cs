@@ -57,11 +57,11 @@ public class PlacementSystem : MonoBehaviour
 
         if (_SelectedObject != null)
         {
-            Vector3 lastPos = new Vector3(_SelectedObject.transform.position.x,1.3f, _SelectedObject.transform.position.z);
-            _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _GridSize) ? new Vector3(_SnappedPos.x,1.3f, _SnappedPos.z) : lastPos;
+            Vector3 lastPos = new Vector3(_SelectedObject.transform.position.x, _Grid.gameObject.transform.position.y, _SelectedObject.transform.position.z);
+            _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _GridSize) ? new Vector3(_SnappedPos.x,_Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : lastPos;
         }
 
-        _TilePreview.transform.position = new Vector3(_SnappedPos.x,1.3f, _SnappedPos.z);
+        _TilePreview.transform.position = new Vector3(_SnappedPos.x, _Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z);
 
         _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.red;
 
