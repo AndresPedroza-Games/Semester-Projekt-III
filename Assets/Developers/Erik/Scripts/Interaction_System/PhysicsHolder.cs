@@ -8,6 +8,10 @@ public class PhysicsHolder : MonoBehaviour {
 	[Tooltip("Offset is used when the Hold Point is located within a different object")]
 	[SerializeField] [Range(0.1f, 0.5f)] private float offset = 0.1f;
 
+	[Header("---Layer Mask---")]
+	[Tooltip("Needs to be every layer except of Player and Interactable")]
+	public LayerMask grabLayerMask;
+
 	[Header("---Follow Speed---")]
 	[SerializeField] private float smoothSpeed = 15f;
 
@@ -30,7 +34,6 @@ public class PhysicsHolder : MonoBehaviour {
 	private Rigidbody _holdRb;
 	private ConfigurableJoint _joint;
 
-	private LayerMask _ignoreLayer;
 
 	private Quaternion _rotationOffset;
 	private Camera _cam;
@@ -42,7 +45,6 @@ public class PhysicsHolder : MonoBehaviour {
 
 	private void Awake() {
 		_cam = Camera.main;
-		_ignoreLayer = ~LayerMask.GetMask("Interactable");
 	}
 
 
@@ -73,7 +75,7 @@ public class PhysicsHolder : MonoBehaviour {
 			Holdable = newHoldable,
 			Camera = _cam,
 			Offset = offset,
-			IgnoreLayer = _ignoreLayer,
+			IgnoreLayer = grabLayerMask,
 			PullGrabOffset = pullGrabOffset
 		};
 

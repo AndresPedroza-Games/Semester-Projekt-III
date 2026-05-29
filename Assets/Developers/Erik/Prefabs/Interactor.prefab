@@ -117,8 +117,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PhysicsHolder
   holdPoint: {fileID: 0}
-  smoothSpeed: 15
   offset: 0.1
+  grabLayerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  smoothSpeed: 15
   breakDistance: 2
   jointLimit: 0.5
   positionSpring: 800
