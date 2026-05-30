@@ -12,6 +12,10 @@ public class EventSystemController : MonoBehaviour
     public Action<GameObject> onItemPicked;
     public Action<GameObject> onItemDropped;
 
+
+    public Action onEvent001;
+    public Action OnKey001PickedUp;
+
     public Action onSaveGame;
     public Action onExitGame;
 
@@ -27,6 +31,16 @@ public class EventSystemController : MonoBehaviour
         
     }
 
+
+    public void Event001() {
+	    onEvent001?.Invoke();
+    }
+
+
+    public void Key001PickedUp() {
+	    OnKey001PickedUp?.Invoke();
+    }
+
     public void OpenDoor(GameObject item)
     {
         if (onOpenDoor != null)
@@ -39,8 +53,7 @@ public class EventSystemController : MonoBehaviour
             onCloseDoor.Invoke();
     }
 
-    public void PickItem(GameObject item)
-    {
+    public void PickItem(GameObject item) {
         if (onItemPicked != null)
             onItemPicked.Invoke(item);
     }

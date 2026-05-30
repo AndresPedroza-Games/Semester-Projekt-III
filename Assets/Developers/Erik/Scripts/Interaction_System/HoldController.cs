@@ -4,6 +4,7 @@ using UnityEngine;
 public class HoldController : MonoBehaviour {
 
 	public IHoldable CurrentHoldable { get; private set; }
+	public GameObject HoldGameObject => CurrentHoldable.GameObject();
 
 	public bool HasObject => CurrentHoldable != null;
 

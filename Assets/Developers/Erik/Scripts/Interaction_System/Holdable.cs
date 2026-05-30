@@ -26,6 +26,10 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable {
 	}
 
 
+	public GameObject GameObject() {
+		return this.gameObject;
+	}
+
 	private void ConfigurePhysics() {
 		if (!Rigidbody)
 			return;
