@@ -9,18 +9,21 @@ public class GameManager : MonoBehaviour {
 
 	private void OnEnable() {
 		InputManager.Instance.Pause.performed += PauseGame;
+		EventSystemController.eventSystemController.onStartGame += HideCursor;
 	}
 
 
 	private void OnDisable() {
 		InputManager.Instance.Pause.performed -= PauseGame;
+		EventSystemController.eventSystemController.onStartGame -= HideCursor;
 	}
 
 
-	private void Start() {
+	private void HideCursor() {
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
 	}
+
 
 
 	private void PauseGame(InputAction.CallbackContext ctx) {

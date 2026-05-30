@@ -16,6 +16,9 @@ public class EventSystemController : MonoBehaviour
     public Action onEvent001;
     public Action OnKey001PickedUp;
 
+    public Action onLoadChildsRoom;
+
+    public Action onStartGame;
     public Action onSaveGame;
     public Action onExitGame;
 
@@ -26,9 +29,9 @@ public class EventSystemController : MonoBehaviour
 
     }
 
-    private void Start()
-    {
-        
+
+    public void StartGame() {
+	    onStartGame?.Invoke();
     }
 
 
@@ -39,6 +42,11 @@ public class EventSystemController : MonoBehaviour
 
     public void Key001PickedUp() {
 	    OnKey001PickedUp?.Invoke();
+    }
+
+
+    public void LoadChildsRoom() {
+	    onLoadChildsRoom?.Invoke();
     }
 
     public void OpenDoor(GameObject item)
