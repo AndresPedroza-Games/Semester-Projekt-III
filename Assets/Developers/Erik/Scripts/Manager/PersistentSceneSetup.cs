@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class PersistentSceneSetup : MonoBehaviour {
 
-	private async void Awake() {
+	private void Awake() {
 		DontDestroyOnLoad(gameObject);
+	}
+
+
+	private async void Start() {
 		await WorldSceneManager.Instance.LoadScene("MainMenu");
 	}
 
