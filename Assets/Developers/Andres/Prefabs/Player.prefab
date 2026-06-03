@@ -105,7 +105,7 @@ CharacterController:
   m_Height: 1.68
   m_Radius: 0.3
   m_SlopeLimit: 45
-  m_StepOffset: 0.4
+  m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.84, z: 0}
@@ -248,10 +248,6 @@ PrefabInstance:
     - target: {fileID: 5035581980842209683, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Enabled
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6466803792136061835, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: maxForce
-      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 6466803792136061835, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Enabled

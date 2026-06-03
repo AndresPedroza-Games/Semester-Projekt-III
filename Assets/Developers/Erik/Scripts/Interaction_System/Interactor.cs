@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 
 [RequireComponent(typeof(HoldController), typeof(InteractionDetector), typeof(InteractionUI))]
-[RequireComponent(typeof(PhysicsHolder), typeof(Picker))]
+[RequireComponent(typeof(Grabber), typeof(Picker))]
 public class Interactor : MonoBehaviour {
 
 	private HoldController holdController;
@@ -18,16 +18,14 @@ public class Interactor : MonoBehaviour {
 
 	private void OnEnable() {
 		InputManager.Instance.Interact.performed += Interact;
-		InputManager.Instance.PickUp.performed += OnPickUpPerformed;
-		InputManager.Instance.PickUp.canceled += OnPickUpCanceled;
-	}
+		InputManager.Instance.PickUp.performed += HandlePickUp;
+    }
 
 
     private void OnDisable() {
 		InputManager.Instance.Interact.performed -= Interact;
-		InputManager.Instance.PickUp.performed -= OnPickUpPerformed;
-		InputManager.Instance.PickUp.canceled -= OnPickUpCanceled;
-	}
+		InputManager.Instance.PickUp.performed -= HandlePickUp;
+    }
 
 
 	private void Update() {
@@ -55,10 +53,9 @@ public class Interactor : MonoBehaviour {
 	// 	}
 	// }
 
-
-	private void OnPickUpPerformed(InputAction.CallbackContext ctx) {
-		if (HoldableIsKey() && holdController.HasObject) {
-			DropHoldable();
+	private void HandlePickUp(InputAction.CallbackContext ctx) {
+		if (holdController.HasObject) {
+			holdController.ReleaseCurrentHoldable();
 			return;
 		}
 
@@ -67,28 +64,7 @@ public class Interactor : MonoBehaviour {
 		if (target is IHoldable holdable) {
 			holdable.Hold(holdController);
 		}
-	}
 
-
-	private void OnPickUpCanceled(InputAction.CallbackContext ctx) {
-		if (HoldableIsKey() && holdController.HasObject)
-			return;
-
-		if (holdController.HasObject)
-			DropHoldable();
-	}
-
-
-	private void DropHoldable() {
-		holdController.ReleaseCurrentHoldable();
-	}
-
-
-	private bool HoldableIsKey() {
-		if (holdController.HasObject)
-			return holdController.CurrentHoldable.GetType() == typeof(Key);
-		else
-			return false;
 	}
 
 
