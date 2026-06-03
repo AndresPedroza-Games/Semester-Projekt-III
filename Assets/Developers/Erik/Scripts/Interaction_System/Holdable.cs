@@ -19,6 +19,9 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable {
 		Rigidbody = GetComponent<Rigidbody>();
 		Collider = GetComponent<Collider>();
 
+		if (holdDefinition is PullDefinitionSO)
+			Rigidbody.isKinematic = true;
+
 		ConfigurePhysics();
 	}
 
