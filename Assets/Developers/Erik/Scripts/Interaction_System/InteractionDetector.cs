@@ -38,13 +38,15 @@ public class InteractionDetector : MonoBehaviour {
 
 		CurrentTarget = interactable;
 	}
-	
+
+
 	private void OnDrawGizmos() {
 		if (cam == null) {
 			cam = Camera.main;
 		}
-	
-		Debug.DrawRay(cam.transform.position, cam.transform.forward * interactionDistance, Color.blue);
+
+		if (cam)
+			Debug.DrawRay(cam.transform.position, cam.transform.forward * interactionDistance, Color.blue);
 	}
 
 }

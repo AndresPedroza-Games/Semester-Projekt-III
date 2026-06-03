@@ -30,8 +30,8 @@ public class PauseMenu : MenuManager
         ShowMenu(false);
     }
 
-    public override void ExitGame()
+    public override async void ExitGame()
     {
-        ChangeScene(0);
+        await LoadScene("MainMenu");
     }
 }
