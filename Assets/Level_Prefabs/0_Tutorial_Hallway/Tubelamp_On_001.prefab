@@ -99,6 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6949365643970149205}
+  - component: {fileID: 2861073443361726083}
   m_Layer: 0
   m_Name: Tubelamp_On_001
   m_TagString: Untagged
@@ -123,6 +124,19 @@ Transform:
   - {fileID: 7771118122567720240}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2861073443361726083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475881308313487134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Event002
+  tubelampOffMaterial: {fileID: 2100000, guid: 2188f802435b91844811fada0862ba6a, type: 2}
 --- !u!1 &8870272935522284762
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,10 +181,10 @@ Light:
   serializedVersion: 12
   m_Type: 2
   m_Color: {r: 0.57254905, g: 0.8771234, b: 0.9137255, a: 1}
-  m_Intensity: 0.7
+  m_Intensity: 2
   m_Range: 6
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 179
+  m_InnerSpotAngle: 151.07986
   m_CookieSize2D: {x: 0.5, y: 0.5}
   m_Shadows:
     m_Type: 2
