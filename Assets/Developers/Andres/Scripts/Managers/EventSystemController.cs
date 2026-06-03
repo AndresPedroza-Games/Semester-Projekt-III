@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EventSystemController : MonoBehaviour {
 
-	public static EventSystemController eventSystemController;
+	public static EventSystemController Instance { get; private set; }
 
 	[Header("Events")]
 	//We can use to add sounds or to change the UI
@@ -23,9 +23,12 @@ public class EventSystemController : MonoBehaviour {
 
 
 	private void Awake() {
-		if (eventSystemController == null)
-			eventSystemController = this;
+		if (Instance != null && Instance != this) {
+			Destroy(gameObject);
+			return;
+		}
 
+		Instance = this;
 	}
 
 

@@ -11,7 +11,7 @@ public class EventTrigger001 : MonoBehaviour {
 
 
 	private void OnTriggerEnter(Collider other) {
-		EventSystemController.eventSystemController.Event001();
+		EventSystemController.Instance.Event001();
 
 		gameObject.SetActive(false);
 	}

@@ -7,12 +7,12 @@ public class Key001EventTrigger : MonoBehaviour {
 
 
 	private void OnEnable() {
-		EventSystemController.eventSystemController.onItemPicked += TriggerEvent002;
+		EventSystemController.Instance.onItemPicked += TriggerEvent002;
 	}
 
 
 	private void OnDisable() {
-		EventSystemController.eventSystemController.onItemPicked -= TriggerEvent002;
+		EventSystemController.Instance.onItemPicked -= TriggerEvent002;
 	}
 
 
@@ -20,7 +20,7 @@ public class Key001EventTrigger : MonoBehaviour {
 		if (_alreadyExecuted) return;
 
 		if (obj == this.gameObject) {
-			EventSystemController.eventSystemController.Key001PickedUp();
+			EventSystemController.Instance.Key001PickedUp();
 			_alreadyExecuted = true;
 		}
 	}

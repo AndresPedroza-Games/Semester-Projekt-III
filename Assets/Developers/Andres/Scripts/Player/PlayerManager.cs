@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.CompareTag("Trigger"))
-            EventSystemController.eventSystemController.CloseDoor();
+            EventSystemController.Instance.CloseDoor();
 
     }
 }

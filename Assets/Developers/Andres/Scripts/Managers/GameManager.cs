@@ -13,15 +13,15 @@ public class GameManager : MonoBehaviour {
 
 	private void OnEnable() {
 		InputManager.Instance.Pause.performed += PauseGame;
-		EventSystemController.eventSystemController.onStartGame += HideCursor;
-		EventSystemController.eventSystemController.onStartGame += ActivatePlayer;
+		EventSystemController.Instance.onStartGame += HideCursor;
+		EventSystemController.Instance.onStartGame += ActivatePlayer;
 	}
 
 
 	private void OnDisable() {
 		InputManager.Instance.Pause.performed -= PauseGame;
-		EventSystemController.eventSystemController.onStartGame -= HideCursor;
-		EventSystemController.eventSystemController.onStartGame -= ActivatePlayer;
+		EventSystemController.Instance.onStartGame -= HideCursor;
+		EventSystemController.Instance.onStartGame -= ActivatePlayer;
 	}
 
 

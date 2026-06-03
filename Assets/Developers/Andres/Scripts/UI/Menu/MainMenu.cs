@@ -16,7 +16,7 @@ public class MainMenu : MenuManager
 	    
 	    await WorldSceneManager.Instance.UnloadScene("MainMenu");
 	    
-	    EventSystemController.eventSystemController.StartGame();
+	    EventSystemController.Instance.StartGame();
     }
 
     public override void ExitGame()

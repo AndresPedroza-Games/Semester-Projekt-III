@@ -16,7 +16,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        eventSystemController = EventSystemController.eventSystemController;
+        eventSystemController = EventSystemController.Instance;
 
         eventSystemController.onItemPicked += (item) => currentGameObject = item;
         eventSystemController.onItemDropped += (item) => currentGameObject = null;

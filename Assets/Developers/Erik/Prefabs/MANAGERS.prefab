@@ -136,6 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 586ab1589f218d2488d1cf0dbb8b0cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  playerSetup: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &4906225115397296542
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +191,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8190522093114900908}
-  - component: {fileID: 3132792299671515426}
   m_Layer: 0
   m_Name: MANAGERS
   m_TagString: Untagged
@@ -218,18 +219,6 @@ Transform:
   - {fileID: 787712383145943541}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3132792299671515426
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6532352807905632258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eec13e095d145f24ebfc074927211b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DontDestroyOnLoad
 --- !u!1 &7346359110437890442
 GameObject:
   m_ObjectHideFlags: 0
