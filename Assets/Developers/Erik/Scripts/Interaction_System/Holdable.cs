@@ -2,12 +2,19 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-public class Holdable : MonoBehaviour, IInteractable, IHoldable {
+public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable {
 
-	[Header("---Hold Definition")]
+	[Header("---Hold Definition---")]
 	[SerializeField] private HoldDefinition holdDefinition;
 
-	private HoldController currentHolder;
+	[Header("---Highlight Config---")]
+	[SerializeField] private float borderThickness = 0.02f;
+
+
+	private Renderer _renderer;
+	private readonly int _borderThickness = Shader.PropertyToID("_BorderThickness");
+
+	private HoldController _currentHolder;
 
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }
@@ -15,6 +22,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable {
 
 	private void Awake() {
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
+
+		_renderer = GetComponent<Renderer>();
 
 		Rigidbody = GetComponent<Rigidbody>();
 		Collider = GetComponent<Collider>();
@@ -42,7 +51,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable {
 
 
 	public void Hold(HoldController holder) {
-		currentHolder = holder;
+		_currentHolder = holder;
 
 		holdDefinition.Hold(this, holder);
 
@@ -51,12 +60,21 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable {
 
 
 	public void Release() {
-		holdDefinition.Release(this, currentHolder);
+		holdDefinition.Release(this, _currentHolder);
 
-		currentHolder?.ClearCurrentHoldable();
+		_currentHolder?.ClearCurrentHoldable();
 
-		currentHolder = null;
+		_currentHolder = null;
+	}
 
+
+	public void Highlight() {
+		_renderer.material.SetFloat(_borderThickness, borderThickness);
+	}
+
+
+	public void RemoveHighlight() {
+		_renderer.material.SetFloat(_borderThickness, 0f);
 	}
 
 }

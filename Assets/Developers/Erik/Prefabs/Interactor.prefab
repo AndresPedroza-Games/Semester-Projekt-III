@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8735680824453703098}
   - component: {fileID: 5035581980842209683}
   - component: {fileID: 7356311577264376810}
+  - component: {fileID: 5869881299163153261}
   - component: {fileID: 4151490122447608140}
   - component: {fileID: 377546370845797306}
   - component: {fileID: 6466803792136061835}
@@ -74,6 +75,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionDetector
   interactionDistance: 2
+--- !u!114 &5869881299163153261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769125469484169754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcc3aae528945304fb75c679e44b122a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractionHighlighter
 --- !u!114 &4151490122447608140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,11 +131,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Grabber
   keepMomentum: 1
   holdPoint: {fileID: 0}
-  holdSmoothFollowSpeed: 15
-  offset: 0.1
   layersToIgnore:
     serializedVersion: 2
     m_Bits: 72
+  offset: 0.1
+  smoothSpeed: 15
   breakDistance: 2
   jointLimit: 0.5
   positionSpring: 800
