@@ -76,11 +76,17 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 
 
 	public void Highlight() {
+		if (!_renderer)
+			return;
+		
 		_renderer.material.SetFloat(_borderThickness, borderThickness);
 	}
 
 
 	public void RemoveHighlight() {
+		if (!_renderer)
+			return;
+		
 		_renderer.material.SetFloat(_borderThickness, 0f);
 	}
 
