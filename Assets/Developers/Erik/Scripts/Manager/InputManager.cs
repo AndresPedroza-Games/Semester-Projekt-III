@@ -6,22 +6,22 @@ public class InputManager : MonoBehaviour {
 
 	public static InputManager Instance;
 
-	private PlayerControls controls;
+	public PlayerControls Controls { get; private set; }
 
     [Header("Mechanics")]
-    public InputAction Move => controls.Movement.Move;
-	public InputAction Interact => controls.Interaction.Interact;
-	public InputAction PickUp => controls.Interaction.PickUp;
-	public InputAction Crouch => controls.Movement.Crouch;
-	public InputAction Zoom => controls.Interaction.Zoom;
+    public InputAction Move => Controls.Movement.Move;
+	public InputAction Interact => Controls.Interaction.Interact;
+	public InputAction PickUp => Controls.Interaction.PickUp;
+	public InputAction Crouch => Controls.Movement.Crouch;
+	public InputAction Zoom => Controls.Interaction.Zoom;
 
 	[Header("Board Puzzle")]
-	public InputAction PlacePiece => controls.BoardPuzzle.Place;
-	public InputAction ExitPuzzle => controls.BoardPuzzle.Exit;
-	public InputAction RotatePiece => controls.BoardPuzzle.Rotate;
+	public InputAction PlacePiece => Controls.BoardPuzzle.Place;
+	public InputAction ExitPuzzle => Controls.BoardPuzzle.Exit;
+	public InputAction RotatePiece => Controls.BoardPuzzle.Rotate;
 
     [Header("Settings")]
-    public InputAction Pause => controls.Game.Pause;
+    public InputAction Pause => Controls.Game.Pause;
 
 
 	private void Awake() {
@@ -33,8 +33,8 @@ public class InputManager : MonoBehaviour {
 			Instance = this;
 		}
 
-		controls ??= new PlayerControls();
-		controls.Enable();
+		Controls ??= new PlayerControls();
+		Controls.Enable();
 	}
 
 }
