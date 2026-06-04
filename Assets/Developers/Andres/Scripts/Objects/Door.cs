@@ -34,15 +34,19 @@ public class Door : MonoBehaviour, IInteractable {
 
 	// If canInteract gets set via Event, the door can just be opened without key check
 	private void OpenDoor() {
-		doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
+		doorHinge.rotation = new Quaternion(0f, 90f, 0f, 0f);
 
 		canOpen = false;
+
+		GetComponent<BoxCollider>().enabled = false;
+
+		Debug.Log("Door Opened");
 	}
 
 
 // I think Events should handle closing the doors
 	public void CloseDoor() {
-		doorHinge.rotation = Quaternion.Euler(0f, 90f, 0f);
+		doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
 		Debug.Log("Door Closed");
 	}
 }
