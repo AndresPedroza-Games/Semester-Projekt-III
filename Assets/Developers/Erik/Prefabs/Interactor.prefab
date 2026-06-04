@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5869881299163153261}
   - component: {fileID: 4151490122447608140}
   - component: {fileID: 377546370845797306}
-  - component: {fileID: 6466803792136061835}
+  - component: {fileID: 6896128894692378824}
   m_Layer: 0
   m_Name: Interactor
   m_TagString: Untagged
@@ -117,7 +117,7 @@ MonoBehaviour:
   holdPoint: {fileID: 0}
   dropPoint: {fileID: 0}
   dropOffset: 0.1
---- !u!114 &6466803792136061835
+--- !u!114 &6896128894692378824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +126,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 769125469484169754}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84227cd6016c3054db57d4505c8ec73a, type: 3}
+  m_Script: {fileID: 11500000, guid: 851b5609f3ed97c48ac3e6b5fa75a723, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Grabber
-  keepMomentum: 1
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsHolder
   holdPoint: {fileID: 0}
   offset: 0.1
   grabLayerMask:
