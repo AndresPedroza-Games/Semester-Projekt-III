@@ -8,21 +8,21 @@ public class PlayerManager : MonoBehaviour {
 
 	public CinemachineVirtualCamera cinemachine;
 
-	private PlayerMotor _PlayerMotor;
 	private EventSystemChildRoom _EventSystemChildRoom;
 
 
 	private void Awake() {
 		if (playerManager == null)
 			playerManager = this;
-
-		_PlayerMotor = GetComponent<PlayerMotor>();
 	}
 
 
 	private void Start() {
-		_EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
-		_EventSystemChildRoom.onInteractWithBoard += Inspect;
+		if (EventSystemChildRoom.eventSystemChildRoom != null)
+		{
+            _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
+            _EventSystemChildRoom.onInteractWithBoard += Inspect;
+        }
 	}
 
 
