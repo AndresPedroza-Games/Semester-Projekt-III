@@ -103,9 +103,9 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 1.68
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.2
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.84, z: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8232042639273650274}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 3932121629478673074}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.65, z: 0.15}
+  m_LocalPosition: {x: -0, y: 1.5, z: 0.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -200,6 +200,10 @@ PrefabInstance:
     - target: {fileID: 769125469484169754, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Name
       value: Interactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 769125469484169754, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4151490122447608140, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Enabled

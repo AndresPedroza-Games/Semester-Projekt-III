@@ -40,6 +40,9 @@ public class Interactor : MonoBehaviour {
 		if (target is IHoldable holdable) {
 			holdable.Hold(_holdController);
 		}
+
+		if (holdController.HasObject)
+			EventSystemController.Instance.PickItem(holdController.CurrentHoldable.GameObject());
 	}
 
 
@@ -53,7 +56,10 @@ public class Interactor : MonoBehaviour {
 
 
 	private void DropHoldable() {
-		_holdController.ReleaseCurrentHoldable();
+		if (holdController.HasObject)
+			EventSystemController.Instance.DropItem(holdController.HoldGameObject);
+		
+		holdController.ReleaseCurrentHoldable();
 	}
 
 

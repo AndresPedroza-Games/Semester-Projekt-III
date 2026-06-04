@@ -131,10 +131,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Grabber
   keepMomentum: 1
   holdPoint: {fileID: 0}
-  layersToIgnore:
-    serializedVersion: 2
-    m_Bits: 72
   offset: 0.1
+  grabLayerMask:
+    serializedVersion: 2
+    m_Bits: 55
   smoothSpeed: 15
   breakDistance: 2
   jointLimit: 0.5

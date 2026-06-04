@@ -1,8 +1,8 @@
-using System;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
 
 public class MenuManager : MonoBehaviour
 {
@@ -22,9 +22,9 @@ public class MenuManager : MonoBehaviour
         return SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(index) ? true : false;
     }
 
-    protected void ChangeScene(int scene)
+    protected async Task LoadScene(string scene)
     {
-        SceneManager.LoadScene(scene);
+        await WorldSceneManager.Instance.LoadScene(scene);
     }
 
     public virtual void StartGame() { }

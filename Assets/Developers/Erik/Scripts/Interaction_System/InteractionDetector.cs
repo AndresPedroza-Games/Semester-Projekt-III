@@ -39,6 +39,7 @@ public class InteractionDetector : MonoBehaviour {
 		CurrentTarget = interactable;
 	}
 
+
     public Vector3 GetRayPosition(LayerMask layerDetector)
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
@@ -52,12 +53,16 @@ public class InteractionDetector : MonoBehaviour {
         return _LastPositionMouse;
     }
 
-    private void OnDrawGizmos() {
+
+
+	private void OnDrawGizmos() {
+
 		if (cam == null) {
 			cam = Camera.main;
 		}
-	
-		Debug.DrawRay(cam.transform.position, cam.transform.forward * interactionDistance, Color.blue);
+
+		if (cam)
+			Debug.DrawRay(cam.transform.position, cam.transform.forward * interactionDistance, Color.blue);
 	}
 
 }

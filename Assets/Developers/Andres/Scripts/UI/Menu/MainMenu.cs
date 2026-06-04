@@ -11,9 +11,12 @@ public class MainMenu : MenuManager
         }
     }
 
-    public override void StartGame()
-    {
-        ChangeScene(1);
+    public override async void StartGame() {
+	    await WorldSceneManager.Instance.LoadScene("0_Tutorial_Hallway");
+	    
+	    await WorldSceneManager.Instance.UnloadScene("MainMenu");
+	    
+	    EventSystemController.Instance.StartGame();
     }
 
     public override void ExitGame()
