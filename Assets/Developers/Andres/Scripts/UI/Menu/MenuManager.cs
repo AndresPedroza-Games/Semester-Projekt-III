@@ -22,9 +22,14 @@ public class MenuManager : MonoBehaviour
         return SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(index) ? true : false;
     }
 
-    protected async Task LoadScene(string scene)
+    protected async Task LoadScene(SceneField scene)
     {
         await WorldSceneManager.Instance.LoadScene(scene);
+    }
+    
+    protected async Task LoadScene(string sceneName)
+    {
+	    await WorldSceneManager.Instance.LoadScene(sceneName);
     }
 
     public virtual void StartGame() { }

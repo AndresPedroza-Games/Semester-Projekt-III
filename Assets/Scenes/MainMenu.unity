@@ -261,17 +261,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &387715270 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8420616938304039390, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
-  m_PrefabInstance: {fileID: 2276613360766841775}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &560672422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1149482104783068522, guid: 648dfd5c427bbd547a560655edc0d1d3, type: 3}
@@ -282,32 +271,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6048990693339960992, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
   m_PrefabInstance: {fileID: 2276613360766841775}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &666965867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666965861}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf94bfd7bb2c2154f8bbdbc976622e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MenuManager
-  _StartBtn: {fileID: 931093239}
-  _ExitBtn: {fileID: 387715270}
-  mainMenuHUD: {fileID: 0}
---- !u!114 &931093239 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8893513603668510579, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
-  m_PrefabInstance: {fileID: 2276613360766841775}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1741759363
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,17 +514,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 6048990693339960992, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6048990693339960992, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 666965867}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
 --- !u!1001 &5815095131592626072
 PrefabInstance:

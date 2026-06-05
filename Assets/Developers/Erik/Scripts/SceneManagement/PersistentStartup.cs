@@ -54,11 +54,13 @@ public class PersistentStartup : MonoBehaviour {
 		GameObject[] roots = SceneManager.GetSceneByName(sceneName).GetRootGameObjects();
 
 		foreach (GameObject root in roots) {
-			GameObject playerSpawn = root.GetComponentInChildren<PlayerSpawn>(true).gameObject;
-			if (playerSpawn)
-				return playerSpawn;
+			PlayerSpawn playerSpawn = root.GetComponentInChildren<PlayerSpawn>(true);
+			if (playerSpawn) {
+				return playerSpawn.gameObject;
+			}
 		}
 
+		Debug.LogWarning("No PlayerSpawn found!");
 		return null;
 	}
 
