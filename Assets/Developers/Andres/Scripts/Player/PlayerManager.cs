@@ -20,8 +20,11 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
-        _EventSystemChildRoom.onInteractWithBoard += Inspect;
+        if (EventSystemChildRoom.eventSystemChildRoom != null)
+        {
+            _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
+            _EventSystemChildRoom.onInteractWithBoard += Inspect;
+        }
     }
 
     private void Inspect(Transform cameraPos, Transform lookAt, float fov)
