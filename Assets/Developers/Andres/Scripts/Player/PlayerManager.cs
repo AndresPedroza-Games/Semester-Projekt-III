@@ -10,6 +10,17 @@ public class PlayerManager : MonoBehaviour {
 
 	private EventSystemChildRoom _EventSystemChildRoom;
 
+<<<<<<< HEAD
+=======
+    private void Start()
+    {
+        if (EventSystemChildRoom.eventSystemChildRoom != null)
+        {
+            _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
+            _EventSystemChildRoom.onInteractWithBoard += Inspect;
+        }
+    }
+>>>>>>> 2nd-Puzzle-Prototype
 
 	private void Awake() {
 		if (playerManager == null)

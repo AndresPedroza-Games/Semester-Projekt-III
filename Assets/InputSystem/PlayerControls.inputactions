@@ -323,6 +323,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "DoctorOfficePuzzle",
+            "id": "67b4440a-0b97-4380-a61c-7762571107d2",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "bbc01771-708a-48f1-aa7d-13ce98070b54",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RotatePiece",
+                    "type": "Value",
+                    "id": "755451ff-690d-4e19-bf6b-f4cd201b7fb6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ReleasePiece",
+                    "type": "Button",
+                    "id": "21392cb2-cc62-44b0-bcee-c096c3018662",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5c94d2ca-1b1e-4bc4-aa39-1552664f1fe9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7d1cb79e-38d1-4fd3-b6cb-da3f70b1a006",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReleasePiece",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a4cceb9-c7a5-43a2-8989-b7817ebb18f7",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0)",
+                    "groups": "",
+                    "action": "RotatePiece",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

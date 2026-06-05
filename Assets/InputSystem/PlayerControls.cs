@@ -409,6 +409,74 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""DoctorOfficePuzzle"",
+            ""id"": ""67b4440a-0b97-4380-a61c-7762571107d2"",
+            ""actions"": [
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbc01771-708a-48f1-aa7d-13ce98070b54"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RotatePiece"",
+                    ""type"": ""Value"",
+                    ""id"": ""755451ff-690d-4e19-bf6b-f4cd201b7fb6"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ReleasePiece"",
+                    ""type"": ""Button"",
+                    ""id"": ""21392cb2-cc62-44b0-bcee-c096c3018662"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""5c94d2ca-1b1e-4bc4-aa39-1552664f1fe9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7d1cb79e-38d1-4fd3-b6cb-da3f70b1a006"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReleasePiece"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a4cceb9-c7a5-43a2-8989-b7817ebb18f7"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": ""ScaleVector2(x=0)"",
+                    ""groups"": """",
+                    ""action"": ""RotatePiece"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -430,6 +498,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_BoardPuzzle_Place = m_BoardPuzzle.FindAction("Place", throwIfNotFound: true);
         m_BoardPuzzle_Exit = m_BoardPuzzle.FindAction("Exit", throwIfNotFound: true);
         m_BoardPuzzle_Rotate = m_BoardPuzzle.FindAction("Rotate", throwIfNotFound: true);
+        // DoctorOfficePuzzle
+        m_DoctorOfficePuzzle = asset.FindActionMap("DoctorOfficePuzzle", throwIfNotFound: true);
+        m_DoctorOfficePuzzle_Exit = m_DoctorOfficePuzzle.FindAction("Exit", throwIfNotFound: true);
+        m_DoctorOfficePuzzle_RotatePiece = m_DoctorOfficePuzzle.FindAction("RotatePiece", throwIfNotFound: true);
+        m_DoctorOfficePuzzle_ReleasePiece = m_DoctorOfficePuzzle.FindAction("ReleasePiece", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -438,6 +511,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Interaction.enabled, "This will cause a leak and performance issues, PlayerControls.Interaction.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_Game.enabled, "This will cause a leak and performance issues, PlayerControls.Game.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_BoardPuzzle.enabled, "This will cause a leak and performance issues, PlayerControls.BoardPuzzle.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_DoctorOfficePuzzle.enabled, "This will cause a leak and performance issues, PlayerControls.DoctorOfficePuzzle.Disable() has not been called.");
     }
 
     /// <summary>
@@ -948,6 +1022,124 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="BoardPuzzleActions" /> instance referencing this action map.
     /// </summary>
     public BoardPuzzleActions @BoardPuzzle => new BoardPuzzleActions(this);
+
+    // DoctorOfficePuzzle
+    private readonly InputActionMap m_DoctorOfficePuzzle;
+    private List<IDoctorOfficePuzzleActions> m_DoctorOfficePuzzleActionsCallbackInterfaces = new List<IDoctorOfficePuzzleActions>();
+    private readonly InputAction m_DoctorOfficePuzzle_Exit;
+    private readonly InputAction m_DoctorOfficePuzzle_RotatePiece;
+    private readonly InputAction m_DoctorOfficePuzzle_ReleasePiece;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "DoctorOfficePuzzle".
+    /// </summary>
+    public struct DoctorOfficePuzzleActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public DoctorOfficePuzzleActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "DoctorOfficePuzzle/Exit".
+        /// </summary>
+        public InputAction @Exit => m_Wrapper.m_DoctorOfficePuzzle_Exit;
+        /// <summary>
+        /// Provides access to the underlying input action "DoctorOfficePuzzle/RotatePiece".
+        /// </summary>
+        public InputAction @RotatePiece => m_Wrapper.m_DoctorOfficePuzzle_RotatePiece;
+        /// <summary>
+        /// Provides access to the underlying input action "DoctorOfficePuzzle/ReleasePiece".
+        /// </summary>
+        public InputAction @ReleasePiece => m_Wrapper.m_DoctorOfficePuzzle_ReleasePiece;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_DoctorOfficePuzzle; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="DoctorOfficePuzzleActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(DoctorOfficePuzzleActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="DoctorOfficePuzzleActions" />
+        public void AddCallbacks(IDoctorOfficePuzzleActions instance)
+        {
+            if (instance == null || m_Wrapper.m_DoctorOfficePuzzleActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_DoctorOfficePuzzleActionsCallbackInterfaces.Add(instance);
+            @Exit.started += instance.OnExit;
+            @Exit.performed += instance.OnExit;
+            @Exit.canceled += instance.OnExit;
+            @RotatePiece.started += instance.OnRotatePiece;
+            @RotatePiece.performed += instance.OnRotatePiece;
+            @RotatePiece.canceled += instance.OnRotatePiece;
+            @ReleasePiece.started += instance.OnReleasePiece;
+            @ReleasePiece.performed += instance.OnReleasePiece;
+            @ReleasePiece.canceled += instance.OnReleasePiece;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="DoctorOfficePuzzleActions" />
+        private void UnregisterCallbacks(IDoctorOfficePuzzleActions instance)
+        {
+            @Exit.started -= instance.OnExit;
+            @Exit.performed -= instance.OnExit;
+            @Exit.canceled -= instance.OnExit;
+            @RotatePiece.started -= instance.OnRotatePiece;
+            @RotatePiece.performed -= instance.OnRotatePiece;
+            @RotatePiece.canceled -= instance.OnRotatePiece;
+            @ReleasePiece.started -= instance.OnReleasePiece;
+            @ReleasePiece.performed -= instance.OnReleasePiece;
+            @ReleasePiece.canceled -= instance.OnReleasePiece;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="DoctorOfficePuzzleActions.UnregisterCallbacks(IDoctorOfficePuzzleActions)" />.
+        /// </summary>
+        /// <seealso cref="DoctorOfficePuzzleActions.UnregisterCallbacks(IDoctorOfficePuzzleActions)" />
+        public void RemoveCallbacks(IDoctorOfficePuzzleActions instance)
+        {
+            if (m_Wrapper.m_DoctorOfficePuzzleActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="DoctorOfficePuzzleActions.AddCallbacks(IDoctorOfficePuzzleActions)" />
+        /// <seealso cref="DoctorOfficePuzzleActions.RemoveCallbacks(IDoctorOfficePuzzleActions)" />
+        /// <seealso cref="DoctorOfficePuzzleActions.UnregisterCallbacks(IDoctorOfficePuzzleActions)" />
+        public void SetCallbacks(IDoctorOfficePuzzleActions instance)
+        {
+            foreach (var item in m_Wrapper.m_DoctorOfficePuzzleActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_DoctorOfficePuzzleActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="DoctorOfficePuzzleActions" /> instance referencing this action map.
+    /// </summary>
+    public DoctorOfficePuzzleActions @DoctorOfficePuzzle => new DoctorOfficePuzzleActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -1042,5 +1234,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRotate(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "DoctorOfficePuzzle" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="DoctorOfficePuzzleActions.AddCallbacks(IDoctorOfficePuzzleActions)" />
+    /// <seealso cref="DoctorOfficePuzzleActions.RemoveCallbacks(IDoctorOfficePuzzleActions)" />
+    public interface IDoctorOfficePuzzleActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnExit(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RotatePiece" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotatePiece(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "ReleasePiece" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReleasePiece(InputAction.CallbackContext context);
     }
 }
