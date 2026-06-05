@@ -22,9 +22,9 @@ public class InputManager : MonoBehaviour {
 
 	[Header("Doctor Office Puzzle")]
 
-	public InputAction ExitLock => controls.DoctorOfficePuzzle.Exit;
-    public InputAction RotateLock => controls.DoctorOfficePuzzle.RotatePiece;
-    public InputAction ReleasePiece => controls.DoctorOfficePuzzle.ReleasePiece;
+	public InputAction ExitLock => Controls.DoctorOfficePuzzle.Exit;
+    public InputAction RotateLock => Controls.DoctorOfficePuzzle.RotatePiece;
+    public InputAction ReleasePiece => Controls.DoctorOfficePuzzle.ReleasePiece;
 
     [Header("Settings")]
     public InputAction Pause => Controls.Game.Pause;
