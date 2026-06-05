@@ -4,27 +4,55 @@ using UnityEngine;
 public class Door : MonoBehaviour, IInteractable {
 
 	[SerializeField] private Transform doorHinge;
-	[SerializeField] private Key requiredKey;
+	[SerializeField] private GameObject requiredKey;
 
-	private bool canOpen = true; // should be false at beginning
+	private bool _canOpen = false;
 
 	private EventSystemController eventSystemController;
 
-    private void Start()
-    {
+
+	private void Start() {
 		eventSystemController = EventSystemController.Instance;
 		eventSystemController.onCloseDoor += CloseDoor;
-    }
+		eventSystemController.onItemPicked += SetCanOpenTrue;
+		eventSystemController.onItemDropped += SetCanOpenFalse;
+		eventSystemController.onOpenDoor += UseKey;
+	}
 
 
-	// set canInteract bool via Event e.g. OnKeyPickedUp -> canOpen = true
+	private void OnDisable() {
+		eventSystemController.onCloseDoor -= CloseDoor;
+		eventSystemController.onItemPicked += SetCanOpenTrue;
+		eventSystemController.onItemDropped += SetCanOpenFalse;
+		eventSystemController.onOpenDoor -= UseKey;
+	}
+
+
+	private void SetCanOpenTrue(GameObject obj) {
+		if (obj == requiredKey)
+			_canOpen = true;
+	}
+
+
+	private void SetCanOpenFalse(GameObject obj) {
+		_canOpen = false;
+	}
+
+
+	private void UseKey(GameObject obj) {
+		if (obj == requiredKey) {
+			obj.GetComponent<Key>().UseKey();
+		}
+	}
+
+
 	public bool CanInteract(HoldController holdController) {
-		return canOpen && holdController.HasObject;
+		return _canOpen && holdController.HasObject;
 	}
 
 
 	public void Interact() {
-		if (canOpen)
+		if (_canOpen)
 			OpenDoor();
 		//else
 		//PlayLockedDoorSound...
@@ -32,11 +60,12 @@ public class Door : MonoBehaviour, IInteractable {
 	}
 
 
-	// If canInteract gets set via Event, the door can just be opened without key check
 	private void OpenDoor() {
+		eventSystemController.OpenDoor(requiredKey);
+
 		doorHinge.rotation = new Quaternion(0f, 90f, 0f, 0f);
 
-		canOpen = false;
+		_canOpen = false;
 
 		GetComponent<BoxCollider>().enabled = false;
 
@@ -49,4 +78,5 @@ public class Door : MonoBehaviour, IInteractable {
 		doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
 		Debug.Log("Door Closed");
 	}
+
 }

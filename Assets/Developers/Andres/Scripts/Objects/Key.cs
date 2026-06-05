@@ -4,7 +4,7 @@ using UnityEngine;
 public class Key : Holdable, IKey {
 
 	public void UseKey() {
-		transform.SetParent(null);
+		Release();
 		gameObject.SetActive(false);
 	}
 
