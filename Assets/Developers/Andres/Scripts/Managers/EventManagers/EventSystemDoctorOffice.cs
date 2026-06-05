@@ -28,7 +28,8 @@ public class EventSystemDoctorOffice : EventSystemController
 
     private void OnDisable()
     {
-        _DoctorOfficePuzzleController.gameObject.SetActive(false);
+        if(_DoctorOfficePuzzleController != null)
+            _DoctorOfficePuzzleController.gameObject.SetActive(false);
     }
 
     public void InteractWithLock()
