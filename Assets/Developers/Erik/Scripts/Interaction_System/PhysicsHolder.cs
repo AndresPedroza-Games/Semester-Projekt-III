@@ -45,6 +45,7 @@ public class PhysicsHolder : MonoBehaviour {
 
 	private void Awake() {
 		_cam = Camera.main;
+		holdPoint = GameObject.FindWithTag("DropPosition").transform;
 	}
 
 

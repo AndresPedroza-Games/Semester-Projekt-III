@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class GridData
 {
-    private Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
+    public Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
 
     public void AddObjectAt(Vector3 gridPos, Vector2Int pieceSize, int id, int pieceIndex)
     {
@@ -58,9 +58,9 @@ public class GridData
         return true;
     }
 
-    public bool PieceCorrectPosition(Vector3 gridPos, Vector2Int pieceSize, List<Vector3Int> correctPos)
+    public bool PieceCorrectPosition(Vector3 gridPos, List<Vector3Int> correctPos)
     {
-        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+        List<Vector3> positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
 
         for (int index = 0; index < positionToOccupy.Count; index++)
         {
@@ -91,10 +91,10 @@ public class PlacementData
     public int ID { get; private set; }
     public int PlacedPieceIndex { get; private set; }
 
-    public PlacementData(List<Vector3> occupiedPos, int id, int placedObjectindx)
+    public PlacementData(List<Vector3> occupiedPos, int id, int placedObjectindex)
     {
         occupiedPositions = occupiedPos;
         ID = id;
-        PlacedPieceIndex = placedObjectindx;
+        PlacedPieceIndex = placedObjectindex;
     }
 }

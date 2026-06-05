@@ -7,15 +7,29 @@ public class EventSystemChildRoom : EventSystemController
 
     public Action onPiecePlaced;
     public Action<GameObject> onPiecePicked;
-    public Action<Transform, Transform, float> onInteractWithBoard;
+    public Action onInteractWithBoard;
     public Action onExitBoard;
     public Action onRotatePiece;
     public Action onPuzzleSolved;
+
+    private PuzzleController _PuzzleController;
 
     private void Awake()
     {
         if (eventSystemChildRoom == null)
             eventSystemChildRoom = this;
+    }
+
+    private void OnEnable()
+    {
+        _PuzzleController = FindFirstObjectByType<PuzzleController>(FindObjectsInactive.Include);
+        _PuzzleController.gameObject.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        if(_PuzzleController != null)
+            _PuzzleController.gameObject.SetActive(false);
     }
 
     public void PlacePiece()
@@ -24,10 +38,10 @@ public class EventSystemChildRoom : EventSystemController
             onPiecePlaced.Invoke();
     }
 
-    public void InteractWithBoard(Transform cameraPos, Transform board, float fov)
+    public void InteractWithBoard()
     {
         if (onInteractWithBoard != null)
-            onInteractWithBoard.Invoke(cameraPos, board, fov);
+            onInteractWithBoard.Invoke();
     }
 
     public void PickPiece(GameObject piece)
