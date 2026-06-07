@@ -8,7 +8,7 @@ public class LoadSceneTrigger : MonoBehaviour {
 	[SerializeField] private List<SceneReference> scenesToUnload;
 
 
-	private void OnTriggerExit(Collider other) {
+	private void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player")) {
 			LoadUnloadRooms();
 			gameObject.SetActive(false);
