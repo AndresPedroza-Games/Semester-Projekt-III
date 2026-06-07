@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Box : MonoBehaviour
 {
-    [SerializeField] private GameObject _Top;
+    [SerializeField] private GameObject _Hinge;
+    [SerializeField] private GameObject _Key;
 
     private EventSystemChildRoom _EventSystemChildRoom;
 
@@ -16,5 +16,12 @@ public class Box : MonoBehaviour
     private void OpenBox()
     {
         Debug.Log("Box opened");
+        RotateHinge();
+        _Key.gameObject.SetActive(true);
+    }
+
+    private void RotateHinge()
+    {
+        _Hinge.transform.Rotate(-45f,0f,0f);
     }
 }

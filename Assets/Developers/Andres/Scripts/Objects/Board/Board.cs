@@ -4,25 +4,30 @@ using System.Linq;
 
 public class Board : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Transform _CameraPosition;
-    [SerializeField] private Transform _PuzzleBoard;
+    [SerializeField] private GameObject _Camera;
     [SerializeField] private Transform _PieceSpawn;
     [SerializeField] private TilePieceData tilePieceData;
 
     private EventSystemChildRoom _EventSystemChildRoom;
-    private List<GameObject> _PiecesInv = new List<GameObject>();
+    public List<GameObject> piecesInv = new List<GameObject>();
     public List<GameObject> createdPieces = new List<GameObject>();
+
+    private InteractionDetector _InteractionDetector;
 
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
-        _EventSystemChildRoom.onExitBoard += () => PlacementSystem.isInteracting = false;
+        _EventSystemChildRoom.onExitBoard += ExitBoard;
     }
 
     public void Interact()
     {
-       _EventSystemChildRoom.InteractWithBoard(_CameraPosition, _PuzzleBoard,25f);
+       _EventSystemChildRoom.InteractWithBoard();
         PlacementSystem.isInteracting = true;
+        _Camera.SetActive(true);
+
+        _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
+        _InteractionDetector.interactionDistance = 4f;
     }
 
     public bool CanInteract(HoldController holdController)
@@ -32,10 +37,10 @@ public class Board : MonoBehaviour, IInteractable
 
     public void AddPieceToList(GameObject piece)
     {
-        if (_PiecesInv.Contains(piece))
+        if (piecesInv.Contains(piece))
             return;
 
-        _PiecesInv.Add(piece);
+        piecesInv.Add(piece);
         CreatePieces();
         //piece.GetComponent<Holdable>().
 
@@ -44,10 +49,10 @@ public class Board : MonoBehaviour, IInteractable
 
     private void CreatePieces()
     {
-        if (_PiecesInv.Count == 0)
+        if (piecesInv.Count == 0)
             return;
 
-        foreach (var pieceInv in _PiecesInv)
+        foreach (var pieceInv in piecesInv)
         {
             MiniPiece miniPiece = pieceInv.GetComponent<MiniPiece>();
 
@@ -70,6 +75,12 @@ public class Board : MonoBehaviour, IInteractable
 
             createdPieces.Add(createdPiece);
         }
+    }
+
+    private void ExitBoard()
+    {
+        _Camera.SetActive(false);
+        PlacementSystem.isInteracting = false;
     }
 
     private Quaternion RandomRotation()

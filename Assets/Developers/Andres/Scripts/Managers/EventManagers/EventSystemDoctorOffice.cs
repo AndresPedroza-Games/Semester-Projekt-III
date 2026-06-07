@@ -12,10 +12,24 @@ public class EventSystemDoctorOffice : EventSystemController
     public Action onReleasePiece;
     public Action<Vector2> onRotateLock;
 
+    private DoctorOfficePuzzleController _DoctorOfficePuzzleController;
+
     private void Awake()
     {
         if (instace == null)
             instace = this;
+    }
+
+    private void OnEnable()
+    {
+        _DoctorOfficePuzzleController = FindFirstObjectByType<DoctorOfficePuzzleController>(FindObjectsInactive.Include);
+        _DoctorOfficePuzzleController.gameObject.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        if(_DoctorOfficePuzzleController != null)
+            _DoctorOfficePuzzleController.gameObject.SetActive(false);
     }
 
     public void InteractWithLock()

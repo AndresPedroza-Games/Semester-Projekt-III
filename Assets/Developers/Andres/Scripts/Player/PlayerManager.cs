@@ -6,9 +6,19 @@ public class PlayerManager : MonoBehaviour {
 
 	public static PlayerManager playerManager;
 
-	public CinemachineVirtualCamera cinemachine;
+	public GameObject cinemachine;
+	public GameObject designMC;
 
 	private EventSystemChildRoom _EventSystemChildRoom;
+
+    private void Awake()
+    {
+        if (playerManager == null)
+            playerManager = this;
+
+        cinemachine = FindFirstObjectByType<CinemachineVirtualCamera>().gameObject;
+
+    }
 
     private void Start()
     {
@@ -19,30 +29,27 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
-	private void Awake() {
-		if (playerManager == null)
-			playerManager = this;
-	}
+	private void Inspect() {
 
-	private void Inspect(Transform cameraPos, Transform lookAt, float fov) {
-		cinemachine.transform.position = cameraPos.position;
-		cinemachine.LookAt = lookAt;
-		cinemachine.Follow = null;
-		cinemachine.m_Lens.FieldOfView = fov;
-		FreezeCharacter(true);
+        cinemachine.SetActive(false);
+        FreezeCharacter(true);
 	}
 
 
 	public void FreezeCharacter(bool status) {
+
 		if (status) {
 			InputManager.Instance.Controls.Movement.Disable();
 			InputManager.Instance.Zoom.Disable();
-		}
-		else {
+        }
+        else {
 			InputManager.Instance.Controls.Movement.Enable();
 			InputManager.Instance.Zoom.Enable();
 		}
-		Debug.Log("Player Freeze");
+
+        designMC.SetActive(!status);
+
+        Debug.Log("Player Freeze");
 	}
 
 

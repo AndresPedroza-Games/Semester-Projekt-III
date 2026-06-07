@@ -1,14 +1,14 @@
-using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PuzzleController : MonoBehaviour
 {
-    [SerializeField] private Transform _Head;
-
-    private CinemachineVirtualCamera _CineMachine;
+    private GameObject _CineMachine;
     private EventSystemChildRoom _EventSystemChildRoom;
     private PlayerManager _PlayerManager;
+    private InteractionDetector _InteractionDetector;
+
+    private float _StartInteractionDistance;
 
     private void Start()
     {
@@ -22,6 +22,9 @@ public class PuzzleController : MonoBehaviour
         InputManager.Instance.PlacePiece.performed += PlacePiece;
         InputManager.Instance.ExitPuzzle.performed += ExitBoard;
         InputManager.Instance.RotatePiece.performed += RotatePiece;
+
+        _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
+        _StartInteractionDistance = _InteractionDetector.interactionDistance;
     }
 
     private void OnDisable()
@@ -47,10 +50,11 @@ public class PuzzleController : MonoBehaviour
         if (PlacementSystem.isInteracting)
         {
             _EventSystemChildRoom.ExitBoard();
-            _CineMachine.Follow = _Head;
-            _CineMachine.LookAt = null;
-            _CineMachine.m_Lens.FieldOfView = 50f;
             _PlayerManager.FreezeCharacter(false);
+
+            _CineMachine.SetActive(true);
+            _InteractionDetector.interactionDistance = _StartInteractionDistance;
+
             Debug.Log("Exit");
         }
     }

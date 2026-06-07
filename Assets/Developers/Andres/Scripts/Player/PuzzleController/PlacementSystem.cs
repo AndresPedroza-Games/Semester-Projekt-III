@@ -13,7 +13,7 @@ public class PlacementSystem : MonoBehaviour
     private InteractionDetector _InteractionDetector;
     private EventSystemChildRoom _EventSystemChildRoom;
 
-    private List<GameObject> _PiecesCorrectPosition = new List<GameObject>();
+    private List<PieceData> _PiecesPlaced = new List<PieceData>();
 
     private GameObject _SelectedObject;
     public static bool isInteracting;
@@ -33,7 +33,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void Start()
     {
-        _InteractionDetector = FindAnyObjectByType<InteractionDetector>();
+        _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
 
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _EventSystemChildRoom.onPiecePicked += PickPiece;
@@ -64,8 +64,6 @@ public class PlacementSystem : MonoBehaviour
         _TilePreview.transform.position = new Vector3(_SnappedPos.x, _Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z);
 
         _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.red;
-
-        Debug.Log(_SnappedPos);
     }
 
     private void PickPiece(GameObject piece)
@@ -73,14 +71,29 @@ public class PlacementSystem : MonoBehaviour
         _SelectedObject = piece;
         _PieceData.RemoveObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size);
 
-        _SelectedObjectIndex = _TilePieceData.piecesData.FindIndex(data => data.ID == _SelectedObject.GetComponent<TilePiece>().pieceData.ID);
+        TilePiece selectedPiece = _SelectedObject.GetComponent<TilePiece>();
+
+        if (selectedPiece != null)
+        {
+            int targetID = selectedPiece.pieceData.ID;
+
+            _SelectedObjectIndex = _TilePieceData.piecesData.FindIndex(data => data.ID == targetID);
+        }
+
+        if (_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
+            _PiecesPlaced.Remove(_TilePieceData.piecesData[_SelectedObjectIndex]);
     }
 
     private void AddToGrid()
     {
         if(_SelectedObject != null && CanPlacePiece(_GridPos))
         {
-            _PieceData.AddObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _TilePieceData.piecesData[_SelectedObjectIndex].ID, 1);
+            _PieceData.AddObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
+            _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = _GridPos;
+            
+            if(!_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
+                _PiecesPlaced.Add(_TilePieceData.piecesData[_SelectedObjectIndex]);
+
             Debug.Log("Piece placed");
             Debug.Log(_GridPos);
 
@@ -103,7 +116,16 @@ public class PlacementSystem : MonoBehaviour
 
     private bool AllPiecesCorrectPosition()
     {
-        return _PieceData.PieceCorrectPosition(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _TilePieceData.piecesData[_SelectedObjectIndex].correctPos);
+        if (_PiecesPlaced.Count != _TilePieceData.piecesData.Count)
+            return false;
+
+        foreach (PieceData pieceData in _PiecesPlaced)
+        {
+            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos))
+                return false;
+        }
+
+        return true;
     }
 
     private void OnCollisionEnter(Collision collision)
