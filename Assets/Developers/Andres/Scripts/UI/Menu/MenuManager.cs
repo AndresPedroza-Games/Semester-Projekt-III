@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
         return SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(index) ? true : false;
     }
 
-    protected async Task LoadScene(SceneField scene)
+    protected async Task LoadScene(SceneReference scene)
     {
         await WorldSceneManager.Instance.LoadScene(scene);
     }

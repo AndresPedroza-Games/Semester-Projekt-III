@@ -41,13 +41,18 @@ public class WorldSceneManager : MonoBehaviour {
 	}
 
 
-	public async Task LoadScene(SceneField scene) {
+	public async Task LoadScene(SceneReference scene) {
 		if (IsSceneLoaded(scene)) {
-			Debug.Log($"Scene {scene} already loaded.");
+			Debug.Log($"Scene {scene.ScenePath} already loaded.");
 			return;
 		}
 
-		AsyncOperation operation = SceneManager.LoadSceneAsync(scene.SceneName, LoadSceneMode.Additive);
+		AsyncOperation operation = SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
+		
+		if (operation == null) {
+			Debug.LogError($"Could not load scene '{scene.ScenePath}'.");
+			return;
+		}
 
 		while (operation is { isDone: false }) {
 			await Task.Yield();
@@ -55,7 +60,7 @@ public class WorldSceneManager : MonoBehaviour {
 
 		_loadedScenes.Add(scene);
 
-		Debug.Log($"Loaded scene: {scene}");
+		Debug.Log($"Loaded scene: {scene.ScenePath}");
 	}
 
 
@@ -66,6 +71,11 @@ public class WorldSceneManager : MonoBehaviour {
 		}
 
 		AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+		
+		if (operation == null) {
+			Debug.LogError($"Could not load scene '{sceneName}'.");
+			return;
+		}
 
 		while (operation is { isDone: false }) {
 			await Task.Yield();
@@ -77,13 +87,18 @@ public class WorldSceneManager : MonoBehaviour {
 	}
 
 
-	public async Task UnloadScene(SceneField scene) {
+	public async Task UnloadScene(SceneReference scene) {
 		if (!IsSceneLoaded(scene)) {
-			Debug.Log($"Scene {scene} not loaded.");
+			Debug.Log($"Scene {scene.ScenePath} not loaded.");
 			return;
 		}
 
-		AsyncOperation operation = SceneManager.UnloadSceneAsync(scene.SceneName);
+		AsyncOperation operation = SceneManager.UnloadSceneAsync(scene);
+		
+		if (operation == null) {
+			Debug.LogError($"Could not load scene '{scene.ScenePath}'.");
+			return;
+		}
 
 		while (operation is { isDone: false }) {
 			await Task.Yield();
@@ -91,7 +106,7 @@ public class WorldSceneManager : MonoBehaviour {
 
 		_loadedScenes.Remove(scene);
 
-		Debug.Log($"Unloaded scene: {scene}");
+		Debug.Log($"Unloaded scene: {scene.ScenePath}");
 	}
 
 
@@ -102,6 +117,11 @@ public class WorldSceneManager : MonoBehaviour {
 		}
 
 		AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneName);
+		
+		if (operation == null) {
+			Debug.LogError($"Could not load scene '{sceneName}'.");
+			return;
+		}
 
 		while (operation is { isDone: false }) {
 			await Task.Yield();

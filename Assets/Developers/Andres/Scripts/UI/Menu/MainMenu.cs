@@ -3,10 +3,12 @@ using UnityEngine;
 
 public class MainMenu : MenuManager {
 
-	[SerializeField] private SceneField sceneToLoadOnStart;
+	[SerializeField] private SceneReference sceneToLoadOnStart;
 
 
 	private void Start() {
+		InputManager.Instance.Pause.Disable();
+		
 		if (GetScene(0)) {
 			_StartBtn.onClick.AddListener(StartGame);
 			_ExitBtn.onClick.AddListener(ExitGame);
@@ -16,7 +18,7 @@ public class MainMenu : MenuManager {
 
 	public override async void StartGame() {
 		await WorldSceneManager.Instance.LoadScene(sceneToLoadOnStart);
-
+		
 		await WorldSceneManager.Instance.UnloadScene("MainMenu");
 
 		EventSystemController.Instance.StartGame();
@@ -24,6 +26,7 @@ public class MainMenu : MenuManager {
 
 
 	public override void ExitGame() {
+		Application.Quit();
 		Debug.Log("Exit");
 	}
 

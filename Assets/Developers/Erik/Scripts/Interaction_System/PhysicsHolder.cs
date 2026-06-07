@@ -9,7 +9,7 @@ public class PhysicsHolder : MonoBehaviour {
 	[SerializeField] [Range(0.1f, 0.5f)] private float offset = 0.1f;
 
 	[Header("---Layer Mask---")]
-	[Tooltip("Needs to be every layer except of Player and Interactable")]
+	[Tooltip("The layers to which the offset is applied")]
 	public LayerMask grabLayerMask;
 
 	[Header("---Follow Speed---")]

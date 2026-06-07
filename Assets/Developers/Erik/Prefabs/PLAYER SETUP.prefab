@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6169396372136005019
 Transform:
   m_ObjectHideFlags: 0
@@ -44,7 +44,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalPosition.y
@@ -52,11 +52,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalRotation.x
@@ -64,7 +64,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2275401947822955294, guid: fc4ad75afa4c9d44593d639bb9cc1ead, type: 3}
       propertyPath: m_LocalRotation.z
@@ -214,9 +214,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6169396372136005019}
     m_Modifications:
+    - target: {fileID: 626398820227075636, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+      propertyPath: m_HorizontalAxis.Value
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603551452332115881, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+      propertyPath: m_StandbyUpdate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453739503148634484, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+      propertyPath: XYAxis
+      value: 
+      objectReference: {fileID: 5438931051305161067, guid: 9eb5555c05bce174ab539a009f4580d3, type: 3}
+    - target: {fileID: 4453739503148634484, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+      propertyPath: AutoEnableInputs
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -224,7 +240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -261,8 +277,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8676288989520763037, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2068600997618313009}
   m_SourcePrefab: {fileID: 100100000, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+--- !u!1 &4761111912470066859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8676288989520763037, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+  m_PrefabInstance: {fileID: 4213822044609719862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2068600997618313009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4761111912470066859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729f407d8ba00034a894b7fcb704e8db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisableCamInputOnPause
 --- !u!4 &6825206437053527629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}

@@ -64,7 +64,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8858807260829887222
 Transform:
   m_ObjectHideFlags: 0
@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4151490122447608140, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
+      propertyPath: crosshairDot
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c7fea8536ab89d45ba285dc18592d81, type: 3}
     - target: {fileID: 4439595576180479704, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

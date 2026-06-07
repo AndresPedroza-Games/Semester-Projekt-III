@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LoadSceneTrigger : MonoBehaviour {
 
-	[SerializeField] private List<SceneField> scenesToLoad;
-	[SerializeField] private List<SceneField> scenesToUnload;
+	[SerializeField] private List<SceneReference> scenesToLoad;
+	[SerializeField] private List<SceneReference> scenesToUnload;
 
 
 	private void OnTriggerExit(Collider other) {
