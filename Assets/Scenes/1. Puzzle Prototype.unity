@@ -279,85 +279,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
   m_PrefabInstance: {fileID: 367947896}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &461310765
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 461310768}
-  - component: {fileID: 461310767}
-  - component: {fileID: 461310766}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &461310766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461310765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.UI.InputSystemUIInputModule
-  m_SendPointerHoverToParent: 1
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
-  m_ScrollDeltaPerTick: 6
---- !u!114 &461310767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461310765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventSystem
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &461310768
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461310765}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0.0000009536743}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1369409157}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &498461026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -373,11 +294,19 @@ PrefabInstance:
     - target: {fileID: 5591691178060479681, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: requiredKey
       value: 
-      objectReference: {fileID: 1352773745}
+      objectReference: {fileID: 1352773746}
     - target: {fileID: 8237359110453492456, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: 'scenesToUnload.Array.data[0]'
       value: 1. Puzzle Prototype
       objectReference: {fileID: 0}
+    - target: {fileID: 8237359110453492456, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].scenePath
+      value: Assets/Scenes/1. Puzzle Prototype.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237359110453492456, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: acdbc52d157cd6845b995fcd6f2e1db1, type: 3}
     - target: {fileID: 8773917145655839014, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.85
@@ -962,17 +891,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7adf86fd20a7484c8ca18a69f92d3b3, type: 3}
---- !u!114 &1352773745 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 191745416019179655, guid: e7adf86fd20a7484c8ca18a69f92d3b3, type: 3}
-  m_PrefabInstance: {fileID: 1352773744}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1352773746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96ce9bca4b3bd8940a336bafb88d5510, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Key
 --- !u!1 &1352773746 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3959485238444409460, guid: e7adf86fd20a7484c8ca18a69f92d3b3, type: 3}
@@ -1011,7 +929,6 @@ Transform:
   - {fileID: 792222763}
   - {fileID: 1211385821}
   - {fileID: 1070707327}
-  - {fileID: 461310768}
   - {fileID: 1246722594}
   - {fileID: 1647380694}
   - {fileID: 1912554328}
@@ -1164,6 +1081,18 @@ PrefabInstance:
       propertyPath: 'scenesToLoad.Array.data[0]'
       value: 2. Puzzle Prototype
       objectReference: {fileID: 0}
+    - target: {fileID: 988835959820200238, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
+      propertyPath: scenesToLoad.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 988835959820200238, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
+      propertyPath: scenesToLoad.Array.data[0].scenePath
+      value: Assets/Scenes/2. Puzzle Prototype.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 988835959820200238, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
+      propertyPath: scenesToLoad.Array.data[0].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 9e01017fc6b35664d8be8c0b41a45ad5, type: 3}
     - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.257
