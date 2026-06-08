@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,20 +7,25 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField] private GameObject playerSetup;
 	[SerializeField] private GameObject player;
+	[SerializeField] private GameObject _Camera;
 
 	private bool _MenuOpen = false;
 
+	public static bool miniGameActive;
 
-	private void OnEnable() {
+
+    private void OnEnable() {
 		InputManager.Instance.Pause.performed += PauseGame;
-		EventSystemController.Instance.onStartGame += SetupGameStart;
-	}
+        EventSystemController.Instance.onStartGame += SetupGameStart;
+        EventSystemController.Instance.onResumeGame += ResumeGame;
+    }
 
 
 	private void OnDisable() {
 		InputManager.Instance.Pause.performed -= PauseGame;
 		EventSystemController.Instance.onStartGame -= SetupGameStart;
-	}
+        EventSystemController.Instance.onResumeGame -= ResumeGame;
+    }
 
 
 	private void SetupGameStart() {
@@ -49,33 +55,44 @@ public class GameManager : MonoBehaviour {
 
 
 	private void PauseGame(InputAction.CallbackContext ctx) {
-		if (PauseMenu.pauseMenu == null) return;
 
-		_MenuOpen = !_MenuOpen;
-		PauseMenu.pauseMenu.ShowMenu(_MenuOpen);
-		FreezeCharacter(_MenuOpen);
+		if (!_MenuOpen && !miniGameActive)
+		{
+            EventSystemController.Instance.PauseGame();
+            _MenuOpen = !_MenuOpen;
+            FreezeCharacter(_MenuOpen);
+			return;
+        }
+		else if(_MenuOpen && !miniGameActive)
+            EventSystemController.Instance.ResumeGame();
+    }
 
-		EventSystemController.Instance.PauseGame();
-	}
+    private void ResumeGame()
+	{
+        _MenuOpen = !_MenuOpen;
+        FreezeCharacter(_MenuOpen);
+
+		SetupGameStart();
+    }
 
 
 	private void FreezeCharacter(bool status) {
 		if (status) {
-			Time.timeScale = 0;
 
 			InputManager.Instance.Controls.Movement.Disable();
 			InputManager.Instance.Controls.Interaction.Disable();
 
 			ShowCursor();
-		}
+			_Camera.GetComponent<CinemachineInputProvider>().enabled = !status;
+
+        }
 		else {
 			HideCursor();
 
-			Time.timeScale = 1;
-
 			InputManager.Instance.Controls.Movement.Enable();
 			InputManager.Instance.Controls.Interaction.Enable();
-		}
+            _Camera.GetComponent<CinemachineInputProvider>().enabled = !status;
+        }
 	}
 
 }

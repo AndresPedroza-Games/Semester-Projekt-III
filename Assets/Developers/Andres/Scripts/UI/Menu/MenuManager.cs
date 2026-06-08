@@ -12,11 +12,6 @@ public class MenuManager : MonoBehaviour
 
     public GameObject mainMenuHUD;
 
-    private void Awake()
-    {
-        mainMenuHUD = FindFirstObjectByType<MainMenu>(FindObjectsInactive.Include).gameObject;
-    }
-
     protected bool GetScene(int index)
     {
         return SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(index) ? true : false;
@@ -34,5 +29,4 @@ public class MenuManager : MonoBehaviour
 
     public virtual void StartGame() { }
     public virtual void ExitGame() { }
-    public virtual void ResumeGame() { }
 }

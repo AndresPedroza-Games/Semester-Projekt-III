@@ -22,11 +22,15 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _EventSystemDoctorOffice.InteractWithLock();
         _Camera.SetActive(true);
         gameObject.SetActive(false);
+        GameManager.miniGameActive = true;
+
     }
 
     public void ExitInteraction()
     {
         _Camera.SetActive(false);
         gameObject.SetActive(true);
+        GameManager.miniGameActive = false;
+
     }
 }

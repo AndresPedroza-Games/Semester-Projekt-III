@@ -28,6 +28,7 @@ public class Board : MonoBehaviour, IInteractable
 
         _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
         _InteractionDetector.interactionDistance = 4f;
+        GameManager.miniGameActive = true;
     }
 
     public bool CanInteract(HoldController holdController)
@@ -81,6 +82,7 @@ public class Board : MonoBehaviour, IInteractable
     {
         _Camera.SetActive(false);
         PlacementSystem.isInteracting = false;
+        GameManager.miniGameActive = false;
     }
 
     private Quaternion RandomRotation()

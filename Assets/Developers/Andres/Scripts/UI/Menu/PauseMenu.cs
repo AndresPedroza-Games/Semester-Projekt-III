@@ -16,22 +16,18 @@ public class PauseMenu : MenuManager {
 
 	private void Start() {
 
-		if (GetScene(1)) {
-			_StartBtn.onClick.AddListener(ResumeGame);
-			_ExitBtn.onClick.AddListener(ExitGame);
-		}
+        _StartBtn.onClick.AddListener(EventSystemController.Instance.ResumeGame);
+        _ExitBtn.onClick.AddListener(ExitGame);
 
-		_StartBtn.GetComponentInChildren<TMP_Text>().text = "Resume";
-	}
+        _StartBtn.GetComponentInChildren<TMP_Text>().text = "Resume";
+
+		EventSystemController.Instance.onPauseGame += () => ShowMenu(true);
+		EventSystemController.Instance.onResumeGame += () => ShowMenu(false);
+    }
 
 
 	public void ShowMenu(bool status) {
 		mainMenuHUD.SetActive(status);
-	}
-
-
-	public override void ResumeGame() {
-		ShowMenu(false);
 	}
 
 

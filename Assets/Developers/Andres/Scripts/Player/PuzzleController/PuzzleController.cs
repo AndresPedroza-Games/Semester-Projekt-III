@@ -56,6 +56,7 @@ public class PuzzleController : MonoBehaviour
             _InteractionDetector.interactionDistance = _StartInteractionDistance;
 
             Debug.Log("Exit");
+
         }
     }
 }

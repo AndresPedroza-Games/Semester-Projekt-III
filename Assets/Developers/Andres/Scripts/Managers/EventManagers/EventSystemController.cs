@@ -22,6 +22,7 @@ public class EventSystemController : MonoBehaviour {
 	public Action onExitGame;
 
 	public Action onPauseGame;
+	public Action onResumeGame;
 	
 
 	private void Awake() {
@@ -41,6 +42,11 @@ public class EventSystemController : MonoBehaviour {
 
 	public void PauseGame() {
 		onPauseGame?.Invoke();
+	}
+
+	public void ResumeGame()
+	{
+		onResumeGame?.Invoke();
 	}
 
 
