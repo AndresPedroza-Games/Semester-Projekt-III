@@ -35,10 +35,12 @@ public class PlayerMotor : MonoBehaviour
     public Vector3 crouchCenter { get; set; }
     public Vector3 standCenter { get; set; }
     public float transitionSpeed;
+    [field: SerializeField] public float coolDownCrouch { get; set; }
 
     public float radius { get; set;}
     public LayerMask headCollision { get; private set; }
     public bool isCrouching { get; set;}
+    public bool animationPlaying;
 
     private void Awake()
     {
@@ -116,7 +118,11 @@ public class PlayerMotor : MonoBehaviour
 
     public void Crouch(InputAction.CallbackContext ctx)
     {
-        StartCoroutine(_PlayerCrouch.Crouch());
+        if (!animationPlaying)
+        {
+            animationPlaying = !animationPlaying;
+            StartCoroutine(_PlayerCrouch.Crouch());
+        }
     }
 
     private void GetComponents()

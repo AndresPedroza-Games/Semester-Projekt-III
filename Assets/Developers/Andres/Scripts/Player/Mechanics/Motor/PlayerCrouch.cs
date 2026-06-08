@@ -23,6 +23,7 @@ public class PlayerCrouch
     private float _Radius;
     private LayerMask _HeadCollision;
 
+
     public void Init()
     {
         _PlayerMotor = PlayerMotor.playerMotor;
@@ -81,6 +82,10 @@ public class PlayerCrouch
         _CharacterController.center = targetCenter;
 
         _Head.localPosition = targetCamPos;
+
+
+        yield return new WaitForSeconds(_PlayerMotor.coolDownCrouch);
+        _PlayerMotor.animationPlaying = !_PlayerMotor.animationPlaying;
     }
 
     private bool CanStandUp()
