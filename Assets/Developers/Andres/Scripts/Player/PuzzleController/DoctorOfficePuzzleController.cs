@@ -13,6 +13,7 @@ public class DoctorOfficePuzzleController : MonoBehaviour
     {
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
         _EventSystemDoctorOffice.onInteractWithLock += InteractLock;
+        _EventSystemDoctorOffice.onPuzzleCompleted += ExitLockOnComplete;
 
         _PlayerManager = PlayerManager.playerManager;
 
@@ -31,6 +32,9 @@ public class DoctorOfficePuzzleController : MonoBehaviour
 
     private void OnDisable()
     {
+	    _EventSystemDoctorOffice.onInteractWithLock -= InteractLock;
+        _EventSystemDoctorOffice.onPuzzleCompleted -= ExitLockOnComplete;
+        
         InputManager.Instance.ExitLock.performed -= ExitLock;
 
         InputManager.Instance.RotateLock.performed -= RotateLock;
@@ -43,6 +47,8 @@ public class DoctorOfficePuzzleController : MonoBehaviour
     {
         _Camera.SetActive(false);
         _PlayerManager.FreezeCharacter(true);
+        
+        InputManager.Instance.Pause.Disable();
     }
 
     private void ExitLock(InputAction.CallbackContext ctx)
@@ -50,6 +56,8 @@ public class DoctorOfficePuzzleController : MonoBehaviour
         _EventSystemDoctorOffice.ExitLock();
         _Camera.SetActive(true);
         _PlayerManager.FreezeCharacter(false);
+        
+        InputManager.Instance.Pause.Enable();
     }
 
     private void RotateLock(InputAction.CallbackContext ctx)
@@ -61,5 +69,14 @@ public class DoctorOfficePuzzleController : MonoBehaviour
     private void RelasePiece(InputAction.CallbackContext ctx)
     {
         _EventSystemDoctorOffice.ReleasePiece();
+    }
+    
+    private void ExitLockOnComplete()
+    {
+	    _EventSystemDoctorOffice.ExitLock();
+	    _Camera.SetActive(true);
+	    _PlayerManager.FreezeCharacter(false);
+        
+	    InputManager.Instance.Pause.Enable();
     }
 }

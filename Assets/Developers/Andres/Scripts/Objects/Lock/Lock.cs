@@ -7,6 +7,8 @@ public class Lock : MonoBehaviour
     [SerializeField] private List<int> _Password = new List<int>();
     [SerializeField] private List<LockPiece> _LockPiecesList;
 
+    public GameObject temporaryReward;
+
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
 
     private List<int> _CurrentCombination = new List<int>();
@@ -53,15 +55,15 @@ public class Lock : MonoBehaviour
 
         for (int number = 0; number < _Password.Count; number++)
         {
-            if (_CurrentCombination[number] == _Password[number])
-                return true;
+            if (_CurrentCombination[number] != _Password[number])
+                return false;
         }
 
-        return false;
+        return true;
     }
 
-    private void Test()
-    {
+    private void Test() {
+	    temporaryReward.SetActive(true);
         Debug.Log("Puzzle Completed");
     }
 }
