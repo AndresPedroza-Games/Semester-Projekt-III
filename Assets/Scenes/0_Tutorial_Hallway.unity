@@ -6645,14 +6645,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.7
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2861073443361726083, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1597634691}
+    - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1597634692}
   m_SourcePrefab: {fileID: 100100000, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
 --- !u!4 &1589559030 stripped
 Transform:
@@ -7325,6 +7327,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1597634692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597634690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Event002TurnOffLights
+  tubelampOffMaterial: {fileID: 2100000, guid: 2188f802435b91844811fada0862ba6a, type: 2}
 --- !u!1 &1676130525
 GameObject:
   m_ObjectHideFlags: 0
@@ -9369,13 +9384,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1998709739}
   m_SourcePrefab: {fileID: 100100000, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
 --- !u!4 &1998709737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6949365643970149205, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
   m_PrefabInstance: {fileID: 1998709736}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1998709738 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+  m_PrefabInstance: {fileID: 1998709736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1998709739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1998709738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Event002TurnOffLights
+  tubelampOffMaterial: {fileID: 2100000, guid: 2188f802435b91844811fada0862ba6a, type: 2}
 --- !u!1 &2003944714
 GameObject:
   m_ObjectHideFlags: 0
@@ -9534,13 +9570,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2048218883}
   m_SourcePrefab: {fileID: 100100000, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
 --- !u!4 &2048218881 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6949365643970149205, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
   m_PrefabInstance: {fileID: 2048218880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2048218882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+  m_PrefabInstance: {fileID: 2048218880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2048218883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048218882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Event002TurnOffLights
+  tubelampOffMaterial: {fileID: 2100000, guid: 2188f802435b91844811fada0862ba6a, type: 2}
 --- !u!4 &2049883946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
