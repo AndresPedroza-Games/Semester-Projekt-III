@@ -53,11 +53,11 @@ public class Lock : MonoBehaviour
 
         for (int number = 0; number < _Password.Count; number++)
         {
-            if (_CurrentCombination[number] == _Password[number])
-                return true;
+            if (_CurrentCombination[number] != _Password[number])
+                return false;
         }
 
-        return false;
+        return true;
     }
 
     private void Test()
