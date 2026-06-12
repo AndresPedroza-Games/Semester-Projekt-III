@@ -1,45 +1,62 @@
 using UnityEngine;
 
 
-public class Film : MonoBehaviour, IInteractable {
+public class Film : Holdable {
 
 	[Header("---Rotation Config---")]
 	[SerializeField] private GameObject decal;
 	[SerializeField] private int rotationIncrement = 30;
 	[SerializeField] private int correctAngle;
 
-	private int CurrentAngle => Mathf.RoundToInt(transform.eulerAngles.y);
-
 	public int CorrectAngle => correctAngle;
 	public int Angle { get; private set; }
+	public bool IsInserted { get; private set; }
 
 
-	private void Awake() {
-		gameObject.layer = LayerMask.NameToLayer("Interactable");
-		Angle = CurrentAngle;
-		Debug.Log(Angle);
+	protected override void Awake() {
+		base.Awake();
+		
+		decal.SetActive(false);
 	}
 
 
-	public bool CanInteract(HoldController holdController) {
-		return true;
-	}
+	public void Rotate(float input) {
+		
+		Angle = Mathf.RoundToInt(Angle + rotationIncrement * input + 360) % 360;
 
-
-	public void Interact() {
-		Angle = (Angle + rotationIncrement) % 360;
-
-		Rotate(transform, Vector3.up);
-		Rotate(decal.transform, Vector3.forward);
+		Debug.Log($"{name}: {Angle}; needs to be: {correctAngle}");
+		
+		UpdateVisuals();
 
 		EventSystemPrincipalsOffice.Instance.FilmRotated();
 	}
 
 
-	private void Rotate(Transform trans, Vector3 axis) {
-		Debug.Log($"angle: {trans.name} {Angle}");
+	private void UpdateVisuals() {
+		transform.rotation = Quaternion.Euler(0f, Angle, 0f);
 
-		trans.rotation = Quaternion.Euler(axis * Angle);
+		decal.transform.rotation = Quaternion.Euler(0f, 0f, Angle - CorrectAngle);
+	}
+
+
+	public void Insert(Transform filmPosition) {
+		CanBeHeld = false;
+		
+		IsInserted = true;
+
+		decal.SetActive(true);
+
+		Rigidbody.isKinematic = true;
+
+		transform.SetPositionAndRotation(filmPosition.position, filmPosition.rotation);
+
+		Angle = 0;
+		UpdateVisuals();
+	}
+
+
+	public void Remove() {
+		Debug.Log($"Removed: {gameObject.name}");
 	}
 
 

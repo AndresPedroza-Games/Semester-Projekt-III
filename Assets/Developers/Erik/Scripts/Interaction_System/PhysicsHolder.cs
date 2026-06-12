@@ -45,7 +45,6 @@ public class PhysicsHolder : MonoBehaviour {
 
 	private void Awake() {
 		_cam = Camera.main;
-		holdPoint = GameObject.FindWithTag("DropPosition").transform;
 	}
 
 
@@ -68,7 +67,7 @@ public class PhysicsHolder : MonoBehaviour {
 		_resolver = targetResolver;
 		_currentProfile = profile;
 
-		Vector3 pullGrabOffset = _holdable.Rigidbody.position - holdPoint.position;
+ 		Vector3 pullGrabOffset = _holdable.Rigidbody.position - holdPoint.position;
 		pullGrabOffset.y = 0f;
 
 		_context = new HoldContext {

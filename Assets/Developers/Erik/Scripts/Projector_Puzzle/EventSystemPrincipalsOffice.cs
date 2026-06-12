@@ -6,7 +6,7 @@ public class EventSystemPrincipalsOffice : EventSystemController {
 	public new static EventSystemPrincipalsOffice Instance { get; private set; }
 
 	public Action onFilmRotated;
-	public Action onPuzzleCompleted;
+	public Action onPuzzleSolved;
 
 
 	private void Awake() {
@@ -24,9 +24,8 @@ public class EventSystemPrincipalsOffice : EventSystemController {
 	}
 
 
-	public void PuzzleCompleted() {
-		onPuzzleCompleted?.Invoke();
+	public void PuzzleSolved() {
+		onPuzzleSolved?.Invoke();
 	}
-
 
 }

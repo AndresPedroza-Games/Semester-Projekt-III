@@ -34,6 +34,12 @@ public class InputManager : MonoBehaviour {
 	public InputAction ReleasePiece => Controls.DoctorOfficePuzzle.ReleasePiece;
 
 	
+	[Header("Projector Puzzle")]
+	public InputAction ExitProjector => Controls.ProjectorPuzzle.Exit;
+	public InputAction SelectFilm => Controls.ProjectorPuzzle.SelectFilm;
+	public InputAction RotateFilm => Controls.ProjectorPuzzle.RotateFilm;
+
+	
 	[Header("Settings")]
 	public InputAction Pause => Controls.Game.Pause;
 

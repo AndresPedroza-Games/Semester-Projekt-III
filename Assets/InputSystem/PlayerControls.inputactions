@@ -927,6 +927,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "ProjectorPuzzle",
+            "id": "ff65def9-3f4f-4089-8fad-75a869bbfec5",
+            "actions": [
+                {
+                    "name": "Exit",
+                    "type": "Button",
+                    "id": "09064f35-01d9-4c6a-8388-e3e5341e9791",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectFilm",
+                    "type": "Button",
+                    "id": "917195b8-f47e-42a8-beea-2fd08db0b25e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RotateFilm",
+                    "type": "Value",
+                    "id": "9887c641-23f3-4e23-a889-f518c177a9d0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d98ab89a-b0ee-4fa1-bb8b-d4135ff61b8a",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Exit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e725c91f-feb9-43b7-bbd2-6d6c5594f7f5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectFilm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b91346f-c339-48d7-b0a5-2a8f2466cc60",
+                    "path": "<Mouse>/scroll",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RotateFilm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
