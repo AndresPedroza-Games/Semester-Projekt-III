@@ -250,17 +250,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2762371123344987978, guid: f4a91a1ae1c15214caf3d42979d9248e, type: 3}
   m_PrefabInstance: {fileID: 931078434}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &931078439 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3186988733526010271, guid: f4a91a1ae1c15214caf3d42979d9248e, type: 3}
-  m_PrefabInstance: {fileID: 931078434}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1653157104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineVirtualCamera
 --- !u!1001 &1060706098
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -272,10 +261,6 @@ PrefabInstance:
     - target: {fileID: 836171029925591291, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 836171029925591291, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: crosshairImage
@@ -289,10 +274,6 @@ PrefabInstance:
       propertyPath: holdPoint
       value: 
       objectReference: {fileID: 931078437}
-    - target: {fileID: 8616296912708125306, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: cinemachine
-      value: 
-      objectReference: {fileID: 931078439}
     - target: {fileID: 8858807260829887222, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.75
@@ -331,10 +312,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8858807260829887222, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8967018418586515861, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9081856832726560484, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
