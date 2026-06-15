@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -39,9 +38,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	private void Awake() {
 		_holdController = GameManager.Instance.Interactor.GetComponent<HoldController>();
 
-		foreach (Light l in projectorLights.Where(l => l.enabled)) {
-			l.enabled = false;
-		}
+		SetLights(false);
 
 		_insertedFilms = new Film[filmPositions.Count];
 	}
@@ -82,15 +79,27 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	}
 
 
+	private void SetLights(bool state) {
+		foreach (Light l in projectorLights)
+			l.enabled = state;
+	}
+
+
+	private void SetAllDecals(bool state) {
+		foreach (Film film in _insertedFilms) {
+			if (film)
+				film.Decal.SetActive(state);
+		}
+	}
+
+
 	private void OnPowerButtonPressed(bool isOn) {
 		if (_solved && _isOn)
 			return;
 
 		_isOn = isOn;
 
-		foreach (Light l in projectorLights) {
-			l.enabled = isOn;
-		}
+		SetLights(isOn);
 
 		if (_selectedFilm && !_solved)
 			if (isOn)
@@ -98,12 +107,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 			else
 				_selectedFilm.RemoveHighlight();
 
-		foreach (Film film in _insertedFilms) {
-			if (!film)
-				continue;
-
-			film.Decal.SetActive(isOn);
-		}
+		SetAllDecals(isOn);
 
 		CheckCondition();
 	}
@@ -125,32 +129,15 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		if (!_isOn || _solved || _insertedCount == 0)
 			return;
 
-		if (_selectedFilm) {
-			_selectedFilm.RemoveHighlight();
-			_selectedFilm = null;
-		}
+		_selectedFilm?.RemoveHighlight();
 
-		if (upwards) {
-			_selectedFilmIndex += 1;
+		int direction = upwards ? 1 : -1;
 
-			if (_selectedFilmIndex > _insertedCount - 1)
-				_selectedFilmIndex = 0;
+		_selectedFilmIndex = (_selectedFilmIndex + direction + _insertedCount) % _insertedCount;
 
-			_selectedFilm = _insertedFilms[_selectedFilmIndex];
-		}
-		else {
-			_selectedFilmIndex -= 1;
+		_selectedFilm = _insertedFilms[_selectedFilmIndex];
 
-			if (_selectedFilmIndex < 0)
-				_selectedFilmIndex = _insertedCount - 1;
-
-			_selectedFilm = _insertedFilms[_selectedFilmIndex];
-		}
-
-		if (_selectedFilm) {
-			_selectedFilm.Highlight();
-		}
-
+		_selectedFilm?.Highlight();
 	}
 
 
@@ -167,6 +154,9 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		int count = Physics.OverlapBoxNonAlloc(boxCenter.position, boxDimensions, _results, boxCenter.rotation);
 
 		for (int i = 0; i < count; i++) {
+			
+			if (_insertedCount >= _insertedFilms.Length)
+				break;
 
 			Collider hit = _results[i];
 
@@ -225,11 +215,14 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 				return;
 		}
 
-		_solved = true;
-		EventSystemPrincipalsOffice.Instance.PuzzleSolved(_solved);
+		Solve();
+	}
 
-		if (_selectedFilm)
-			_selectedFilm.RemoveHighlight();
+
+	private void Solve() {
+		_solved = true;
+		_selectedFilm?.RemoveHighlight();
+		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
 	}
 
 
