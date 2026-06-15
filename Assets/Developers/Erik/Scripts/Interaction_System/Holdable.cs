@@ -50,7 +50,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	}
 
 
-	public bool CanInteract(HoldController holdController) {
+	public virtual bool CanInteract(HoldController holdController) {
 		return !holdController.HasObject;
 	}
 

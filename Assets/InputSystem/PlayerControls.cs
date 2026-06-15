@@ -1013,74 +1013,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""ProjectorPuzzle"",
-            ""id"": ""ff65def9-3f4f-4089-8fad-75a869bbfec5"",
-            ""actions"": [
-                {
-                    ""name"": ""Exit"",
-                    ""type"": ""Button"",
-                    ""id"": ""09064f35-01d9-4c6a-8388-e3e5341e9791"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SelectFilm"",
-                    ""type"": ""Button"",
-                    ""id"": ""917195b8-f47e-42a8-beea-2fd08db0b25e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RotateFilm"",
-                    ""type"": ""Value"",
-                    ""id"": ""9887c641-23f3-4e23-a889-f518c177a9d0"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""d98ab89a-b0ee-4fa1-bb8b-d4135ff61b8a"",
-                    ""path"": ""<Keyboard>/e"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Exit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""e725c91f-feb9-43b7-bbd2-6d6c5594f7f5"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SelectFilm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4b91346f-c339-48d7-b0a5-2a8f2466cc60"",
-                    ""path"": ""<Mouse>/scroll"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RotateFilm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -1120,11 +1052,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DoctorOfficePuzzle_Exit = m_DoctorOfficePuzzle.FindAction("Exit", throwIfNotFound: true);
         m_DoctorOfficePuzzle_RotatePiece = m_DoctorOfficePuzzle.FindAction("RotatePiece", throwIfNotFound: true);
         m_DoctorOfficePuzzle_ReleasePiece = m_DoctorOfficePuzzle.FindAction("ReleasePiece", throwIfNotFound: true);
-        // ProjectorPuzzle
-        m_ProjectorPuzzle = asset.FindActionMap("ProjectorPuzzle", throwIfNotFound: true);
-        m_ProjectorPuzzle_Exit = m_ProjectorPuzzle.FindAction("Exit", throwIfNotFound: true);
-        m_ProjectorPuzzle_SelectFilm = m_ProjectorPuzzle.FindAction("SelectFilm", throwIfNotFound: true);
-        m_ProjectorPuzzle_RotateFilm = m_ProjectorPuzzle.FindAction("RotateFilm", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -1135,7 +1062,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Game.enabled, "This will cause a leak and performance issues, PlayerControls.Game.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_BoardPuzzle.enabled, "This will cause a leak and performance issues, PlayerControls.BoardPuzzle.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_DoctorOfficePuzzle.enabled, "This will cause a leak and performance issues, PlayerControls.DoctorOfficePuzzle.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_ProjectorPuzzle.enabled, "This will cause a leak and performance issues, PlayerControls.ProjectorPuzzle.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1970,124 +1896,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="DoctorOfficePuzzleActions" /> instance referencing this action map.
     /// </summary>
     public DoctorOfficePuzzleActions @DoctorOfficePuzzle => new DoctorOfficePuzzleActions(this);
-
-    // ProjectorPuzzle
-    private readonly InputActionMap m_ProjectorPuzzle;
-    private List<IProjectorPuzzleActions> m_ProjectorPuzzleActionsCallbackInterfaces = new List<IProjectorPuzzleActions>();
-    private readonly InputAction m_ProjectorPuzzle_Exit;
-    private readonly InputAction m_ProjectorPuzzle_SelectFilm;
-    private readonly InputAction m_ProjectorPuzzle_RotateFilm;
-    /// <summary>
-    /// Provides access to input actions defined in input action map "ProjectorPuzzle".
-    /// </summary>
-    public struct ProjectorPuzzleActions
-    {
-        private @PlayerControls m_Wrapper;
-
-        /// <summary>
-        /// Construct a new instance of the input action map wrapper class.
-        /// </summary>
-        public ProjectorPuzzleActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "ProjectorPuzzle/Exit".
-        /// </summary>
-        public InputAction @Exit => m_Wrapper.m_ProjectorPuzzle_Exit;
-        /// <summary>
-        /// Provides access to the underlying input action "ProjectorPuzzle/SelectFilm".
-        /// </summary>
-        public InputAction @SelectFilm => m_Wrapper.m_ProjectorPuzzle_SelectFilm;
-        /// <summary>
-        /// Provides access to the underlying input action "ProjectorPuzzle/RotateFilm".
-        /// </summary>
-        public InputAction @RotateFilm => m_Wrapper.m_ProjectorPuzzle_RotateFilm;
-        /// <summary>
-        /// Provides access to the underlying input action map instance.
-        /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_ProjectorPuzzle; }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-        public void Enable() { Get().Enable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-        public void Disable() { Get().Disable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-        public bool enabled => Get().enabled;
-        /// <summary>
-        /// Implicitly converts an <see ref="ProjectorPuzzleActions" /> to an <see ref="InputActionMap" /> instance.
-        /// </summary>
-        public static implicit operator InputActionMap(ProjectorPuzzleActions set) { return set.Get(); }
-        /// <summary>
-        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <param name="instance">Callback instance.</param>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-        /// </remarks>
-        /// <seealso cref="ProjectorPuzzleActions" />
-        public void AddCallbacks(IProjectorPuzzleActions instance)
-        {
-            if (instance == null || m_Wrapper.m_ProjectorPuzzleActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_ProjectorPuzzleActionsCallbackInterfaces.Add(instance);
-            @Exit.started += instance.OnExit;
-            @Exit.performed += instance.OnExit;
-            @Exit.canceled += instance.OnExit;
-            @SelectFilm.started += instance.OnSelectFilm;
-            @SelectFilm.performed += instance.OnSelectFilm;
-            @SelectFilm.canceled += instance.OnSelectFilm;
-            @RotateFilm.started += instance.OnRotateFilm;
-            @RotateFilm.performed += instance.OnRotateFilm;
-            @RotateFilm.canceled += instance.OnRotateFilm;
-        }
-
-        /// <summary>
-        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <remarks>
-        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-        /// </remarks>
-        /// <seealso cref="ProjectorPuzzleActions" />
-        private void UnregisterCallbacks(IProjectorPuzzleActions instance)
-        {
-            @Exit.started -= instance.OnExit;
-            @Exit.performed -= instance.OnExit;
-            @Exit.canceled -= instance.OnExit;
-            @SelectFilm.started -= instance.OnSelectFilm;
-            @SelectFilm.performed -= instance.OnSelectFilm;
-            @SelectFilm.canceled -= instance.OnSelectFilm;
-            @RotateFilm.started -= instance.OnRotateFilm;
-            @RotateFilm.performed -= instance.OnRotateFilm;
-            @RotateFilm.canceled -= instance.OnRotateFilm;
-        }
-
-        /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="ProjectorPuzzleActions.UnregisterCallbacks(IProjectorPuzzleActions)" />.
-        /// </summary>
-        /// <seealso cref="ProjectorPuzzleActions.UnregisterCallbacks(IProjectorPuzzleActions)" />
-        public void RemoveCallbacks(IProjectorPuzzleActions instance)
-        {
-            if (m_Wrapper.m_ProjectorPuzzleActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        /// <summary>
-        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-        /// </summary>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-        /// </remarks>
-        /// <seealso cref="ProjectorPuzzleActions.AddCallbacks(IProjectorPuzzleActions)" />
-        /// <seealso cref="ProjectorPuzzleActions.RemoveCallbacks(IProjectorPuzzleActions)" />
-        /// <seealso cref="ProjectorPuzzleActions.UnregisterCallbacks(IProjectorPuzzleActions)" />
-        public void SetCallbacks(IProjectorPuzzleActions instance)
-        {
-            foreach (var item in m_Wrapper.m_ProjectorPuzzleActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_ProjectorPuzzleActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    /// <summary>
-    /// Provides a new <see cref="ProjectorPuzzleActions" /> instance referencing this action map.
-    /// </summary>
-    public ProjectorPuzzleActions @ProjectorPuzzle => new ProjectorPuzzleActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -2296,34 +2104,5 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReleasePiece(InputAction.CallbackContext context);
-    }
-    /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "ProjectorPuzzle" which allows adding and removing callbacks.
-    /// </summary>
-    /// <seealso cref="ProjectorPuzzleActions.AddCallbacks(IProjectorPuzzleActions)" />
-    /// <seealso cref="ProjectorPuzzleActions.RemoveCallbacks(IProjectorPuzzleActions)" />
-    public interface IProjectorPuzzleActions
-    {
-        /// <summary>
-        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnExit(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "SelectFilm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSelectFilm(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "RotateFilm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRotateFilm(InputAction.CallbackContext context);
     }
 }

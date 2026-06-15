@@ -8,6 +8,7 @@ public class Film : Holdable {
 	[SerializeField] private int rotationIncrement = 30;
 	[SerializeField] private int correctAngle;
 
+	public GameObject Decal => decal;
 	public int CorrectAngle => correctAngle;
 	public int Angle { get; private set; }
 	public bool IsInserted { get; private set; }
@@ -15,49 +16,42 @@ public class Film : Holdable {
 
 	protected override void Awake() {
 		base.Awake();
-		
+
 		decal.SetActive(false);
 	}
 
 
-	public void Rotate(float input) {
-		
-		Angle = Mathf.RoundToInt(Angle + rotationIncrement * input + 360) % 360;
-
-		Debug.Log($"{name}: {Angle}; needs to be: {correctAngle}");
-		
-		UpdateVisuals();
-
-		EventSystemPrincipalsOffice.Instance.FilmRotated();
+	public override bool CanInteract(HoldController holdController) {
+		return !IsInserted && !holdController.HasObject;
 	}
 
 
-	private void UpdateVisuals() {
-		transform.rotation = Quaternion.Euler(0f, Angle, 0f);
+	public void Rotate() {
+		Angle = Mathf.RoundToInt(Angle + rotationIncrement + 360) % 360;
 
-		decal.transform.rotation = Quaternion.Euler(0f, 0f, Angle - CorrectAngle);
+		UpdateVisuals();
 	}
 
 
 	public void Insert(Transform filmPosition) {
 		CanBeHeld = false;
-		
-		IsInserted = true;
 
-		decal.SetActive(true);
+		IsInserted = true;
 
 		Rigidbody.isKinematic = true;
 
 		transform.SetPositionAndRotation(filmPosition.position, filmPosition.rotation);
+		transform.SetParent(filmPosition);
 
 		Angle = 0;
 		UpdateVisuals();
 	}
 
 
-	public void Remove() {
-		Debug.Log($"Removed: {gameObject.name}");
-	}
+	private void UpdateVisuals() {
+		transform.localRotation = Quaternion.Euler(0f, Angle, 0f);
 
+		decal.transform.localRotation = Quaternion.Euler(0f, 0f, -(Angle - CorrectAngle));;
+	}
 
 }
