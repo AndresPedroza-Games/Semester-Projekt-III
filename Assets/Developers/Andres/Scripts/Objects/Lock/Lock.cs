@@ -7,6 +7,8 @@ public class Lock : MonoBehaviour
     [SerializeField] private List<int> _Password = new List<int>();
     [SerializeField] private List<LockPiece> _LockPiecesList;
 
+    public GameObject temporaryReward;
+
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
 
     private List<int> _CurrentCombination = new List<int>();
@@ -60,8 +62,8 @@ public class Lock : MonoBehaviour
         return true;
     }
 
-    private void Test()
-    {
+    private void Test() {
+	    temporaryReward.SetActive(true);
         Debug.Log("Puzzle Completed");
     }
 }
