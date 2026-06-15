@@ -89,12 +89,13 @@ public class PlayerMotor : MonoBehaviour
         moveInput = Vector2.zero;
     }
 
-    public void Movement()
+
+    private void Movement()
     {
         _PlayerMovement.Movement(characterController, moveInput);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Movement();
         HandleGravity();

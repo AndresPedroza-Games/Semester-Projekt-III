@@ -7,7 +7,7 @@ public class GrabTargetResolver : IHoldTargetResolver {
 		Ray ray = new(context.Camera.transform.position, context.Camera.transform.forward);
 		float distance = (ray.origin - context.HoldPoint.position).magnitude;
 
-		if (Physics.Raycast(ray, out RaycastHit hit, distance, context.IgnoreLayer)) {
+		if (Physics.Raycast(ray, out RaycastHit hit, distance, context.IgnoreLayer, QueryTriggerInteraction.Ignore)) {
 			Vector3 offsetDir = (ray.origin - hit.point).normalized;
 			return hit.point + offsetDir * context.Offset;
 		}

@@ -15,12 +15,13 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	private readonly int _borderThickness = Shader.PropertyToID("_BorderThickness");
 
 	private HoldController _currentHolder;
+	public bool CanBeHeld { get; set; } = true;
 
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }
 
 
-	private void Awake() {
+	protected virtual void Awake() {
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
 
 		_renderer = GetComponent<Renderer>();
@@ -39,6 +40,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 		return this.gameObject;
 	}
 
+
 	private void ConfigurePhysics() {
 		if (!Rigidbody)
 			return;
@@ -48,16 +50,19 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	}
 
 
-	public bool CanInteract(HoldController holdController) {
+	public virtual bool CanInteract(HoldController holdController) {
 		return !holdController.HasObject;
 	}
 
 
-	public void Interact() {
+	public virtual void Interact() {
 	}
 
 
 	public void Hold(HoldController holder) {
+		if (!CanBeHeld)
+			return;
+
 		_currentHolder = holder;
 
 		holdDefinition.Hold(this, holder);
@@ -78,7 +83,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	public void Highlight() {
 		if (!_renderer)
 			return;
-		
+
 		_renderer.material.SetFloat(_borderThickness, borderThickness);
 	}
 
@@ -86,7 +91,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	public void RemoveHighlight() {
 		if (!_renderer)
 			return;
-		
+
 		_renderer.material.SetFloat(_borderThickness, 0f);
 	}
 
