@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour {
 			InputManager.Instance.Zoom.Enable();
 		}
 
-        designMC.SetActive(!status);
+        //designMC.SetActive(!status);
 
         Debug.Log("Player Freeze");
 	}

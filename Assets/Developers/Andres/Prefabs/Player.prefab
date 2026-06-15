@@ -137,7 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
   head: {fileID: 8232042639273650274}
   playerSpeed: 2
-  playerCrouchSpeed: 0.5
+  playerCrouchSpeed: 1
   gravityMultiplier: 1
   maxFallSpeed: -50
   transitionSpeed: 0.5
@@ -304,6 +304,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5869881299163153261, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6466803792136061835, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: maxForce
       value: 5000
@@ -326,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7356311577264376810, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: interactionDistance
-      value: 1.1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8735680824453703098, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Enabled
@@ -533,6 +537,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 81bb9eea30387e442899949a80011e55, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 81bb9eea30387e442899949a80011e55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1502172563930301691, guid: 81bb9eea30387e442899949a80011e55, type: 3}
       propertyPath: m_Layer

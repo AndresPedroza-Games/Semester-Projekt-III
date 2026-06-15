@@ -28,6 +28,8 @@ public class Board : MonoBehaviour, IInteractable
 
         _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
         _InteractionDetector.interactionDistance = 4f;
+        
+        InputManager.Instance.Pause.Disable();
         GameManager.miniGameActive = true;
     }
 
@@ -82,6 +84,8 @@ public class Board : MonoBehaviour, IInteractable
     {
         _Camera.SetActive(false);
         PlacementSystem.isInteracting = false;
+        
+        InputManager.Instance.Pause.Enable();
         GameManager.miniGameActive = false;
     }
 
