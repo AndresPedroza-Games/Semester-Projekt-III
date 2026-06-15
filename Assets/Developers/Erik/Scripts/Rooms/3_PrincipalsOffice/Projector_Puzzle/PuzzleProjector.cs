@@ -196,7 +196,8 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 			break;
 		}
-
+		
+		CheckCondition();
 	}
 
 
