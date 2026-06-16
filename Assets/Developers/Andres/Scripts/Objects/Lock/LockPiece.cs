@@ -24,6 +24,12 @@ public class LockPiece : MonoBehaviour, IInteractable
         return true;
     }
 
+
+    public CrosshairType GetCrosshairType(HoldController holdController) {
+	    return _PieceIsSelected ? CrosshairType.ClosedHand : CrosshairType.Interactable;
+    }
+
+
     public void Interact()
     {
         if (!_PieceIsSelected)

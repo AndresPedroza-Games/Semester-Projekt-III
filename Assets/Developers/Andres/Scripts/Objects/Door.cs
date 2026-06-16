@@ -51,6 +51,11 @@ public class Door : MonoBehaviour, IInteractable {
 	}
 
 
+	public CrosshairType GetCrosshairType(HoldController holdController) {
+		return _canOpen ? CrosshairType.Interactable: CrosshairType.Default;
+	}
+
+
 	public void Interact() {
 		if (_canOpen)
 			OpenDoor();

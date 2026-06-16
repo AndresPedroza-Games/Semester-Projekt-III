@@ -4,4 +4,6 @@ public interface IInteractable {
 
 	public bool CanInteract(HoldController holdController);
 
+	public CrosshairType GetCrosshairType(HoldController holdController);
+
 }

@@ -34,7 +34,7 @@ public class Film : Holdable {
 
 
 	public void Insert(Transform filmPosition) {
-		CanBeHeld = false;
+		CanBeHold = false;
 
 		IsInserted = true;
 

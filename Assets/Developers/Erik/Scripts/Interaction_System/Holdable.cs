@@ -15,7 +15,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	private readonly int _borderThickness = Shader.PropertyToID("_BorderThickness");
 
 	private HoldController _currentHolder;
-	public bool CanBeHeld { get; set; } = true;
+	public bool CanBeHold { get; set; } = true;
 
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }
@@ -55,12 +55,18 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	}
 
 
+	public CrosshairType GetCrosshairType(HoldController holdController) {
+		return CanBeHold ? CrosshairType.OpenHand : CrosshairType.Default;
+
+	}
+
+
 	public virtual void Interact() {
 	}
 
 
 	public void Hold(HoldController holder) {
-		if (!CanBeHeld)
+		if (!CanBeHold)
 			return;
 
 		_currentHolder = holder;
