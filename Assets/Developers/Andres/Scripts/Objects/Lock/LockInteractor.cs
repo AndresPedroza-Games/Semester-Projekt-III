@@ -17,6 +17,12 @@ public class LockInteractor : MonoBehaviour, IInteractable
         return true;
     }
 
+
+    public CrosshairType GetCrosshairType(HoldController holdController) {
+	    return CrosshairType.Interactable;
+    }
+
+
     public void Interact()
     {
         _EventSystemDoctorOffice.InteractWithLock();

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4151490122447608140}
   - component: {fileID: 377546370845797306}
   - component: {fileID: 6896128894692378824}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Interactor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a11ea770920e7be4ba95278deb0dea80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionDetector
-  interactionDistance: 2
+  interactionDistance: 1.5
 --- !u!114 &5869881299163153261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 769125469484169754}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcc3aae528945304fb75c679e44b122a, type: 3}
   m_Name: 
@@ -100,8 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractionUI
   crosshairImage: {fileID: 0}
-  crosshairDot: {fileID: 21300000, guid: 6bc3a272bc606cd4888505d4820e6737, type: 3}
-  crosshairCircle: {fileID: 21300000, guid: 7fa4c5dc1a2b59348b24cec50c09b7b0, type: 3}
+  crosshairDefault: {fileID: 21300000, guid: 9c7fea8536ab89d45ba285dc18592d81, type: 3}
+  crosshairInteractable: {fileID: 21300000, guid: 7fa4c5dc1a2b59348b24cec50c09b7b0, type: 3}
+  crosshairOpenhand: {fileID: 21300000, guid: ddcd6e99f33fed44fb5ba98b8fcf3bdc, type: 3}
+  crosshairClosedHand: {fileID: 21300000, guid: 844aacc217836f1468bd686f876adb13, type: 3}
 --- !u!114 &377546370845797306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,7 +135,7 @@ MonoBehaviour:
   offset: 0.1
   grabLayerMask:
     serializedVersion: 2
-    m_Bits: 51
+    m_Bits: 1
   smoothSpeed: 15
   breakDistance: 2
   jointLimit: 0.5

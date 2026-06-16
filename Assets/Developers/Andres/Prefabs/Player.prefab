@@ -240,26 +240,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8858807260829887222}
     m_Modifications:
-    - target: {fileID: 377546370845797306, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 769125469484169754, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Name
       value: Interactor
       objectReference: {fileID: 0}
-    - target: {fileID: 769125469484169754, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4151490122447608140, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4151490122447608140, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: crosshairDot
-      value: 
-      objectReference: {fileID: 21300000, guid: 9c7fea8536ab89d45ba285dc18592d81, type: 3}
     - target: {fileID: 4439595576180479704, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -300,47 +284,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5035581980842209683, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5869881299163153261, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6466803792136061835, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: maxForce
-      value: 5000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6466803792136061835, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6466803792136061835, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: layersToIgnore.m_Bits
-      value: 72
-      objectReference: {fileID: 0}
-    - target: {fileID: 6896128894692378824, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: holdPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6896128894692378824, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: grabLayerMask.m_Bits
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7356311577264376810, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7356311577264376810, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: interactionDistance
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735680824453703098, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5869881299163153261, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

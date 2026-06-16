@@ -38,6 +38,12 @@ public class Board : MonoBehaviour, IInteractable
         return !holdController.HasObject;
     }
 
+
+    public CrosshairType GetCrosshairType(HoldController holdController) {
+	    return CrosshairType.Interactable;
+    }
+
+
     public void AddPieceToList(GameObject piece)
     {
         if (piecesInv.Contains(piece))

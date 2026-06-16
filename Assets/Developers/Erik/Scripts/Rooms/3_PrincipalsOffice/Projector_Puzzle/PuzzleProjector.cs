@@ -74,6 +74,11 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	}
 
 
+	public CrosshairType GetCrosshairType(HoldController holdController) {
+		return CrosshairType.Interactable;
+	}
+
+
 	public void Interact() {
 		RotateProjector();
 	}
