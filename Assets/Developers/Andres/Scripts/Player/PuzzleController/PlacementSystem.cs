@@ -19,16 +19,19 @@ public class PlacementSystem : MonoBehaviour
     public static bool isInteracting;
 
     private GridData _PieceData;
+    private Board _Board;
 
     private Vector3 _SnappedPos;
     private Vector3 _MousePos;
     private Vector3Int _GridPos;
 
     private int _SelectedObjectIndex;
+    private bool _PuzzleSolved;
 
     private void Awake()
     {
         _PieceData = new GridData();
+        _Board = GetComponentInParent<Board>();
     }
 
     private void Start()
@@ -43,12 +46,14 @@ public class PlacementSystem : MonoBehaviour
 
     private void Update()
     {
-       if (isInteracting)
-            MousePosition();
+        MousePosition();
     }
 
     private void MousePosition()
     {
+        if (_Board.createdPieces.Count <= 0)
+            return;
+
         _TilePreview.SetActive(true);
 
         _MousePos = _InteractionDetector.GetRayPosition(layerDetector);
@@ -97,10 +102,11 @@ public class PlacementSystem : MonoBehaviour
             Debug.Log("Piece placed");
             Debug.Log(_GridPos);
 
-            if (AllPiecesCorrectPosition())
+            if (AllPiecesCorrectPosition() && !_PuzzleSolved)
             {
                 _EventSystemChildRoom.PuzzleSolved();
                 Debug.Log("Puzzle Solved");
+                _PuzzleSolved = true;
             }
 
             _SelectedObject = null;

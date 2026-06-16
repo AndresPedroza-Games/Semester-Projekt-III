@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour {
 	public InputAction Move => Controls.Movement.Move;
 	public InputAction Look => Controls.Movement.Look;
 	public InputAction Interact => Controls.Interaction.Interact;
+	public InputAction InteractElementPuzzle => Controls.Interaction.InteractElementPuzzle;
 	public InputAction PickUp => Controls.Interaction.PickUp;
 	public InputAction Crouch => Controls.Movement.Crouch;
 	public InputAction Zoom => Controls.Interaction.Zoom;
@@ -23,9 +24,7 @@ public class InputManager : MonoBehaviour {
 	
 	[Header("Board Puzzle")]
 	public InputAction PlacePiece => Controls.BoardPuzzle.Place;
-	public InputAction ExitPuzzle => Controls.BoardPuzzle.Exit;
 	public InputAction RotatePiece => Controls.BoardPuzzle.Rotate;
-
 	
 	[Header("Doctor Office Puzzle")]
 

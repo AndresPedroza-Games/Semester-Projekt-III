@@ -296,6 +296,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact Element Puzzle"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d3dbf60-ad3c-473e-bed3-c42967acaf32"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -329,6 +338,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0dbda4c1-364c-4565-a617-3238164cfc2d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact Element Puzzle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -892,22 +912,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Exit"",
-                    ""type"": ""Button"",
-                    ""id"": ""2f223026-2a29-40e8-b8a9-762af91bba80"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Rotate"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""2781e3e6-7fb1-4491-a58c-f891113f7116"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -924,19 +935,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""0cd0666d-9ffb-4aa8-8996-772d5ad05a98"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Exit"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""67026f22-4b38-488c-bc9b-f7f80e32df09"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""id"": ""6ab23c34-6ba0-4bbf-8a07-a8a45f8c40ed"",
+                    ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -982,7 +982,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5c94d2ca-1b1e-4bc4-aa39-1552664f1fe9"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -993,7 +993,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""7d1cb79e-38d1-4fd3-b6cb-da3f70b1a006"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1027,6 +1027,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Interaction_Interact = m_Interaction.FindAction("Interact", throwIfNotFound: true);
         m_Interaction_Zoom = m_Interaction.FindAction("Zoom", throwIfNotFound: true);
         m_Interaction_PickUp = m_Interaction.FindAction("PickUp", throwIfNotFound: true);
+        m_Interaction_InteractElementPuzzle = m_Interaction.FindAction("Interact Element Puzzle", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1045,7 +1046,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // BoardPuzzle
         m_BoardPuzzle = asset.FindActionMap("BoardPuzzle", throwIfNotFound: true);
         m_BoardPuzzle_Place = m_BoardPuzzle.FindAction("Place", throwIfNotFound: true);
-        m_BoardPuzzle_Exit = m_BoardPuzzle.FindAction("Exit", throwIfNotFound: true);
         m_BoardPuzzle_Rotate = m_BoardPuzzle.FindAction("Rotate", throwIfNotFound: true);
         // DoctorOfficePuzzle
         m_DoctorOfficePuzzle = asset.FindActionMap("DoctorOfficePuzzle", throwIfNotFound: true);
@@ -1258,6 +1258,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Interaction_Interact;
     private readonly InputAction m_Interaction_Zoom;
     private readonly InputAction m_Interaction_PickUp;
+    private readonly InputAction m_Interaction_InteractElementPuzzle;
     /// <summary>
     /// Provides access to input actions defined in input action map "Interaction".
     /// </summary>
@@ -1281,6 +1282,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Interaction/PickUp".
         /// </summary>
         public InputAction @PickUp => m_Wrapper.m_Interaction_PickUp;
+        /// <summary>
+        /// Provides access to the underlying input action "Interaction/InteractElementPuzzle".
+        /// </summary>
+        public InputAction @InteractElementPuzzle => m_Wrapper.m_Interaction_InteractElementPuzzle;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1316,6 +1321,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
+            @InteractElementPuzzle.started += instance.OnInteractElementPuzzle;
+            @InteractElementPuzzle.performed += instance.OnInteractElementPuzzle;
+            @InteractElementPuzzle.canceled += instance.OnInteractElementPuzzle;
         }
 
         /// <summary>
@@ -1336,6 +1344,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
+            @InteractElementPuzzle.started -= instance.OnInteractElementPuzzle;
+            @InteractElementPuzzle.performed -= instance.OnInteractElementPuzzle;
+            @InteractElementPuzzle.canceled -= instance.OnInteractElementPuzzle;
         }
 
         /// <summary>
@@ -1665,7 +1676,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_BoardPuzzle;
     private List<IBoardPuzzleActions> m_BoardPuzzleActionsCallbackInterfaces = new List<IBoardPuzzleActions>();
     private readonly InputAction m_BoardPuzzle_Place;
-    private readonly InputAction m_BoardPuzzle_Exit;
     private readonly InputAction m_BoardPuzzle_Rotate;
     /// <summary>
     /// Provides access to input actions defined in input action map "BoardPuzzle".
@@ -1682,10 +1692,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "BoardPuzzle/Place".
         /// </summary>
         public InputAction @Place => m_Wrapper.m_BoardPuzzle_Place;
-        /// <summary>
-        /// Provides access to the underlying input action "BoardPuzzle/Exit".
-        /// </summary>
-        public InputAction @Exit => m_Wrapper.m_BoardPuzzle_Exit;
         /// <summary>
         /// Provides access to the underlying input action "BoardPuzzle/Rotate".
         /// </summary>
@@ -1719,9 +1725,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Place.started += instance.OnPlace;
             @Place.performed += instance.OnPlace;
             @Place.canceled += instance.OnPlace;
-            @Exit.started += instance.OnExit;
-            @Exit.performed += instance.OnExit;
-            @Exit.canceled += instance.OnExit;
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
@@ -1739,9 +1742,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Place.started -= instance.OnPlace;
             @Place.performed -= instance.OnPlace;
             @Place.canceled -= instance.OnPlace;
-            @Exit.started -= instance.OnExit;
-            @Exit.performed -= instance.OnExit;
-            @Exit.canceled -= instance.OnExit;
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
@@ -1953,6 +1953,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact Element Puzzle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteractElementPuzzle(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
@@ -2061,13 +2068,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPlace(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Exit" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnExit(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

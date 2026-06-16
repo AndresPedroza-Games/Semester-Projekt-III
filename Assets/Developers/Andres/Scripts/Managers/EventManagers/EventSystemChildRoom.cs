@@ -9,7 +9,7 @@ public class EventSystemChildRoom : EventSystemController
     public Action<GameObject> onPiecePicked;
     public Action onInteractWithBoard;
     public Action onExitBoard;
-    public Action onRotatePiece;
+    public Action<Vector2> onRotatePiece;
     public Action onPuzzleSolved;
 
     private PuzzleController _PuzzleController;
@@ -50,10 +50,10 @@ public class EventSystemChildRoom : EventSystemController
             onPiecePicked.Invoke(piece);
     }
 
-    public void RotatePiece()
+    public void RotatePiece(Vector2 scroll)
     {
         if (onRotatePiece != null)
-            onRotatePiece.Invoke();
+            onRotatePiece.Invoke(scroll);
     }
 
     public void ExitBoard()

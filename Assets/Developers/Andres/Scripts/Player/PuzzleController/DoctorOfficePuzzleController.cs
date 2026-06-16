@@ -45,6 +45,9 @@ public class DoctorOfficePuzzleController : MonoBehaviour
 
     private void InteractLock()
     {
+        if (GameManager.Instance.miniGameActive)
+            return;
+
         _Camera.SetActive(false);
         _PlayerManager.FreezeCharacter(true);
         
@@ -53,6 +56,9 @@ public class DoctorOfficePuzzleController : MonoBehaviour
 
     private void ExitLock(InputAction.CallbackContext ctx)
     {
+        if (!GameManager.Instance.miniGameActive)
+            return;
+
         _EventSystemDoctorOffice.ExitLock();
         _Camera.SetActive(true);
         _PlayerManager.FreezeCharacter(false);

@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour {
 
 	private bool _MenuOpen = false;
 
-	public static bool miniGameActive;
+	public bool miniGameActive;
 
 
 	private void Awake() {
@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour {
 		}
 
 		Instance = this;
-	}
+		miniGameActive = false;
+
+    }
 
 
 	private void OnEnable() {
