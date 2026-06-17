@@ -51,7 +51,7 @@ public class DoctorOfficePuzzleController : MonoBehaviour
         _Camera.SetActive(false);
         _PlayerManager.FreezeCharacter(true);
         
-        InputManager.Instance.Pause.Disable();
+        GameManager.Instance.miniGameActive = true;
     }
 
     private void ExitLock(InputAction.CallbackContext ctx)
@@ -63,7 +63,7 @@ public class DoctorOfficePuzzleController : MonoBehaviour
         _Camera.SetActive(true);
         _PlayerManager.FreezeCharacter(false);
         
-        InputManager.Instance.Pause.Enable();
+        GameManager.Instance.miniGameActive = false;
     }
 
     private void RotateLock(InputAction.CallbackContext ctx)
