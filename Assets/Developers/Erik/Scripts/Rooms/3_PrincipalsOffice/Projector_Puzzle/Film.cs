@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -7,6 +8,8 @@ public class Film : Holdable {
 	[SerializeField] private GameObject decal;
 	[SerializeField] private int rotationIncrement = 30;
 	[SerializeField] private int correctAngle;
+
+	public bool IsAnimating { get; private set; }
 
 	public GameObject Decal => decal;
 	public int CorrectAngle => correctAngle;
@@ -26,32 +29,54 @@ public class Film : Holdable {
 	}
 
 
-	public void Rotate() {
-		Angle = Mathf.RoundToInt(Angle + rotationIncrement + 360) % 360;
+	public void Rotate(Ease ease, float duration) {
+		Angle = (Angle + rotationIncrement + 360) % 360;
 
-		UpdateVisuals();
+		AnimateVisuals(ease, duration);
 	}
 
 
-	public void Insert(Transform filmPosition) {
+	public void Insert(Transform filmPosition, Ease ease, float duration) {
 		CanBeHold = false;
 
 		IsInserted = true;
 
 		Rigidbody.isKinematic = true;
+		Rigidbody.interpolation = RigidbodyInterpolation.None;
+		Rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
 
-		transform.SetPositionAndRotation(filmPosition.position, filmPosition.rotation);
-		transform.SetParent(filmPosition);
+		Sequence seq = DOTween.Sequence();
 
-		Angle = 0;
-		UpdateVisuals();
+		seq.Join(transform.DOMove(filmPosition.position, duration).SetEase(ease));
+		seq.Join(transform.DORotateQuaternion(filmPosition.rotation, duration).SetEase(ease));
+
+		seq.OnComplete(() => {
+			transform.SetParent(filmPosition);
+			Angle = 0;
+			ApplyVisuals();
+		});
 	}
 
 
-	private void UpdateVisuals() {
+	private void AnimateVisuals(Ease ease, float duration) {
+		IsAnimating = true;
+		
+		Sequence seq = DOTween.Sequence();
+
+		seq.SetEase(ease);
+
+		seq.Join(transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, Angle, 0f), duration));
+
+		seq.Join(decal.transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, 0f, -(Angle - CorrectAngle)), duration));
+
+		seq.OnComplete(() => IsAnimating = false);
+	}
+
+
+	private void ApplyVisuals() {
 		transform.localRotation = Quaternion.Euler(0f, Angle, 0f);
 
-		decal.transform.localRotation = Quaternion.Euler(0f, 0f, -(Angle - CorrectAngle));;
+		decal.transform.localRotation = Quaternion.Euler(0f, 0f, -(Angle - CorrectAngle));
 	}
 
 }

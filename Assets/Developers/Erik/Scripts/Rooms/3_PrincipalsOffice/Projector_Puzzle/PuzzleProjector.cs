@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -12,7 +13,22 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	[Header("---Projector---")]
 	[SerializeField] private List<Light> projectorLights;
 	[SerializeField] private int correctProjectorAngle;
+
+	[Header(("---Animation---"))]
+	[SerializeField] private float projectorRotationDuration = 1f;
+	[SerializeField] private Ease projectorEase;
+	[Space(5)]
+	[SerializeField] private float filmSnapDuration = 1f;
+	[SerializeField] private Ease filmSnapEase;
+	[Space(5)]
+	[SerializeField] private float filmRotationDuration = 1f;
+	[SerializeField] private Ease filmRotationEase;
+
+	private bool _isRotating;
 	private bool _isOn;
+
+	private int _projectorAngle;
+	private const int RotationIncrement = 90;
 
 	[Header("---CheckBox---")]
 	[SerializeField] private Transform boxCenter;
@@ -26,9 +42,6 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	private int _insertedCount;
 	private Film _selectedFilm;
 	private int _selectedFilmIndex;
-
-	private int _projectorAngle;
-	private const int RotationIncrement = 90;
 
 	private bool _solved;
 
@@ -119,14 +132,19 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 
 	private void RotateProjector() {
-		if (_solved)
+		if (_solved || _isRotating)
 			return;
+
+		_isRotating = true;
 
 		_projectorAngle = (_projectorAngle + RotationIncrement + 360) % 360;
 
-		transform.rotation = Quaternion.Euler(0f, _projectorAngle, 0f);
+		Vector3 target = new(0f, _projectorAngle, 0f);
 
-		CheckCondition();
+		transform.DORotate(target, projectorRotationDuration).SetEase(projectorEase).OnComplete(() => {
+			_isRotating = false;
+			CheckCondition();
+		});
 	}
 
 
@@ -147,10 +165,10 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 
 	private void RotateFilm() {
-		if (_solved || !_isOn || !_selectedFilm)
+		if (_solved || !_isOn || !_selectedFilm || _selectedFilm.IsAnimating)
 			return;
 
-		_selectedFilm.Rotate();
+		_selectedFilm.Rotate(filmRotationEase, filmRotationDuration);
 		CheckCondition();
 	}
 
@@ -159,7 +177,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		int count = Physics.OverlapBoxNonAlloc(boxCenter.position, boxDimensions, _results, boxCenter.rotation);
 
 		for (int i = 0; i < count; i++) {
-			
+
 			if (_insertedCount >= _insertedFilms.Length)
 				break;
 
@@ -185,7 +203,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 			_insertedFilms[i] = film;
 
-			film.Insert(filmPositions[i]);
+			film.Insert(filmPositions[i], filmSnapEase, filmSnapDuration);
 			_insertedCount++;
 
 			if (_selectedFilm)
@@ -201,7 +219,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 			break;
 		}
-		
+
 		CheckCondition();
 	}
 
