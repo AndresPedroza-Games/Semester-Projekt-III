@@ -56,7 +56,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CanBeHold ? CrosshairType.OpenHand : CrosshairType.Default;
+		return CanBeHold ? CrosshairType.HandOpen : CrosshairType.Default;
 
 	}
 

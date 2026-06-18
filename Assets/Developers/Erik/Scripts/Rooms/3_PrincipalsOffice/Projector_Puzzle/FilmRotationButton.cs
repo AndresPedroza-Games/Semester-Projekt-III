@@ -33,7 +33,7 @@ public class FilmRotationButton : MonoBehaviour, IInteractable {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.Interactable;
+		return CrosshairType.HandPointer;
 	}
 
 

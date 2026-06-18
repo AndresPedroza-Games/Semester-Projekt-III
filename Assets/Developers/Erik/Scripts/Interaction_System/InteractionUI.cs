@@ -6,8 +6,9 @@ public enum CrosshairType {
 
 	Default,
 	Interactable,
-	OpenHand,
-	ClosedHand
+	HandOpen,
+	HandClosed,
+	HandPointer
 
 }
 
@@ -20,8 +21,9 @@ public class InteractionUI : MonoBehaviour {
 
 	[SerializeField] private Sprite crosshairDefault;
 	[SerializeField] private Sprite crosshairInteractable;
-	[SerializeField] private Sprite crosshairOpenhand;
-	[SerializeField] private Sprite crosshairClosedHand;
+	[SerializeField] private Sprite crosshairHandOpen;
+	[SerializeField] private Sprite crosshairHandClosed;
+	[SerializeField] private Sprite crosshairHandPointer;
 
 	private InteractionDetector _detector;
 	private HoldController _holdController;
@@ -56,8 +58,9 @@ public class InteractionUI : MonoBehaviour {
 		crosshairImage.sprite = type switch {
 			CrosshairType.Default => crosshairDefault,
 			CrosshairType.Interactable => crosshairInteractable,
-			CrosshairType.OpenHand => crosshairOpenhand,
-			CrosshairType.ClosedHand => crosshairClosedHand,
+			CrosshairType.HandOpen => crosshairHandOpen,
+			CrosshairType.HandClosed => crosshairHandClosed,
+			CrosshairType.HandPointer => crosshairHandPointer,
 			_ => crosshairImage.sprite
 		};
 	}
@@ -65,7 +68,7 @@ public class InteractionUI : MonoBehaviour {
 
 	private CrosshairType DetermineType() {
 		if (_holdController.HasObject)
-			return CrosshairType.ClosedHand;
+			return CrosshairType.HandClosed;
 
 		if (_detector.CurrentTarget == null || !_detector.CurrentTarget.CanInteract(_holdController))
 			return CrosshairType.Default;
