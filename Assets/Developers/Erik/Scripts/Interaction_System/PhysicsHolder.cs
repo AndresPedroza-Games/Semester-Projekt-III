@@ -41,6 +41,7 @@ public class PhysicsHolder : MonoBehaviour {
 	private HoldContext _context;
 	private RigidbodyConstraints _originalConstraints;
 	private bool _isKinematic;
+	private bool _useGravity;
 
 
 	private void Awake() {
@@ -83,6 +84,7 @@ public class PhysicsHolder : MonoBehaviour {
 
 		_originalConstraints = rb.constraints;
 		_isKinematic = rb.isKinematic;
+		_useGravity = rb.useGravity;
 		rb.isKinematic = false;
 
 		rb.useGravity = profile.useGravity;
@@ -109,6 +111,7 @@ public class PhysicsHolder : MonoBehaviour {
 		_holdable.Rigidbody.useGravity = true;
 		_holdable.Rigidbody.constraints = _originalConstraints;
 		_holdable.Rigidbody.isKinematic = _isKinematic;
+		_holdable.Rigidbody.useGravity = _useGravity;
 
 		_joint.connectedBody = null;
 
