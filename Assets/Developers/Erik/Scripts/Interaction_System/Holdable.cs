@@ -7,6 +7,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	[Header("---Hold Definition---")]
 	[SerializeField] private HoldDefinition holdDefinition;
 
+	public Transform StartParentIfSocketHold { get; private set; }
+
 	[Header("---Highlight Config---")]
 	[SerializeField] private float borderThickness = 0.02f;
 
@@ -29,6 +31,9 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 		Rigidbody = GetComponent<Rigidbody>();
 		Collider = GetComponent<Collider>();
 
+		if (holdDefinition is SocketHoldDefinitionSO)
+			StartParentIfSocketHold = transform.parent;
+
 		if (holdDefinition is PullDefinitionSO)
 			Rigidbody.isKinematic = true;
 
@@ -45,8 +50,10 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 		if (!Rigidbody)
 			return;
 
+		if (Rigidbody.collisionDetectionMode == CollisionDetectionMode.Discrete)
+			Rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
+
 		Rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
-		Rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
 	}
 
 

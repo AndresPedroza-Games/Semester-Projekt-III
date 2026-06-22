@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 
@@ -10,6 +9,7 @@ public class Picker : MonoBehaviour {
 
 	[Tooltip("Drop Offset is used when the drop position is located within a different object")]
 	[SerializeField] [Range(0.1f, 0.5f)] float dropOffset = 0.1f;
+	[SerializeField] [Range(0.1f, 0.5f)] float defaultOffset = 0.1f;
 
 	private Camera cam;
 
@@ -21,13 +21,13 @@ public class Picker : MonoBehaviour {
 
 	public void Attach(Holdable holdable) {
 		holdable.Rigidbody.interpolation = RigidbodyInterpolation.None;
-		
+
 		holdable.transform.SetParent(holdPoint);
-		
+
 		holdable.Rigidbody.isKinematic = true;
 		holdable.Rigidbody.useGravity = false;
 		holdable.Collider.enabled = false;
-		
+
 		holdable.transform.localPosition = Vector3.zero;
 		holdable.transform.localRotation = Quaternion.identity;
 	}
@@ -44,7 +44,7 @@ public class Picker : MonoBehaviour {
 			targetPos = hit.point + offsetDir * dropOffset;
 		}
 		else {
-			targetPos = dropPoint.position;
+			targetPos = dropPoint.position - cam.transform.forward.normalized * defaultOffset;
 		}
 
 		SetPosAndParent(targetPos, holdable);
@@ -52,21 +52,17 @@ public class Picker : MonoBehaviour {
 
 
 	private void SetPosAndParent(Vector3 dropPos, Holdable holdable) {
-		holdable.transform.SetParent(null);
+
+		holdable.transform.SetParent(holdable.StartParentIfSocketHold);
+		holdable.transform.localEulerAngles = new Vector3(0f, holdPoint.eulerAngles.y, Random.Range(-90f, 90f));
+
 
 		holdable.Rigidbody.isKinematic = false;
 		holdable.Rigidbody.useGravity = true;
 		holdable.Collider.enabled = true;
 
 		holdable.transform.position = dropPos;
-		
-		StartCoroutine(EnableInterpolationNextFrame(holdable.Rigidbody));
-	}
-	
-	private IEnumerator EnableInterpolationNextFrame(Rigidbody rb)
-	{
-		yield return new WaitForFixedUpdate();
-		rb.interpolation = RigidbodyInterpolation.Interpolate;
+
 	}
 
 
