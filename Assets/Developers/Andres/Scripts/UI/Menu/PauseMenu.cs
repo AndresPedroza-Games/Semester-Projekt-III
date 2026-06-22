@@ -28,6 +28,12 @@ public class PauseMenu : MenuManager {
 
 	public void ShowMenu(bool status) {
 		mainMenuHUD.SetActive(status);
+
+		if (!status)
+		{
+			_SettingsMenu.SetActive(status);
+			_CreditMenu.SetActive(status);
+		}
 	}
 
 
