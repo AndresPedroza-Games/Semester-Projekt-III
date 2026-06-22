@@ -71,13 +71,13 @@ public class GameManager : MonoBehaviour {
 
 	private void PauseGame(InputAction.CallbackContext ctx) {
 
-		if (!_MenuOpen && !miniGameActive) {
+		if (!_MenuOpen) {
 			EventSystemController.Instance.PauseGame();
 			_MenuOpen = !_MenuOpen;
 			FreezeCharacter(_MenuOpen);
 			return;
 		}
-		else if (_MenuOpen && !miniGameActive)
+		else
 			EventSystemController.Instance.ResumeGame();
 	}
 
