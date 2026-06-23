@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Board : MonoBehaviour, IInteractable
+public class Board : MonoBehaviour
 {
     [SerializeField] private GameObject _Camera;
     [SerializeField] private Transform _PieceSpawn;
@@ -17,25 +17,6 @@ public class Board : MonoBehaviour, IInteractable
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
-        _EventSystemChildRoom.onExitBoard += ExitBoard;
-    }
-
-    public void Interact()
-    {
-       _EventSystemChildRoom.InteractWithBoard();
-        PlacementSystem.isInteracting = true;
-        _Camera.SetActive(true);
-
-        _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
-        _InteractionDetector.interactionDistance = 4f;
-        
-        InputManager.Instance.Pause.Disable();
-        GameManager.miniGameActive = true;
-    }
-
-    public bool CanInteract(HoldController holdController)
-    {
-        return !holdController.HasObject;
     }
 
 
@@ -84,15 +65,6 @@ public class Board : MonoBehaviour, IInteractable
 
             createdPieces.Add(createdPiece);
         }
-    }
-
-    private void ExitBoard()
-    {
-        _Camera.SetActive(false);
-        PlacementSystem.isInteracting = false;
-        
-        InputManager.Instance.Pause.Enable();
-        GameManager.miniGameActive = false;
     }
 
     private Quaternion RandomRotation()

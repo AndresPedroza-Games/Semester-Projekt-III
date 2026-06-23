@@ -9,7 +9,8 @@ public class LockInteractor : MonoBehaviour, IInteractable
     private void Start()
     {
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
-        _EventSystemDoctorOffice.onEndInteractionWithLock += ExitInteraction;   
+        _EventSystemDoctorOffice.onEndInteractionWithLock += ExitInteraction;
+        _EventSystemDoctorOffice.onPuzzleCompleted += ExitInteraction;
     }
 
     public bool CanInteract(HoldController holdController)
@@ -28,15 +29,11 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _EventSystemDoctorOffice.InteractWithLock();
         _Camera.SetActive(true);
         gameObject.SetActive(false);
-        GameManager.miniGameActive = true;
-
     }
 
     public void ExitInteraction()
     {
         _Camera.SetActive(false);
         gameObject.SetActive(true);
-        GameManager.miniGameActive = false;
-
     }
 }

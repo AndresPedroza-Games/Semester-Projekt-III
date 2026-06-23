@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ae061f0273f89f04686835aee668e10a, type: 2}
+  - {fileID: 2100000, guid: 2afdbe0e6fe45b14bbe440ebac34572b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,11 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30e609c21007eb48973db20b721841f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniPiece
-  pieceData:
-    <name>k__BackingField: Cube Yellow
-    <ID>k__BackingField: 2
-    <size>k__BackingField: {x: 1, y: 1}
-    <prefab>k__BackingField: {fileID: 6320521833418783729, guid: b72e13de0a07151429f415f464050db7, type: 3}
+  pieceData: {fileID: 0}
 --- !u!54 &2409072214086004347
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,3 +168,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Holdable
   holdDefinition: {fileID: 11400000, guid: 8aeb682200f257d4e9b7c317e1799c39, type: 2}
+  borderThickness: 0.02

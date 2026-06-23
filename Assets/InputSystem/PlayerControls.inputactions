@@ -210,6 +210,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Interact Element Puzzle",
+                    "type": "Button",
+                    "id": "8d3dbf60-ad3c-473e-bed3-c42967acaf32",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -243,6 +252,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0dbda4c1-364c-4565-a617-3238164cfc2d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact Element Puzzle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -806,22 +826,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Exit",
-                    "type": "Button",
-                    "id": "2f223026-2a29-40e8-b8a9-762af91bba80",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Rotate",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "2781e3e6-7fb1-4491-a58c-f891113f7116",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -838,19 +849,8 @@
                 },
                 {
                     "name": "",
-                    "id": "0cd0666d-9ffb-4aa8-8996-772d5ad05a98",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Exit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "67026f22-4b38-488c-bc9b-f7f80e32df09",
-                    "path": "<Keyboard>/r",
+                    "id": "6ab23c34-6ba0-4bbf-8a07-a8a45f8c40ed",
+                    "path": "<Mouse>/scroll",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -896,7 +896,7 @@
                 {
                     "name": "",
                     "id": "5c94d2ca-1b1e-4bc4-aa39-1552664f1fe9",
-                    "path": "<Keyboard>/escape",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

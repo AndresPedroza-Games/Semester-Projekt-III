@@ -1,7 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
-public class LockPiece : MonoBehaviour, IInteractable
+public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
 {
+
+    [Header("---Highlight Config---")]
+    [SerializeField] private float borderThickness = 0.02f;
+
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
 
     private float _StartPos;
@@ -9,6 +14,9 @@ public class LockPiece : MonoBehaviour, IInteractable
     private bool _PieceIsSelected = false;
 
     public int _Steps;
+
+    private Renderer _Renderer;
+    private readonly int _BorderThickness = Shader.PropertyToID("_BorderThickness");
 
     private void Start()
     {
@@ -35,7 +43,7 @@ public class LockPiece : MonoBehaviour, IInteractable
         if (!_PieceIsSelected)
         {
             MovePiece(_MoveDistance);
-            _PieceIsSelected = true;
+            StartCoroutine(SetActive(true));
             Debug.Log($"Selected Piece {gameObject.name}");
         }
     }
@@ -76,9 +84,31 @@ public class LockPiece : MonoBehaviour, IInteractable
         if (_PieceIsSelected)
         {
             MovePiece(0f);
-            _PieceIsSelected = false;
+            StartCoroutine(SetActive(false));
             Debug.Log("Release");
+            //RemoveHighlight();
         }
     }
 
+    public void Highlight()
+    {
+        if (!_Renderer)
+            return;
+
+        _Renderer.material.SetFloat(_BorderThickness, borderThickness);
+    }
+
+    public void RemoveHighlight()
+    {
+        if (!_Renderer)
+            return;
+
+        _Renderer.material.SetFloat(_BorderThickness, 0);
+    }
+
+    private IEnumerator SetActive(bool status)
+    {
+        yield return new WaitForSeconds(0.1f);
+        _PieceIsSelected = status;
+    }
 }

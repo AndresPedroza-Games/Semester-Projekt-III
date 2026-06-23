@@ -20,7 +20,6 @@ public class PuzzleController : MonoBehaviour
     private void OnEnable()
     {
         InputManager.Instance.PlacePiece.performed += PlacePiece;
-        InputManager.Instance.ExitPuzzle.performed += ExitBoard;
         InputManager.Instance.RotatePiece.performed += RotatePiece;
 
         _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
@@ -30,7 +29,6 @@ public class PuzzleController : MonoBehaviour
     private void OnDisable()
     {
         InputManager.Instance.PlacePiece.performed -= PlacePiece;
-        InputManager.Instance.ExitPuzzle.performed -= ExitBoard;
         InputManager.Instance.RotatePiece.performed -= RotatePiece;
     }
 
@@ -42,21 +40,8 @@ public class PuzzleController : MonoBehaviour
 
     private void RotatePiece(InputAction.CallbackContext ctx)
     {
-        _EventSystemChildRoom.RotatePiece();
-    }
+        Vector2 scroll = ctx.ReadValue<Vector2>();
 
-    private void ExitBoard(InputAction.CallbackContext ctx)
-    {
-        if (PlacementSystem.isInteracting)
-        {
-            _EventSystemChildRoom.ExitBoard();
-            _PlayerManager.FreezeCharacter(false);
-
-            _CineMachine.SetActive(true);
-            _InteractionDetector.interactionDistance = _StartInteractionDistance;
-
-            Debug.Log("Exit");
-
-        }
+        _EventSystemChildRoom.RotatePiece(scroll);
     }
 }
