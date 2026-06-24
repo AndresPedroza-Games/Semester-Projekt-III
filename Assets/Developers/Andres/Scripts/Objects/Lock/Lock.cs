@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 public class Lock : MonoBehaviour
 {
     [SerializeField] private List<int> _Password = new List<int>();
-    [SerializeField] private List<LockPiece> _LockPiecesList;
+    public List<LockPiece> _LockPiecesList;
 
     public GameObject temporaryReward;
 

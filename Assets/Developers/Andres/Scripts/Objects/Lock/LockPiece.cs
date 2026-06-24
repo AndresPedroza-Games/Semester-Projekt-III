@@ -79,7 +79,7 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
         transform.rotation = Quaternion.Euler(_Steps * 36f, 0f, 0f);
     }
 
-    private void ReleasePiece()
+    public void ReleasePiece()
     {
         if (_PieceIsSelected)
         {
