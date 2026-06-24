@@ -1762,6 +1762,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5591691178060479681, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: _Ease
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 5591691178060479681, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: requiredKey
       value: 
       objectReference: {fileID: 2085599010}
@@ -1804,6 +1808,10 @@ PrefabInstance:
     - target: {fileID: 8237359110453492456, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: scenesToUnload.Array.data[0].sceneName
       value: 0_Tutorial_Hallway
+      objectReference: {fileID: 0}
+    - target: {fileID: 8237359110453492456, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].scenePath
+      value: Assets/Scenes/0_Tutorial_Hallway.unity
       objectReference: {fileID: 0}
     - target: {fileID: 8237359110453492456, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: scenesToUnload.Array.data[0].sceneAsset

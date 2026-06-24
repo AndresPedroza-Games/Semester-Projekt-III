@@ -1,9 +1,15 @@
 using UnityEngine;
-
+using DG.Tweening;
+using UnityEngine.UIElements;
 
 public class Door : MonoBehaviour, IInteractable {
 
-	[SerializeField] private Transform doorHinge;
+	[Header("Animation Settings")]
+	[SerializeField] private Ease _Ease;
+	[SerializeField] private float _Duration = 1f;
+    private float _Angle;
+
+    [SerializeField] private Transform doorHinge;
 	[SerializeField] private GameObject requiredKey;
 
 	private bool _canOpen = false;
@@ -68,9 +74,9 @@ public class Door : MonoBehaviour, IInteractable {
 	private void OpenDoor() {
 		eventSystemController.OpenDoor(requiredKey);
 
-		doorHinge.rotation = new Quaternion(0f, 90f, 0f, 0f);
-
-		_canOpen = false;
+		Rotate(_Ease, _Duration, -90);
+		 
+        _canOpen = false;
 
 		GetComponent<BoxCollider>().enabled = false;
 
@@ -78,10 +84,27 @@ public class Door : MonoBehaviour, IInteractable {
 	}
 
 
-// I think Events should handle closing the doors
 	public void CloseDoor() {
-		doorHinge.rotation = new Quaternion(0f, 0f, 0f, 0f);
-		Debug.Log("Door Closed");
+        Rotate(_Ease, _Duration, 0f);
+        Debug.Log("Door Closed");
 	}
+
+	public void Rotate(Ease ease, float duration, float angle)
+	{
+		_Angle = angle;
+
+        AnimateVisuals(ease, duration);
+    }
+
+    private void AnimateVisuals(Ease ease, float duration)
+    {
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.SetEase(ease);
+
+        seq.Join(doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration));
+
+    }
 
 }
