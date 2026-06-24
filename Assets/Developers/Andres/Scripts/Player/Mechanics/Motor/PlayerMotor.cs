@@ -121,7 +121,7 @@ public class PlayerMotor : MonoBehaviour
     {
         if (!animationPlaying)
         {
-            animationPlaying = !animationPlaying;
+            animationPlaying = true;
             StartCoroutine(_PlayerCrouch.Crouch());
         }
     }

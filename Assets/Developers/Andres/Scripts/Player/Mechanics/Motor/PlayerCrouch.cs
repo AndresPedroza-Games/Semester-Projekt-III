@@ -48,7 +48,11 @@ public class PlayerCrouch
     public IEnumerator Crouch()
     {
         if (!CanStandUp())
+        {
+            yield return new WaitForSeconds(_PlayerMotor.coolDownCrouch);
+            _PlayerMotor.animationPlaying = false;
             yield break;
+        }
 
         _PlayerMotor.isCrouching = !_PlayerMotor.isCrouching;       
 
@@ -85,7 +89,7 @@ public class PlayerCrouch
 
 
         yield return new WaitForSeconds(_PlayerMotor.coolDownCrouch);
-        _PlayerMotor.animationPlaying = !_PlayerMotor.animationPlaying;
+        _PlayerMotor.animationPlaying = false;
     }
 
     private bool CanStandUp()
