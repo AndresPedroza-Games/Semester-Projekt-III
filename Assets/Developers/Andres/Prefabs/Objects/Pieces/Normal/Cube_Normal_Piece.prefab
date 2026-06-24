@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2afdbe0e6fe45b14bbe440ebac34572b, type: 2}
+  - {fileID: 2100000, guid: 55695bb43fffd6d4f88bfca38158ce9f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849b336fbd4ac974ca4a5863106d27da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TilePiece
+  borderThickness: 0.02
   pieceData: {fileID: 11400000, guid: 27e0ad35189dcf6419a6628cf0064e75, type: 2}
 --- !u!65 &2319360855589171273
 BoxCollider:
