@@ -7,15 +7,12 @@ public class Door : MonoBehaviour, IInteractable {
 	[Header("Animation Settings")]
 	[SerializeField] private Ease _Ease;
 	[SerializeField] private float _Duration = 1f;
+    private float _Angle;
 
-	[SerializeField] private Transform doorHinge;
+    [SerializeField] private Transform doorHinge;
 	[SerializeField] private GameObject requiredKey;
 
-	[SerializeField] private float _Angle;
-
-	private float _CorrectAngle;
 	private bool _canOpen = false;
-	private bool _IsAnimating;
 
 	private EventSystemController eventSystemController;
 
@@ -101,7 +98,6 @@ public class Door : MonoBehaviour, IInteractable {
 
     private void AnimateVisuals(Ease ease, float duration)
     {
-        _IsAnimating = true;
 
         Sequence seq = DOTween.Sequence();
 
@@ -109,7 +105,6 @@ public class Door : MonoBehaviour, IInteractable {
 
         seq.Join(doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration));
 
-        seq.OnComplete(() => _IsAnimating = false);
     }
 
 }

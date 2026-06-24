@@ -1,8 +1,13 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
 public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
 {
+    [Header("Animation Settings")]
+    [SerializeField] private Ease _Ease;
+    [SerializeField] private float _Duration = 0.3f;
+    private float _Angle;
 
     [Header("---Highlight Config---")]
     [SerializeField] private float borderThickness = 0.02f;
@@ -76,7 +81,19 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
         if (_Steps == 10 || _Steps == -10)
             _Steps = 0;
 
-        transform.rotation = Quaternion.Euler(_Steps * 36f, 0f, 0f);
+        _Angle = _Steps * 36f;
+
+        AnimateVisuals(_Ease, _Duration);
+    }
+
+    private void AnimateVisuals(Ease ease, float duration)
+    {
+
+        Sequence seq = DOTween.Sequence();
+
+        seq.SetEase(ease);
+
+        seq.Join(transform.DOLocalRotateQuaternion(Quaternion.Euler(_Angle, 0f, 0f), duration));
     }
 
     public void ReleasePiece()
