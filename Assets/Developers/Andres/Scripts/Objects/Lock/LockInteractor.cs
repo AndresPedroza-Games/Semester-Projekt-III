@@ -7,9 +7,12 @@ public class LockInteractor : MonoBehaviour, IInteractable
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
     private Lock _Lock;
 
+    private bool _CanInteract;
+
     private void Awake()
     {
         _Lock = GetComponentInParent<Lock>();
+        _CanInteract = true;
     }
 
     private void Start()
@@ -17,6 +20,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
         _EventSystemDoctorOffice.onEndInteractionWithLock += ExitInteraction;
         _EventSystemDoctorOffice.onPuzzleCompleted += ExitInteraction;
+        _EventSystemDoctorOffice.onPuzzleCompleted += () => _CanInteract = false;
     }
 
     public bool CanInteract(HoldController holdController)
@@ -32,9 +36,12 @@ public class LockInteractor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        _EventSystemDoctorOffice.InteractWithLock();
-        _Camera.SetActive(true);
-        gameObject.SetActive(false);
+        if (_CanInteract)
+        {
+            _EventSystemDoctorOffice.InteractWithLock();
+            _Camera.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
 
     public void ExitInteraction()

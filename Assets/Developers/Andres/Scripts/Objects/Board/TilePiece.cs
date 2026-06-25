@@ -16,16 +16,21 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
 
     private float _Steps;
 
+    private bool _CanInteract;
+
     private void Awake()
     {
 		_Renderer = GetComponentInChildren<Renderer>();
+        _CanInteract = true;
     }
 
     private void Start() {
 		_EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
 		_EventSystemChildRoom.onPiecePlaced += PlaceTile;
 		_EventSystemChildRoom.onRotatePiece += RotatePiece;
-	}
+        _EventSystemChildRoom.onPuzzleSolved += () => _CanInteract = false;
+
+    }
 
 
 	public bool CanInteract(HoldController holdController) {
@@ -40,10 +45,13 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
 
 	public void Interact()
     {
-        _EventSystemChildRoom.PickPiece(this.gameObject);
-        Highlight();
+        if (_CanInteract)
+        {
+            _EventSystemChildRoom.PickPiece(this.gameObject);
+            Highlight();
 
-        Debug.Log("Piece picked");
+            Debug.Log("Piece picked");
+        }
     }
 
 

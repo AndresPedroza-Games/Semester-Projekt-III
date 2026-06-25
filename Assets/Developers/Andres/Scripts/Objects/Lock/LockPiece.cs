@@ -23,11 +23,19 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
     private Renderer _Renderer;
     private readonly int _BorderThickness = Shader.PropertyToID("_BorderThickness");
 
+    private bool _CanInteract;
+
+    private void Awake()
+    {
+        _CanInteract = true;
+    }
+
     private void Start()
     {
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
         _EventSystemDoctorOffice.onRotateLock += RotatePiece;
         _EventSystemDoctorOffice.onReleasePiece += ReleasePiece;
+        _EventSystemDoctorOffice.onPuzzleCompleted += () => _CanInteract = false;
 
         _StartPos = transform.position.y;
     }
@@ -45,7 +53,7 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
 
     public void Interact()
     {
-        if (!_PieceIsSelected)
+        if (!_PieceIsSelected && _CanInteract)
         {
             MovePiece(_MoveDistance);
             StartCoroutine(SetActive(true));
