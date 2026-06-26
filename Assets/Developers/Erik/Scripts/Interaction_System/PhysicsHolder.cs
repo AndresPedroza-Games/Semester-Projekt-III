@@ -11,6 +11,7 @@ public class PhysicsHolder : MonoBehaviour {
 	[Header("---Layer Mask---")]
 	[Tooltip("The layers to which the offset is applied")]
 	public LayerMask grabLayerMask;
+	
 
 	[Header("---Follow Speed---")]
 	[SerializeField] private float smoothSpeed = 15f;
@@ -68,6 +69,8 @@ public class PhysicsHolder : MonoBehaviour {
 		_resolver = targetResolver;
 		_currentProfile = profile;
 
+		// _holdable.gameObject.layer = LayerMask.NameToLayer("PhysicsHold");
+
  		Vector3 pullGrabOffset = _holdable.Rigidbody.position - holdPoint.position;
 		pullGrabOffset.y = 0f;
 
@@ -104,6 +107,8 @@ public class PhysicsHolder : MonoBehaviour {
 	public void Release() {
 		if (!_holdable)
 			return;
+		
+		// _holdable.gameObject.layer = LayerMask.NameToLayer("Interactable");
 
 		if (!_currentProfile.keepMomentum)
 			_holdable.Rigidbody.linearVelocity = Vector3.zero;

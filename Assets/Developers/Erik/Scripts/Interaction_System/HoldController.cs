@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -16,6 +17,16 @@ public class HoldController : MonoBehaviour {
 	private void Awake() {
 		Picker = GetComponent<Picker>();
 		PhysicsHolder = GetComponent<PhysicsHolder>();
+	}
+
+
+	private void OnEnable() {
+		WorldSceneManager.onSceneUnloaded += ReleaseCurrentHoldable;
+	}
+
+
+	private void OnDisable() {
+		WorldSceneManager.onSceneUnloaded -= ReleaseCurrentHoldable;
 	}
 
 

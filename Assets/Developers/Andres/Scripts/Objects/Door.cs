@@ -1,15 +1,15 @@
-using UnityEngine;
 using DG.Tweening;
-using UnityEngine.UIElements;
+using UnityEngine;
+
 
 public class Door : MonoBehaviour, IInteractable {
 
 	[Header("Animation Settings")]
 	[SerializeField] private Ease _Ease;
 	[SerializeField] private float _Duration = 1f;
-    private float _Angle;
+	private float _Angle;
 
-    [SerializeField] private Transform doorHinge;
+	[SerializeField] private Transform doorHinge;
 	[SerializeField] private GameObject requiredKey;
 
 	private bool _canOpen = false;
@@ -28,8 +28,8 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private void OnDisable() {
 		eventSystemController.onCloseDoor -= CloseDoor;
-		eventSystemController.onItemPicked += SetCanOpenTrue;
-		eventSystemController.onItemDropped += SetCanOpenFalse;
+		eventSystemController.onItemPicked -= SetCanOpenTrue;
+		eventSystemController.onItemDropped -= SetCanOpenFalse;
 		eventSystemController.onOpenDoor -= UseKey;
 	}
 
@@ -58,7 +58,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return _canOpen ? CrosshairType.Interactable: CrosshairType.Default;
+		return _canOpen ? CrosshairType.Interactable : CrosshairType.Default;
 	}
 
 
@@ -75,8 +75,8 @@ public class Door : MonoBehaviour, IInteractable {
 		eventSystemController.OpenDoor(requiredKey);
 
 		Rotate(_Ease, _Duration, -90);
-		 
-        _canOpen = false;
+
+		_canOpen = false;
 
 		GetComponent<BoxCollider>().enabled = false;
 
@@ -85,26 +85,22 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public void CloseDoor() {
-        Rotate(_Ease, _Duration, 0f);
-        Debug.Log("Door Closed");
+		Rotate(_Ease, _Duration, 0f);
+		Debug.Log("Door Closed");
 	}
 
-	public void Rotate(Ease ease, float duration, float angle)
-	{
+
+	public void Rotate(Ease ease, float duration, float angle) {
 		_Angle = angle;
 
-        AnimateVisuals(ease, duration);
-    }
+		AnimateVisuals(ease, duration);
+	}
 
-    private void AnimateVisuals(Ease ease, float duration)
-    {
 
-        Sequence seq = DOTween.Sequence();
+	private void AnimateVisuals(Ease ease, float duration) {
 
-        seq.SetEase(ease);
+		doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject);
 
-        seq.Join(doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration));
-
-    }
+	}
 
 }

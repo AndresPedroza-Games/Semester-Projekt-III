@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class WorldSceneManager : MonoBehaviour {
 
 	public static WorldSceneManager Instance { get; private set; }
+	public static Action onSceneUnloaded;
 
 
 	private void Awake() {
@@ -88,6 +90,7 @@ public class WorldSceneManager : MonoBehaviour {
 		while (operation is { isDone: false }) {
 			await Task.Yield();
 		}
+		onSceneUnloaded.Invoke();
 
 		Debug.Log($"Unloaded scene: {scene.ScenePath}");
 	}
@@ -109,6 +112,8 @@ public class WorldSceneManager : MonoBehaviour {
 		while (operation is { isDone: false }) {
 			await Task.Yield();
 		}
+		
+		onSceneUnloaded.Invoke();
 
 		Debug.Log($"Unloaded scene: {sceneName}");
 	}
