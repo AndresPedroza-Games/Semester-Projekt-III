@@ -142,9 +142,6 @@ MonoBehaviour:
   maxFallSpeed: -50
   transitionSpeed: 0.5
   <coolDownCrouch>k__BackingField: 0.1
-  <headCollision>k__BackingField:
-    serializedVersion: 2
-    m_Bits: 1
   animationPlaying: 0
 --- !u!114 &4667606395251159092
 MonoBehaviour:
@@ -302,6 +299,10 @@ PrefabInstance:
     - target: {fileID: 4439595576180479704, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6896128894692378824, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
+      propertyPath: grabLayerMask.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5869881299163153261, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}

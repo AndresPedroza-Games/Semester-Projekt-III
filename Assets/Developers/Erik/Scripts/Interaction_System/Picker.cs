@@ -20,6 +20,12 @@ public class Picker : MonoBehaviour {
 
 
 	public void Attach(Holdable holdable) {
+		holdable.gameObject.layer = LayerMask.NameToLayer("SocketHold");
+		for (int i = 0; i < holdable.transform.childCount; i++) {
+			holdable.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("SocketHold");
+		}
+
+
 		holdable.Rigidbody.interpolation = RigidbodyInterpolation.None;
 
 		holdable.transform.SetParent(holdPoint);
@@ -34,6 +40,11 @@ public class Picker : MonoBehaviour {
 
 
 	public void Detach(Holdable holdable) {
+		holdable.gameObject.layer = LayerMask.NameToLayer("Interactable");
+		for (int i = 0; i < holdable.transform.childCount; i++) {
+			holdable.transform.GetChild(i).gameObject.layer = LayerMask.NameToLayer("Interactable");
+		}
+
 		Ray ray = new(cam.transform.position, cam.transform.forward);
 		float distance = (ray.origin - dropPoint.position).magnitude;
 
