@@ -120,10 +120,14 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		SetLights(isOn);
 
 		if (_selectedFilm && !_solved)
-			if (isOn)
+			if (isOn) {
 				_selectedFilm.Highlight();
-			else
+				_selectedFilm.SetDecalSelectedMaterial(true);
+			}
+			else {
 				_selectedFilm.RemoveHighlight();
+				_selectedFilm.SetDecalSelectedMaterial(false);
+			}
 
 		SetAllDecals(isOn);
 
@@ -152,7 +156,11 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		if (!_isOn || _solved || _insertedCount == 0)
 			return;
 
-		_selectedFilm?.RemoveHighlight();
+		if (_selectedFilm) {
+			_selectedFilm.RemoveHighlight();
+			_selectedFilm.SetDecalSelectedMaterial(false);
+		}
+
 
 		int direction = upwards ? 1 : -1;
 
@@ -160,7 +168,11 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 		_selectedFilm = _insertedFilms[_selectedFilmIndex];
 
-		_selectedFilm?.Highlight();
+
+		if (_selectedFilm) {
+			_selectedFilm.Highlight();
+			_selectedFilm.SetDecalSelectedMaterial(true);
+		}
 	}
 
 
@@ -206,11 +218,14 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 			film.Insert(filmPositions[i], filmSnapEase, filmSnapDuration);
 			_insertedCount++;
 
-			if (_selectedFilm)
+			if (_selectedFilm) {
 				_selectedFilm.RemoveHighlight();
+				_selectedFilm.SetDecalSelectedMaterial(false);
+			}
 
 			if (_isOn) {
 				film.Highlight();
+				film.SetDecalSelectedMaterial(true);
 				film.Decal.SetActive(true);
 			}
 

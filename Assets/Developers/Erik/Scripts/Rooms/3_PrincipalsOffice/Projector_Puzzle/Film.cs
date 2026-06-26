@@ -1,17 +1,22 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 
 public class Film : Holdable {
 
-	[Header("---Rotation Config---")]
+	[Header("---Decal---")]
 	[SerializeField] private GameObject decal;
+	[SerializeField] private Material decalSelectedMaterial;
+	public GameObject Decal => decal;
+	private DecalProjector _decalProjector;
+	private Material _decalBaseMaterial;
+
+	[Header("---Rotation Config---")]
 	[SerializeField] private int rotationIncrement = 30;
 	[SerializeField] private int correctAngle;
 
 	public bool IsAnimating { get; private set; }
-
-	public GameObject Decal => decal;
 	public int CorrectAngle => correctAngle;
 	public int Angle { get; private set; }
 	public bool IsInserted { get; private set; }
@@ -21,11 +26,18 @@ public class Film : Holdable {
 		base.Awake();
 
 		decal.SetActive(false);
+		_decalProjector = decal.GetComponent<DecalProjector>();
+		_decalBaseMaterial = _decalProjector.material;
 	}
 
 
 	public override bool CanInteract(HoldController holdController) {
 		return !IsInserted && !holdController.HasObject;
+	}
+
+
+	public void SetDecalSelectedMaterial(bool selected) {
+		_decalProjector.material = selected ? decalSelectedMaterial : _decalBaseMaterial;
 	}
 
 
@@ -60,7 +72,7 @@ public class Film : Holdable {
 
 	private void AnimateVisuals(Ease ease, float duration) {
 		IsAnimating = true;
-		
+
 		Sequence seq = DOTween.Sequence();
 
 		seq.SetEase(ease);
