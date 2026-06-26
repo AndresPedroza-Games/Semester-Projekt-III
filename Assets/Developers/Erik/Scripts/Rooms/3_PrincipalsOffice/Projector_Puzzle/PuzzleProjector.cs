@@ -246,6 +246,8 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	private void Solve() {
 		_solved = true;
 		_selectedFilm?.RemoveHighlight();
+		SetLights(false);
+		SetAllDecals(false);
 		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
 	}
 
