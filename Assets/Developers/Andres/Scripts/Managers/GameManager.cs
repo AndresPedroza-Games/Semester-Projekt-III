@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour {
 			EventSystemController.Instance.PauseGame();
 			_MenuOpen = !_MenuOpen;
 			FreezeCharacter(_MenuOpen);
+			Time.timeScale = 0f;
 			return;
 		}
 		else
@@ -86,8 +87,9 @@ public class GameManager : MonoBehaviour {
 	private void ResumeGame() {
 		_MenuOpen = !_MenuOpen;
 		FreezeCharacter(_MenuOpen);
+        Time.timeScale = 1f;
 
-		SetupGameStart();
+        SetupGameStart();
 	}
 
 
