@@ -30,6 +30,13 @@ public class CubeFollow : MonoBehaviour {
 	}
 
 
+	private void OnCollisionEnter(Collision collision) {
+		if (collision.gameObject.CompareTag("Player")) return;
+
+		collision.gameObject.SetActive(false);
+	}
+
+
 	private void FixedUpdate() {
 		if (!_playerTransform || !_currentTarget)
 			return;
