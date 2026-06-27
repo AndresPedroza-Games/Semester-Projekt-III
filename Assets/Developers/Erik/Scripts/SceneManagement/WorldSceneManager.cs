@@ -90,7 +90,7 @@ public class WorldSceneManager : MonoBehaviour {
 		while (operation is { isDone: false }) {
 			await Task.Yield();
 		}
-		onSceneUnloaded.Invoke();
+		onSceneUnloaded?.Invoke();
 
 		Debug.Log($"Unloaded scene: {scene.ScenePath}");
 	}
@@ -113,7 +113,7 @@ public class WorldSceneManager : MonoBehaviour {
 			await Task.Yield();
 		}
 		
-		onSceneUnloaded.Invoke();
+		onSceneUnloaded?.Invoke();
 
 		Debug.Log($"Unloaded scene: {sceneName}");
 	}
