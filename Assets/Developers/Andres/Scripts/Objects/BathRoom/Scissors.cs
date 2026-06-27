@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class Scissors : Holdable
+public class Scissors : SocketItem
 {
-
+    public override void UseItem()
+    {
+        Debug.Log("Scissors");
+    }
 }

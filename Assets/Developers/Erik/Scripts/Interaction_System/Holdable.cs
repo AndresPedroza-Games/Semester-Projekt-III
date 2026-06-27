@@ -7,6 +7,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	[Header("---Hold Definition---")]
 	[SerializeField] private HoldDefinition holdDefinition;
 
+	public HoldDefinition HoldDefinition => holdDefinition;
+
 	public Transform StartParentIfSocketHold { get; private set; }
 
 	[Header("---Highlight Config---")]

@@ -1,11 +1,10 @@
 using UnityEngine;
 
-
-public class Key : Holdable, IKey {
-
-	public void UseKey() {
-		Release();
-		gameObject.SetActive(false);
-	}
-
+public class Key : SocketItem
+{
+    public override void UseItem()
+    {
+        Release();
+        gameObject.SetActive(false);
+    }
 }

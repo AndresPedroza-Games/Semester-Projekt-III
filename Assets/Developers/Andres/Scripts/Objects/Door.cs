@@ -47,7 +47,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private void UseKey(GameObject obj) {
 		if (obj == requiredKey) {
-			obj.GetComponent<Key>().UseKey();
+			obj.GetComponent<IUseable>().UseItem();
 		}
 	}
 

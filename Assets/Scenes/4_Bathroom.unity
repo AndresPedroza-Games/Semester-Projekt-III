@@ -152,13 +152,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123399563}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.034, y: 1.696, z: -3.28}
-  m_LocalScale: {x: 0.12235135, y: 0.10918483, z: 0.10918483}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -1.2499996, y: 1.3750559, z: -1.8029939}
+  m_LocalScale: {x: 0.12501116, y: 0.09387188, z: 0.09940093}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 706973509}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!64 &123399565
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1352,6 +1352,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451188589}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &507281095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5908418179645916976, guid: f35c4d36128ba314d8bb15084d798cc8, type: 3}
+  m_PrefabInstance: {fileID: 866010755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &706973508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2019,10 +2024,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7301989666677862728, guid: f35c4d36128ba314d8bb15084d798cc8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5908418179645916976, guid: f35c4d36128ba314d8bb15084d798cc8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1519819891}
   m_SourcePrefab: {fileID: 100100000, guid: f35c4d36128ba314d8bb15084d798cc8, type: 3}
 --- !u!1001 &1023480512
 PrefabInstance:
@@ -2636,6 +2645,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6117740925970645721, guid: f35c4d36128ba314d8bb15084d798cc8, type: 3}
   m_PrefabInstance: {fileID: 866010755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1519819891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507281095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1398e45fa744b2b4fb1e9883195bd703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Scissors
+  holdDefinition: {fileID: 11400000, guid: effbc0f642fe7e143abd69433b1171fa, type: 2}
+  borderThickness: 0.02
 --- !u!1 &1677674549
 GameObject:
   m_ObjectHideFlags: 0
