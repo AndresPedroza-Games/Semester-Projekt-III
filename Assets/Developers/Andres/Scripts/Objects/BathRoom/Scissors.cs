@@ -13,6 +13,11 @@ public class Scissors : SocketItem
         CanBeHold = false;
     }
 
+    public override void Interact()
+    {
+        _EventSystemBathroom.TakeScissors();
+    }
+
     public override void UseItem()
     {
         Release();

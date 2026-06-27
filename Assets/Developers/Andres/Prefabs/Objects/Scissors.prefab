@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8229259186739296372}
   - component: {fileID: 6322782726675196834}
   - component: {fileID: 4326240527985577915}
-  - component: {fileID: 7301989666677862728}
+  - component: {fileID: 5074600486724717787}
   m_Layer: 0
   m_Name: Scissors
   m_TagString: Untagged
@@ -143,7 +143,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7301989666677862728
+--- !u!114 &5074600486724717787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,8 +152,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5908418179645916976}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96ce9bca4b3bd8940a336bafb88d5510, type: 3}
+  m_Script: {fileID: 11500000, guid: 1398e45fa744b2b4fb1e9883195bd703, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Key
+  m_EditorClassIdentifier: Assembly-CSharp::Scissors
   holdDefinition: {fileID: 11400000, guid: effbc0f642fe7e143abd69433b1171fa, type: 2}
   borderThickness: 0.02
+  CanBeHold: 1

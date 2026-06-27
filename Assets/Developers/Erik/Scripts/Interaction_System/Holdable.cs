@@ -83,7 +83,10 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 		holdDefinition.Hold(this, holder);
 
 		holder.SetCurrentHoldable(this);
-	}
+
+		Interact();
+
+    }
 
 
 	public void Release() {
