@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 
 	[SerializeField] private GameObject playerSetup;
 	[SerializeField] private GameObject player;
+	public GameObject Player => player;
 	[field: SerializeField] public GameObject Camera { get; private set; }
 
 	[field: SerializeField] public Interactor Interactor { get; private set; }
