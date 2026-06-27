@@ -7,6 +7,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	[Header("---Hold Definition---")]
 	[SerializeField] private HoldDefinition holdDefinition;
 
+	public HoldDefinition HoldDefinition => holdDefinition;
+
 	public Transform StartParentIfSocketHold { get; private set; }
 
 	[Header("---Highlight Config---")]
@@ -17,7 +19,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	private readonly int _borderThickness = Shader.PropertyToID("_BorderThickness");
 
 	private HoldController _currentHolder;
-	public bool CanBeHold { get; set; } = true;
+	public bool CanBeHold = true;
 
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }
@@ -81,7 +83,10 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 		holdDefinition.Hold(this, holder);
 
 		holder.SetCurrentHoldable(this);
-	}
+
+		Interact();
+
+    }
 
 
 	public void Release() {

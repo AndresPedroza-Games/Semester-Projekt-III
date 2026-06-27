@@ -12,10 +12,10 @@ public class Door : MonoBehaviour, IInteractable {
 	[SerializeField] private Transform doorHinge;
 	[SerializeField] private GameObject requiredKey;
 
-	private bool _canOpen = false;
+	public bool canOpen = false;
+	public bool isLocked;
 
 	private EventSystemController eventSystemController;
-
 
 	private void Start() {
 		eventSystemController = EventSystemController.Instance;
@@ -36,39 +36,48 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private void SetCanOpenTrue(GameObject obj) {
 		if (obj == requiredKey)
-			_canOpen = true;
+            canOpen = true;
 	}
 
 
 	private void SetCanOpenFalse(GameObject obj) {
-		_canOpen = false;
+        canOpen = false;
 	}
 
 
 	private void UseKey(GameObject obj) {
 		if (obj == requiredKey) {
-			obj.GetComponent<Key>().UseKey();
+			obj.GetComponent<IUseable>().UseItem();
 		}
 	}
 
 
 	public bool CanInteract(HoldController holdController) {
-		return _canOpen && holdController.HasObject;
+		return canOpen;
 	}
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return _canOpen ? CrosshairType.Interactable : CrosshairType.Default;
+		return canOpen ? CrosshairType.Interactable : CrosshairType.Default;
 	}
 
 
 	public void Interact() {
-		if (_canOpen)
+
+        if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted)
+		{
+            isLocked = true;
+			canOpen = false;
+			EventSystemBathroom.instance.LockDoor();
+            Debug.Log("Locked");
+        }
+
+        if (canOpen && !isLocked)
 			OpenDoor();
 		//else
 		//PlayLockedDoorSound...
 
-	}
+    }
 
 
 	private void OpenDoor() {
@@ -76,7 +85,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 		Rotate(_Ease, _Duration, -90);
 
-		_canOpen = false;
+        canOpen = false;
 
 		GetComponent<BoxCollider>().enabled = false;
 
@@ -85,9 +94,10 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public void CloseDoor() {
-		Rotate(_Ease, _Duration, 0f);
-		Debug.Log("Door Closed");
-	}
+        canOpen = false;
+        Rotate(_Ease, _Duration, 0f);
+        Debug.Log("Door Closed");
+    }
 
 
 	public void Rotate(Ease ease, float duration, float angle) {

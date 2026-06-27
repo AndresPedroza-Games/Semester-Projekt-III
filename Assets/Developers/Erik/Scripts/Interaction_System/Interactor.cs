@@ -68,7 +68,7 @@ public class Interactor : MonoBehaviour {
 
 	private bool HoldableIsKey() {
 		if (_holdController.HasObject)
-			return _holdController.CurrentHoldable.GetType() == typeof(Key);
+			return _holdController.HoldGameObject.GetComponent<Holdable>().HoldDefinition is SocketHoldDefinitionSO;
 		else
 			return false;
 	}
