@@ -11,10 +11,10 @@ public class Mirror : MonoBehaviour, IInteractable
 
     public bool CanInteract(HoldController holdController)
     {
-        if (holdController.HasObject.GetType() == typeof(Scissors))
-            return true;
+        if (!holdController.HasObject)
+            return false;
 
-        return false;
+        return holdController.HoldGameObject.GetComponent<Holdable>().HoldDefinition is SocketHoldDefinitionSO;
     }
 
     public CrosshairType GetCrosshairType(HoldController holdController)

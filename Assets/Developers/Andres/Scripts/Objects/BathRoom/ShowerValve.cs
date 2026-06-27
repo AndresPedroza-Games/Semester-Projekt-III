@@ -10,11 +10,13 @@ public class ShowerValve : MonoBehaviour, IInteractable
 
     private float _Angle;
     private int _Steps;
-    private bool _IsCompleted;
+    public static bool _IsCompleted;
 
     private void Start()
     {
         _EventSystemBathroom = EventSystemBathroom.instance;
+
+        _IsCompleted = false;
     }
 
     public bool CanInteract(HoldController holdController)

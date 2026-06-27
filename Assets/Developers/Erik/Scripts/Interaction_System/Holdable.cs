@@ -19,7 +19,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	private readonly int _borderThickness = Shader.PropertyToID("_BorderThickness");
 
 	private HoldController _currentHolder;
-	public bool CanBeHold { get; set; } = true;
+	public bool CanBeHold = true;
 
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }

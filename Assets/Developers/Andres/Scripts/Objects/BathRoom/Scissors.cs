@@ -2,8 +2,21 @@ using UnityEngine;
 
 public class Scissors : SocketItem
 {
+    private EventSystemBathroom _EventSystemBathroom;
+
+    private void Start()
+    {
+        _EventSystemBathroom = EventSystemBathroom.instance;
+        _EventSystemBathroom.onCutHair += UseItem;
+        _EventSystemBathroom.onLockDoor += () => CanBeHold = true;
+
+        CanBeHold = false;
+    }
+
     public override void UseItem()
     {
-        Debug.Log("Scissors");
+        Release();
+        gameObject.SetActive(false);
     }
+
 }

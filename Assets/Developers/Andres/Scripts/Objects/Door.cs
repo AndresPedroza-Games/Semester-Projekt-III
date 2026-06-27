@@ -13,7 +13,7 @@ public class Door : MonoBehaviour, IInteractable {
 	[SerializeField] private GameObject requiredKey;
 
 	public bool canOpen = false;
-	public bool freeze = false;
+	public bool isLocked;
 
 	private EventSystemController eventSystemController;
 
@@ -63,17 +63,21 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public void Interact() {
-		if (canOpen && !freeze)
+
+        if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted)
+		{
+            isLocked = true;
+			canOpen = false;
+			EventSystemBathroom.instance.LockDoor();
+            Debug.Log("Locked");
+        }
+
+        if (canOpen && !isLocked)
 			OpenDoor();
 		//else
 		//PlayLockedDoorSound...
 
-		if (freeze)
-		{
-            freeze = false;
-			CloseDoor();
-		}
-	}
+    }
 
 
 	private void OpenDoor() {
@@ -90,13 +94,10 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public void CloseDoor() {
-		if (!freeze)
-		{
-			canOpen = false;
-            Rotate(_Ease, _Duration, 0f);
-            Debug.Log("Door Closed");
-        }
-	}
+        canOpen = false;
+        Rotate(_Ease, _Duration, 0f);
+        Debug.Log("Door Closed");
+    }
 
 
 	public void Rotate(Ease ease, float duration, float angle) {

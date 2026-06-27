@@ -20,7 +20,6 @@ public class EventSystemBathroom : EventSystemController
             instance = this;
 
         door = FindFirstObjectByType<Door>(FindObjectsInactive.Include);
-        door.freeze = true;
     }
 
     private void OnEnable()
