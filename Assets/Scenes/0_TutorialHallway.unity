@@ -14,12 +14,12 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
+  m_Fog: 1
+  m_FogColor: {r: 0.34117648, g: 0.23529412, b: 0.43529412, a: 1}
+  m_FogMode: 1
   m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogStart: 5
+  m_LinearFogEnd: 50
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -4874,6 +4874,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
       propertyPath: m_Name
       value: Tubelamp_Off_001 (1)
@@ -5285,6 +5301,22 @@ PrefabInstance:
     - target: {fileID: 1248481720019271301, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387576256403372209, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: m_Intensity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
       propertyPath: m_Name
@@ -6602,8 +6634,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
-      propertyPath: m_Intensity
+      propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Intensity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       propertyPath: m_Name
@@ -9338,8 +9382,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 702364243}
     m_Modifications:
     - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
-      propertyPath: m_Intensity
+      propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Intensity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       propertyPath: m_Name
@@ -9531,6 +9587,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 702364243}
     m_Modifications:
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       propertyPath: m_Name
       value: Tubelamp_On_001
@@ -10050,6 +10122,26 @@ PrefabInstance:
     - target: {fileID: 2650933434726166491, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
       propertyPath: m_Name
       value: DoorLight_Off_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054243883180556314, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
+      propertyPath: m_Range
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054243883180556314, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054243883180556314, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054243883180556314, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3054243883180556314, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
+      propertyPath: m_Intensity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3180975070528511309, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
       propertyPath: m_LocalPosition.x
