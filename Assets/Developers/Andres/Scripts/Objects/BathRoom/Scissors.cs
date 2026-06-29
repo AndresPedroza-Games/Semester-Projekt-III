@@ -15,6 +15,9 @@ public class Scissors : SocketItem
 
     public override void Hold(HoldController holder)
     {
+        if (!CanBeHold)
+            return;
+
         base.Hold(holder);
         _EventSystemBathroom.TakeScissors();
     }
