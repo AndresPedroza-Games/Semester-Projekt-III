@@ -13,7 +13,6 @@ public class Globe : Holdable
     public override void Interact()
     {
         Rotate();
-        Debug.Log("time");
     }
 
     private void Rotate()
