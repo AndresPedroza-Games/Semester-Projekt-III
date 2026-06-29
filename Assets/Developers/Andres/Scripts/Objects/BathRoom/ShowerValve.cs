@@ -5,6 +5,10 @@ public class ShowerValve : MonoBehaviour, IInteractable
 {
     private EventSystemBathroom _EventSystemBathroom;
 
+    [SerializeField] private ParticleSystem _ParticleSystem;
+
+    private ParticleSystem.EmissionModule  _Emission;
+
     [SerializeField] private Ease _Trasition;
     [SerializeField] private float _Duration;
 
@@ -17,6 +21,8 @@ public class ShowerValve : MonoBehaviour, IInteractable
         _EventSystemBathroom = EventSystemBathroom.instance;
 
         _IsCompleted = false;
+
+        _Emission = _ParticleSystem.emission;
     }
 
     public bool CanInteract(HoldController holdController)
@@ -36,6 +42,9 @@ public class ShowerValve : MonoBehaviour, IInteractable
     {
         _EventSystemBathroom.InteractValve();
         Rotate();
+
+        _ParticleSystem.Play();
+        _Emission.rateOverTime = _Steps * 3;
     }
 
     private void Rotate()

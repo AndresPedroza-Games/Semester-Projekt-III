@@ -74,7 +74,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	}
 
 
-	public void Hold(HoldController holder) {
+	public virtual void Hold(HoldController holder) {
 		if (!CanBeHold)
 			return;
 
@@ -84,12 +84,10 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 
 		holder.SetCurrentHoldable(this);
 
-		Interact();
-
     }
 
 
-	public void Release() {
+	public virtual void Release() {
 		holdDefinition.Release(this, _currentHolder);
 
 		_currentHolder?.ClearCurrentHoldable();
