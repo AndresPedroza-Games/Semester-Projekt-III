@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour {
 		InputManager.Instance.Pause.performed += PauseGame;
 		EventSystemController.Instance.onStartGame += SetupGameStart;
 		EventSystemController.Instance.onResumeGame += ResumeGame;
+		EventSystemController.Instance.onMainMenuEntered += OnMainMenuEntered;
 	}
 
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour {
 		InputManager.Instance.Pause.performed -= PauseGame;
 		EventSystemController.Instance.onStartGame -= SetupGameStart;
 		EventSystemController.Instance.onResumeGame -= ResumeGame;
+		EventSystemController.Instance.onMainMenuEntered -= OnMainMenuEntered;
 	}
 
 
@@ -56,6 +58,15 @@ public class GameManager : MonoBehaviour {
 		FreezeCharacter(false);
 		_MenuOpen = false;
 	}
+
+
+	private void OnMainMenuEntered() {
+		InputManager.Instance.Pause.Disable();
+		
+		playerSetup.SetActive(false);
+		player.SetActive(false);
+	}
+	
 
 
 	private void HideCursor() {

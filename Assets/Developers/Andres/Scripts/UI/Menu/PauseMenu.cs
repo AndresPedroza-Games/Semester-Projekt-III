@@ -39,7 +39,7 @@ public class PauseMenu : MenuManager {
 
 	private void ShowMenu() {
 		mainMenuHUD.SetActive(true);
-		
+
 	}
 
 
@@ -50,8 +50,17 @@ public class PauseMenu : MenuManager {
 	}
 
 
-	public override void ExitGame() {
-		_ = LoadScene("MainMenu");
+	public override async void ExitGame() {
+		// _ = LoadScene("MainMenu");
+		
+		EventSystemController.Instance.MainMenuEntered();
+		
+		HideMenu();
+		
+		await LoadScene(BuildSettingsLoader.StartupScene);
+
+		await WorldSceneManager.Instance.UnloadAllExcept(WorldSceneManager.persistent, BuildSettingsLoader.StartupScene);
+
 	}
 
 }
