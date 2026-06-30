@@ -13,6 +13,8 @@ public class BuildPipelineWindow : EditorWindow {
 	private string version = "1.0.0";
 	private bool developmentBuild = false;
 
+	private BuildSettings _buildSettings;
+
 	private SceneAsset sceneToAdd;
 	private Vector2 sceneScroll;
 
@@ -36,6 +38,17 @@ public class BuildPipelineWindow : EditorWindow {
 		buildName = EditorGUILayout.TextField("Build Name", buildName);
 		version = EditorGUILayout.TextField("Version", version);
 		developmentBuild = EditorGUILayout.Toggle("Development Build", developmentBuild);
+		
+		_buildSettings = (BuildSettings)EditorGUILayout.ObjectField("Build Settings", _buildSettings, typeof(BuildSettings), false);
+
+		EditorGUILayout.Space();
+
+		if (_buildSettings) {
+			EditorGUILayout.HelpBox($"Startup Scene: {_buildSettings.startupScene}\n" + $"Test Build: {_buildSettings.isTestBuild}", MessageType.Info);
+		}
+		else {
+			EditorGUILayout.HelpBox("No Build Profile selected. A default MainMenu build will be created.", MessageType.Warning);
+		}
 
 		EditorGUILayout.Space(10);
 
@@ -124,7 +137,7 @@ public class BuildPipelineWindow : EditorWindow {
 
 
 	private void AddScene() {
-		if (sceneToAdd == null)
+		if (!sceneToAdd)
 			return;
 
 		string path = AssetDatabase.GetAssetPath(sceneToAdd);
@@ -148,6 +161,25 @@ public class BuildPipelineWindow : EditorWindow {
 
 
 	public void BuildWindows() {
+		BuildSettings runtimeSettings = Resources.Load<BuildSettings>("BuildSettings");
+
+		if (!runtimeSettings) {
+			Debug.LogError("No Runtime BuildSettings found in Resources!");
+			return;
+		}
+
+		if (_buildSettings) {
+			EditorUtility.CopySerialized(_buildSettings, runtimeSettings);
+		}
+		else {
+			runtimeSettings.startupScene = "MainMenu";
+			runtimeSettings.isTestBuild = false;
+		}
+
+		EditorUtility.SetDirty(runtimeSettings);
+		AssetDatabase.SaveAssets();
+		AssetDatabase.Refresh();
+
 		string[] scenes = EditorBuildSettings.scenes.Where(scene => scene.enabled).Select(scene => scene.path).ToArray();
 
 		if (scenes.Length == 0) {

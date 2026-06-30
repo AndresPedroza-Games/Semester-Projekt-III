@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,11 +8,12 @@ using UnityEngine.SceneManagement;
 public class WorldSceneManager : MonoBehaviour {
 
 	public static WorldSceneManager Instance { get; private set; }
+	public static string persistent = "Persistent";
 	public static Action onSceneUnloaded;
 
 
 	private void Awake() {
-		if (Instance != null && Instance != this) {
+		if (Instance && Instance != this) {
 			Destroy(gameObject);
 			return;
 		}
@@ -90,6 +92,7 @@ public class WorldSceneManager : MonoBehaviour {
 		while (operation is { isDone: false }) {
 			await Task.Yield();
 		}
+
 		onSceneUnloaded?.Invoke();
 
 		Debug.Log($"Unloaded scene: {scene.ScenePath}");
@@ -112,10 +115,30 @@ public class WorldSceneManager : MonoBehaviour {
 		while (operation is { isDone: false }) {
 			await Task.Yield();
 		}
-		
+
 		onSceneUnloaded?.Invoke();
 
 		Debug.Log($"Unloaded scene: {sceneName}");
+	}
+
+
+	public async Task UnloadAllExcept(params string[] keepScenes) {
+		HashSet<string> keep = new(keepScenes);
+
+		List<string> unloadScenes = new();
+
+		for (int i = 0; i < SceneManager.sceneCount; i++) {
+			Scene scene = SceneManager.GetSceneAt(i);
+
+			if (keep.Contains(scene.name))
+				continue;
+
+			unloadScenes.Add(scene.name);
+		}
+
+		foreach (string sceneName in unloadScenes) {
+			await UnloadScene(sceneName);
+		}
 	}
 
 }
