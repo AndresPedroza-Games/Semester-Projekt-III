@@ -1,14 +1,17 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class ShowerValve : MonoBehaviour, IInteractable
 {
     private EventSystemBathroom _EventSystemBathroom;
 
-    [SerializeField] private ParticleSystem _ParticleSystem;
+    private VolumetricAdditionalLight _Fog;
 
-    private ParticleSystem.EmissionModule  _Emission;
+    [Header("Fog Settings")]
+    [SerializeField] private float _TransitionSpeed = 1f;
 
+    [Header("Animation Settings")]
     [SerializeField] private Ease _Trasition;
     [SerializeField] private float _Duration;
 
@@ -22,7 +25,7 @@ public class ShowerValve : MonoBehaviour, IInteractable
 
         _IsCompleted = false;
 
-        _Emission = _ParticleSystem.emission;
+        _Fog = FindFirstObjectByType<VolumetricAdditionalLight>(FindObjectsInactive.Include);
     }
 
     public bool CanInteract(HoldController holdController)
@@ -43,8 +46,7 @@ public class ShowerValve : MonoBehaviour, IInteractable
         _EventSystemBathroom.InteractValve();
         Rotate();
 
-        _ParticleSystem.Play();
-        _Emission.rateOverTime = _Steps * 3;
+        StartCoroutine(IncreaseFog());
     }
 
     private void Rotate()
@@ -53,6 +55,7 @@ public class ShowerValve : MonoBehaviour, IInteractable
         {
             _EventSystemBathroom.door.canOpen = true;
             _IsCompleted = true;
+            _EventSystemBathroom.TurnOnShower();
             return;
         }
 
@@ -68,5 +71,22 @@ public class ShowerValve : MonoBehaviour, IInteractable
     private void AnimateVisuals(Ease ease, float duration)
     {
         transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject);
+    }
+
+    private IEnumerator IncreaseFog()
+    {
+        float timeElapsed = 0f;
+
+        while (timeElapsed < _TransitionSpeed)
+        {
+            float t = timeElapsed / _TransitionSpeed;
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            _Fog.Scattering = Mathf.Lerp(_Fog.Scattering, _Steps * 3, t);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
     }
 }
