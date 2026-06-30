@@ -2,9 +2,17 @@ using UnityEngine;
 using UnityEngine.Audio;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 
-public class AudioSettings : MenuManager
-{
+
+public class AudioSettings : MenuManager {
+
+	[Header("---Mouse---")]
+	[SerializeField] private float mouseSensitivityMinValue = 0.01f;
+	[SerializeField] private float mouseSensitivityMaxValue = 1f;
+	[SerializeField] private AudioSlider mouseSensitivitySlider;
+	private CinemachinePOV _cinePov;
+	
     [Header("---Audio---")]
     [SerializeField] private AudioMixer _AudioMixer;
     [SerializeField] private List<AudioSlider> _AudioSliders;
@@ -26,6 +34,8 @@ public class AudioSettings : MenuManager
                 audioSlider.inputField.onEndEdit.AddListener((name) => OnInputFieldConfirmed(audioSlider, name));
             }
         }
+		
+        SetupMouseSensitivitySlider();
     }
 
     private void SetVolume(AudioSlider audioSlider,float volume)
@@ -71,5 +81,49 @@ public class AudioSettings : MenuManager
 
             }
         }
+    }
+
+
+    private void SetupMouseSensitivitySlider() {
+	    _cinePov = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachinePOV>();
+
+	    mouseSensitivitySlider.slider.minValue = mouseSensitivityMinValue;
+	    mouseSensitivitySlider.slider.maxValue = mouseSensitivityMaxValue;
+        
+	    mouseSensitivitySlider.slider.value = _cinePov.m_HorizontalAxis.m_MaxSpeed;
+	    UpdateMouseSensitivityText(_cinePov.m_HorizontalAxis.m_MaxSpeed);
+        
+	    mouseSensitivitySlider.slider.onValueChanged.AddListener(SetMouseSensitivity);
+	    mouseSensitivitySlider.inputField.onEndEdit.AddListener(OnMouseSensitivityConfirmed);
+    }
+
+
+    private void SetMouseSensitivity(float value) {
+	    _cinePov.m_HorizontalAxis.m_MaxSpeed = value;
+	    _cinePov.m_VerticalAxis.m_MaxSpeed = value;
+	    
+	    UpdateMouseSensitivityText(value);
+    }
+    
+    
+    private void UpdateMouseSensitivityText(float value)
+    {
+	    mouseSensitivitySlider.inputField.text = value.ToString("0.00");
+    }
+    
+    
+    private void OnMouseSensitivityConfirmed(string text)
+    {
+	    if (float.TryParse(text, out float value))
+	    {
+		    value = Mathf.Clamp(value, mouseSensitivitySlider.slider.minValue, mouseSensitivitySlider.slider.maxValue);
+
+		    mouseSensitivitySlider.slider.value = value;
+		    SetMouseSensitivity(value);
+	    }
+	    else
+	    {
+		    UpdateMouseSensitivityText(_cinePov.m_HorizontalAxis.m_MaxSpeed);
+	    }
     }
 }

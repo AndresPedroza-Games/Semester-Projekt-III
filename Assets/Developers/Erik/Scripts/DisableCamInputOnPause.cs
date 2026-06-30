@@ -1,4 +1,3 @@
-using System;
 using Cinemachine;
 using UnityEngine;
 
@@ -16,12 +15,13 @@ public class DisableCamInputOnPause : MonoBehaviour {
 
 	private void OnEnable() {
 		EventSystemController.Instance.onPauseGame += ToggleInputProvider;
+		EventSystemController.Instance.onStartGame += ActivateInput;
 	}
 
 
 	private void OnDisable() {
 		EventSystemController.Instance.onPauseGame -= ToggleInputProvider;
-
+		EventSystemController.Instance.onStartGame -= ActivateInput;
 	}
 
 
@@ -29,6 +29,11 @@ public class DisableCamInputOnPause : MonoBehaviour {
 		_b = !_b;
 
 		_input.enabled = _b;
+	}
+
+
+	private void ActivateInput() {
+		_input.enabled = true;
 	}
 
 }

@@ -9,31 +9,44 @@ public class PauseMenu : MenuManager {
 	private void Awake() {
 		if (pauseMenu == null)
 			pauseMenu = this;
-		
-		ShowMenu(false);
+
+		HideMenu();
 	}
 
 
 	private void Start() {
 
-        _StartBtn.onClick.AddListener(EventSystemController.Instance.ResumeGame);
-        _ExitBtn.onClick.AddListener(ExitGame);
+		_StartBtn.onClick.AddListener(EventSystemController.Instance.ResumeGame);
+		_ExitBtn.onClick.AddListener(ExitGame);
 
-        _StartBtn.GetComponentInChildren<TMP_Text>().text = "Resume";
-
-		EventSystemController.Instance.onPauseGame += () => ShowMenu(true);
-		EventSystemController.Instance.onResumeGame += () => ShowMenu(false);
-    }
+		_StartBtn.GetComponentInChildren<TMP_Text>().text = "Resume";
+	}
 
 
-	public void ShowMenu(bool status) {
-		mainMenuHUD.SetActive(status);
+	private void OnEnable() {
+		EventSystemController.Instance.onPauseGame += ShowMenu;
+		EventSystemController.Instance.onResumeGame += HideMenu;
+		EventSystemController.Instance.onStartGame += HideMenu;
+	}
 
-		if (!status)
-		{
-			_SettingsMenu.SetActive(status);
-			_CreditMenu.SetActive(status);
-		}
+
+	private void OnDisable() {
+		EventSystemController.Instance.onPauseGame -= ShowMenu;
+		EventSystemController.Instance.onResumeGame -= HideMenu;
+		EventSystemController.Instance.onStartGame -= HideMenu;
+	}
+
+
+	private void ShowMenu() {
+		mainMenuHUD.SetActive(true);
+		
+	}
+
+
+	private void HideMenu() {
+		mainMenuHUD.SetActive(false);
+		_SettingsMenu.SetActive(false);
+		_CreditMenu.SetActive(false);
 	}
 
 
