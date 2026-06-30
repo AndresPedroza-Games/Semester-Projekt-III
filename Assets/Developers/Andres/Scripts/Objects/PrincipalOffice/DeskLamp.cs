@@ -5,12 +5,18 @@ public class DeskLamp : Holdable
     [SerializeField] private Light _Bulb;
 
     private bool _IsActive;
+    private bool _CanInteract;
 
     private void Start()
     {
         _IsActive = false;
 
         _Bulb.enabled = _IsActive;
+    }
+
+    public override bool CanInteract(HoldController holdController)
+    {
+        return true;
     }
 
     public override void Interact()
