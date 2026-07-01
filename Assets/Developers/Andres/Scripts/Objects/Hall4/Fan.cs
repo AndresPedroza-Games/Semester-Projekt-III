@@ -7,6 +7,10 @@ public class Fan : MonoBehaviour
     [SerializeField] private float _WindMinForce;
     [SerializeField] private bool _IsActive;
 
+    [Header("Animation Settings")]
+    [SerializeField] private Animator _Animator;
+    [SerializeField] private GameObject _ParticleSystem;
+
     private EventSystemHall4 _EventSystemHall4;
 
     private void Start()
@@ -19,6 +23,9 @@ public class Fan : MonoBehaviour
 
     private void DeactivateCollision()
     {
+        _IsActive = false;
+        _Animator.enabled = false;
+        _ParticleSystem.SetActive(false);
         gameObject.SetActive(false);
     }
 

@@ -27,7 +27,7 @@ public class Plate : MonoBehaviour
 
     private void AnimateVisuals(Ease ease, float duration)
     {
-        transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Depth, 0f), duration).SetEase(ease).SetLink(gameObject);
+        transform.DOLocalMoveY(_Depth, duration).SetEase(ease).SetLink(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
