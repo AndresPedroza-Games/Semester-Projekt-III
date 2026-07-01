@@ -20,7 +20,7 @@ public class PlayerMovement
         currentSpeed = _PlayerMotor.currentSpeed;
     }
 
-    public void Movement(CharacterController controller, Vector2 moveInput)
+    public void Movement(CharacterController controller, Vector2 moveInput, Vector3 externalForce)
     {
         Vector3 forward = cam.transform.forward;
         Vector3 right = cam.transform.right;
@@ -34,7 +34,7 @@ public class PlayerMovement
         Vector3 horizontal = (forward * moveInput.y + right * moveInput.x).normalized;
         Vector3 vertical = Vector3.up * _PlayerMotor.yVelocity;
 
-        controller.Move(currentSpeed * Time.deltaTime * (horizontal + vertical));
+        controller.Move(currentSpeed * Time.deltaTime * (horizontal + vertical) + externalForce);
     }
 
     public void HandleGravity() {

@@ -1,10 +1,16 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Plate : MonoBehaviour
 {
     [SerializeField] private Transform _Design;
 
-    private RaycastHit _Hit;
+    [Header("Animation Settings")]
+    [SerializeField] private Ease _Transition;
+    [SerializeField] private float _Duration;
+    [SerializeField] private float _Depth = 0.0003f;
+
+    private bool _IsPressed;
 
     private void Awake()
     {
@@ -13,18 +19,21 @@ public class Plate : MonoBehaviour
 
     private void PressPlate()
     {
-        
+        _IsPressed = true;
+        Debug.Log("Pressed");
+        AnimateVisuals(_Transition, _Duration);
+        EventSystemHall4.instance.PressPlate();
     }
 
-    private RaycastHit[] DetectCollision()
+    private void AnimateVisuals(Ease ease, float duration)
     {
-        return Physics.BoxCastAll(transform.position, _Design.localScale, Vector3.up);
+        transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Depth, 0f), duration).SetEase(ease).SetLink(gameObject);
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerEnter(Collider other)
     {
-        Gizmos.color = Color.red;
-
-        Gizmos.DrawWireCube(transform.position, _Design.localScale);
+        if (!_IsPressed)
+            PressPlate();
     }
+
 }
