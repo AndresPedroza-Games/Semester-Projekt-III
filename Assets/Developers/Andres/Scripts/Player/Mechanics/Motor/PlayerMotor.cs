@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,6 +22,8 @@ public class PlayerMotor : MonoBehaviour
     public float currentSpeed { get; set;}
 
     private Vector2 moveInput;
+    public Vector3 externalForce;
+    private float _TransitionSpeed = 0.1f;
 
     [Header("----Gravity Settings----")]
     public float gravityMultiplier = 1f;
@@ -65,6 +68,8 @@ public class PlayerMotor : MonoBehaviour
 
         _PlayerCrouch = new PlayerCrouch();
         _PlayerCrouch.Init();
+
+        externalForce = Vector3.zero;
     }
 
     private void OnEnable() {
@@ -92,7 +97,10 @@ public class PlayerMotor : MonoBehaviour
 
     private void Movement()
     {
-        _PlayerMovement.Movement(characterController, moveInput);
+        _PlayerMovement.Movement(characterController, moveInput, externalForce);
+
+        if (externalForce.magnitude > 0)
+            StartCoroutine(StopForce());
     }
 
     private void Update()
@@ -130,6 +138,22 @@ public class PlayerMotor : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         mainCamera = Camera.main;
+    }
+
+    private IEnumerator StopForce()
+    {
+        float timeElapsed = 0f;
+
+        while (timeElapsed < _TransitionSpeed)
+        {
+            float t = timeElapsed / _TransitionSpeed;
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            externalForce = Vector3.Lerp(externalForce, Vector3.zero, Time.deltaTime * t);
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
     }
 
     private void OnDrawGizmos()
