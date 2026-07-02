@@ -4,11 +4,16 @@ using UnityEngine;
 public class Vent : MonoBehaviour, IInteractable
 {
     [Header("Animation Settings")]
-    [SerializeField] private Transform _Hinge;
     [SerializeField] private Ease _Transition;
     [SerializeField] private float _Duration;
+    [SerializeField] private Transform _Hinge;
 
     private float _Angle;
+
+    private void Start()
+    {
+        EventSystemController.Instance.onCloseDoor += CloseVent;
+    }
 
     public bool CanInteract(HoldController holdController)
     {
@@ -27,9 +32,16 @@ public class Vent : MonoBehaviour, IInteractable
 
     private void OpenVent()
     {
-        _Angle = -90f;
+        _Angle = -100f;
         AnimateVisuals(_Transition, _Duration);
         Debug.Log("Opened");
+    }
+
+    private void CloseVent()
+    {
+        _Angle = 0f;
+        AnimateVisuals(_Transition, _Duration);
+        Debug.Log("Closed");
     }
 
     private void AnimateVisuals(Ease ease, float duration)

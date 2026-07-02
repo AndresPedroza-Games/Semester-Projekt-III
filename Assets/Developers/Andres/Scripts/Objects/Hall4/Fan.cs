@@ -47,7 +47,7 @@ public class Fan : MonoBehaviour
 
         if (player != null)
         {
-            player.externalForce = Vector3.left * CalculateFoce(other);
+            player.externalForce = Vector3.right * CalculateFoce(other);
             Debug.Log("Push Player");
         }
 

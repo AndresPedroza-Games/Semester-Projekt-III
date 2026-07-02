@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 
@@ -11,6 +12,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 	[SerializeField] private Transform doorHinge;
 	[SerializeField] private GameObject requiredKey;
+	[SerializeField] private GameObject _Collider;
 
 	public bool canOpen = false;
 	public bool isLocked;
@@ -23,7 +25,7 @@ public class Door : MonoBehaviour, IInteractable {
 		eventSystemController.onItemPicked += SetCanOpenTrue;
 		eventSystemController.onItemDropped += SetCanOpenFalse;
 		eventSystemController.onOpenDoor += UseKey;
-	}
+    }
 
 
 	private void OnDisable() {
@@ -96,7 +98,11 @@ public class Door : MonoBehaviour, IInteractable {
 	public void CloseDoor() {
         canOpen = false;
         Rotate(_Ease, _Duration, 0f);
+
         Debug.Log("Door Closed");
+		GetComponent<MeshCollider>().enabled = false;
+
+		StartCoroutine(ReturnCollider());
     }
 
 
@@ -112,5 +118,11 @@ public class Door : MonoBehaviour, IInteractable {
 		doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject);
 
 	}
+
+	private IEnumerator ReturnCollider()
+	{
+		yield return new WaitForSeconds(_Duration);
+        GetComponent<MeshCollider>().enabled = true;
+    }
 
 }
