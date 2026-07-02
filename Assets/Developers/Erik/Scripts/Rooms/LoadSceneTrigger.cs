@@ -16,7 +16,7 @@ public class LoadSceneTrigger : MonoBehaviour {
 	}
 
 
-	private async void LoadUnloadRooms() {
+	public async void LoadUnloadRooms() {
 		if (scenesToLoad.Count > 0) {
 			for (int i = 0; i < scenesToLoad.Count; i++) {
 				await WorldSceneManager.Instance.LoadScene(scenesToLoad[i]);

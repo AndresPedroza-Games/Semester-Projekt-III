@@ -9,7 +9,7 @@ public class PlayerMotor : MonoBehaviour
 
     [Header("Mechanics")]
     private PlayerMovement _PlayerMovement;
-    private PlayerCrouch _PlayerCrouch;
+    public PlayerCrouch playerCrouch;
 
     [Header("---Components---")]
     public CharacterController characterController { get; set; }
@@ -66,8 +66,8 @@ public class PlayerMotor : MonoBehaviour
         _PlayerMovement = new PlayerMovement();
         _PlayerMovement.Init();
 
-        _PlayerCrouch = new PlayerCrouch();
-        _PlayerCrouch.Init();
+        playerCrouch = new PlayerCrouch();
+        playerCrouch.Init();
 
         externalForce = Vector3.zero;
     }
@@ -130,7 +130,7 @@ public class PlayerMotor : MonoBehaviour
         if (!animationPlaying)
         {
             animationPlaying = true;
-            StartCoroutine(_PlayerCrouch.Crouch());
+            StartCoroutine(playerCrouch.Crouch());
         }
     }
 
