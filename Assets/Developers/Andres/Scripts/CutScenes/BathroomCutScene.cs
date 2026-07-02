@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Playables;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BathroomCutScene : MonoBehaviour
 {
