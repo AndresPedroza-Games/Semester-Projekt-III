@@ -18,8 +18,7 @@ public class MainMenu : MenuManager {
 
 	public override async void StartGame() {
 		await WorldSceneManager.Instance.LoadScene(sceneToLoadOnStart);
-		
-		await WorldSceneManager.Instance.UnloadScene("MainMenu");
+		await WorldSceneManager.Instance.UnloadScene(BuildSettingsLoader.StartupScene);
 
 		EventSystemController.Instance.StartGame();
 	}
