@@ -2,38 +2,51 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum CrosshairType {
-
-	Default,
-	Interactable,
-	HandOpen,
-	HandClosed,
-	HandPointer
-
-}
-
-
 public class InteractionUI : MonoBehaviour {
 
 
 	[Header("---Crosshair Components---")]
 	[SerializeField] private Image crosshairImage;
-
-	[SerializeField] private Sprite crosshairDefault;
-	[SerializeField] private Sprite crosshairInteractable;
-	[SerializeField] private Sprite crosshairHandOpen;
-	[SerializeField] private Sprite crosshairHandClosed;
-	[SerializeField] private Sprite crosshairHandPointer;
+	[Space(5)]
+	[SerializeField] private CrosshairDataSO crosshairData;
 
 	private InteractionDetector _detector;
 	private HoldController _holdController;
 
 	private CrosshairType _currentType;
 
+	private bool _hasItemInSocket;
+
 
 	private void Awake() {
 		_detector = GetComponent<InteractionDetector>();
 		_holdController = GetComponent<HoldController>();
+	}
+
+
+	private void OnEnable() {
+		EventSystemController.Instance.onItemPicked += OnItemPicked;
+		EventSystemController.Instance.onItemDropped += OnItemDropped;
+	}
+
+
+	private void OnDisable() {
+		EventSystemController.Instance.onItemPicked -= OnItemPicked;
+		EventSystemController.Instance.onItemDropped -= OnItemDropped;
+	}
+
+
+	private void OnItemPicked(GameObject obj) {
+		if (!obj.TryGetComponent(out Holdable holdable))
+			return;
+
+		_hasItemInSocket = holdable.HoldDefinition is SocketHoldDefinitionSO;
+
+	}
+
+
+	private void OnItemDropped(GameObject obj) {
+		_hasItemInSocket = false;
 	}
 
 
@@ -55,25 +68,33 @@ public class InteractionUI : MonoBehaviour {
 
 
 	private void ApplyType(CrosshairType type) {
-		crosshairImage.sprite = type switch {
-			CrosshairType.Default => crosshairDefault,
-			CrosshairType.Interactable => crosshairInteractable,
-			CrosshairType.HandOpen => crosshairHandOpen,
-			CrosshairType.HandClosed => crosshairHandClosed,
-			CrosshairType.HandPointer => crosshairHandPointer,
-			_ => crosshairImage.sprite
-		};
+		Sprite sprite = crosshairData.GetSprite(type);
+
+		if (sprite)
+			crosshairImage.sprite = sprite;
 	}
 
 
 	private CrosshairType DetermineType() {
+
+		if (_hasItemInSocket) {
+			if (_detector.CurrentTarget == null)
+				return CrosshairType.HandClosed;
+
+			if (_detector.CurrentTarget.CanInteract(_holdController))
+				return _detector.CurrentTarget.GetCrosshairType(_holdController);
+			
+			return CrosshairType.HandClosed;
+		}
+
 		if (_holdController.HasObject)
 			return CrosshairType.HandClosed;
 
-		if (_detector.CurrentTarget == null || !_detector.CurrentTarget.CanInteract(_holdController))
+		if (_detector.CurrentTarget == null)
 			return CrosshairType.Default;
 
 		return _detector.CurrentTarget.GetCrosshairType(_holdController);
+
 	}
 
 

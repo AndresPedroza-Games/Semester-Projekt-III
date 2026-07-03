@@ -91,6 +91,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 		holdDefinition.Release(this, _currentHolder);
 
 		_currentHolder?.ClearCurrentHoldable();
+		
+		EventSystemController.Instance.DropItem(this.gameObject);
 
 		_currentHolder = null;
 	}

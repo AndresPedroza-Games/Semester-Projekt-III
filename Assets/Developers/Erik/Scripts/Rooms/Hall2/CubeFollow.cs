@@ -8,7 +8,6 @@ public class CubeFollow : MonoBehaviour {
 	public float followDistance;
 	public float followSpeed;
 	public List<Transform> checkpoints;
-	public List<GameObject> floorObjects;
 
 	private int _checkpointIndex = 0;
 
@@ -51,9 +50,6 @@ public class CubeFollow : MonoBehaviour {
 		_rb.MovePosition(targetPos);
 
 		if (Vector3.Distance(transform.position, _currentTarget.position) == 0f) {
-			if (_checkpointIndex < floorObjects.Count)
-				floorObjects[_checkpointIndex].SetActive(false);
-
 			_checkpointIndex++;
 
 			if (_checkpointIndex < checkpoints.Count) {

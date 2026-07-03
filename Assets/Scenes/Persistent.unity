@@ -312,9 +312,29 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: crosshairData
+      value: 
+      objectReference: {fileID: 11400000, guid: bbd4bf277c613e8498bc2cbb641c9b37, type: 2}
+    - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: crosshairImage
       value: 
       objectReference: {fileID: 931078436}
+    - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: crosshairDefault
+      value: 
+      objectReference: {fileID: 21300000, guid: 9c7fea8536ab89d45ba285dc18592d81, type: 3}
+    - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: crosshairHandOpen
+      value: 
+      objectReference: {fileID: 21300000, guid: b609be16dc56d994c83020f0ecf78d75, type: 3}
+    - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: crosshairHandClosed
+      value: 
+      objectReference: {fileID: 21300000, guid: 88efcdfab6b58ab4495ecb5a024dc343, type: 3}
+    - target: {fileID: 1740582294665887584, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
+      propertyPath: crosshairHandPointer
+      value: 
+      objectReference: {fileID: 21300000, guid: 09413c6141b019f4da69ec8d02acba9d, type: 3}
     - target: {fileID: 2632235742325951894, guid: 77e3899343127c74990c50c61eddeefc, type: 3}
       propertyPath: dropPoint
       value: 
