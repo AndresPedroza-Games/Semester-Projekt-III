@@ -1,6 +1,7 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class Door : MonoBehaviour, IInteractable {
@@ -9,6 +10,9 @@ public class Door : MonoBehaviour, IInteractable {
 	[SerializeField] private Ease _Ease;
 	[SerializeField] private float _Duration = 1f;
 	private float _Angle;
+
+	[Space(10)]
+	public UnityEvent onDoorCloseAction;
 
 	[SerializeField] private Transform doorHinge;
 	[SerializeField] private GameObject requiredKey;
@@ -121,7 +125,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private void AnimateVisuals(Ease ease, float duration) {
 
-		doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject);
+		doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject).OnComplete(() => { onDoorCloseAction?.Invoke(); });
 
 	}
 
