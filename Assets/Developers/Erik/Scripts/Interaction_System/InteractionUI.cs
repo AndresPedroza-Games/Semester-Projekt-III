@@ -15,10 +15,38 @@ public class InteractionUI : MonoBehaviour {
 
 	private CrosshairType _currentType;
 
+	private bool _hasItemInSocket;
+
 
 	private void Awake() {
 		_detector = GetComponent<InteractionDetector>();
 		_holdController = GetComponent<HoldController>();
+	}
+
+
+	private void OnEnable() {
+		EventSystemController.Instance.onItemPicked += OnItemPicked;
+		EventSystemController.Instance.onItemDropped += OnItemDropped;
+	}
+
+
+	private void OnDisable() {
+		EventSystemController.Instance.onItemPicked -= OnItemPicked;
+		EventSystemController.Instance.onItemDropped -= OnItemDropped;
+	}
+
+
+	private void OnItemPicked(GameObject obj) {
+		if (!obj.TryGetComponent(out Holdable holdable))
+			return;
+
+		_hasItemInSocket = holdable.HoldDefinition is SocketHoldDefinitionSO;
+
+	}
+
+
+	private void OnItemDropped(GameObject obj) {
+		_hasItemInSocket = false;
 	}
 
 
@@ -48,6 +76,17 @@ public class InteractionUI : MonoBehaviour {
 
 
 	private CrosshairType DetermineType() {
+
+		if (_hasItemInSocket) {
+			if (_detector.CurrentTarget == null)
+				return CrosshairType.HandClosed;
+
+			if (_detector.CurrentTarget.CanInteract(_holdController))
+				return _detector.CurrentTarget.GetCrosshairType(_holdController);
+			
+			return CrosshairType.HandClosed;
+		}
+
 		if (_holdController.HasObject)
 			return CrosshairType.HandClosed;
 
@@ -55,6 +94,7 @@ public class InteractionUI : MonoBehaviour {
 			return CrosshairType.Default;
 
 		return _detector.CurrentTarget.GetCrosshairType(_holdController);
+
 	}
 
 

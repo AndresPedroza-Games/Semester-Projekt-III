@@ -1,5 +1,5 @@
-using DG.Tweening;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 
@@ -15,9 +15,11 @@ public class Door : MonoBehaviour, IInteractable {
 	[SerializeField] private GameObject _Collider;
 
 	public bool canOpen = false;
+	private bool _isOpen = false;
 	public bool isLocked;
 
 	private EventSystemController eventSystemController;
+
 
 	private void Start() {
 		eventSystemController = EventSystemController.Instance;
@@ -25,7 +27,7 @@ public class Door : MonoBehaviour, IInteractable {
 		eventSystemController.onItemPicked += SetCanOpenTrue;
 		eventSystemController.onItemDropped += SetCanOpenFalse;
 		eventSystemController.onOpenDoor += UseKey;
-    }
+	}
 
 
 	private void OnDisable() {
@@ -38,12 +40,12 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private void SetCanOpenTrue(GameObject obj) {
 		if (obj == requiredKey)
-            canOpen = true;
+			canOpen = true;
 	}
 
 
 	private void SetCanOpenFalse(GameObject obj) {
-        canOpen = false;
+		canOpen = false;
 	}
 
 
@@ -60,34 +62,38 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
+		if (_isOpen)
+			return CrosshairType.Default;
+
 		return canOpen ? CrosshairType.Interactable : CrosshairType.Lock;
 	}
 
 
 	public void Interact() {
 
-        if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted)
-		{
-            isLocked = true;
+		if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted) {
+			isLocked = true;
 			canOpen = false;
 			EventSystemBathroom.instance.LockDoor();
-            Debug.Log("Locked");
-        }
+			Debug.Log("Locked");
+		}
 
-        if (canOpen && !isLocked)
+		if (canOpen && !isLocked)
 			OpenDoor();
 		//else
 		//PlayLockedDoorSound...
 
-    }
+	}
 
 
 	private void OpenDoor() {
 		eventSystemController.OpenDoor(requiredKey);
 
+		_isOpen = true;
+
 		Rotate(_Ease, _Duration, -90);
 
-        canOpen = false;
+		canOpen = false;
 
 		GetComponent<BoxCollider>().enabled = false;
 
@@ -96,14 +102,14 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	public void CloseDoor() {
-        canOpen = false;
-        Rotate(_Ease, _Duration, 0f);
+		canOpen = false;
+		Rotate(_Ease, _Duration, 0f);
 
-        Debug.Log("Door Closed");
+		Debug.Log("Door Closed");
 		GetComponent<MeshCollider>().enabled = false;
 
 		StartCoroutine(ReturnCollider());
-    }
+	}
 
 
 	public void Rotate(Ease ease, float duration, float angle) {
@@ -119,10 +125,10 @@ public class Door : MonoBehaviour, IInteractable {
 
 	}
 
-	private IEnumerator ReturnCollider()
-	{
+
+	private IEnumerator ReturnCollider() {
 		yield return new WaitForSeconds(_Duration);
-        GetComponent<MeshCollider>().enabled = true;
-    }
+		GetComponent<MeshCollider>().enabled = true;
+	}
 
 }

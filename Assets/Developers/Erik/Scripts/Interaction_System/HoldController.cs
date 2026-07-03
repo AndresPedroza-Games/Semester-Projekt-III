@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HoldController : MonoBehaviour {
 
-	public IHoldable CurrentHoldable { get; private set; }
+	public Holdable CurrentHoldable { get; private set; }
 	public GameObject HoldGameObject => CurrentHoldable.GameObject();
 
 	public bool HasObject => CurrentHoldable != null;
@@ -30,7 +30,7 @@ public class HoldController : MonoBehaviour {
 	}
 
 
-	public void SetCurrentHoldable(IHoldable holdable) {
+	public void SetCurrentHoldable(Holdable holdable) {
 		if (HasObject)
 			return;
 
@@ -41,7 +41,7 @@ public class HoldController : MonoBehaviour {
 	public void ReleaseCurrentHoldable() {
 		if (!HasObject)
 			return;
-
+	
 		CurrentHoldable.Release();
 		CurrentHoldable = null;
 	}

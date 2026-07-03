@@ -19,20 +19,20 @@ public class Interactor : MonoBehaviour {
 		InputManager.Instance.Interact.performed += Interact;
 		InputManager.Instance.PickUp.performed += OnPickUpPerformed;
 		InputManager.Instance.PickUp.canceled += OnPickUpCanceled;
-        InputManager.Instance.InteractElementPuzzle.performed += InteractPuzzleElements;
+		InputManager.Instance.InteractElementPuzzle.performed += InteractPuzzleElements;
 
-    }
+	}
 
 
-    private void OnDisable() {
+	private void OnDisable() {
 		InputManager.Instance.Interact.performed -= Interact;
 		InputManager.Instance.PickUp.performed -= OnPickUpPerformed;
 		InputManager.Instance.PickUp.canceled -= OnPickUpCanceled;
-        InputManager.Instance.InteractElementPuzzle.performed -= InteractPuzzleElements;
-    }
+		InputManager.Instance.InteractElementPuzzle.performed -= InteractPuzzleElements;
+	}
 
 
-    private void OnPickUpPerformed(InputAction.CallbackContext ctx) {
+	private void OnPickUpPerformed(InputAction.CallbackContext ctx) {
 		if (HoldableIsKey() && _holdController.HasObject) {
 			DropHoldable();
 			return;
@@ -61,7 +61,7 @@ public class Interactor : MonoBehaviour {
 	private void DropHoldable() {
 		if (_holdController.HasObject)
 			EventSystemController.Instance.DropItem(_holdController.HoldGameObject);
-		
+
 		_holdController.ReleaseCurrentHoldable();
 	}
 
@@ -79,6 +79,12 @@ public class Interactor : MonoBehaviour {
 		if (GameManager.Instance.miniGameActive)
 			return;
 
+		if (_holdController.HasObject)
+			if (_holdController.CurrentHoldable.CanInteract(_holdController)) {
+				_holdController.CurrentHoldable.Interact();
+				return;
+			}
+
 		IInteractable target = _detector.CurrentTarget;
 
 		if (target == null) return;
@@ -88,16 +94,17 @@ public class Interactor : MonoBehaviour {
 
 	}
 
-	private void InteractPuzzleElements(InputAction.CallbackContext ctx)
-	{
-        if (!GameManager.Instance.miniGameActive)
-            return;
 
-        IInteractable target = _detector.CurrentTarget;
+	private void InteractPuzzleElements(InputAction.CallbackContext ctx) {
+		if (!GameManager.Instance.miniGameActive)
+			return;
 
-        if (target == null) return;
+		IInteractable target = _detector.CurrentTarget;
 
-        if (target.CanInteract(_holdController))
-            target.Interact();
-    }
+		if (target == null) return;
+
+		if (target.CanInteract(_holdController))
+			target.Interact();
+	}
+
 }

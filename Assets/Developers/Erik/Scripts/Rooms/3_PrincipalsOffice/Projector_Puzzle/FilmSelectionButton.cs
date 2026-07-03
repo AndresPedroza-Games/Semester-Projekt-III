@@ -36,7 +36,7 @@ public class FilmSelectionButton : MonoBehaviour, IInteractable {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.HandPointer;
+		return selectUpwards ? CrosshairType.ArrowUp : CrosshairType.ArrowDown;
 	}
 
 
