@@ -21,6 +21,8 @@ public class InteractionUI : MonoBehaviour {
 	private void Awake() {
 		_detector = GetComponent<InteractionDetector>();
 		_holdController = GetComponent<HoldController>();
+		
+		ApplyType(CrosshairType.Default);
 	}
 
 
