@@ -8,7 +8,6 @@ public class EventSystemController : MonoBehaviour {
 
 	[Header("Events")]
 	//We can use to add sounds or to change the UI
-	public Action onCloseDoor;
 	public Action<GameObject> onOpenDoor;
 	public Action<GameObject> onItemPicked;
 	public Action<GameObject> onItemDropped;
@@ -25,7 +24,7 @@ public class EventSystemController : MonoBehaviour {
 
 	public Action onPauseGame;
 	public Action onResumeGame;
-	
+
 
 	private void Awake() {
 		if (Instance != null && Instance != this) {
@@ -51,8 +50,8 @@ public class EventSystemController : MonoBehaviour {
 		onMainMenuEntered?.Invoke();
 	}
 
-	public void ResumeGame()
-	{
+
+	public void ResumeGame() {
 		onResumeGame?.Invoke();
 	}
 
@@ -70,12 +69,6 @@ public class EventSystemController : MonoBehaviour {
 	public void OpenDoor(GameObject item) {
 		if (onOpenDoor != null)
 			onOpenDoor.Invoke(item);
-	}
-
-
-	public void CloseDoor() {
-		if (onCloseDoor != null)
-			onCloseDoor.Invoke();
 	}
 
 

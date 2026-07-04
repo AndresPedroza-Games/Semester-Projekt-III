@@ -53,7 +53,7 @@ public class ShowerValve : MonoBehaviour, IInteractable
     {
         if (_Steps == 5 && !_IsCompleted)
         {
-            _EventSystemBathroom.door.canOpen = true;
+            _EventSystemBathroom.door.CanOpen = true;
             _IsCompleted = true;
             _EventSystemBathroom.TurnOnShower();
             return;

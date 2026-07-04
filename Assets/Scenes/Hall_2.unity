@@ -487,6 +487,62 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: ease
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: needsKeyToOpen
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: openedRotation.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].scenePath
+      value: Assets/Scenes/2_DoctorsOffice.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 82df9956d8e4d004ab7571bde28dbd00, type: 3}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 851454991105470917}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5746060091719740828, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.64278764
@@ -946,6 +1002,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffd51524eee7a0d4286b1117795c988d, type: 3}
+--- !u!1 &851454991105470917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3687143501961140609, guid: ffd51524eee7a0d4286b1117795c988d, type: 3}
+  m_PrefabInstance: {fileID: 851454991105470916}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

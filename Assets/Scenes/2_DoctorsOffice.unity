@@ -221,17 +221,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: ease
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: openedRotation.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].scenePath
+      value: Assets/Scenes/Hall_1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
     - target: {fileID: 5746060091719740828, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.64278764
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5746060091719740828, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.76604444
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5746060091719740828, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8237359110453492456, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: scenesToUnload.Array.data[0].scenePath

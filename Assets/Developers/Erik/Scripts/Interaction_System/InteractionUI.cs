@@ -83,7 +83,7 @@ public class InteractionUI : MonoBehaviour {
 
 			if (_detector.CurrentTarget.CanInteract(_holdController))
 				return _detector.CurrentTarget.GetCrosshairType(_holdController);
-			
+
 			return CrosshairType.HandClosed;
 		}
 

@@ -10,10 +10,10 @@ public class Vent : MonoBehaviour, IInteractable
 
     private float _Angle;
 
-    private void Start()
-    {
-        EventSystemController.Instance.onCloseDoor += CloseVent;
-    }
+    // private void Start()
+    // {
+    //     EventSystemController.Instance.onCloseDoor += CloseVent;
+    // }
 
     public bool CanInteract(HoldController holdController)
     {
@@ -37,12 +37,12 @@ public class Vent : MonoBehaviour, IInteractable
         Debug.Log("Opened");
     }
 
-    private void CloseVent()
-    {
-        _Angle = 0f;
-        AnimateVisuals(_Transition, _Duration);
-        Debug.Log("Closed");
-    }
+    // private void CloseVent()
+    // {
+    //     _Angle = 0f;
+    //     AnimateVisuals(_Transition, _Duration);
+    //     Debug.Log("Closed");
+    // }
 
     private void AnimateVisuals(Ease ease, float duration)
     {
