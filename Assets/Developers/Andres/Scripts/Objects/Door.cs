@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,84 +6,112 @@ using UnityEngine.Events;
 
 public class Door : MonoBehaviour, IInteractable {
 
-	[Header("Animation Settings")]
-	[SerializeField] private Ease _Ease;
-	[SerializeField] private float _Duration = 1f;
-	private float _Angle;
-
-	[Space(10)]
+	[Header("---On Door Closed Event---")]
 	public UnityEvent onDoorCloseAction;
 
-	[SerializeField] private Transform doorHinge;
-	[SerializeField] private GameObject requiredKey;
-	[SerializeField] private GameObject _Collider;
+	[Header("---Scenes To Unload---")]
+	[SerializeField] private List<SceneReference> scenesToUnload;
 
-	public bool canOpen = false;
-	private bool _isOpen = false;
-	public bool isLocked;
+	[Header("---Key---")]
+	[SerializeField] private bool needsKeyToOpen;
 
-	private EventSystemController eventSystemController;
+	[Header("Animation Settings")]
+	[SerializeField] private Vector3 openedRotation;
+	[SerializeField] private Vector3 closedRotation;
+	[SerializeField] private Ease ease;
+	[SerializeField] private float duration = 1f;
+	[SerializeField] private GameObject colWhenClosing;
+	private Tween _rotationTween;
+
+	private GameObject _currentPickedKey;
+
+	private bool HasKey => _currentPickedKey != null;
+	public bool CanOpen { get; set; }
+	private bool _wasOpened;
+	private bool _isClosing;
+	private bool _isLocked;
+
+	private EventSystemController _eventSystemController;
 
 
-	private void Start() {
-		eventSystemController = EventSystemController.Instance;
-		eventSystemController.onCloseDoor += CloseDoor;
-		eventSystemController.onItemPicked += SetCanOpenTrue;
-		eventSystemController.onItemDropped += SetCanOpenFalse;
-		eventSystemController.onOpenDoor += UseKey;
+	private void OnEnable() {
+		_eventSystemController = EventSystemController.Instance;
+		_eventSystemController.onItemPicked += OnItemPicked;
+		_eventSystemController.onItemDropped += OnItemDropped;
+		_eventSystemController.onOpenDoor += UseKey;
 	}
 
 
 	private void OnDisable() {
-		eventSystemController.onCloseDoor -= CloseDoor;
-		eventSystemController.onItemPicked -= SetCanOpenTrue;
-		eventSystemController.onItemDropped -= SetCanOpenFalse;
-		eventSystemController.onOpenDoor -= UseKey;
+		_eventSystemController.onItemPicked -= OnItemPicked;
+		_eventSystemController.onItemDropped -= OnItemDropped;
+		_eventSystemController.onOpenDoor -= UseKey;
 	}
 
 
-	private void SetCanOpenTrue(GameObject obj) {
-		if (obj == requiredKey)
-			canOpen = true;
+	private void OnItemPicked(GameObject obj) {
+		if (obj.TryGetComponent(out Key key)) {
+			_currentPickedKey = obj;
+			CanOpen = true;
+		}
 	}
 
 
-	private void SetCanOpenFalse(GameObject obj) {
-		canOpen = false;
+	private void OnItemDropped(GameObject obj) {
+		CanOpen = false;
+		_currentPickedKey = null;
 	}
 
 
 	private void UseKey(GameObject obj) {
-		if (obj == requiredKey) {
-			obj.GetComponent<IUseable>().UseItem();
+		if (obj.TryGetComponent(out Key key)) {
+			key.UseItem();
 		}
 	}
 
 
 	public bool CanInteract(HoldController holdController) {
-		return canOpen;
+		if (_wasOpened)
+			return false;
+
+		if (_isLocked)
+			return false;
+
+		if (!needsKeyToOpen)
+			return true;
+
+		return HasKey;
 	}
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		if (_isOpen)
+		if (_wasOpened)
 			return CrosshairType.Default;
 
-		return canOpen ? CrosshairType.Interactable : CrosshairType.Lock;
+		if (_isLocked)
+			return CrosshairType.Lock;
+
+		if (!needsKeyToOpen)
+			return CrosshairType.Interactable;
+
+		return HasKey ? CrosshairType.Interactable : CrosshairType.Lock;
 	}
 
 
 	public void Interact() {
 
 		if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted) {
-			isLocked = true;
-			canOpen = false;
+			_isLocked = true;
+			CanOpen = false;
 			EventSystemBathroom.instance.LockDoor();
 			Debug.Log("Locked");
 		}
 
-		if (canOpen && !isLocked)
-			OpenDoor();
+		if (!CanInteract(null)) {
+			return;
+		}
+
+		OpenDoor();
 		//else
 		//PlayLockedDoorSound...
 
@@ -91,48 +119,49 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	private void OpenDoor() {
-		eventSystemController.OpenDoor(requiredKey);
+		if (needsKeyToOpen)
+			_eventSystemController.OpenDoor(_currentPickedKey);
 
-		_isOpen = true;
+		Rotate(ease, duration, openedRotation);
 
-		Rotate(_Ease, _Duration, -90);
+		_wasOpened = true;
 
-		canOpen = false;
+		CanOpen = false;
 
-		GetComponent<BoxCollider>().enabled = false;
-
-		Debug.Log("Door Opened");
+		GetComponent<MeshCollider>().enabled = false;
 	}
 
 
 	public void CloseDoor() {
-		canOpen = false;
-		Rotate(_Ease, _Duration, 0f);
+		CanOpen = false;
+		_isClosing = true;
 
-		Debug.Log("Door Closed");
+		colWhenClosing.SetActive(true);
+
 		GetComponent<MeshCollider>().enabled = false;
 
-		StartCoroutine(ReturnCollider());
+		Rotate(ease, duration, closedRotation);
 	}
 
 
-	public void Rotate(Ease ease, float duration, float angle) {
-		_Angle = angle;
+	private void Rotate(Ease e, float d, Vector3 targetRotation) {
+		_rotationTween = transform.DOLocalRotateQuaternion(Quaternion.Euler(targetRotation), d).SetEase(e).SetLink(gameObject);
 
-		AnimateVisuals(ease, duration);
+		if (_isClosing)
+			_rotationTween.OnComplete(() => {
+				UnloadScenes();
+				onDoorCloseAction?.Invoke();
+				GetComponent<MeshCollider>().enabled = true;
+			});
 	}
 
 
-	private void AnimateVisuals(Ease ease, float duration) {
-
-		doorHinge.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject).OnComplete(() => { onDoorCloseAction?.Invoke(); });
-
-	}
-
-
-	private IEnumerator ReturnCollider() {
-		yield return new WaitForSeconds(_Duration);
-		GetComponent<MeshCollider>().enabled = true;
+	private async void UnloadScenes() {
+		if (scenesToUnload.Count > 0) {
+			for (int i = 0; i < scenesToUnload.Count; i++) {
+				await WorldSceneManager.Instance.UnloadScene(scenesToUnload[i]);
+			}
+		}
 	}
 
 }

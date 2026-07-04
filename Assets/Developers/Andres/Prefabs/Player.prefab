@@ -181,6 +181,7 @@ MonoBehaviour:
   head: {fileID: 8232042639273650274}
   playerSpeed: 2
   playerCrouchSpeed: 1
+  externalForce: {x: 0, y: 0, z: 0}
   gravityMultiplier: 1
   maxFallSpeed: -50
   transitionSpeed: 0.5
@@ -343,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactor
       objectReference: {fileID: 0}
+    - target: {fileID: 4151490122447608140, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
+      propertyPath: crosshairData
+      value: 
+      objectReference: {fileID: 11400000, guid: bbd4bf277c613e8498bc2cbb641c9b37, type: 2}
     - target: {fileID: 4151490122447608140, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: crosshairHandOpen
       value: 
