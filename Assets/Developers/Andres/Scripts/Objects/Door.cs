@@ -26,7 +26,6 @@ public class Door : MonoBehaviour, IInteractable {
 	private GameObject _currentPickedKey;
 
 	private bool HasKey => _currentPickedKey != null;
-	public bool CanOpen { get; set; }
 	private bool _wasOpened;
 	private bool _isClosing;
 	private bool _isLocked;
@@ -38,35 +37,24 @@ public class Door : MonoBehaviour, IInteractable {
 		_eventSystemController = EventSystemController.Instance;
 		_eventSystemController.onItemPicked += OnItemPicked;
 		_eventSystemController.onItemDropped += OnItemDropped;
-		_eventSystemController.onOpenDoor += UseKey;
 	}
 
 
 	private void OnDisable() {
 		_eventSystemController.onItemPicked -= OnItemPicked;
 		_eventSystemController.onItemDropped -= OnItemDropped;
-		_eventSystemController.onOpenDoor -= UseKey;
 	}
 
 
 	private void OnItemPicked(GameObject obj) {
 		if (obj.TryGetComponent(out Key key)) {
 			_currentPickedKey = obj;
-			CanOpen = true;
 		}
 	}
 
 
 	private void OnItemDropped(GameObject obj) {
-		CanOpen = false;
 		_currentPickedKey = null;
-	}
-
-
-	private void UseKey(GameObject obj) {
-		if (obj.TryGetComponent(out Key key)) {
-			key.UseItem();
-		}
 	}
 
 
@@ -102,7 +90,6 @@ public class Door : MonoBehaviour, IInteractable {
 
 		if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted) {
 			_isLocked = true;
-			CanOpen = false;
 			EventSystemBathroom.instance.LockDoor();
 			Debug.Log("Locked");
 		}
@@ -120,20 +107,17 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private void OpenDoor() {
 		if (needsKeyToOpen)
-			_eventSystemController.OpenDoor(_currentPickedKey);
+			_currentPickedKey.GetComponent<Key>().UseItem();
 
 		Rotate(ease, duration, openedRotation);
 
 		_wasOpened = true;
-
-		CanOpen = false;
 
 		GetComponent<MeshCollider>().enabled = false;
 	}
 
 
 	public void CloseDoor() {
-		CanOpen = false;
 		_isClosing = true;
 
 		colWhenClosing.SetActive(true);
@@ -152,6 +136,7 @@ public class Door : MonoBehaviour, IInteractable {
 				UnloadScenes();
 				onDoorCloseAction?.Invoke();
 				GetComponent<MeshCollider>().enabled = true;
+				EventSystemController.Instance.DoorClosed(gameObject.scene.name);
 			});
 	}
 

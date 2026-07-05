@@ -21,7 +21,7 @@ public class DataManager : MonoBehaviour
         eventSystemController.onItemPicked += (item) => currentGameObject = item;
         eventSystemController.onItemDropped += (item) => currentGameObject = null;
 
-        eventSystemController.onOpenDoor += (item) => AddData(doorsOpened, item);
+        //eventSystemController.onOpenDoor += (item) => AddData(doorsOpened, item);
         //eventSystemController.onCloseDoor += SaveGame;
 
         eventSystemController.onSaveGame += SaveGame;

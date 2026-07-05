@@ -8,7 +8,7 @@ public class EventSystemController : MonoBehaviour {
 
 	[Header("Events")]
 	//We can use to add sounds or to change the UI
-	public Action<GameObject> onOpenDoor;
+	public Action<string> onDoorClosed; //for saving the last scene the player was in
 	public Action<GameObject> onItemPicked;
 	public Action<GameObject> onItemDropped;
 
@@ -56,6 +56,11 @@ public class EventSystemController : MonoBehaviour {
 	}
 
 
+	public void DoorClosed(string scene) {
+		onDoorClosed?.Invoke(scene);
+	}
+
+
 	public void Event001() {
 		onEvent001?.Invoke();
 	}
@@ -63,12 +68,6 @@ public class EventSystemController : MonoBehaviour {
 
 	public void Key001PickedUp() {
 		OnKey001PickedUp?.Invoke();
-	}
-
-
-	public void OpenDoor(GameObject item) {
-		if (onOpenDoor != null)
-			onOpenDoor.Invoke(item);
 	}
 
 
