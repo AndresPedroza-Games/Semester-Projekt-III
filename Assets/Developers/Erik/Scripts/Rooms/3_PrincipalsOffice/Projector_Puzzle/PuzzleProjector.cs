@@ -14,6 +14,9 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	[SerializeField] private List<Light> projectorLights;
 	[SerializeField] private int correctProjectorAngle;
 
+	[Header("---On Solved---")]
+	[SerializeField] private SceneReference sceneToLoad;
+
 	[Header(("---Animation---"))]
 	[SerializeField] private float projectorRotationDuration = 1f;
 	[SerializeField] private Ease projectorEase;
@@ -88,7 +91,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.Interactable;
+		return _solved ? CrosshairType.Default : CrosshairType.Interactable;
 	}
 
 
@@ -258,12 +261,14 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	}
 
 
-	private void Solve() {
+	private async void Solve() {
 		_solved = true;
 		_selectedFilm?.RemoveHighlight();
 		SetLights(false);
 		SetAllDecals(false);
 		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
+
+		await WorldSceneManager.Instance.LoadScene(sceneToLoad);
 	}
 
 

@@ -28,7 +28,7 @@ public class ProjectorPowerButton : MonoBehaviour, IInteractable {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.HandPointer;
+		return _canInteract ? CrosshairType.HandPointer : CrosshairType.Default;
 	}
 
 
