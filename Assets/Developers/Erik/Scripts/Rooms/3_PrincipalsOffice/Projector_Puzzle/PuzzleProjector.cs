@@ -267,6 +267,8 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	}
 
 
+#if UNITY_EDITOR
+
 	private void OnDrawGizmos() {
 		if (!alwaysShowGizmos)
 			return;
@@ -283,5 +285,6 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 			Gizmos.DrawWireCube(film.transform.position, dimension);
 		}
 	}
+#endif
 
 }
