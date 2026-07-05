@@ -7,13 +7,19 @@ public class Vent : MonoBehaviour, IInteractable
     [SerializeField] private Ease _Transition;
     [SerializeField] private float _Duration;
     [SerializeField] private Transform _Hinge;
-
+     
+    private Collider _Collider;
     private float _Angle;
 
-    // private void Start()
-    // {
-    //     EventSystemController.Instance.onCloseDoor += CloseVent;
-    // }
+    private void Awake()
+    {
+        _Collider = GetComponent<MeshCollider>();
+    }
+
+    private void Start()
+    {
+         //EventSystemController.Instance.onCloseDoor += CloseVent;
+    }
 
     public bool CanInteract(HoldController holdController)
     {
@@ -34,15 +40,16 @@ public class Vent : MonoBehaviour, IInteractable
     {
         _Angle = -100f;
         AnimateVisuals(_Transition, _Duration);
+        _Collider.enabled = false;
         Debug.Log("Opened");
     }
 
-    // private void CloseVent()
-    // {
-    //     _Angle = 0f;
-    //     AnimateVisuals(_Transition, _Duration);
-    //     Debug.Log("Closed");
-    // }
+     private void CloseVent()
+     {
+         _Angle = 0f;
+         AnimateVisuals(_Transition, _Duration);
+         Debug.Log("Closed");
+     }
 
     private void AnimateVisuals(Ease ease, float duration)
     {
