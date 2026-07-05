@@ -3,26 +3,27 @@ using UnityEngine;
 
 public class FilmRotationButton : MonoBehaviour, IInteractable {
 
-	private bool _canInteract = true;
+	private bool _canInteract;
 
 
 	private void OnEnable() {
-		EventSystemPrincipalsOffice.Instance.onPuzzleSolved += SetBool;
-		EventSystemPrincipalsOffice.Instance.onProjectorPowerButtonPressed += SetBoolOnPowerButton;
+		EventSystemPrincipalsOffice.Instance.onPuzzleSolved += OnPuzzleSolved;
+		EventSystemPrincipalsOffice.Instance.onProjectorPowerButtonPressed += OnPowerButtonPressed;
 	}
 
 
 	private void OnDisable() {
-		EventSystemPrincipalsOffice.Instance.onPuzzleSolved -= SetBool;
-		EventSystemPrincipalsOffice.Instance.onProjectorPowerButtonPressed -= SetBoolOnPowerButton;
+		EventSystemPrincipalsOffice.Instance.onPuzzleSolved -= OnPuzzleSolved;
+		EventSystemPrincipalsOffice.Instance.onProjectorPowerButtonPressed -= OnPowerButtonPressed;
 	}
 
 
-	private void SetBool(bool state) {
+	private void OnPuzzleSolved(bool state) {
 		_canInteract = false;
 	}
-	
-	private void SetBoolOnPowerButton(bool isOn) {
+
+
+	private void OnPowerButtonPressed(bool isOn) {
 		_canInteract = isOn;
 	}
 
@@ -33,7 +34,7 @@ public class FilmRotationButton : MonoBehaviour, IInteractable {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.RotateCw;
+		return _canInteract ? CrosshairType.RotateCw : CrosshairType.Default;
 	}
 
 
