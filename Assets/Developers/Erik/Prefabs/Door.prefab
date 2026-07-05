@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8773917145655839014}
-  - component: {fileID: 7356997284699758255}
-  - component: {fileID: 8800646663948180923}
   m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
@@ -37,52 +35,6 @@ Transform:
   - {fileID: 6920125298488553051}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &7356997284699758255
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68607282854819013}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7981540034846158425, guid: b2d366842101cf244ba2e5a61b56e28f, type: 3}
---- !u!114 &8800646663948180923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 68607282854819013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a09b2bce0bade2b4c9f30da07a2ec8a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  onDoorCloseAction:
-    m_PersistentCalls:
-      m_Calls: []
-  scenesToUnload:
-  - sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
-    scenePath: Assets/Scenes/Hall_1.unity
-  needsKeyToOpen: 0
-  openedRotation: {x: 0, y: 100, z: 0}
-  closedRotation: {x: 0, y: 0, z: 0}
-  ease: 10
-  duration: 1
-  colWhenClosing: {fileID: 4556198209549823628}
 --- !u!1 &4506279351640784626
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,7 +126,7 @@ MonoBehaviour:
   onEnterAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3018246816217643867}
         m_TargetAssemblyTypeName: Door, Assembly-CSharp
         m_MethodName: CloseDoor
         m_Mode: 1
@@ -364,6 +316,7 @@ GameObject:
   - component: {fileID: 7102419211885629126}
   - component: {fileID: 2666844609757903930}
   - component: {fileID: 1038715651044442569}
+  - component: {fileID: 3018246816217643867}
   m_Layer: 0
   m_Name: Door.008
   m_TagString: Untagged
@@ -465,3 +418,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 7981540034846158425, guid: b2d366842101cf244ba2e5a61b56e28f, type: 3}
+--- !u!114 &3018246816217643867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486256841288211468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09b2bce0bade2b4c9f30da07a2ec8a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  onDoorCloseAction:
+    m_PersistentCalls:
+      m_Calls: []
+  scenesToUnload:
+  - sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
+    scenePath: Assets/Scenes/Hall_1.unity
+  needsKeyToOpen: 0
+  openedRotation: {x: 0, y: 100, z: 0}
+  closedRotation: {x: 0, y: 0, z: 0}
+  ease: 10
+  duration: 1
+  colWhenClosing: {fileID: 4556198209549823628}

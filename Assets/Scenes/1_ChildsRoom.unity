@@ -1094,6 +1094,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: needsKeyToOpen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].scenePath
+      value: Assets/Scenes/0_TutorialHallway.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 48623634779a0ae4eb826b96f085cebc, type: 3}
     - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: ease
       value: 10

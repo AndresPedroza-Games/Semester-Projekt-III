@@ -487,6 +487,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].scenePath
+      value: Assets/Scenes/2_DoctorsOffice.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: scenesToUnload.Array.data[0].sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 82df9956d8e4d004ab7571bde28dbd00, type: 3}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 851454991105470917}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3647511312992570682, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: ease
       value: 10
