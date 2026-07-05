@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -24,9 +25,13 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }
 
+	private ObjectSfx _sfx;
+
 
 	protected virtual void Awake() {
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
+
+		_sfx = GetComponent<ObjectSfx>();
 
 		_renderer = GetComponent<Renderer>();
 
@@ -71,12 +76,20 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 
 
 	public virtual void Interact() {
+		_sfx?.PlaySfx(SfxEvent.OnInteract);
+	}
+
+
+	private void OnCollisionEnter(Collision collision) {
+		_sfx?.PlaySfx(SfxEvent.OnCollision);
 	}
 
 
 	public virtual void Hold(HoldController holder) {
 		if (!CanBeHold)
 			return;
+		
+		_sfx?.PlaySfx(SfxEvent.OnPickup);
 
 		_currentHolder = holder;
 
@@ -89,6 +102,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable 
 
 	public virtual void Release() {
 		holdDefinition.Release(this, _currentHolder);
+		
+		_sfx?.PlaySfx(SfxEvent.OnDrop);
 
 		_currentHolder?.ClearCurrentHoldable();
 		

@@ -5,6 +5,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager audioManager;
 
+    [SerializeField] private SFXDataSO sfxData;
+
     public List<Audio> audioList = new List<Audio>();
 
     private void Awake()
@@ -67,5 +69,10 @@ public class AudioManager : MonoBehaviour
         float pitch = Random.Range(0.8f, 1.2f);
 
         return pitch;
+    }
+
+
+    public Audio GetSfx (Sfx sfx) {
+	    return sfxData.GetSfx(sfx);
     }
 }
