@@ -1,6 +1,4 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
 public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
@@ -34,14 +32,12 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
 
 
 	public bool CanInteract(HoldController holdController) {
-		return true;
+		return !holdController.HasObject;
 	}
-
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.Default;
+		return CrosshairType.Interactable;
 	}
-
 
 	public void Interact()
     {
@@ -57,7 +53,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
 
 	private void PlaceTile()
     {
-        transform.position = new Vector3(transform.position.x, 1.15f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         RemoveHighlight();
     }
 
@@ -80,7 +76,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
         if (_Steps == 4 || _Steps == -4)
             _Steps = 0;
 
-        transform.rotation = Quaternion.Euler(0f, _Steps * 90f, 0f);
+        transform.rotation = Quaternion.Euler(-90f, 0f, _Steps * 90f);
 
 
         Debug.Log("Rotate");

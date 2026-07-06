@@ -4,8 +4,8 @@ using System.Linq;
 
 public class Board : MonoBehaviour
 {
-    [SerializeField] private GameObject _Camera;
     [SerializeField] private Transform _PieceSpawn;
+    [SerializeField] private Transform _PiecesParent;
     [SerializeField] private TilePieceData tilePieceData;
 
     private EventSystemChildRoom _EventSystemChildRoom;
@@ -32,7 +32,6 @@ public class Board : MonoBehaviour
 
         piecesInv.Add(piece);
         CreatePieces();
-        //piece.GetComponent<Holdable>().
 
         Debug.Log("Piece added to list");
     }
@@ -61,7 +60,7 @@ public class Board : MonoBehaviour
             if (alreadyCreated)
                 continue;
 
-            GameObject createdPiece = Instantiate(pieceData.prefab,_PieceSpawn.position,RandomRotation());
+            GameObject createdPiece = Instantiate(pieceData.prefab,_PieceSpawn.position,RandomRotation(), _PiecesParent);
 
             createdPieces.Add(createdPiece);
         }
@@ -71,7 +70,7 @@ public class Board : MonoBehaviour
     {
         int randomNumber = Random.Range(0,4) * 90;
 
-        Quaternion result = Quaternion.Euler(0f,randomNumber,0f);
+        Quaternion result = Quaternion.Euler(-90f,randomNumber,0f);
 
         return result;
     }
