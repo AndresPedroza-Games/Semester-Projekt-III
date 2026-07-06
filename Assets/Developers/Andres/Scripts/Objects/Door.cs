@@ -24,6 +24,7 @@ public class Door : MonoBehaviour, IInteractable {
 	private Tween _rotationTween;
 
 	private GameObject _currentPickedKey;
+	private MeshCollider _meshCollider;
 
 	private bool HasKey => _currentPickedKey != null;
 	private bool _wasOpened;
@@ -31,6 +32,11 @@ public class Door : MonoBehaviour, IInteractable {
 	private bool _isLocked;
 
 	private EventSystemController _eventSystemController;
+
+
+	private void Awake() {
+		_meshCollider = GetComponent<MeshCollider>();
+	}
 
 
 	private void OnEnable() {
@@ -113,7 +119,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 		_wasOpened = true;
 
-		GetComponent<MeshCollider>().enabled = false;
+		_meshCollider.enabled = false;
 	}
 
 
@@ -122,7 +128,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 		colWhenClosing.SetActive(true);
 
-		GetComponent<MeshCollider>().enabled = false;
+		_meshCollider.enabled = false;
 
 		Rotate(ease, duration, closedRotation);
 	}
@@ -131,13 +137,16 @@ public class Door : MonoBehaviour, IInteractable {
 	private void Rotate(Ease e, float d, Vector3 targetRotation) {
 		_rotationTween = transform.DOLocalRotateQuaternion(Quaternion.Euler(targetRotation), d).SetEase(e).SetLink(gameObject);
 
-		if (_isClosing)
-			_rotationTween.OnComplete(() => {
+		_rotationTween.OnComplete(() => {
+			_meshCollider.enabled = true;
+
+			if (_isClosing) {
 				UnloadScenes();
 				onDoorCloseAction?.Invoke();
-				GetComponent<MeshCollider>().enabled = true;
 				EventSystemController.Instance.DoorClosed(gameObject.scene.name);
-			});
+			}
+		});
+
 	}
 
 
