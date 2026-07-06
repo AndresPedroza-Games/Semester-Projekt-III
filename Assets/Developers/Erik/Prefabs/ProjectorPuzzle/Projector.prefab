@@ -274,9 +274,11 @@ MonoBehaviour:
   - {fileID: 2032606480562800813}
   - {fileID: 4820453703950061913}
   correctProjectorAngle: 90
-  sceneToLoad:
-    sceneAsset: {fileID: 102900000, guid: 95ff75dbd553e464e9c9574e403cbb95, type: 3}
+  scenesToLoad:
+  - sceneAsset: {fileID: 102900000, guid: 95ff75dbd553e464e9c9574e403cbb95, type: 3}
     scenePath: Assets/Scenes/Hall_3.unity
+  - sceneAsset: {fileID: 102900000, guid: 8bf4032aceb8c6b4f8abe336f94e500b, type: 3}
+    scenePath: Assets/Scenes/4_Bathroom.unity
   projectorRotationDuration: 0.7
   projectorEase: 10
   filmSnapDuration: 0.5

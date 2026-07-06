@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,8 +6,9 @@ using UnityEngine.UI;
 public class LoadLevelButton : MonoBehaviour {
 
 	[Header("---LEVEL TO LOAD---")]
-	public SceneReference lvlToLoad;
+	public List<SceneReference> scenesToLoad;
 
+	private bool _hasSpawn;
 	private Button _btn;
 
 
@@ -26,15 +28,26 @@ public class LoadLevelButton : MonoBehaviour {
 
 
 	private async void Loadlevel() {
-		await WorldSceneManager.Instance.LoadScene(lvlToLoad);
+		foreach (SceneReference scene in scenesToLoad) {
+			await WorldSceneManager.Instance.LoadScene(scene);
+			if (!_hasSpawn)
+				SetPlayerPos(scene);
+		}
+
 		await WorldSceneManager.Instance.UnloadScene(BuildSettingsLoader.StartupScene);
 
-		GameObject player = PersistentStartup.SearchForPlayer();
-		GameObject playerSpawn = PersistentStartup.SearchForPlayerSpawn(lvlToLoad);
-
-		player.transform.position = playerSpawn.transform.position;
-
 		EventSystemController.Instance.StartGame();
+	}
+
+
+	private void SetPlayerPos(SceneReference scene) {
+		GameObject spawn = PersistentStartup.SearchForPlayerSpawn(scene);
+
+		if (!spawn) return;
+
+		GameManager.Instance.Player.transform.position = spawn.transform.position;
+
+		_hasSpawn = true;
 	}
 
 

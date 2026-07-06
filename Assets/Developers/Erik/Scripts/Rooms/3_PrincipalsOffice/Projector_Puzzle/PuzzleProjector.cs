@@ -15,7 +15,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	[SerializeField] private int correctProjectorAngle;
 
 	[Header("---On Solved---")]
-	[SerializeField] private SceneReference sceneToLoad;
+	[SerializeField] private List<SceneReference> scenesToLoad;
 
 	[Header(("---Animation---"))]
 	[SerializeField] private float projectorRotationDuration = 1f;
@@ -268,7 +268,9 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		SetAllDecals(false);
 		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
 
-		await WorldSceneManager.Instance.LoadScene(sceneToLoad);
+		foreach (SceneReference scene in scenesToLoad) {
+			await WorldSceneManager.Instance.LoadScene(scene);
+		}
 	}
 
 
