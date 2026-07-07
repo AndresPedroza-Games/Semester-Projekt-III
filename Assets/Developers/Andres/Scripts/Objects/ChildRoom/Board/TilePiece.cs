@@ -15,6 +15,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
     private float _Steps;
 
     private bool _CanInteract;
+    private bool _PiecePicked;
 
     private void Awake()
     {
@@ -47,19 +48,26 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
             Highlight();
 
             Debug.Log("Piece picked");
+            _PiecePicked = true;
         }
     }
 
 
 	private void PlaceTile()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        if (!_PiecePicked)
+            return;
+
+        transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
         RemoveHighlight();
+        _PiecePicked = false;
     }
 
-
     private void RotatePiece(Vector2 scroll) {
-        
+
+        if (!_PiecePicked)
+            return;
+
         switch (scroll.y)
         {
             case > 0:

@@ -1,29 +1,33 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class Board : MonoBehaviour
 {
     [SerializeField] private Transform _PieceSpawn;
     [SerializeField] private Transform _PiecesParent;
     [SerializeField] private TilePieceData tilePieceData;
+    [SerializeField] private Transform _Drawer;
+
+    [Header("Animation Settings")]
+    [SerializeField] private Ease _Ease;
+    [SerializeField] private float _Duration = 0.3f;
+    private float _Angle;
 
     private EventSystemChildRoom _EventSystemChildRoom;
     public List<GameObject> piecesInv = new List<GameObject>();
     public List<GameObject> createdPieces = new List<GameObject>();
 
     private InteractionDetector _InteractionDetector;
+    private GameObject _CurrentPiece;
 
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
+        _EventSystemChildRoom.onPuzzleSolved += OpenDrawer;
     }
-
-
-    public CrosshairType GetCrosshairType(HoldController holdController) {
-	    return CrosshairType.Interactable;
-    }
-
 
     public void AddPieceToList(GameObject piece)
     {
@@ -60,19 +64,32 @@ public class Board : MonoBehaviour
             if (alreadyCreated)
                 continue;
 
-            GameObject createdPiece = Instantiate(pieceData.prefab,_PieceSpawn.position,RandomRotation(), _PiecesParent);
+            _CurrentPiece = Instantiate(pieceData.prefab, _PieceSpawn.position, RandomRotation(), _PiecesParent);
 
-            createdPieces.Add(createdPiece);
+            createdPieces.Add(_CurrentPiece);
         }
     }
 
     private Quaternion RandomRotation()
     {
-        int randomNumber = Random.Range(0,4) * 90;
-
-        Quaternion result = Quaternion.Euler(-90f,randomNumber,0f);
+        Quaternion result = Quaternion.Euler(-90f,0f,0f);
 
         return result;
+    }
+
+    private void OpenDrawer()
+    {
+        Debug.Log("Drawer opened");
+        AnimateVisuals(_Ease, _Duration);
+    }
+
+    private void AnimateVisuals(Ease ease, float duration)
+    {
+        Sequence seq = DOTween.Sequence();
+
+        seq.SetEase(ease);
+
+        seq.Join(_Drawer.DOLocalMoveX(0.5f, duration));
     }
 
 }

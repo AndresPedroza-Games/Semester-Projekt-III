@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -7,7 +9,8 @@ public class PlacementSystem : MonoBehaviour
     [SerializeField] private GameObject _TilePreview;
     [SerializeField] private Grid _Grid;
 
-    [SerializeField] private Vector2 _GridSize;
+    [SerializeField] private Vector2 _GridMinSize;
+    [SerializeField] private Vector2 _GridMaxSize;
     [SerializeField] private LayerMask layerDetector;
 
     private InteractionDetector _InteractionDetector;
@@ -32,6 +35,8 @@ public class PlacementSystem : MonoBehaviour
     {
         _PieceData = new GridData();
         _Board = GetComponentInParent<Board>();
+
+        _PuzzleSolved = false;
     }
 
     private void Start()
@@ -58,15 +63,17 @@ public class PlacementSystem : MonoBehaviour
 
         _MousePos = _InteractionDetector.GetRayPosition(layerDetector);
         _GridPos = _Grid.WorldToCell(_MousePos);
+
         _SnappedPos = _Grid.GetCellCenterWorld(_GridPos);
 
         if (_SelectedObject != null)
         {
             Vector3 lastPos = new Vector3(_SelectedObject.transform.position.x, _Grid.gameObject.transform.position.y, _SelectedObject.transform.position.z);
-            _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _GridSize) ? new Vector3(_SnappedPos.x,_Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : lastPos;
+            _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _GridMinSize, _GridMaxSize) ? new Vector3(_SnappedPos.x,_Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : lastPos;
         }
 
-        _TilePreview.transform.position = new Vector3(_SnappedPos.x, _Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z);
+        Vector3 lastPosTilePreview = new Vector3(_TilePreview.transform.position.x, _Grid.gameObject.transform.position.y, _TilePreview.transform.position.z);
+        _TilePreview.transform.position = _PieceData.PieceInsideGrid(_GridPos, _GridMinSize, _GridMaxSize) ? new Vector3(_SnappedPos.x, _Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : lastPosTilePreview;
 
         _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.red;
     }
@@ -74,7 +81,7 @@ public class PlacementSystem : MonoBehaviour
     private void PickPiece(GameObject piece)
     {
         _SelectedObject = piece;
-        _PieceData.RemoveObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size);
+        _PieceData.RemoveObjectAt(_GridPos);
 
         TilePiece selectedPiece = _SelectedObject.GetComponent<TilePiece>();
 
@@ -93,14 +100,15 @@ public class PlacementSystem : MonoBehaviour
     {
         if(_SelectedObject != null && CanPlacePiece(_GridPos))
         {
-            _PieceData.AddObjectAt(_GridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
+            _PieceData.AddObjectAt(_GridPos, _SelectedObject.transform.GetChild(0).rotation, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
             _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = _GridPos;
             
             if(!_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
                 _PiecesPlaced.Add(_TilePieceData.piecesData[_SelectedObjectIndex]);
 
             Debug.Log("Piece placed");
-            Debug.Log(_GridPos);
+
+            _SelectedObject = null;
 
             if (AllPiecesCorrectPosition() && !_PuzzleSolved)
             {
@@ -108,8 +116,6 @@ public class PlacementSystem : MonoBehaviour
                 Debug.Log("Puzzle Solved");
                 _PuzzleSolved = true;
             }
-
-            _SelectedObject = null;
         }
         else
             Debug.Log("Can't place");
@@ -117,7 +123,7 @@ public class PlacementSystem : MonoBehaviour
 
     private bool CanPlacePiece(Vector3 gridPos)
     {
-        return _PieceData.CanPlacePiece(gridPos, _TilePieceData.piecesData[_SelectedObjectIndex].size, _GridSize);
+        return _PieceData.CanPlacePiece(gridPos, _GridMinSize, _GridMaxSize);
     }
 
     private bool AllPiecesCorrectPosition()
@@ -127,7 +133,7 @@ public class PlacementSystem : MonoBehaviour
 
         foreach (PieceData pieceData in _PiecesPlaced)
         {
-            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos))
+            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos) || !_PieceData.PieceCorrectRotation(pieceData.currentPos, pieceData.correctRot))
                 return false;
         }
 

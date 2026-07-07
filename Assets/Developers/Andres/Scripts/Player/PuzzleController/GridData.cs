@@ -5,81 +5,67 @@ public class GridData
 {
     public Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
 
-    public void AddObjectAt(Vector3 gridPos, Vector2Int pieceSize, int id, int pieceIndex)
+    public void AddObjectAt(Vector3 gridPos, Quaternion rot, int id, int pieceIndex)
     {
-        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
-        PlacementData data = new PlacementData(positionToOccupy,id,pieceIndex);
+        Vector3 positionToOccupy = gridPos;
+        PlacementData data = new PlacementData(positionToOccupy,rot,id,pieceIndex);
 
-        foreach (var position in positionToOccupy)
-        {
-            if (_PlacedPieces.ContainsKey(position))
-                return;
+        if (_PlacedPieces.ContainsKey(positionToOccupy))
+            return;
 
-            _PlacedPieces[position] = data;
-        }
+        _PlacedPieces[positionToOccupy] = data;
     }
 
-    public void RemoveObjectAt(Vector3Int gridPos, Vector2Int pieceSize)
+    public void RemoveObjectAt(Vector3Int gridPos)
     {
-        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+        Vector3 positionToOccupy = gridPos;
 
-        foreach (var position in positionToOccupy)
-        {
-            if (_PlacedPieces.ContainsKey(position))
-                _PlacedPieces.Remove(position);
-        }
+        if (_PlacedPieces.ContainsKey(positionToOccupy))
+            _PlacedPieces.Remove(positionToOccupy);
     }
 
-    public List<Vector3> CalculatePositions(Vector3 gridPos, Vector2Int pieceSize)
+
+    public bool PieceInsideGrid(Vector3 gridPos, Vector2 gridMin, Vector2 gridMax)   
     {
-        List<Vector3> returnValue = new List<Vector3>();
+        Vector3 positionToOccupy = gridPos;
 
-        for (int x = 0; x < pieceSize.x; x++)
-        {
-            for (int y = 0; y < pieceSize.y; y++)
-            {
-                returnValue.Add(gridPos + new Vector3(x, 0, y));
-            }
-        }
-
-        return returnValue;
-    }
-
-    public bool PieceInsideGrid(Vector3 gridPos, Vector2Int pieceSize, Vector2 gridSize)   
-    {
-        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
-
-        foreach (var position in positionToOccupy)
-        {
-            if (position.x < gridSize.x || position.x > gridSize.y || position.z > gridSize.y || position.z < gridSize.x)
-                return false;
-        }
+        if (positionToOccupy.x < gridMin.x || positionToOccupy.x >= gridMax.x || positionToOccupy.z >= gridMax.y || positionToOccupy.z < gridMin.y)
+            return false;
 
         return true;
     }
-
-    public bool PieceCorrectPosition(Vector3 gridPos, List<Vector3Int> correctPos)
+    public bool PieceCorrectPosition(Vector3 gridPos, Vector3Int correctPos)
     {
-        List<Vector3> positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
+        if (!_PlacedPieces.TryGetValue(gridPos, out var data))
+            return false;
 
-        for (int index = 0; index < positionToOccupy.Count; index++)
-        {
-            if (positionToOccupy[index] == correctPos[index])
-                return true;
-        }
+        Vector3 positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
+
+        if (positionToOccupy == correctPos)
+            return true;
 
         return false;
     }
 
-    public bool CanPlacePiece(Vector3 gridPos, Vector2Int pieceSize, Vector2 gridSize)
+    public bool PieceCorrectRotation(Vector3 gridPos, Quaternion correctRot)
     {
-        List<Vector3> positionToOccupy = CalculatePositions(gridPos, pieceSize);
+        if (!_PlacedPieces.TryGetValue(gridPos, out var data))
+            return false;
 
-        foreach (var position in positionToOccupy)
-        {
-            if (_PlacedPieces.ContainsKey(position) || !PieceInsideGrid(gridPos, pieceSize, gridSize))
-                return false;
-        }
+        Quaternion positionToOccupy = _PlacedPieces[gridPos].rotation;
+
+        if (positionToOccupy == correctRot)
+            return true;
+
+        return false;
+    }
+
+    public bool CanPlacePiece(Vector3 gridPos, Vector2 gridMinSize, Vector3 gridMaxSize)
+    {
+        Vector3 positionToOccupy = gridPos;
+
+        if (_PlacedPieces.ContainsKey(positionToOccupy) || !PieceInsideGrid(gridPos, gridMinSize, gridMaxSize))
+            return false;
 
         return true;
     }
@@ -87,13 +73,16 @@ public class GridData
 
 public class PlacementData
 {
-    public List<Vector3> occupiedPositions;
+    public Vector3 occupiedPositions;
+
+    public Quaternion rotation;
     public int ID { get; private set; }
     public int PlacedPieceIndex { get; private set; }
 
-    public PlacementData(List<Vector3> occupiedPos, int id, int placedObjectindex)
+    public PlacementData(Vector3 occupiedPos, Quaternion rot, int id, int placedObjectindex)
     {
         occupiedPositions = occupiedPos;
+        rotation = rot;
         ID = id;
         PlacedPieceIndex = placedObjectindex;
     }
