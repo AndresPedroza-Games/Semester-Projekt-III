@@ -4,6 +4,24 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
+public enum DoorState {
+
+	Open,
+	Closed
+
+}
+
+
+public enum DoorInteractionState {
+
+	Disabled,
+	Interactable,
+	RequiresKey,
+	Locked
+
+}
+
+
 public class Door : MonoBehaviour, IInteractable {
 
 	[Header("---On Door Closed Event---")]
@@ -12,8 +30,9 @@ public class Door : MonoBehaviour, IInteractable {
 	[Header("---Scenes To Unload---")]
 	[SerializeField] private List<SceneReference> scenesToUnload;
 
-	[Header("---Key---")]
-	[SerializeField] private bool needsKeyToOpen;
+	[Header("---Door States---")]
+	[SerializeField] private DoorState initDoorState;
+	[SerializeField] private DoorInteractionState initDoorInteractionState;
 
 	[Header("Animation Settings")]
 	[SerializeField] private Vector3 openedRotation;
@@ -26,16 +45,18 @@ public class Door : MonoBehaviour, IInteractable {
 	private GameObject _currentPickedKey;
 	private MeshCollider _meshCollider;
 
+	private DoorState _doorState;
+	private DoorInteractionState _doorInteractionState;
+
 	private bool HasKey => _currentPickedKey != null;
-	private bool _wasOpened;
-	private bool _isClosing;
-	private bool _isLocked;
 
 	private EventSystemController _eventSystemController;
 
 
 	private void Awake() {
 		_meshCollider = GetComponent<MeshCollider>();
+		_doorState = initDoorState;
+		_doorInteractionState = initDoorInteractionState;
 	}
 
 
@@ -53,50 +74,69 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	private void OnItemPicked(GameObject obj) {
-		if (obj.TryGetComponent(out Key key)) {
+		if (_doorInteractionState != DoorInteractionState.RequiresKey) return;
+
+		if (obj.TryGetComponent(out Key _)) {
 			_currentPickedKey = obj;
 		}
 	}
 
 
 	private void OnItemDropped(GameObject obj) {
-		_currentPickedKey = null;
+		if (_doorInteractionState == DoorInteractionState.RequiresKey)
+			_currentPickedKey = null;
 	}
 
 
 	public bool CanInteract(HoldController holdController) {
-		if (_wasOpened)
+		if (_doorState == DoorState.Open)
 			return false;
 
-		if (_isLocked)
-			return false;
+		switch (_doorInteractionState) {
+			case DoorInteractionState.Disabled:
+			case DoorInteractionState.Locked:
+				break;
 
-		if (!needsKeyToOpen)
-			return true;
+			case DoorInteractionState.Interactable:
+				return true;
 
-		return HasKey;
+			case DoorInteractionState.RequiresKey:
+				return HasKey;
+
+		}
+
+		return false;
 	}
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		if (_wasOpened)
+		if (_doorState == DoorState.Open)
 			return CrosshairType.Default;
 
-		if (_isLocked)
-			return CrosshairType.Lock;
+		switch (_doorInteractionState) {
+			case DoorInteractionState.Disabled:
+				break;
 
-		if (!needsKeyToOpen)
-			return CrosshairType.Interactable;
+			case DoorInteractionState.Locked:
+				return CrosshairType.Lock;
 
-		return HasKey ? CrosshairType.Interactable : CrosshairType.Lock;
+			case DoorInteractionState.RequiresKey:
+				return HasKey ? CrosshairType.Interactable : CrosshairType.Lock;
+
+			case DoorInteractionState.Interactable:
+				return CrosshairType.Interactable;
+
+		}
+
+		return CrosshairType.Default;
 	}
 
 
 	public void Interact() {
 
 		if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted) {
-			_isLocked = true;
 			EventSystemBathroom.instance.LockDoor();
+			_doorInteractionState = DoorInteractionState.Locked;
 			Debug.Log("Locked");
 		}
 
@@ -112,23 +152,23 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	private void OpenDoor() {
-		if (needsKeyToOpen)
+		if (_doorInteractionState == DoorInteractionState.RequiresKey)
 			_currentPickedKey.GetComponent<Key>().UseItem();
 
 		Rotate(ease, duration, openedRotation);
 
-		_wasOpened = true;
+		_doorState = DoorState.Open;
 
 		_meshCollider.enabled = false;
 	}
 
 
 	public void CloseDoor() {
-		_isClosing = true;
-
 		colWhenClosing.SetActive(true);
 
 		_meshCollider.enabled = false;
+
+		_doorState = DoorState.Closed;
 
 		Rotate(ease, duration, closedRotation);
 	}
@@ -140,10 +180,12 @@ public class Door : MonoBehaviour, IInteractable {
 		_rotationTween.OnComplete(() => {
 			_meshCollider.enabled = true;
 
-			if (_isClosing) {
+			if (_doorState == DoorState.Closed) {
 				UnloadScenes();
 				onDoorCloseAction?.Invoke();
 				EventSystemController.Instance.DoorClosed(gameObject.scene.name);
+				_doorState = DoorState.Closed;
+				_doorInteractionState = DoorInteractionState.Disabled;
 			}
 		});
 
@@ -156,6 +198,11 @@ public class Door : MonoBehaviour, IInteractable {
 				await WorldSceneManager.Instance.UnloadScene(scenesToUnload[i]);
 			}
 		}
+	}
+
+
+	public void SetDoorInteractionState(DoorInteractionState newState) {
+		_doorInteractionState = newState;
 	}
 
 }

@@ -259,8 +259,16 @@ PrefabInstance:
       value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: initDoorState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: needsKeyToOpen
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: initDoorInteractionState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: scenesToUnload.Array.data[0].scenePath
