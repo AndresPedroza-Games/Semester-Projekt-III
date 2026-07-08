@@ -10,18 +10,31 @@ public class GridData
         Vector3 positionToOccupy = gridPos;
         PlacementData data = new PlacementData(positionToOccupy,rot,id,pieceIndex);
 
-        if (_PlacedPieces.ContainsKey(positionToOccupy))
+        if (_PlacedPieces.ContainsKey(positionToOccupy)){
             return;
+        }
 
         _PlacedPieces[positionToOccupy] = data;
     }
+
+        public bool PieceCorrectPosition(Vector3 gridPos, Vector3Int correctPos)
+        {
+            Vector3 positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
+
+            if (positionToOccupy == correctPos)
+                return true;
+
+            return false;
+        }
 
     public void RemoveObjectAt(Vector3Int gridPos)
     {
         Vector3 positionToOccupy = gridPos;
 
-        if (_PlacedPieces.ContainsKey(positionToOccupy))
+        if (_PlacedPieces.ContainsKey(positionToOccupy)){
             _PlacedPieces.Remove(positionToOccupy);
+        }
+
     }
 
 
@@ -33,18 +46,6 @@ public class GridData
             return false;
 
         return true;
-    }
-    public bool PieceCorrectPosition(Vector3 gridPos, Vector3Int correctPos)
-    {
-        if (!_PlacedPieces.TryGetValue(gridPos, out var data))
-            return false;
-
-        Vector3 positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
-
-        if (positionToOccupy == correctPos)
-            return true;
-
-        return false;
     }
 
     public bool PieceCorrectRotation(Vector3 gridPos, Quaternion correctRot)

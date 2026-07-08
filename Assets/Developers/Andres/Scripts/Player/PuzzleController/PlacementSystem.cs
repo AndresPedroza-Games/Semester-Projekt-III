@@ -81,7 +81,6 @@ public class PlacementSystem : MonoBehaviour
     private void PickPiece(GameObject piece)
     {
         _SelectedObject = piece;
-        _PieceData.RemoveObjectAt(_GridPos);
 
         TilePiece selectedPiece = _SelectedObject.GetComponent<TilePiece>();
 
@@ -92,8 +91,14 @@ public class PlacementSystem : MonoBehaviour
             _SelectedObjectIndex = _TilePieceData.piecesData.FindIndex(data => data.ID == targetID);
         }
 
+        Vector3 oldPos = _TilePieceData.piecesData[_SelectedObjectIndex].currentPos;
+
         if (_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
+        {
+            _PieceData.RemoveObjectAt(_TilePieceData.piecesData[_SelectedObjectIndex].currentPos);
             _PiecesPlaced.Remove(_TilePieceData.piecesData[_SelectedObjectIndex]);
+        }
+
     }
 
     private void AddToGrid()
@@ -117,8 +122,7 @@ public class PlacementSystem : MonoBehaviour
                 _PuzzleSolved = true;
             }
         }
-        else
-            Debug.Log("Can't place");
+
     }
 
     private bool CanPlacePiece(Vector3 gridPos)
@@ -128,12 +132,25 @@ public class PlacementSystem : MonoBehaviour
 
     private bool AllPiecesCorrectPosition()
     {
+    Debug.Log("Piezas en la lista: " + _PiecesPlaced.Count);
+    Debug.Log("Piezas en el diccionario: " + _PieceData._PlacedPieces.Count);
+
+    foreach (var p in _PiecesPlaced)
+    {
+        Debug.Log($"Lista -> {p.currentPos}");
+    }
+
+    foreach (var kv in _PieceData._PlacedPieces)
+    {
+        Debug.Log($"Diccionario -> {kv.Key}");
+    }
+
         if (_PiecesPlaced.Count != _TilePieceData.piecesData.Count)
             return false;
 
         foreach (PieceData pieceData in _PiecesPlaced)
         {
-            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos) || !_PieceData.PieceCorrectRotation(pieceData.currentPos, pieceData.correctRot))
+            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos)) //|| !_PieceData.PieceCorrectRotation(pieceData.currentPos, pieceData.correctRot))
                 return false;
         }
 
