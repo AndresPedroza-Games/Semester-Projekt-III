@@ -1,0 +1,750 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2133609532514788636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8006918373850485032}
+  m_Layer: 0
+  m_Name: Room3_Telephone_001
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8006918373850485032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133609532514788636}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5839977, y: 0, z: 2.0870018}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 444902069279837518}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &118823596058454693
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8006918373850485032}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      propertyPath: m_Name
+      value: Prop_Telephone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6821887585681450876, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4034906192001603594}
+    - targetCorrespondingSourceObject: {fileID: 6821887585681450876, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2927644426863561784}
+    - targetCorrespondingSourceObject: {fileID: -1346437154415464734, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9007161940692254819}
+    - targetCorrespondingSourceObject: {fileID: -1346437154415464734, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5279978029475798666}
+    - targetCorrespondingSourceObject: {fileID: -4026994319946304893, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8869199069984450059}
+    - targetCorrespondingSourceObject: {fileID: -4026994319946304893, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2373305809433804042}
+    - targetCorrespondingSourceObject: {fileID: 2738364249887624723, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6216047672752462548}
+    - targetCorrespondingSourceObject: {fileID: 2738364249887624723, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7857911778605384559}
+    - targetCorrespondingSourceObject: {fileID: 8101410972591610849, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8423418423865602053}
+    - targetCorrespondingSourceObject: {fileID: 8101410972591610849, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6888251284595747830}
+    - targetCorrespondingSourceObject: {fileID: 812030516051141347, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3539740483679239198}
+    - targetCorrespondingSourceObject: {fileID: 812030516051141347, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5355748890726895823}
+    - targetCorrespondingSourceObject: {fileID: -7633961050651049, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4840453891472388631}
+    - targetCorrespondingSourceObject: {fileID: -7633961050651049, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6841993992913531468}
+    - targetCorrespondingSourceObject: {fileID: -3377694913040179090, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1147017575745449453}
+    - targetCorrespondingSourceObject: {fileID: -3377694913040179090, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6724895879768189351}
+    - targetCorrespondingSourceObject: {fileID: -3445580987465853375, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4853057997757057373}
+    - targetCorrespondingSourceObject: {fileID: -3445580987465853375, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9209027745591781173}
+    - targetCorrespondingSourceObject: {fileID: 3525596371770103976, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7331762926032782318}
+    - targetCorrespondingSourceObject: {fileID: 3525596371770103976, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 805810411853908858}
+    - targetCorrespondingSourceObject: {fileID: 1549901068911618368, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8705880183163091336}
+    - targetCorrespondingSourceObject: {fileID: 1549901068911618368, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9154620823599633670}
+    - targetCorrespondingSourceObject: {fileID: 632885162419244477, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4118665677636711321}
+    - targetCorrespondingSourceObject: {fileID: 632885162419244477, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6406472414228435543}
+    - targetCorrespondingSourceObject: {fileID: 1191889592801358190, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4361178192497451163}
+    - targetCorrespondingSourceObject: {fileID: 1191889592801358190, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2528140688633235057}
+    - targetCorrespondingSourceObject: {fileID: 1191889592801358190, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4907541155742916558}
+  m_SourcePrefab: {fileID: 100100000, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!4 &444902069279837518 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &679569507662096152 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 632885162419244477, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4118665677636711321
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679569507662096152}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8604784558866001482, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &6406472414228435543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679569507662096152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &784413713833576518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 812030516051141347, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &3539740483679239198
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784413713833576518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -1891341982033793492, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &5355748890726895823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784413713833576518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &1237456542749907915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1191889592801358190, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4361178192497451163
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237456542749907915}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6365244564479550555, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!54 &2528140688633235057
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237456542749907915}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4907541155742916558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237456542749907915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21a14a128de6954a8d1e848923841fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Telephone
+  holdDefinition: {fileID: 11400000, guid: 8aeb682200f257d4e9b7c317e1799c39, type: 2}
+  borderThickness: 0.02
+  CanBeHold: 1
+--- !u!1 &1451425309932258277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1549901068911618368, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8705880183163091336
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451425309932258277}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3025783681781517141, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &9154620823599633670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1451425309932258277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &2857176246575555766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2738364249887624723, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &6216047672752462548
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857176246575555766}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3971986555758631954, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &7857911778605384559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2857176246575555766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &3552014467984060941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3525596371770103976, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7331762926032782318
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552014467984060941}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8507952492766591035, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &805810411853908858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552014467984060941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &5312870345326860326 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4026994319946304893, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8869199069984450059
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312870345326860326}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8176346172440783458, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &2373305809433804042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5312870345326860326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &5802361664475433675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3377694913040179090, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1147017575745449453
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802361664475433675}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5124302946502108439, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &6724895879768189351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5802361664475433675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &5875213130190929124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3445580987465853375, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4853057997757057373
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875213130190929124}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8288657833376861867, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &9209027745591781173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5875213130190929124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &6848308121456020953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6821887585681450876, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4034906192001603594
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848308121456020953}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5447036705194824928, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &2927644426863561784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848308121456020953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &7851564039125730375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1346437154415464734, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &9007161940692254819
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851564039125730375}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7831919147004791885, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &5279978029475798666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851564039125730375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &8199888567661097284 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8101410972591610849, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &8423418423865602053
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199888567661097284}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2185215632015981215, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &6888251284595747830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8199888567661097284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
+--- !u!1 &9098051478406786290 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7633961050651049, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+  m_PrefabInstance: {fileID: 118823596058454693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4840453891472388631
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098051478406786290}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 5721808674183096246, guid: b03724430462fcc47b2df24026b0ba16, type: 3}
+--- !u!114 &6841993992913531468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098051478406786290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cd54ff8ce61746b14211e6e93435f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TelephoneBtn
+  _Transition: 29
+  _Duration: 0.3
+  _Depth: 0.003
