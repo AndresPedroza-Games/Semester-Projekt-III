@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7747134193350355494
+--- !u!1 &3037740055020406160
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5018643351732417876}
-  - component: {fileID: 6254163393862669491}
-  - component: {fileID: 1466608099468023023}
-  - component: {fileID: 5317798700097108768}
-  - component: {fileID: 1235538524455839342}
-  - component: {fileID: 853139709479824063}
+  - component: {fileID: 3418220887840956084}
+  - component: {fileID: 2023422327474159349}
+  - component: {fileID: 3684400755480188697}
+  - component: {fileID: 4713164749941916885}
+  - component: {fileID: 4064685732968853756}
+  - component: {fileID: 1721689774715647949}
   m_Layer: 0
-  m_Name: Room1_Plush_001
+  m_Name: Room1_TeddyBear_002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5018643351732417876
+--- !u!4 &3418220887840956084
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747134193350355494}
+  m_GameObject: {fileID: 3037740055020406160}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6254163393862669491
+--- !u!33 &2023422327474159349
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747134193350355494}
-  m_Mesh: {fileID: 2665983840855125152, guid: 2bdcb97bba847364597be0c630dac82a, type: 3}
---- !u!23 &1466608099468023023
+  m_GameObject: {fileID: 3037740055020406160}
+  m_Mesh: {fileID: -1994139370850552281, guid: 3284b5f67bb897146bf7c8fb74daaa69, type: 3}
+--- !u!23 &3684400755480188697
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747134193350355494}
+  m_GameObject: {fileID: 3037740055020406160}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -93,13 +93,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5317798700097108768
+--- !u!64 &4713164749941916885
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747134193350355494}
+  m_GameObject: {fileID: 3037740055020406160}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -114,14 +114,14 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2665983840855125152, guid: 2bdcb97bba847364597be0c630dac82a, type: 3}
---- !u!54 &1235538524455839342
+  m_Mesh: {fileID: -1994139370850552281, guid: 3284b5f67bb897146bf7c8fb74daaa69, type: 3}
+--- !u!54 &4064685732968853756
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747134193350355494}
+  m_GameObject: {fileID: 3037740055020406160}
   serializedVersion: 5
   m_Mass: 1
   m_LinearDamping: 0
@@ -142,13 +142,13 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &853139709479824063
+--- !u!114 &1721689774715647949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7747134193350355494}
+  m_GameObject: {fileID: 3037740055020406160}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5ebfe4d5d641ff4b9b6102ff381e7f6, type: 3}
