@@ -1126,6 +1126,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: sceneToLoadOnStart.scenePath
+      value: Assets/Scenes/0_TutorialHallway.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: sceneToLoadOnStart.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 48623634779a0ae4eb826b96f085cebc, type: 3}
     - target: {fileID: 6048990693339960992, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: m_Name
       value: MainMenu
@@ -2957,11 +2965,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 50dc0f7b0e404504b8af2931b0a426a9, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 50dc0f7b0e404504b8af2931b0a426a9, type: 3}
     scenePath: Assets/Scenes/Hall_2.unity
-  - sceneAsset: {fileID: 102900000, guid: fdda6d1eba358594bbd0ccf8651b9806, type: 3}
-    scenePath: Assets/Scenes/3_PrincipalsOffice.unity
 --- !u!114 &7858839807757128367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3004,8 +3010,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 8bf4032aceb8c6b4f8abe336f94e500b, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 8bf4032aceb8c6b4f8abe336f94e500b, type: 3}
     scenePath: Assets/Scenes/4_Bathroom.unity
 --- !u!114 &8016894429057255740
 MonoBehaviour:
@@ -3049,11 +3055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 95ff75dbd553e464e9c9574e403cbb95, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 95ff75dbd553e464e9c9574e403cbb95, type: 3}
     scenePath: Assets/Scenes/Hall_3.unity
-  - sceneAsset: {fileID: 102900000, guid: 8bf4032aceb8c6b4f8abe336f94e500b, type: 3}
-    scenePath: Assets/Scenes/4_Bathroom.unity
 --- !u!224 &8152991145963311406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3086,11 +3090,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 8cc23000dbb03dc45b22fed12f1429ce, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 8cc23000dbb03dc45b22fed12f1429ce, type: 3}
     scenePath: Assets/Scenes/Hall_4.unity
-  - sceneAsset: {fileID: 102900000, guid: c0bc0ccbfa9909744beae1c4410d86f7, type: 3}
-    scenePath: Assets/Scenes/5_TestRoom.unity
 --- !u!224 &8198390229556047802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3142,8 +3144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: c0bc0ccbfa9909744beae1c4410d86f7, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: c0bc0ccbfa9909744beae1c4410d86f7, type: 3}
     scenePath: Assets/Scenes/5_TestRoom.unity
 --- !u!222 &8411470531560859229
 CanvasRenderer:
@@ -3165,11 +3167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 48623634779a0ae4eb826b96f085cebc, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 48623634779a0ae4eb826b96f085cebc, type: 3}
     scenePath: Assets/Scenes/0_TutorialHallway.unity
-  - sceneAsset: {fileID: 102900000, guid: 4184e8d1b0cd8b9478ad1a87e8c664d1, type: 3}
-    scenePath: Assets/Scenes/1_ChildsRoom.unity
 --- !u!222 &8435894391511386325
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3220,8 +3220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 4184e8d1b0cd8b9478ad1a87e8c664d1, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 4184e8d1b0cd8b9478ad1a87e8c664d1, type: 3}
     scenePath: Assets/Scenes/1_ChildsRoom.unity
 --- !u!114 &8637855342168610303
 MonoBehaviour:
@@ -3265,8 +3265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: fdda6d1eba358594bbd0ccf8651b9806, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: fdda6d1eba358594bbd0ccf8651b9806, type: 3}
     scenePath: Assets/Scenes/3_PrincipalsOffice.unity
 --- !u!222 &8797848598551388276
 CanvasRenderer:
@@ -3288,8 +3288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 82df9956d8e4d004ab7571bde28dbd00, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 82df9956d8e4d004ab7571bde28dbd00, type: 3}
     scenePath: Assets/Scenes/2_DoctorsOffice.unity
 --- !u!114 &8816814923584113956
 MonoBehaviour:
@@ -3333,11 +3333,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2742e0a62b4f7443a355edc151d1e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadLevelButton
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
     scenePath: Assets/Scenes/Hall_1.unity
-  - sceneAsset: {fileID: 102900000, guid: 82df9956d8e4d004ab7571bde28dbd00, type: 3}
-    scenePath: Assets/Scenes/2_DoctorsOffice.unity
 --- !u!1001 &8985008624743852707
 PrefabInstance:
   m_ObjectHideFlags: 0
