@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 231992933}
   - component: {fileID: 231992935}
   - component: {fileID: 231992934}
+  - component: {fileID: 231992936}
   m_Layer: 0
   m_Name: Window+45turn.002
   m_TagString: Untagged
@@ -208,6 +209,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231992932}
+  m_Mesh: {fileID: 2717166795993150836, guid: b2d366842101cf244ba2e5a61b56e28f, type: 3}
+--- !u!64 &231992936
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231992932}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: 2717166795993150836, guid: b2d366842101cf244ba2e5a61b56e28f, type: 3}
 --- !u!1001 &296706627
 PrefabInstance:
@@ -426,6 +449,7 @@ GameObject:
   - component: {fileID: 628703686}
   - component: {fileID: 628703688}
   - component: {fileID: 628703687}
+  - component: {fileID: 628703689}
   m_Layer: 0
   m_Name: Window-45turn.002
   m_TagString: Untagged
@@ -504,6 +528,28 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628703685}
+  m_Mesh: {fileID: -2738767331741606890, guid: b2d366842101cf244ba2e5a61b56e28f, type: 3}
+--- !u!64 &628703689
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628703685}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
   m_Mesh: {fileID: -2738767331741606890, guid: b2d366842101cf244ba2e5a61b56e28f, type: 3}
 --- !u!1001 &673894977
 PrefabInstance:
