@@ -31,6 +31,9 @@ public class InputManager : MonoBehaviour {
 	public InputAction ExitLock => Controls.DoctorOfficePuzzle.Exit;
 	public InputAction RotateLock => Controls.DoctorOfficePuzzle.RotatePiece;
 	public InputAction ReleasePiece => Controls.DoctorOfficePuzzle.ReleasePiece;
+	
+	[Header("Narrative Notes")]
+	public InputAction ReadNote => Controls.NarrativeNotes.ReadNote;
 
 	
 	[Header("Settings")]
