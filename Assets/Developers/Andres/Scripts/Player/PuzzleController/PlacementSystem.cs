@@ -5,6 +5,8 @@ using Unity.VisualScripting;
 
 public class PlacementSystem : MonoBehaviour
 {
+    public static PlacementSystem Instace;
+
     [SerializeField] private TilePieceData _TilePieceData;
     [SerializeField] private GameObject _TilePreview;
     [SerializeField] private Grid _Grid;
@@ -37,6 +39,9 @@ public class PlacementSystem : MonoBehaviour
         _Board = GetComponentInParent<Board>();
 
         _PuzzleSolved = false;
+
+        if (Instace == null)
+            Instace = this;
     }
 
     private void Start()
@@ -105,13 +110,13 @@ public class PlacementSystem : MonoBehaviour
     {
         if(_SelectedObject != null && CanPlacePiece(_GridPos))
         {
-            _PieceData.AddObjectAt(_GridPos, _SelectedObject.transform.GetChild(0).rotation, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
+            _PieceData.AddObjectAt(_GridPos, _SelectedObject.transform.localEulerAngles.z, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
             _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = _GridPos;
             
             if(!_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
                 _PiecesPlaced.Add(_TilePieceData.piecesData[_SelectedObjectIndex]);
 
-            Debug.Log("Piece placed");
+            Debug.Log($"{_SelectedObject.transform.localEulerAngles.z}");
 
             _SelectedObject = null;
 
@@ -122,7 +127,6 @@ public class PlacementSystem : MonoBehaviour
                 _PuzzleSolved = true;
             }
         }
-
     }
 
     private bool CanPlacePiece(Vector3 gridPos)
@@ -132,25 +136,13 @@ public class PlacementSystem : MonoBehaviour
 
     private bool AllPiecesCorrectPosition()
     {
-    Debug.Log("Piezas en la lista: " + _PiecesPlaced.Count);
-    Debug.Log("Piezas en el diccionario: " + _PieceData._PlacedPieces.Count);
-
-    foreach (var p in _PiecesPlaced)
-    {
-        Debug.Log($"Lista -> {p.currentPos}");
-    }
-
-    foreach (var kv in _PieceData._PlacedPieces)
-    {
-        Debug.Log($"Diccionario -> {kv.Key}");
-    }
 
         if (_PiecesPlaced.Count != _TilePieceData.piecesData.Count)
             return false;
 
         foreach (PieceData pieceData in _PiecesPlaced)
         {
-            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos)) //|| !_PieceData.PieceCorrectRotation(pieceData.currentPos, pieceData.correctRot))
+            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos) && !_PieceData.PieceCorrectRotation(pieceData.currentPos, pieceData.correctRot))
                 return false;
         }
 

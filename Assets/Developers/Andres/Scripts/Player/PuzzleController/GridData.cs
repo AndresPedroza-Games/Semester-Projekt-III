@@ -5,7 +5,7 @@ public class GridData
 {
     public Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
 
-    public void AddObjectAt(Vector3 gridPos, Quaternion rot, int id, int pieceIndex)
+    public void AddObjectAt(Vector3 gridPos, float rot, int id, int pieceIndex)
     {
         Vector3 positionToOccupy = gridPos;
         PlacementData data = new PlacementData(positionToOccupy,rot,id,pieceIndex);
@@ -48,12 +48,12 @@ public class GridData
         return true;
     }
 
-    public bool PieceCorrectRotation(Vector3 gridPos, Quaternion correctRot)
+    public bool PieceCorrectRotation(Vector3 gridPos, float correctRot)
     {
         if (!_PlacedPieces.TryGetValue(gridPos, out var data))
             return false;
 
-        Quaternion positionToOccupy = _PlacedPieces[gridPos].rotation;
+        float positionToOccupy = _PlacedPieces[gridPos].rotation;
 
         if (positionToOccupy == correctRot)
             return true;
@@ -76,11 +76,11 @@ public class PlacementData
 {
     public Vector3 occupiedPositions;
 
-    public Quaternion rotation;
+    public float rotation;
     public int ID { get; private set; }
     public int PlacedPieceIndex { get; private set; }
 
-    public PlacementData(Vector3 occupiedPos, Quaternion rot, int id, int placedObjectindex)
+    public PlacementData(Vector3 occupiedPos, float rot, int id, int placedObjectindex)
     {
         occupiedPositions = occupiedPos;
         rotation = rot;

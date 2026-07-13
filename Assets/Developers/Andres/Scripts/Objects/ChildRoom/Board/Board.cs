@@ -22,11 +22,14 @@ public class Board : MonoBehaviour
 
     private InteractionDetector _InteractionDetector;
     private GameObject _CurrentPiece;
+    private PlacementSystem _PlacementSystem;
 
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _EventSystemChildRoom.onPuzzleSolved += OpenDrawer;
+
+        _PlacementSystem = PlacementSystem.Instace;
     }
 
     public void AddPieceToList(GameObject piece)
@@ -67,6 +70,8 @@ public class Board : MonoBehaviour
             _CurrentPiece = Instantiate(pieceData.prefab, _PieceSpawn.position, RandomRotation(), _PiecesParent);
 
             createdPieces.Add(_CurrentPiece);
+
+            //_EventSystemChildRoom.PlacePiece();
         }
     }
 
