@@ -1,6 +1,4 @@
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 
 public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
@@ -17,6 +15,8 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
     private float _Steps;
 
     private bool _CanInteract;
+    public bool piecePicked;
+    public bool ignoreNextPiece;
 
     private void Awake()
     {
@@ -34,14 +34,12 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
 
 
 	public bool CanInteract(HoldController holdController) {
-		return true;
+		return !holdController.HasObject;
 	}
-
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.Default;
+		return CrosshairType.Interactable;
 	}
-
 
 	public void Interact()
     {
@@ -50,20 +48,34 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
             _EventSystemChildRoom.PickPiece(this.gameObject);
             Highlight();
 
-            Debug.Log("Piece picked");
+            piecePicked = true;
         }
     }
 
 
 	private void PlaceTile()
     {
-        transform.position = new Vector3(transform.position.x, 1.15f, transform.position.z);
+        if (!piecePicked)
+            return;
+
+        if (ignoreNextPiece)
+        {
+            ignoreNextPiece = false;
+            return;
+        }
+
+        transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
         RemoveHighlight();
+        piecePicked = false;
+        Debug.Log("Piece Placed");
+
     }
 
-
     private void RotatePiece(Vector2 scroll) {
-        
+
+        if (!piecePicked)
+            return;
+
         switch (scroll.y)
         {
             case > 0:
@@ -80,7 +92,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
         if (_Steps == 4 || _Steps == -4)
             _Steps = 0;
 
-        transform.rotation = Quaternion.Euler(0f, _Steps * 90f, 0f);
+        transform.rotation = Quaternion.Euler(-90f, 0f, _Steps * 90f);
 
 
         Debug.Log("Rotate");

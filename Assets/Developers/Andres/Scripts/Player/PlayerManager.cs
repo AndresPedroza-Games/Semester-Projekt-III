@@ -20,22 +20,6 @@ public class PlayerManager : MonoBehaviour {
 
     }
 
-    private void Start()
-    {
-        if (EventSystemChildRoom.eventSystemChildRoom != null)
-        {
-            _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
-            _EventSystemChildRoom.onInteractWithBoard += Inspect;
-        }
-    }
-
-	private void Inspect() {
-
-        cinemachine.SetActive(false);
-        FreezeCharacter(true);
-	}
-
-
 	public void FreezeCharacter(bool status) {
 
 		if (status) {
