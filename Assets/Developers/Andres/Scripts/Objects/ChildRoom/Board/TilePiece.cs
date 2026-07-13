@@ -64,7 +64,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
             return;
         }
 
-        transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, transform.position.y - 0.05f, transform.position.z);
         RemoveHighlight();
         piecePicked = false;
         Debug.Log("Piece Placed");
