@@ -40,7 +40,6 @@ public class Board : MonoBehaviour
         piecesInv.Add(piece);
         CreatePieces();
 
-        Debug.Log("Piece added to list");
     }
 
     private void CreatePieces()
@@ -71,7 +70,7 @@ public class Board : MonoBehaviour
 
             createdPieces.Add(_CurrentPiece);
 
-            //_EventSystemChildRoom.PlacePiece();
+            _EventSystemChildRoom.PlacePiece();
         }
     }
 

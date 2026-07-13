@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -29,6 +28,7 @@ public class PlacementSystem : MonoBehaviour
     private Vector3 _SnappedPos;
     private Vector3 _MousePos;
     private Vector3Int _GridPos;
+    private Vector3 _LastPos;
 
     private int _SelectedObjectIndex;
     private bool _PuzzleSolved;
@@ -50,7 +50,7 @@ public class PlacementSystem : MonoBehaviour
 
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _EventSystemChildRoom.onPiecePicked += PickPiece;
-        _EventSystemChildRoom.onPiecePlaced += AddToGrid;
+        _EventSystemChildRoom.onPiecePlaced += () => AddToGrid(_GridPos);
         _EventSystemChildRoom.onExitBoard += () => _TilePreview.SetActive(false);
     }
 
@@ -73,14 +73,14 @@ public class PlacementSystem : MonoBehaviour
 
         if (_SelectedObject != null)
         {
-            Vector3 lastPos = new Vector3(_SelectedObject.transform.position.x, _Grid.gameObject.transform.position.y, _SelectedObject.transform.position.z);
-            _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _GridMinSize, _GridMaxSize) ? new Vector3(_SnappedPos.x,_Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : lastPos;
+            _LastPos = new Vector3(_SelectedObject.transform.position.x, _Grid.gameObject.transform.position.y, _SelectedObject.transform.position.z);
+            _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _GridMinSize, _GridMaxSize) ? new Vector3(_SnappedPos.x,_Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : _LastPos;
         }
 
         Vector3 lastPosTilePreview = new Vector3(_TilePreview.transform.position.x, _Grid.gameObject.transform.position.y, _TilePreview.transform.position.z);
         _TilePreview.transform.position = _PieceData.PieceInsideGrid(_GridPos, _GridMinSize, _GridMaxSize) ? new Vector3(_SnappedPos.x, _Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : lastPosTilePreview;
 
-        _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.red;
+        _TilePreview.GetComponent<Renderer>().material.color = CanPlacePiece(_GridPos) ? Color.white : Color.lightBlue;
     }
 
     private void PickPiece(GameObject piece)
@@ -106,19 +106,16 @@ public class PlacementSystem : MonoBehaviour
 
     }
 
-    private void AddToGrid()
+    private void AddToGrid(Vector3Int gridPos)
     {
-        if(_SelectedObject != null && CanPlacePiece(_GridPos))
+
+        if(_SelectedObject != null && CanPlacePiece(gridPos))
         {
-            _PieceData.AddObjectAt(_GridPos, _SelectedObject.transform.localEulerAngles.z, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
-            _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = _GridPos;
+            _PieceData.AddObjectAt(_SelectedObject, gridPos, _SelectedObject.transform.localEulerAngles.z, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
+            _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = gridPos;
             
             if(!_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
                 _PiecesPlaced.Add(_TilePieceData.piecesData[_SelectedObjectIndex]);
-
-            Debug.Log($"{_SelectedObject.transform.localEulerAngles.z}");
-
-            _SelectedObject = null;
 
             if (AllPiecesCorrectPosition() && !_PuzzleSolved)
             {
@@ -126,7 +123,42 @@ public class PlacementSystem : MonoBehaviour
                 Debug.Log("Puzzle Solved");
                 _PuzzleSolved = true;
             }
+
+            if (_PieceData.PieceInThisPosition(gridPos) != _SelectedObject)
+            {
+                SwitchPieces();
+                return;
+            }
+
+            _SelectedObject = null;
+
         }
+    }
+
+    private void SetRandomPos()
+    {
+        for (int y = -1; y < -4; y++)
+        {
+            for (int x = -1; x < -4; x++)
+            {
+                Vector3Int currentVector = new Vector3Int(x, y);
+
+                if(_PieceData.PieceInThisPosition(currentVector) == null)
+                {
+                    _GridPos = currentVector;
+                    _SnappedPos = _Grid.GetCellCenterWorld(_GridPos);
+                    _SelectedObject.transform.position = new Vector3(_SnappedPos.x, _Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z);
+                }
+            }
+        }
+    }
+
+    private void SwitchPieces()
+    {
+        GameObject currentPiece = _PieceData.PieceInThisPosition(_GridPos);
+
+        currentPiece.GetComponent<TilePiece>().Interact();
+        currentPiece.GetComponent<TilePiece>().ignoreNextPiece = true;
     }
 
     private bool CanPlacePiece(Vector3 gridPos)

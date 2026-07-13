@@ -5,10 +5,10 @@ public class GridData
 {
     public Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
 
-    public void AddObjectAt(Vector3 gridPos, float rot, int id, int pieceIndex)
+    public void AddObjectAt(GameObject piece,Vector3 gridPos, float rot, int id, int pieceIndex)
     {
         Vector3 positionToOccupy = gridPos;
-        PlacementData data = new PlacementData(positionToOccupy,rot,id,pieceIndex);
+        PlacementData data = new PlacementData(piece,positionToOccupy,rot,id,pieceIndex);
 
         if (_PlacedPieces.ContainsKey(positionToOccupy)){
             return;
@@ -34,7 +34,6 @@ public class GridData
         if (_PlacedPieces.ContainsKey(positionToOccupy)){
             _PlacedPieces.Remove(positionToOccupy);
         }
-
     }
 
 
@@ -63,25 +62,36 @@ public class GridData
 
     public bool CanPlacePiece(Vector3 gridPos, Vector2 gridMinSize, Vector3 gridMaxSize)
     {
-        Vector3 positionToOccupy = gridPos;
-
-        if (_PlacedPieces.ContainsKey(positionToOccupy) || !PieceInsideGrid(gridPos, gridMinSize, gridMaxSize))
+        if (!PieceInsideGrid(gridPos, gridMinSize, gridMaxSize))
             return false;
 
         return true;
+    }
+
+    public GameObject PieceInThisPosition(Vector3 gridPos)
+    {
+        Vector3 positionToOccupy = gridPos;
+
+        if (_PlacedPieces.ContainsKey(positionToOccupy))
+            return _PlacedPieces[gridPos].piece;
+
+        return null;
     }
 }
 
 public class PlacementData
 {
+    public GameObject piece;
+
     public Vector3 occupiedPositions;
 
     public float rotation;
     public int ID { get; private set; }
     public int PlacedPieceIndex { get; private set; }
 
-    public PlacementData(Vector3 occupiedPos, float rot, int id, int placedObjectindex)
+    public PlacementData(GameObject obj,Vector3 occupiedPos, float rot, int id, int placedObjectindex)
     {
+        piece = obj;
         occupiedPositions = occupiedPos;
         rotation = rot;
         ID = id;

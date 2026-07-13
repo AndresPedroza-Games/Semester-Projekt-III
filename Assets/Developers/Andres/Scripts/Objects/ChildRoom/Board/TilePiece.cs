@@ -15,7 +15,8 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
     private float _Steps;
 
     private bool _CanInteract;
-    private bool _PiecePicked;
+    public bool piecePicked;
+    public bool ignoreNextPiece;
 
     private void Awake()
     {
@@ -47,25 +48,32 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
             _EventSystemChildRoom.PickPiece(this.gameObject);
             Highlight();
 
-            Debug.Log("Piece picked");
-            _PiecePicked = true;
+            piecePicked = true;
         }
     }
 
 
 	private void PlaceTile()
     {
-        if (!_PiecePicked)
+        if (!piecePicked)
             return;
+
+        if (ignoreNextPiece)
+        {
+            ignoreNextPiece = false;
+            return;
+        }
 
         transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
         RemoveHighlight();
-        _PiecePicked = false;
+        piecePicked = false;
+        Debug.Log("Piece Placed");
+
     }
 
     private void RotatePiece(Vector2 scroll) {
 
-        if (!_PiecePicked)
+        if (!piecePicked)
             return;
 
         switch (scroll.y)
