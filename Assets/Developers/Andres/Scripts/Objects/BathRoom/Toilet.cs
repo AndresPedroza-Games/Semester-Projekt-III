@@ -6,36 +6,40 @@ public class Toilet : MonoBehaviour, IInteractable
 {
     [Header("Animation Settings")]
 
-    [SerializeField] private Transform _PivotPoint;
     [SerializeField] private Ease _Transition;
     [SerializeField] private float _Duration;
 
     [Header("Detection Settings")]
-
     [SerializeField] private Vector3 _Size = new Vector3(0.3f,0.3f,0.3f);
     [SerializeField] private Transform _Center;
     [SerializeField] private float _MaxDistance;
 
     private float _Angle;
     private bool _IsOpen;
-     
+
+    private void Awake()
+    {
+        _IsOpen = false;
+    }
+
+    private void Update()
+    {
+        if(_IsOpen)
+            Flush();
+
+    }
+
     public void Interact()
     {
-        //OpenClose();
-        _Angle = -0.003f;
-
-        AnimateVisuals2(_Transition,_Duration);
-        StartCoroutine(ReturnPos());
-
-        Flush();
+        OpenClose();
     }
 
     private void Flush()
     {
         foreach (RaycastHit hit in DetectObjects())
         {
-            if(hit.collider.GetType() != typeof(PlayerManager))
-                Debug.Log("Hit");
+            if(hit.collider.GetType() != typeof(PlayerManager) && hit.collider.GetType() != typeof(Scissors) && hit.collider.GetType() != typeof(Toilet))
+                Debug.Log(hit.collider.name);
         }
 
         if (DetectObjects().Length <= 0)
@@ -44,7 +48,7 @@ public class Toilet : MonoBehaviour, IInteractable
     
     private RaycastHit[] DetectObjects()
     {
-        return Physics.BoxCastAll(_Center.position, _Center.position, _Size, Quaternion.identity, _MaxDistance);
+        return Physics.BoxCastAll(_Center.position, _Center.position, _Size, Quaternion.identity,_MaxDistance);
     }
 
     public bool CanInteract(HoldController holdController)
@@ -63,12 +67,12 @@ public class Toilet : MonoBehaviour, IInteractable
 
         switch (_IsOpen)
         {
-            case true:
+            case false:
                 _Angle = 0;
                 break;
 
-            case false:
-                _Angle = 90;
+            case true:
+                _Angle = 60;
                 break;
         }
 
@@ -77,19 +81,13 @@ public class Toilet : MonoBehaviour, IInteractable
 
     private void AnimateVisuals(Ease ease, float duration)
     {
-        _PivotPoint.DOLocalRotateQuaternion(Quaternion.Euler(-_Angle, 0f, 0f), duration).SetEase(ease).SetLink(gameObject);
+        transform.DOLocalRotateQuaternion(Quaternion.Euler(-_Angle, 0f, 0f), duration).SetEase(ease).SetLink(gameObject);
     }
 
-    private void AnimateVisuals2(Ease ease, float duration)
+    private void OnDrawGizmos()
     {
-        _PivotPoint.DOLocalMoveY(_Angle, duration).SetEase(ease).SetLink(gameObject);
-    }
+        Gizmos.color = Color.blue;
 
-    private IEnumerator ReturnPos()
-    {
-        yield return new WaitForSeconds(_Duration);
-
-        _Angle = 0;
-        AnimateVisuals2(_Transition, _Duration);
+        Gizmos.DrawWireCube(_Center.position, _Size);
     }
 }
