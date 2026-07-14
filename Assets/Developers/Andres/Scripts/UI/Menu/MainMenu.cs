@@ -18,7 +18,7 @@ public class MainMenu : MenuManager {
 
 
 	public override async void StartGame() {
-		//If GameManager.Instance.LastScene != null
+		//If lastScene != null
 		// Load lastScene
 		// SetPlayerPos(lastScene)
 		//else

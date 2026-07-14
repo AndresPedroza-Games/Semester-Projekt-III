@@ -59,14 +59,8 @@ public class Door : MonoBehaviour, IInteractable {
 		_doorInteractionState = initDoorInteractionState;
 	}
 
-    private void Start()
-    {
-		if (EventSystemBathroom.instance != null)
-			EventSystemBathroom.instance.onTurnOnShower += () => _doorInteractionState = DoorInteractionState.Interactable;
-    }
 
-
-    private void OnEnable() {
+	private void OnEnable() {
 		_eventSystemController = EventSystemController.Instance;
 		_eventSystemController.onItemPicked += OnItemPicked;
 		_eventSystemController.onItemDropped += OnItemDropped;

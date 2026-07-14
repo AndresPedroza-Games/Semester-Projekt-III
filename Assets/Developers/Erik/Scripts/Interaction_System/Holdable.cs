@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable, IFlushable {
+public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable {
 
 	[Header("---Hold Definition---")]
 	[SerializeField] private HoldDefinition holdDefinition;
@@ -128,8 +128,4 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 		_renderer.material.SetFloat(_borderThickness, 0f);
 	}
 
-    public void Flush()
-    {
-		gameObject.SetActive(false);
-    }
 }

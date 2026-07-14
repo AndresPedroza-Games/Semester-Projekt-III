@@ -31,15 +31,6 @@ public class ShowerValve : MonoBehaviour, IInteractable
         _Fog = FindFirstObjectByType<VolumetricAdditionalLight>(FindObjectsInactive.Include);
     }
 
-    private void Update()
-    {
-        if (_Steps == 5 && !_IsCompleted)
-        {
-            _IsCompleted = true;
-            _EventSystemBathroom.TurnOnShower();
-        }
-    }
-
     public bool CanInteract(HoldController holdController)
     {
         if (holdController.HasObject || _IsCompleted)
@@ -64,6 +55,14 @@ public class ShowerValve : MonoBehaviour, IInteractable
     private void Rotate()
     {
         _Steps++;
+        
+        if (_Steps == 5 && !_IsCompleted)
+        {
+            _IsCompleted = true;
+            _EventSystemBathroom.TurnOnShower();
+            door.SetDoorInteractionState(DoorInteractionState.Interactable);
+        }
+
 
         _Steps = Mathf.Clamp(_Steps, 0, 5);
 
