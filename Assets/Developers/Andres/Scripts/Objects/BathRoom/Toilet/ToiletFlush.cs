@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class ToiletFlush : MonoBehaviour, IInteractable
 {
+    [SerializeField] private ParticleSystem _ParticleSystem;
+
     private ToiletDetector _ToiletDetector;
 
     private void Start()
@@ -25,5 +27,6 @@ public class ToiletFlush : MonoBehaviour, IInteractable
     public void Interact()
     {
         _ToiletDetector.Flush();
+        _ParticleSystem.Play();
     }
 }
