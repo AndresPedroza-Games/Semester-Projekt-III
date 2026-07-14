@@ -15,6 +15,9 @@ public class ShowerValve : MonoBehaviour, IInteractable
     [SerializeField] private Ease _Trasition;
     [SerializeField] private float _Duration;
 
+    [Header("---Door---")]
+    [SerializeField] private Door door;
+
     private float _Angle;
     private int _Steps;
     public static bool _IsCompleted;
@@ -38,10 +41,7 @@ public class ShowerValve : MonoBehaviour, IInteractable
 
     public CrosshairType GetCrosshairType(HoldController holdController)
     {
-        if (CanInteract(holdController))
-            return CrosshairType.Interactable;
-
-        return CrosshairType.Default;
+        return _IsCompleted ? CrosshairType.Default : CrosshairType.RotateCw;
     }
 
     public void Interact()

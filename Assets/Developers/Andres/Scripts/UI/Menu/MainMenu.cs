@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 
 public class MainMenu : MenuManager {
 
-	[SerializeField] private List<SceneReference> scenesToLoadOnStart;
+	[SerializeField] private SceneReference sceneToLoadOnStart;
 	private bool _hasSpawn;
 
 
@@ -23,11 +22,9 @@ public class MainMenu : MenuManager {
 		// Load lastScene
 		// SetPlayerPos(lastScene)
 		//else
-		foreach (SceneReference scene in scenesToLoadOnStart) {
-			await WorldSceneManager.Instance.LoadScene(scene);
-			if (!_hasSpawn)
-				SetPlayerPos(scene);
-		}
+		await WorldSceneManager.Instance.LoadScene(sceneToLoadOnStart);
+		if (!_hasSpawn)
+			SetPlayerPos(sceneToLoadOnStart);
 
 		await WorldSceneManager.Instance.UnloadScene(BuildSettingsLoader.StartupScene);
 
@@ -37,11 +34,11 @@ public class MainMenu : MenuManager {
 
 	private void SetPlayerPos(SceneReference scene) {
 		GameObject spawn = PersistentStartup.SearchForPlayerSpawn(scene);
-		
+
 		if (!spawn) return;
-		
+
 		GameManager.Instance.Player.transform.position = spawn.transform.position;
-		
+
 		_hasSpawn = true;
 	}
 
