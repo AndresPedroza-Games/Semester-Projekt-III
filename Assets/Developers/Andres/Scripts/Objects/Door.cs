@@ -210,5 +210,4 @@ public class Door : MonoBehaviour, IInteractable {
 	public void SetDoorInteractionState(DoorInteractionState newState) {
 		_doorInteractionState = newState;
 	}
-
 }
