@@ -14,6 +14,7 @@ public class ShowerValve : MonoBehaviour, IInteractable
     [Header("Animation Settings")]
     [SerializeField] private Ease _Trasition;
     [SerializeField] private float _Duration;
+    [SerializeField] private Transform _PivotPoint;
 
     private float _Angle;
     private int _Steps;
@@ -67,14 +68,14 @@ public class ShowerValve : MonoBehaviour, IInteractable
 
         _Steps = Mathf.Clamp(_Steps, 0, 5);
 
-        _Angle = _Steps * 36f;
+        _Angle = _Steps * 10f;
 
         AnimateVisuals(_Trasition, _Duration);
     }
 
     private void AnimateVisuals(Ease ease, float duration)
     {
-        transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject);
+        _PivotPoint.DOLocalRotateQuaternion(Quaternion.Euler(0f, 0f, _Angle), duration).SetEase(ease).SetLink(gameObject);
     }
 
     private IEnumerator IncreaseFog()

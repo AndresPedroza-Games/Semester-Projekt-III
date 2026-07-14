@@ -37,7 +37,10 @@ public class Mirror : MonoBehaviour, IInteractable
 
     public CrosshairType GetCrosshairType(HoldController holdController)
     {
-        return CrosshairType.Interactable;
+        if (holdController.HoldGameObject.GetComponent<Holdable>().HoldDefinition is SocketHoldDefinitionSO)
+            return CrosshairType.Interactable;
+
+        return CrosshairType.Default;
     }
 
     public void Interact()

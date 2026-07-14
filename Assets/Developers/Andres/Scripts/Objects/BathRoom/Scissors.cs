@@ -1,4 +1,3 @@
-using UnityEngine;
 
 public class Scissors : SocketItem
 {
@@ -20,6 +19,7 @@ public class Scissors : SocketItem
 
         base.Hold(holder);
         _EventSystemBathroom.TakeScissors();
+
     }
 
     public override void UseItem()

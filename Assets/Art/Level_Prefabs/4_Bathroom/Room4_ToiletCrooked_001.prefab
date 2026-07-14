@@ -5047,9 +5047,6 @@ PrefabInstance:
       addedObject: {fileID: 8643687059542382930}
     - targetCorrespondingSourceObject: {fileID: 2530922730998507457, guid: 81832cbe88880944c851a7d01567e4c0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8295720089081596505}
-    - targetCorrespondingSourceObject: {fileID: 2530922730998507457, guid: 81832cbe88880944c851a7d01567e4c0, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1468684944463541734}
   m_SourcePrefab: {fileID: 100100000, guid: 81832cbe88880944c851a7d01567e4c0, type: 3}
 --- !u!1 &5252642233985976456 stripped
@@ -5079,23 +5076,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 2271671183071365302, guid: 81832cbe88880944c851a7d01567e4c0, type: 3}
---- !u!114 &8295720089081596505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5252642233985976456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c7e5201f89aa6e47beb97442e84c714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Toilet
-  _Transition: 0
-  _Duration: 1
-  _Size: {x: 0.3, y: 0.1, z: 0.4}
-  _Center: {fileID: 5377166707823285929}
-  _MaxDistance: 0.5
 --- !u!114 &1468684944463541734
 MonoBehaviour:
   m_ObjectHideFlags: 0
