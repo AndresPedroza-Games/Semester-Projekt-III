@@ -1,10 +1,6 @@
 using UnityEngine;
 
-public class MiniPiece : Holdable
+public class MiniPiece : MonoBehaviour
 {
     public PieceData pieceData;
-
-    public override void Interact()
-    {
-    }
 }
