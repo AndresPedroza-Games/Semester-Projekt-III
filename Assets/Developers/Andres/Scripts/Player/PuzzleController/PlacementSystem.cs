@@ -130,6 +130,7 @@ public class PlacementSystem : MonoBehaviour
                 return;
             }
 
+            _Board.currentPiece = null;
             _SelectedObject = null;
 
         }
@@ -179,16 +180,5 @@ public class PlacementSystem : MonoBehaviour
         }
 
         return true;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        IInteractable isInteractable = collision.gameObject.GetComponent<IInteractable>();
-
-        if (isInteractable != null)
-        {
-            GetComponentInParent<Board>().AddPieceToList(collision.gameObject);
-            collision.gameObject.SetActive(false);
-        }
     }
 }

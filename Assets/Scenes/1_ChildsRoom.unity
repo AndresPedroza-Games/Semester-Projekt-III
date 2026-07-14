@@ -2572,6 +2572,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8323558641163279826, guid: 384ebdc480428c9408b127185954e925, type: 3}
+      propertyPath: m_Layer
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8515958107616352486, guid: 384ebdc480428c9408b127185954e925, type: 3}
       propertyPath: m_LocalPosition.z
       value: 8
@@ -2582,7 +2586,13 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6062083886659512054, guid: 384ebdc480428c9408b127185954e925, type: 3}
       insertIndex: -1
       addedObject: {fileID: 560879533}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8323558641163279826, guid: 384ebdc480428c9408b127185954e925, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2085902831}
+    - targetCorrespondingSourceObject: {fileID: 8323558641163279826, guid: 384ebdc480428c9408b127185954e925, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2085902830}
   m_SourcePrefab: {fileID: 100100000, guid: 384ebdc480428c9408b127185954e925, type: 3}
 --- !u!4 &1709683479 stripped
 Transform:
@@ -3086,6 +3096,44 @@ Transform:
   - {fileID: 1309223912}
   m_Father: {fileID: 1473351308}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2085902828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8323558641163279826, guid: 384ebdc480428c9408b127185954e925, type: 3}
+  m_PrefabInstance: {fileID: 1709683478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2085902830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085902828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8480753d438d3c840a438f0670174b86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoardDetector
+--- !u!65 &2085902831
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085902828}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.6, y: 0.1, z: 0.6}
+  m_Center: {x: -0.3, y: 0.1, z: -0.3}
 --- !u!4 &2110503322 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849043119951817942, guid: 24b3dc9945b11654ea8d6b28431f4867, type: 3}

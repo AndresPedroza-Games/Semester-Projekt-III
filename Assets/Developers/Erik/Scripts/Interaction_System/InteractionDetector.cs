@@ -30,7 +30,7 @@ public class InteractionDetector : MonoBehaviour {
 
 		Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
-		if (!Physics.Raycast(ray, out RaycastHit hit, interactionDistance, layermask))
+		if (!Physics.Raycast(ray, out RaycastHit hit, interactionDistance, layermask, QueryTriggerInteraction.Ignore))
 			return;
 
 		if (!hit.collider.TryGetComponent(out IInteractable interactable))

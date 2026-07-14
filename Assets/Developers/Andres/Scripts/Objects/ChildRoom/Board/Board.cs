@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using UnityEngine.InputSystem;
 
 public class Board : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class Board : MonoBehaviour
     public List<GameObject> createdPieces = new List<GameObject>();
 
     private InteractionDetector _InteractionDetector;
-    private GameObject _CurrentPiece;
+    public GameObject currentPiece;
     private PlacementSystem _PlacementSystem;
 
     private void Start()
@@ -66,9 +65,9 @@ public class Board : MonoBehaviour
             if (alreadyCreated)
                 continue;
 
-            _CurrentPiece = Instantiate(pieceData.prefab, _PieceSpawn.position, RandomRotation(), _PiecesParent);
+            currentPiece = Instantiate(pieceData.prefab, _PieceSpawn.position, RandomRotation(), _PiecesParent);
 
-            createdPieces.Add(_CurrentPiece);
+            createdPieces.Add(currentPiece);
 
             _EventSystemChildRoom.PlacePiece();
         }
