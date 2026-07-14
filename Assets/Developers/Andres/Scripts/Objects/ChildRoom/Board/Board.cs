@@ -1,36 +1,29 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
-using UnityEngine.InputSystem;
 
 public class Board : MonoBehaviour
 {
+    [SerializeField] private GameObject _Camera;
     [SerializeField] private Transform _PieceSpawn;
-    [SerializeField] private Transform _PiecesParent;
     [SerializeField] private TilePieceData tilePieceData;
-    [SerializeField] private Transform _Drawer;
-
-    [Header("Animation Settings")]
-    [SerializeField] private Ease _Ease;
-    [SerializeField] private float _Duration = 0.3f;
-    private float _Angle;
 
     private EventSystemChildRoom _EventSystemChildRoom;
     public List<GameObject> piecesInv = new List<GameObject>();
     public List<GameObject> createdPieces = new List<GameObject>();
 
     private InteractionDetector _InteractionDetector;
-    private GameObject _CurrentPiece;
-    private PlacementSystem _PlacementSystem;
 
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
-        _EventSystemChildRoom.onPuzzleSolved += OpenDrawer;
-
-        _PlacementSystem = PlacementSystem.Instace;
     }
+
+
+    public CrosshairType GetCrosshairType(HoldController holdController) {
+	    return CrosshairType.Interactable;
+    }
+
 
     public void AddPieceToList(GameObject piece)
     {
@@ -39,7 +32,9 @@ public class Board : MonoBehaviour
 
         piecesInv.Add(piece);
         CreatePieces();
+        //piece.GetComponent<Holdable>().
 
+        Debug.Log("Piece added to list");
     }
 
     private void CreatePieces()
@@ -66,34 +61,19 @@ public class Board : MonoBehaviour
             if (alreadyCreated)
                 continue;
 
-            _CurrentPiece = Instantiate(pieceData.prefab, _PieceSpawn.position, RandomRotation(), _PiecesParent);
+            GameObject createdPiece = Instantiate(pieceData.prefab,_PieceSpawn.position,RandomRotation());
 
-            createdPieces.Add(_CurrentPiece);
-
-            _EventSystemChildRoom.PlacePiece();
+            createdPieces.Add(createdPiece);
         }
     }
 
     private Quaternion RandomRotation()
     {
-        Quaternion result = Quaternion.Euler(-90f,0f,0f);
+        int randomNumber = Random.Range(0,4) * 90;
+
+        Quaternion result = Quaternion.Euler(0f,randomNumber,0f);
 
         return result;
-    }
-
-    private void OpenDrawer()
-    {
-        Debug.Log("Drawer opened");
-        AnimateVisuals(_Ease, _Duration);
-    }
-
-    private void AnimateVisuals(Ease ease, float duration)
-    {
-        Sequence seq = DOTween.Sequence();
-
-        seq.SetEase(ease);
-
-        seq.Join(_Drawer.DOLocalMoveX(0.5f, duration));
     }
 
 }

@@ -7,7 +7,7 @@ public class EventSystemChildRoom : EventSystemController
 
     public Action onPiecePlaced;
     public Action<GameObject> onPiecePicked;
-    public Action<GameObject> onInteractWithBoard;
+    public Action onInteractWithBoard;
     public Action onExitBoard;
     public Action<Vector2> onRotatePiece;
     public Action onPuzzleSolved;
@@ -38,10 +38,10 @@ public class EventSystemChildRoom : EventSystemController
             onPiecePlaced.Invoke();
     }
 
-    public void InteractWithBoard(GameObject obj)
+    public void InteractWithBoard()
     {
         if (onInteractWithBoard != null)
-            onInteractWithBoard.Invoke(obj);
+            onInteractWithBoard.Invoke();
     }
 
     public void PickPiece(GameObject piece)
