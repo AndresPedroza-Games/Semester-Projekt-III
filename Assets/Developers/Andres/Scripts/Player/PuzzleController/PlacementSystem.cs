@@ -51,7 +51,7 @@ public class PlacementSystem : MonoBehaviour
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _EventSystemChildRoom.onPiecePicked += PickPiece;
         _EventSystemChildRoom.onPiecePlaced += () => AddToGrid(_GridPos);
-        _EventSystemChildRoom.onExitBoard += () => _TilePreview.SetActive(false);
+        _EventSystemChildRoom.onPuzzleSolved += () => _TilePreview.SetActive(false);
     }
 
     private void Update()
