@@ -431,6 +431,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: sceneToLoadOnStart.scenePath
+      value: Assets/Scenes/0_TutorialHallway.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: sceneToLoadOnStart.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 48623634779a0ae4eb826b96f085cebc, type: 3}
     - target: {fileID: 6048990693339960992, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: m_Name
       value: MainMenu

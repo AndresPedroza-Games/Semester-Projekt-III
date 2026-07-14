@@ -1013,6 +1013,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""NarrativeNotes"",
+            ""id"": ""c0b0cba1-e61f-4afc-8c00-14790aef4a9f"",
+            ""actions"": [
+                {
+                    ""name"": ""ReadNote"",
+                    ""type"": ""Button"",
+                    ""id"": ""39e97b60-8020-45ac-96b2-11dde1cda1ca"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""4a4a9aca-6233-4825-a688-ee08b66dc5d7"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadNote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -1052,6 +1080,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DoctorOfficePuzzle_Exit = m_DoctorOfficePuzzle.FindAction("Exit", throwIfNotFound: true);
         m_DoctorOfficePuzzle_RotatePiece = m_DoctorOfficePuzzle.FindAction("RotatePiece", throwIfNotFound: true);
         m_DoctorOfficePuzzle_ReleasePiece = m_DoctorOfficePuzzle.FindAction("ReleasePiece", throwIfNotFound: true);
+        // NarrativeNotes
+        m_NarrativeNotes = asset.FindActionMap("NarrativeNotes", throwIfNotFound: true);
+        m_NarrativeNotes_ReadNote = m_NarrativeNotes.FindAction("ReadNote", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -1062,6 +1093,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         UnityEngine.Debug.Assert(!m_Game.enabled, "This will cause a leak and performance issues, PlayerControls.Game.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_BoardPuzzle.enabled, "This will cause a leak and performance issues, PlayerControls.BoardPuzzle.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_DoctorOfficePuzzle.enabled, "This will cause a leak and performance issues, PlayerControls.DoctorOfficePuzzle.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_NarrativeNotes.enabled, "This will cause a leak and performance issues, PlayerControls.NarrativeNotes.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1896,6 +1928,102 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="DoctorOfficePuzzleActions" /> instance referencing this action map.
     /// </summary>
     public DoctorOfficePuzzleActions @DoctorOfficePuzzle => new DoctorOfficePuzzleActions(this);
+
+    // NarrativeNotes
+    private readonly InputActionMap m_NarrativeNotes;
+    private List<INarrativeNotesActions> m_NarrativeNotesActionsCallbackInterfaces = new List<INarrativeNotesActions>();
+    private readonly InputAction m_NarrativeNotes_ReadNote;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "NarrativeNotes".
+    /// </summary>
+    public struct NarrativeNotesActions
+    {
+        private @PlayerControls m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public NarrativeNotesActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "NarrativeNotes/ReadNote".
+        /// </summary>
+        public InputAction @ReadNote => m_Wrapper.m_NarrativeNotes_ReadNote;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_NarrativeNotes; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="NarrativeNotesActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(NarrativeNotesActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="NarrativeNotesActions" />
+        public void AddCallbacks(INarrativeNotesActions instance)
+        {
+            if (instance == null || m_Wrapper.m_NarrativeNotesActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_NarrativeNotesActionsCallbackInterfaces.Add(instance);
+            @ReadNote.started += instance.OnReadNote;
+            @ReadNote.performed += instance.OnReadNote;
+            @ReadNote.canceled += instance.OnReadNote;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="NarrativeNotesActions" />
+        private void UnregisterCallbacks(INarrativeNotesActions instance)
+        {
+            @ReadNote.started -= instance.OnReadNote;
+            @ReadNote.performed -= instance.OnReadNote;
+            @ReadNote.canceled -= instance.OnReadNote;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="NarrativeNotesActions.UnregisterCallbacks(INarrativeNotesActions)" />.
+        /// </summary>
+        /// <seealso cref="NarrativeNotesActions.UnregisterCallbacks(INarrativeNotesActions)" />
+        public void RemoveCallbacks(INarrativeNotesActions instance)
+        {
+            if (m_Wrapper.m_NarrativeNotesActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="NarrativeNotesActions.AddCallbacks(INarrativeNotesActions)" />
+        /// <seealso cref="NarrativeNotesActions.RemoveCallbacks(INarrativeNotesActions)" />
+        /// <seealso cref="NarrativeNotesActions.UnregisterCallbacks(INarrativeNotesActions)" />
+        public void SetCallbacks(INarrativeNotesActions instance)
+        {
+            foreach (var item in m_Wrapper.m_NarrativeNotesActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_NarrativeNotesActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="NarrativeNotesActions" /> instance referencing this action map.
+    /// </summary>
+    public NarrativeNotesActions @NarrativeNotes => new NarrativeNotesActions(this);
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Movement" which allows adding and removing callbacks.
     /// </summary>
@@ -2104,5 +2232,20 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReleasePiece(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "NarrativeNotes" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="NarrativeNotesActions.AddCallbacks(INarrativeNotesActions)" />
+    /// <seealso cref="NarrativeNotesActions.RemoveCallbacks(INarrativeNotesActions)" />
+    public interface INarrativeNotesActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "ReadNote" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnReadNote(InputAction.CallbackContext context);
     }
 }
