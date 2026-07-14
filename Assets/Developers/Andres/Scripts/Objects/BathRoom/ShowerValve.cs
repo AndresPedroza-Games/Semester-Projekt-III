@@ -47,7 +47,10 @@ public class ShowerValve : MonoBehaviour, IInteractable
 
     public CrosshairType GetCrosshairType(HoldController holdController)
     {
-        return CrosshairType.Interactable;
+        if (CanInteract(holdController))
+            return CrosshairType.Interactable;
+
+        return CrosshairType.Default;
     }
 
     public void Interact()

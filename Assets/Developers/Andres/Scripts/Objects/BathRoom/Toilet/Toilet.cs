@@ -15,40 +15,16 @@ public class Toilet : MonoBehaviour, IInteractable
     [SerializeField] private float _MaxDistance;
 
     private float _Angle;
-    private bool _IsOpen;
+    public static bool _IsOpen;
 
     private void Awake()
     {
         _IsOpen = false;
     }
 
-    private void Update()
-    {
-        if(_IsOpen)
-            Flush();
-
-    }
-
     public void Interact()
     {
         OpenClose();
-    }
-
-    private void Flush()
-    {
-        foreach (RaycastHit hit in DetectObjects())
-        {
-            if(hit.collider.GetType() != typeof(PlayerManager) && hit.collider.GetType() != typeof(Scissors) && hit.collider.GetType() != typeof(Toilet))
-                Debug.Log(hit.collider.name);
-        }
-
-        if (DetectObjects().Length <= 0)
-            Debug.Log("Empty");
-    }
-    
-    private RaycastHit[] DetectObjects()
-    {
-        return Physics.BoxCastAll(_Center.position, _Center.position, _Size, Quaternion.identity,_MaxDistance);
     }
 
     public bool CanInteract(HoldController holdController)
@@ -82,12 +58,5 @@ public class Toilet : MonoBehaviour, IInteractable
     private void AnimateVisuals(Ease ease, float duration)
     {
         transform.DOLocalRotateQuaternion(Quaternion.Euler(-_Angle, 0f, 0f), duration).SetEase(ease).SetLink(gameObject);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-
-        Gizmos.DrawWireCube(_Center.position, _Size);
     }
 }
