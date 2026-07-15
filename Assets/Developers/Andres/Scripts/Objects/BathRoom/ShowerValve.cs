@@ -16,8 +16,16 @@ public class ShowerValve : MonoBehaviour, IInteractable
     [SerializeField] private float _Duration;
     [SerializeField] private Transform _PivotPoint;
 
+    [Header("Water Settings")]
+    [SerializeField] private ParticleSystem _ParticleSystem;
+    [SerializeField] private GameObject _WaterPrefab;
+    [SerializeField] private float _TransitionSpeedWater = 1f;
+
     private float _Angle;
     private int _Steps;
+    private float _Timer;
+    private float yAxis = 0;
+
     public static bool _IsCompleted;
 
     private void Start()
@@ -35,7 +43,9 @@ public class ShowerValve : MonoBehaviour, IInteractable
         {
             _IsCompleted = true;
             _EventSystemBathroom.TurnOnShower();
+            _ParticleSystem.Stop();
         }
+
     }
 
     public bool CanInteract(HoldController holdController)
@@ -60,6 +70,9 @@ public class ShowerValve : MonoBehaviour, IInteractable
         Rotate();
 
         StartCoroutine(IncreaseFog());
+        StartCoroutine(IncreaseWater());
+
+        _ParticleSystem.Play();
     }
 
     private void Rotate()
@@ -78,6 +91,8 @@ public class ShowerValve : MonoBehaviour, IInteractable
         _PivotPoint.DOLocalRotateQuaternion(Quaternion.Euler(0f, 0f, _Angle), duration).SetEase(ease).SetLink(gameObject);
     }
 
+
+
     private IEnumerator IncreaseFog()
     {
         float timeElapsed = 0f;
@@ -93,5 +108,25 @@ public class ShowerValve : MonoBehaviour, IInteractable
             yield return null;
         }
 
+    }
+
+    private IEnumerator IncreaseWater()
+    {
+        float timeElapsed = 0f;
+        float lastY = yAxis;
+
+        while (timeElapsed < _TransitionSpeedWater)
+        {
+            float t = timeElapsed / _TransitionSpeedWater;
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            yAxis = lastY;
+            yAxis = Mathf.Lerp(yAxis, _Steps, t);
+
+            _WaterPrefab.transform.position = new Vector3(_WaterPrefab.transform.position.x, yAxis / 10, _WaterPrefab.transform.position.z);
+
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 }
