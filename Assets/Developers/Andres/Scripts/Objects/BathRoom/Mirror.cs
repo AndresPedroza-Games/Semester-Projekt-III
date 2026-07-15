@@ -1,7 +1,7 @@
-using TMPro;
-using Unity.VisualScripting;
-using UnityEngine;
 using System.Collections;
+using TMPro;
+using UnityEngine;
+
 
 public class Mirror : MonoBehaviour, IInteractable
 {
@@ -13,6 +13,7 @@ public class Mirror : MonoBehaviour, IInteractable
 
     private EventSystemBathroom _EventSystemBathroom;
     private InteractionDetector _InteractionDetector;
+    private bool _canInteract;
 
     private void Start()
     {
@@ -27,20 +28,41 @@ public class Mirror : MonoBehaviour, IInteractable
         _InteractionDetector = FindFirstObjectByType<InteractionDetector>(FindObjectsInactive.Include);
     }
 
-    public bool CanInteract(HoldController holdController)
-    {
-        if (!holdController.HasObject)
-            return false;
 
-        return holdController.HoldGameObject.GetComponent<Holdable>().HoldDefinition is SocketHoldDefinitionSO;
+    private void OnEnable() {
+	    EventSystemController.Instance.onItemPicked += OnItemPicked;
+	    EventSystemController.Instance.onItemDropped += OnItemDropped;
     }
 
-    public CrosshairType GetCrosshairType(HoldController holdController)
-    {
-        if (holdController.HoldGameObject.GetComponent<Holdable>().HoldDefinition is SocketHoldDefinitionSO)
-            return CrosshairType.Interactable;
 
-        return CrosshairType.Default;
+    private void OnDisable() {
+	    EventSystemController.Instance.onItemPicked -= OnItemPicked;
+	    EventSystemController.Instance.onItemDropped -= OnItemDropped;
+    }
+
+
+    private void OnItemPicked(GameObject obj) {
+	    if (!obj.TryGetComponent(out Holdable holdable)) return;
+	    
+	    if (holdable.HoldDefinition is SocketHoldDefinitionSO)
+		    _canInteract = true;
+    }
+    
+    
+    private void OnItemDropped(GameObject obj) {
+	    if (!obj.TryGetComponent(out Holdable holdable)) return;
+	    
+	    if (holdable.HoldDefinition is SocketHoldDefinitionSO)
+		    _canInteract = false;
+    }
+
+
+    public bool CanInteract(HoldController holdController) {
+	    return _canInteract;
+    }
+
+    public CrosshairType GetCrosshairType(HoldController holdController) {
+	    return _canInteract ? CrosshairType.Interactable : CrosshairType.Default;
     }
 
     public void Interact()
