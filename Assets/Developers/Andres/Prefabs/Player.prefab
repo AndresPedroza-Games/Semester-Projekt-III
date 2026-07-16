@@ -338,7 +338,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 377546370845797306, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: dropOffset
-      value: 0.15
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 377546370845797306, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
+      propertyPath: defaultOffset
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 769125469484169754, guid: adcac5aa127ecfe4583835027a3503cf, type: 3}
       propertyPath: m_Name

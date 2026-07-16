@@ -65,7 +65,7 @@ public class Picker : MonoBehaviour {
 	private void SetPosAndParent(Vector3 dropPos, Holdable holdable) {
 
 		holdable.transform.SetParent(holdable.StartParentIfSocketHold);
-		holdable.transform.localEulerAngles = new Vector3(0f, holdPoint.eulerAngles.y, Random.Range(-90f, 90f));
+		holdable.transform.eulerAngles = new Vector3(0f, holdPoint.eulerAngles.y, Random.Range(-90f, 90f));
 
 
 		holdable.Rigidbody.isKinematic = false;
