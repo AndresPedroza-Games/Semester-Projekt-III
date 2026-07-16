@@ -75,7 +75,7 @@ public class Board : MonoBehaviour
 
     private Quaternion RandomRotation()
     {
-        Quaternion result = Quaternion.Euler(-90f,0f,0f);
+        Quaternion result = Quaternion.Euler(0f,-90f,0f);
 
         return result;
     }
