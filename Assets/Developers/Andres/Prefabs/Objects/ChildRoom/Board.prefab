@@ -191,7 +191,7 @@ Transform:
   m_GameObject: {fileID: 2793159448985348896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.28707033, y: 0.013999999, z: -0.29056662}
+  m_LocalPosition: {x: -0.3, y: 0.013999999, z: -0.295}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -430,8 +430,6 @@ GameObject:
   - component: {fileID: 8543288662958412316}
   - component: {fileID: 4101078582096242739}
   - component: {fileID: 117977922159765141}
-  - component: {fileID: 3511569830574003193}
-  - component: {fileID: 3680013120223537249}
   m_Layer: 4
   m_Name: Pivot
   m_TagString: Untagged
@@ -479,39 +477,6 @@ BoxCollider:
   m_Size: {x: 0.6, y: 0.1, z: 0.6}
   m_Center: {x: -0.3, y: 0.1, z: -0.3}
 --- !u!114 &117977922159765141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323558641163279826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8480753d438d3c840a438f0670174b86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BoardDetector
---- !u!65 &3511569830574003193
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8323558641163279826}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6, y: 0.1, z: 0.6}
-  m_Center: {x: -0.3, y: 0.1, z: -0.3}
---- !u!114 &3680013120223537249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
