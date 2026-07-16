@@ -10,6 +10,7 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 
 	private CinemachineVirtualCamera _playerCam;
 	private bool _isInteracting;
+	public bool _CanExitInteraction;
 
 
 	private void Awake() {
@@ -19,7 +20,10 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 
 		noteCam.gameObject.SetActive(false);
 		noteCam.LookAt = transform;
-	}
+
+		_CanExitInteraction = true;
+
+    }
 
 
 	private void OnEnable() {
@@ -35,7 +39,11 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 
 
 	public void Interact() {
-		_isInteracting = !_isInteracting;
+
+        if (!_CanExitInteraction)
+            return;
+
+        _isInteracting = !_isInteracting;
 
 		if (!_isInteracting)
 			return;
@@ -49,11 +57,18 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 			noteCam.gameObject.SetActive(true);
 
 			_playerCam.gameObject.SetActive(false);
-		}
+
+			if (EventSystemTestRoom.instance != null)
+				_CanExitInteraction = false;
+        }
 	}
 
 
 	private void ExitNote(InputAction.CallbackContext ctx) {
+
+		if (!_CanExitInteraction)
+			return;
+
 		InputManager.Instance.ReadNote.Disable();
 		SetInputMapsActive(true);
 		
