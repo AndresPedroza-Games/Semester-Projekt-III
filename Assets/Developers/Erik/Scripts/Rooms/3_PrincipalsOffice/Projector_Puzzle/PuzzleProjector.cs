@@ -15,7 +15,11 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	[SerializeField] private int correctProjectorAngle;
 
 	[Header("---On Solved---")]
-	[SerializeField] private List<SceneReference> scenesToLoad;
+	[SerializeField] private SceneReference sceneToLoad;
+
+	[Header("---Walls---")]
+	[SerializeField] private GameObject wallSolid;
+	[SerializeField] private GameObject wallDoor;
 
 	[Header(("---Animation---"))]
 	[SerializeField] private float projectorRotationDuration = 1f;
@@ -57,6 +61,9 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		SetLights(false);
 
 		_insertedFilms = new Film[filmPositions.Count];
+		
+		wallSolid.SetActive(true);
+		wallDoor.SetActive(false);
 	}
 
 
@@ -267,10 +274,11 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		SetLights(false);
 		SetAllDecals(false);
 		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
+		
+		wallDoor.SetActive(true);
+		wallSolid.SetActive(false);
 
-		foreach (SceneReference scene in scenesToLoad) {
-			await WorldSceneManager.Instance.LoadScene(scene);
-		}
+		await WorldSceneManager.Instance.LoadScene(sceneToLoad);
 	}
 
 
