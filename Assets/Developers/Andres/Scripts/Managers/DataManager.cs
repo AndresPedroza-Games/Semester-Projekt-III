@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    public DataContainer dataContainer;
+    // public DataContainer dataContainer;
 
     //public List<GameObject> itemsPicked;
-    public List<GameObject> doorsOpened;
+    // public List<GameObject> doorsOpened;
 
-    public GameObject currentGameObject;
-    public Transform playerPosition;
+    // public GameObject currentGameObject;
+    // public Transform playerPosition;
 
     private EventSystemController eventSystemController;
 
@@ -18,13 +18,13 @@ public class DataManager : MonoBehaviour
     {
         eventSystemController = EventSystemController.Instance;
 
-        eventSystemController.onItemPicked += (item) => currentGameObject = item;
-        eventSystemController.onItemDropped += (item) => currentGameObject = null;
+        // eventSystemController.onItemPicked += (item) => currentGameObject = item;
+        // eventSystemController.onItemDropped += (item) => currentGameObject = null;
 
         //eventSystemController.onOpenDoor += (item) => AddData(doorsOpened, item);
-        //eventSystemController.onCloseDoor += SaveGame;
+        eventSystemController.onDoorClosed += SaveGame;
 
-        eventSystemController.onSaveGame += SaveGame;
+        // eventSystemController.onSaveGame += SaveGame;
         eventSystemController.onExitGame += ClearData;
     }
 
@@ -37,26 +37,28 @@ public class DataManager : MonoBehaviour
         Debug.Log($"Data has been saved: {itemPicked.GetType()}");
     }
 
-    private void SaveGame()
-    {
-        dataContainer.playerPosition = this.playerPosition;
-        dataContainer.currentGameObject = this.currentGameObject;
+    private void SaveGame(string scene) {
+	    GameManager.Instance.LastScene = scene;
+	    
+	    //dataContainer.playerPosition = this.playerPosition;
+	    //dataContainer.currentGameObject = this.currentGameObject;
 
-        //foreach (GameObject item in itemsPicked)
-        //{
-        //    AddData(dataContainer.itemsPicked, item);
-        //}
+	    //foreach (GameObject item in itemsPicked)
+	    //{
+	    //    AddData(dataContainer.itemsPicked, item);
+	    //}
 
-        foreach (GameObject item in doorsOpened)
-        {
-            AddData(dataContainer.doorsOpened, item);
-        }
+	    // foreach (GameObject item in doorsOpened)
+	    // {
+	    //     AddData(dataContainer.doorsOpened, item);
+	    // }
     }
 
     private void ClearData()
     {
+	    GameManager.Instance.LastScene = null;
         //itemsPicked.Clear();
-        doorsOpened.Clear();
-        currentGameObject = null;
+        // doorsOpened.Clear();
+        // currentGameObject = null;
     }
 }   

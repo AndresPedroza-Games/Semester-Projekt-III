@@ -57,7 +57,7 @@ public class PersistentStartup : MonoBehaviour {
 	}
 
 
-	private GameObject SearchForPlayerSpawn(string sceneName) {
+	public static GameObject SearchForPlayerSpawn(string sceneName) {
 		GameObject[] roots = SceneManager.GetSceneByName(sceneName).GetRootGameObjects();
 
 		foreach (GameObject root in roots) {

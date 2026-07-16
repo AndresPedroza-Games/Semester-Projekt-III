@@ -1,13 +1,16 @@
+using Cinemachine;
 using UnityEngine;
 
 
 public class MainMenu : MenuManager {
 
 	[SerializeField] private SceneReference sceneToLoadOnStart;
-	private bool _hasSpawn;
+	private CinemachinePOV _cinePovComp;
 
 
 	private void Start() {
+		_cinePovComp = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachinePOV>();
+
 		InputManager.Instance.Pause.Disable();
 
 		if (GetScene(0)) {
@@ -18,13 +21,7 @@ public class MainMenu : MenuManager {
 
 
 	public override async void StartGame() {
-		//If GameManager.Instance.LastScene != null
-		// Load lastScene
-		// SetPlayerPos(lastScene)
-		//else
-		await WorldSceneManager.Instance.LoadScene(sceneToLoadOnStart);
-		if (!_hasSpawn)
-			SetPlayerPos(sceneToLoadOnStart);
+		CheckAndLoadScene();
 
 		await WorldSceneManager.Instance.UnloadScene(BuildSettingsLoader.StartupScene);
 
@@ -32,14 +29,28 @@ public class MainMenu : MenuManager {
 	}
 
 
-	private void SetPlayerPos(SceneReference scene) {
-		GameObject spawn = PersistentStartup.SearchForPlayerSpawn(scene);
+	private async void CheckAndLoadScene() {
+		string lastScene = GameManager.Instance.LastScene;
 
-		if (!spawn) return;
+		if (!string.IsNullOrEmpty(lastScene)) {
+			await WorldSceneManager.Instance.LoadScene(lastScene);
+			GameObject spawn = PersistentStartup.SearchForPlayerSpawn(lastScene);
+			if (!spawn) return;
+			SetPlayerPosAndRot(spawn.transform);
+		}
+		else {
+			await WorldSceneManager.Instance.LoadScene(sceneToLoadOnStart);
+			GameObject spawn = PersistentStartup.SearchForPlayerSpawn(sceneToLoadOnStart);
+			if (!spawn) return;
+			SetPlayerPosAndRot(spawn.transform);
+		}
+	}
 
-		GameManager.Instance.Player.transform.position = spawn.transform.position;
 
-		_hasSpawn = true;
+	private void SetPlayerPosAndRot(Transform spawn) {
+		GameManager.Instance.Player.transform.position = spawn.position;
+		_cinePovComp.m_HorizontalAxis.Value = spawn.eulerAngles.y;
+		_cinePovComp.m_VerticalAxis.Value = 0f;
 	}
 
 
