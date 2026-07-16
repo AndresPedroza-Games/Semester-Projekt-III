@@ -92,7 +92,7 @@ public class Board : MonoBehaviour
 
         seq.SetEase(ease);
 
-        seq.Join(_Drawer.DOLocalMoveX(0.5f, duration));
+        seq.Join(_Drawer.DOLocalMoveX(-0.5f, duration));
     }
 
 }
