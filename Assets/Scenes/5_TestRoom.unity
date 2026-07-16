@@ -467,30 +467,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vent
       objectReference: {fileID: 0}
-    - target: {fileID: 2814371284360032465, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2814371284360032465, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2814371284360032465, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2814371284360032465, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2814371284360032465, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3685657729003481949, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: _Hinge
-      value: 
-      objectReference: {fileID: 327124483}
     - target: {fileID: 8973554602660173955, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.0000002
@@ -533,20 +509,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8973554602660173955, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 956104644}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
 --- !u!4 &327124482 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8973554602660173955, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-  m_PrefabInstance: {fileID: 327124481}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &327124483 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2814371284360032465, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
   m_PrefabInstance: {fileID: 327124481}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &346844114
@@ -1094,76 +1062,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1568167030707597775, guid: 52bc917907f83f44d9ef8b727c946c6e, type: 3}
   m_PrefabInstance: {fileID: 842521684}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &956104643
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 956104644}
-  - component: {fileID: 956104645}
-  - component: {fileID: 956104646}
-  m_Layer: 0
-  m_Name: Trigger
-  m_TagString: Trigger
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &956104644
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956104643}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.514, y: 1.108, z: -0.732}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 327124482}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &956104645
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956104643}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &956104646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956104643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fc10c7dec7e029448ab32fdbff6db2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LoadSceneTrigger
-  scenesToLoad: []
-  scenesToUnload:
-  - sceneAsset: {fileID: 102900000, guid: 8cc23000dbb03dc45b22fed12f1429ce, type: 3}
-    scenePath: Assets/Scenes/Hall_4.unity
 --- !u!1001 &972097361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1382,6 +1280,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1651105065}
   - {fileID: 1932212400}
   - {fileID: 1573987637}
   - {fileID: 327124482}
@@ -1902,6 +1801,76 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8998456, y: 1.1995981, z: 0.22010864}
   m_Center: {x: 0.4499228, y: 0.5997989, z: 0.08010083}
+--- !u!1 &1651105064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651105065}
+  - component: {fileID: 1651105067}
+  - component: {fileID: 1651105066}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Trigger
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1651105065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651105064}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.4860003, y: 1.1080002, z: -0.7319985}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1158655267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651105066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651105064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc10c7dec7e029448ab32fdbff6db2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LoadSceneTrigger
+  scenesToLoad: []
+  scenesToUnload:
+  - sceneAsset: {fileID: 102900000, guid: 8bf4032aceb8c6b4f8abe336f94e500b, type: 3}
+    scenePath: Assets/Scenes/4_Bathroom.unity
+--- !u!65 &1651105067
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651105064}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1755893410
 PrefabInstance:
   m_ObjectHideFlags: 0
