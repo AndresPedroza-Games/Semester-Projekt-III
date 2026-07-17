@@ -79,7 +79,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
         switch (scroll.y)
         {
             case > 0:
-                _Steps++;
+                _Steps--;
                 break;
 
             case < 0:
@@ -92,7 +92,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
         if (_Steps == 4 || _Steps == -4)
             _Steps = 0;
 
-        transform.rotation = Quaternion.Euler(-90f, 0f, _Steps * 90f);
+        transform.rotation = Quaternion.Euler(0f, _Steps * 90f, 0f);
 
 
         Debug.Log("Rotate");

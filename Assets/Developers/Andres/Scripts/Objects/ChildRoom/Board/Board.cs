@@ -75,7 +75,7 @@ public class Board : MonoBehaviour
 
     private Quaternion RandomRotation()
     {
-        Quaternion result = Quaternion.Euler(-90f,0f,0f);
+        Quaternion result = Quaternion.Euler(0f,-90f,0f);
 
         return result;
     }
@@ -92,7 +92,7 @@ public class Board : MonoBehaviour
 
         seq.SetEase(ease);
 
-        seq.Join(_Drawer.DOLocalMoveX(0.5f, duration));
+        seq.Join(_Drawer.DOLocalMoveX(-0.5f, duration));
     }
 
 }
