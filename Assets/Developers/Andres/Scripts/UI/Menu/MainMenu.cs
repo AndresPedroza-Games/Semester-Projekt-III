@@ -30,10 +30,14 @@ public class MainMenu : MenuManager {
 
 
 	private async void CheckAndLoadScene() {
-		string lastScene = GameManager.Instance.LastScene;
+		string lastScene = DataManager.LastScene;
 
 		if (!string.IsNullOrEmpty(lastScene)) {
 			await WorldSceneManager.Instance.LoadScene(lastScene);
+			
+			Door door = PersistentStartup.GetDoor(lastScene);
+			door.CloseDoor();
+			
 			GameObject spawn = PersistentStartup.SearchForPlayerSpawn(lastScene);
 			if (!spawn) return;
 			SetPlayerPosAndRot(spawn.transform);
@@ -51,6 +55,11 @@ public class MainMenu : MenuManager {
 		GameManager.Instance.Player.transform.position = spawn.position;
 		_cinePovComp.m_HorizontalAxis.Value = spawn.eulerAngles.y;
 		_cinePovComp.m_VerticalAxis.Value = 0f;
+	}
+
+
+	private Door GetDoor() {
+		return FindFirstObjectByType<Door>();
 	}
 
 

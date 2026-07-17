@@ -24,6 +24,9 @@ public enum DoorInteractionState {
 
 public class Door : MonoBehaviour, IInteractable {
 
+	[Header("---Trigger---")]
+	[SerializeField] private GameObject trigger;
+	
 	[Header("---On Door Closed Event---")]
 	public UnityEvent onDoorCloseAction;
 
@@ -47,7 +50,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 	private DoorState _doorState;
 	private DoorInteractionState _doorInteractionState;
-
+	
 	private bool HasKey => _currentPickedKey != null;
 
 	private EventSystemController _eventSystemController;
@@ -67,6 +70,13 @@ public class Door : MonoBehaviour, IInteractable {
 
 
     private void OnEnable() {
+	    // if (NeedsToBeDisabled) {
+		   //  trigger.SetActive(false);
+		   //  colWhenClosing.SetActive(true);
+		   //  transform.eulerAngles = closedRotation;
+		   //  _doorInteractionState = DoorInteractionState.Disabled;
+	    // }
+	    
 		_eventSystemController = EventSystemController.Instance;
 		_eventSystemController.onItemPicked += OnItemPicked;
 		_eventSystemController.onItemDropped += OnItemDropped;
@@ -171,6 +181,9 @@ public class Door : MonoBehaviour, IInteractable {
 
 	public void CloseDoor() {
 		colWhenClosing.SetActive(true);
+		
+		if(trigger.activeSelf)
+			trigger.SetActive(false);
 
 		_meshCollider.enabled = false;
 

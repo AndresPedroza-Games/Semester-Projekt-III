@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour {
 
 	public static GameManager Instance { get; private set; }
-	public string LastScene { get; set; }
 
 	[SerializeField] private GameObject playerSetup;
 	[SerializeField] private GameObject player;

@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class DataManager : MonoBehaviour
-{
+public class DataManager : MonoBehaviour {
+
+	public static string LastScene;
     // public DataContainer dataContainer;
 
     //public List<GameObject> itemsPicked;
@@ -38,7 +39,7 @@ public class DataManager : MonoBehaviour
     }
 
     private void SaveGame(string scene) {
-	    GameManager.Instance.LastScene = scene;
+	    LastScene = scene;
 	    
 	    //dataContainer.playerPosition = this.playerPosition;
 	    //dataContainer.currentGameObject = this.currentGameObject;
@@ -56,7 +57,7 @@ public class DataManager : MonoBehaviour
 
     private void ClearData()
     {
-	    GameManager.Instance.LastScene = null;
+	    LastScene = null;
         //itemsPicked.Clear();
         // doorsOpened.Clear();
         // currentGameObject = null;

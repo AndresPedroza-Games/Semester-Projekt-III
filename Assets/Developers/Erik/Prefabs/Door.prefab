@@ -430,13 +430,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a09b2bce0bade2b4c9f30da07a2ec8a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+  trigger: {fileID: 4506279351640784626}
   onDoorCloseAction:
     m_PersistentCalls:
       m_Calls: []
   scenesToUnload:
   - sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
     scenePath: Assets/Scenes/Hall_1.unity
-  needsKeyToOpen: 0
+  initDoorState: 0
+  initDoorInteractionState: 0
   openedRotation: {x: 0, y: 100, z: 0}
   closedRotation: {x: 0, y: 0, z: 0}
   ease: 10

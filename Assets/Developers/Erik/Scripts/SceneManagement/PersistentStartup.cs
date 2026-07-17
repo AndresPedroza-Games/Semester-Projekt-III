@@ -86,4 +86,19 @@ public class PersistentStartup : MonoBehaviour {
 		return null;
 	}
 
+
+	public static Door GetDoor(string scene) {
+		GameObject[] roots = SceneManager.GetSceneByName(scene).GetRootGameObjects();
+
+		foreach (GameObject root in roots) {
+			Door door = root.GetComponentInChildren<Door>(true);
+			if (door) {
+				return door;
+			}
+		}
+
+		Debug.LogWarning("No Door found!");
+		return null;
+	}
+
 }
