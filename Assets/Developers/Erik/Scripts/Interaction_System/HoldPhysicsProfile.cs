@@ -8,6 +8,7 @@ public class HoldPhysicsProfile {
 	[Header("---Config---")]
 	public bool keepMomentum;
 	public bool followRotation;
+	public bool useHitPoint;
 	
 	[Header("---RigidBody---")]
 	public bool useGravity;

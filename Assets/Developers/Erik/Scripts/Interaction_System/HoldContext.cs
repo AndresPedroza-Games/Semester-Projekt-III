@@ -4,6 +4,7 @@ using UnityEngine;
 public class HoldContext {
 	
 	public Transform HoldPoint;
+	public Vector3 hitPoint;
 	public Holdable Holdable;
 
 	public Camera Camera;

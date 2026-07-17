@@ -11,7 +11,7 @@ public class PhysicsHolder : MonoBehaviour {
 	[Header("---Layer Mask---")]
 	[Tooltip("The layers to which the offset is applied")]
 	public LayerMask grabLayerMask;
-	
+
 
 	[Header("---Follow Speed---")]
 	[SerializeField] private float smoothSpeed = 15f;
@@ -62,7 +62,7 @@ public class PhysicsHolder : MonoBehaviour {
 	}
 
 
-	public void Hold(Holdable newHoldable, IHoldTargetResolver targetResolver, HoldPhysicsProfile profile) {
+	public void Hold(Holdable newHoldable, IHoldTargetResolver targetResolver, HoldPhysicsProfile profile, Vector3 hitPoint) {
 		if (_holdable) return;
 
 		_holdable = newHoldable;
@@ -70,12 +70,12 @@ public class PhysicsHolder : MonoBehaviour {
 		_currentProfile = profile;
 
 		// _holdable.gameObject.layer = LayerMask.NameToLayer("PhysicsHold");
-
- 		Vector3 pullGrabOffset = _holdable.Rigidbody.position - holdPoint.position;
+		Vector3 pullGrabOffset = holdPoint.InverseTransformVector(hitPoint - holdPoint.position);
 		pullGrabOffset.y = 0f;
 
 		_context = new HoldContext {
 			HoldPoint = holdPoint,
+			hitPoint = hitPoint,
 			Holdable = newHoldable,
 			Camera = _cam,
 			Offset = offset,
@@ -96,6 +96,13 @@ public class PhysicsHolder : MonoBehaviour {
 		ApplyMotionSettings(profile);
 
 		_joint.connectedBody = rb;
+		if (profile.useHitPoint) {
+			_joint.autoConfigureConnectedAnchor = false;
+			_joint.connectedAnchor = rb.transform.InverseTransformPoint(hitPoint);
+		}
+		else {
+			_joint.connectedAnchor = Vector3.zero;
+		}
 
 		float holdY = holdPoint.eulerAngles.y;
 		float objectY = rb.rotation.eulerAngles.y;
@@ -107,13 +114,12 @@ public class PhysicsHolder : MonoBehaviour {
 	public void Release() {
 		if (!_holdable)
 			return;
-		
+
 		// _holdable.gameObject.layer = LayerMask.NameToLayer("Interactable");
 
 		if (!_currentProfile.keepMomentum)
 			_holdable.Rigidbody.linearVelocity = Vector3.zero;
 
-		_holdable.Rigidbody.useGravity = true;
 		_holdable.Rigidbody.constraints = _originalConstraints;
 		_holdable.Rigidbody.isKinematic = _isKinematic;
 		_holdable.Rigidbody.useGravity = _useGravity;

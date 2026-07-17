@@ -18,8 +18,8 @@ public class PhysicsGrabDefinitionSO : HoldDefinition {
 	private readonly GrabTargetResolver resolver = new GrabTargetResolver();
 
 
-	public override void Hold(Holdable holdable, HoldController holder) {
-		holder.PhysicsHolder.Hold(holdable, resolver, profile);
+	public override void Hold(Holdable holdable, HoldController holder, Vector3 hitPoint) {
+		holder.PhysicsHolder.Hold(holdable, resolver, profile, hitPoint);
 	}
 
 

@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PullDefinition", menuName = "Interaction/Hold Definitions/PhysicsPull")]
 public class PullDefinitionSO : HoldDefinition {
 
+	public HoldPhysicsProfile physicsProfile;
+
 	private readonly HoldPhysicsProfile profile = new HoldPhysicsProfile() {
 		useGravity = true,
 		constraints = RigidbodyConstraints.FreezeRotation,
@@ -17,8 +19,8 @@ public class PullDefinitionSO : HoldDefinition {
 	private readonly PullTargetResolver resolver = new PullTargetResolver();
 
 
-	public override void Hold(Holdable holdable, HoldController holder) {
-		holder.PhysicsHolder.Hold(holdable, resolver, profile);
+	public override void Hold(Holdable holdable, HoldController holder, Vector3 hitPoint) {
+		holder.PhysicsHolder.Hold(holdable, resolver, physicsProfile, hitPoint);
 	}
 
 

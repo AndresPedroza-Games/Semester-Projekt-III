@@ -10,6 +10,7 @@ public class InteractionDetector : MonoBehaviour {
 	private LayerMask layermask;
 
 	public IInteractable CurrentTarget { get; private set; }
+	public Vector3 HitPoint { get; private set; }
 
     private Vector3 _LastPositionMouse;
 
@@ -27,6 +28,7 @@ public class InteractionDetector : MonoBehaviour {
 
 	private void Detect() {
 		CurrentTarget = null;
+		HitPoint = Vector3.zero;
 
 		Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
@@ -37,6 +39,7 @@ public class InteractionDetector : MonoBehaviour {
 			return;
 
 		CurrentTarget = interactable;
+		HitPoint = hit.point;
 	}
 
 

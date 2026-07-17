@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1223c3183b90ac042a6f99f62eb7855d, type: 3}
-  m_Name: PullDefinition
+  m_Name: PullDefinitionLimited
   m_EditorClassIdentifier: Assembly-CSharp::PullDefinitionSO
-  profile:
+  physicsProfile:
     keepMomentum: 0
     followRotation: 0
+    useHitPoint: 1
     useGravity: 1
     constraints: 112
     xMotion: 2
