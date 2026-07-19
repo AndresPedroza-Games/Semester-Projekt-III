@@ -103,8 +103,6 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 	public virtual void Release() {
 		holdDefinition.Release(this, _currentHolder);
 		
-		_sfx?.PlaySfx(SfxEvent.OnDrop);
-
 		_currentHolder?.ClearCurrentHoldable();
 		
 		EventSystemController.Instance.DropItem(this.gameObject);

@@ -7,8 +7,7 @@ public enum SfxEvent {
 
 	OnCollision,
 	OnInteract,
-	OnPickup,
-	OnDrop
+	OnPickup
 
 }
 
@@ -20,7 +19,6 @@ public enum Sfx {
 	DefaultInteract,
 
 	DefaultPickup,
-	DefaultDrop,
 	DefaultCollision,
 
 	DoorOpen,
