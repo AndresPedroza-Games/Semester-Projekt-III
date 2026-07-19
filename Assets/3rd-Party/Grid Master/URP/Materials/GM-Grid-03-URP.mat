@@ -81,7 +81,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Side_Texture:
-        m_Texture: {fileID: 2800000, guid: 9c70391f7a64546248cc66eaf5620195, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3caf7d008b0124c71a072740ac78c491, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Sides_Texture:
@@ -116,21 +116,21 @@ Material:
     - _Base_Tiling: 2
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _Blend_Opacity: 0.377
+    - _Blend_Opacity: 0.196
     - _COORDINATES: 0
     - _CastShadows: 1
     - _Cull: 2
     - _Dirt: 0
-    - _Dirt_Blend: 0.415
-    - _Dirt_Height: 0.414
+    - _Dirt_Blend: 0
+    - _Dirt_Height: 0
     - _DstBlend: 0
-    - _Edge_Sharpness: 50
+    - _Edge_Sharpness: 1
     - _Emission: 0
     - _Emission_Map_Multiplier: 1
-    - _Emission_Tiling: 1
+    - _Emission_Tiling: 0
     - _Metallic: 0
     - _Metallic_Map_Multiplier: 1
-    - _Metallic_Tiling: 1
+    - _Metallic_Tiling: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -138,7 +138,7 @@ Material:
     - _Smoothness: 0
     - _SrcBlend: 1
     - _Surface: 0
-    - _Tiling: 2
+    - _Tiling: 12
     - _WorkflowMode: 1
     - _ZTest: 4
     - _ZWrite: 1
@@ -149,11 +149,11 @@ Material:
     - _Base_Color_Top: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
     - _Dirt_Color: {r: 0.5660378, g: 0.314861, b: 0.258989, a: 0}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 0}
-    - _Side_Color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0}
+    - _Side_Color: {r: 0.3773585, g: 0.32929868, b: 0.32929868, a: 0.050980393}
     - _Side_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Sides_Color: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 0}
     - _Sides_Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _Top_Color: {r: 0.4245283, g: 0.41051087, b: 0.41051087, a: 0}
+    - _Top_Color: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 0}
     - _Top_Offset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

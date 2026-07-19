@@ -1,4 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 
 public class InteractionDetector : MonoBehaviour {
@@ -12,17 +15,21 @@ public class InteractionDetector : MonoBehaviour {
 	public IInteractable CurrentTarget { get; private set; }
 
     private Vector3 _LastPositionMouse;
+	private GraphicRaycaster _GraphicRaycaster;
 
     private void Awake() {
 		cam = Camera.main;
 
 		gameObject.layer = LayerMask.NameToLayer("Player");
 		layermask = ~LayerMask.GetMask("Player");
-	}
+
+		_GraphicRaycaster = FindFirstObjectByType<GraphicRaycaster>(FindObjectsInactive.Include);
+
+    }
 
     private void Update() {
 		Detect();
-	}
+    }
 
 
 	private void Detect() {
@@ -37,8 +44,7 @@ public class InteractionDetector : MonoBehaviour {
 			return;
 
 		CurrentTarget = interactable;
-	}
-
+    }
 
     public Vector3 GetRayPosition(LayerMask layerDetector)
     {
@@ -52,8 +58,6 @@ public class InteractionDetector : MonoBehaviour {
 
         return _LastPositionMouse;
     }
-
-
 
 	private void OnDrawGizmos() {
 
