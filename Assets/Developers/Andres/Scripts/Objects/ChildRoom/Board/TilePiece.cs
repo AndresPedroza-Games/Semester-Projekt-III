@@ -22,6 +22,10 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
     {
 		_Renderer = GetComponentInChildren<Renderer>();
         _CanInteract = true;
+
+        RandomRotation();
+
+        transform.rotation = Quaternion.Euler(0f, _Steps * 90f, 0f);
     }
 
     private void Start() {
@@ -30,16 +34,33 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
 		_EventSystemChildRoom.onRotatePiece += RotatePiece;
         _EventSystemChildRoom.onPuzzleSolved += () => _CanInteract = false;
 
+        ignoreNextPiece = false;
+    }
+
+    private void OnDestroy()
+    {
+        if (_EventSystemChildRoom == null)
+            return;
+
+        _EventSystemChildRoom.onPiecePlaced -= PlaceTile;
+        _EventSystemChildRoom.onRotatePiece -= RotatePiece;
     }
 
 
-	public bool CanInteract(HoldController holdController) {
+    public bool CanInteract(HoldController holdController) {
 		return !holdController.HasObject;
 	}
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
 		return CrosshairType.Interactable;
 	}
+
+    private float RandomRotation()
+    {
+        float randomStep = Random.Range(-4f,4f);
+
+        return randomStep;
+    }
 
 	public void Interact()
     {

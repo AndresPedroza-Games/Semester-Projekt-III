@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PuzzleController : MonoBehaviour
 {
-    private GameObject _CineMachine;
-    private EventSystemChildRoom _EventSystemChildRoom;
     private PlayerManager _PlayerManager;
     private InteractionDetector _InteractionDetector;
 
@@ -12,9 +10,7 @@ public class PuzzleController : MonoBehaviour
 
     private void Start()
     {
-        _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _PlayerManager = PlayerManager.playerManager;
-        _CineMachine = _PlayerManager.cinemachine;
     }
 
     private void OnEnable()
@@ -35,13 +31,13 @@ public class PuzzleController : MonoBehaviour
 
     private void PlacePiece(InputAction.CallbackContext ctx)
     {
-        _EventSystemChildRoom.PlacePiece();
+        EventSystemChildRoom.eventSystemChildRoom?.PlacePiece();
     }
 
     private void RotatePiece(InputAction.CallbackContext ctx)
     {
         Vector2 scroll = ctx.ReadValue<Vector2>();
 
-        _EventSystemChildRoom.RotatePiece(scroll);
+        EventSystemChildRoom.eventSystemChildRoom?.RotatePiece(scroll);
     }
 }

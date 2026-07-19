@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 public class PlacementSystem : MonoBehaviour
 {
@@ -20,6 +19,7 @@ public class PlacementSystem : MonoBehaviour
     private List<PieceData> _PiecesPlaced = new List<PieceData>();
 
     private GameObject _SelectedObject;
+
     public static bool isInteracting;
 
     private GridData _PieceData;
@@ -40,8 +40,13 @@ public class PlacementSystem : MonoBehaviour
 
         _PuzzleSolved = false;
 
-        if (Instace == null)
-            Instace = this;
+        if (Instace != null && Instace != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instace = this;
     }
 
     private void Start()
@@ -50,8 +55,17 @@ public class PlacementSystem : MonoBehaviour
 
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _EventSystemChildRoom.onPiecePicked += PickPiece;
-        _EventSystemChildRoom.onPiecePlaced += () => AddToGrid(_GridPos);
+        _EventSystemChildRoom.onPiecePlaced += OnPiecePlaced;
         _EventSystemChildRoom.onPuzzleSolved += () => _TilePreview.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        if (_EventSystemChildRoom == null)
+            return;
+
+        _EventSystemChildRoom.onPiecePicked -= PickPiece;
+        _EventSystemChildRoom.onPiecePlaced -= OnPiecePlaced;
     }
 
     private void Update()
@@ -96,26 +110,28 @@ public class PlacementSystem : MonoBehaviour
             _SelectedObjectIndex = _TilePieceData.piecesData.FindIndex(data => data.ID == targetID);
         }
 
-        Vector3 oldPos = _TilePieceData.piecesData[_SelectedObjectIndex].currentPos;
-
         if (_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
         {
             _PieceData.RemoveObjectAt(_TilePieceData.piecesData[_SelectedObjectIndex].currentPos);
             _PiecesPlaced.Remove(_TilePieceData.piecesData[_SelectedObjectIndex]);
         }
+    }
 
+    private void OnPiecePlaced()
+    {
+        AddToGrid(_GridPos);
     }
 
     private void AddToGrid(Vector3Int gridPos)
     {
+        if (_SelectedObject == null)
+            return;
 
-        if(_SelectedObject != null && CanPlacePiece(gridPos))
+        GameObject piece = _PieceData.PieceInThisPosition(gridPos);
+
+        if (piece == null)
         {
-            _PieceData.AddObjectAt(_SelectedObject, gridPos, _SelectedObject.transform.localEulerAngles.z, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
-            _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = gridPos;
-            
-            if(!_PiecesPlaced.Contains(_TilePieceData.piecesData[_SelectedObjectIndex]))
-                _PiecesPlaced.Add(_TilePieceData.piecesData[_SelectedObjectIndex]);
+            PlaceSelected(gridPos);
 
             if (AllPiecesCorrectPosition() && !_PuzzleSolved)
             {
@@ -124,42 +140,35 @@ public class PlacementSystem : MonoBehaviour
                 _PuzzleSolved = true;
             }
 
-            if (_PieceData.PieceInThisPosition(gridPos) != _SelectedObject)
-            {
-                SwitchPieces();
-                return;
-            }
-
-            _Board.currentPiece = null;
-            _SelectedObject = null;
-
+            return;
         }
+
+        SwitchPieces(piece, gridPos);
     }
 
-    private void SetRandomPos()
+    private void PlaceSelected(Vector3Int gridPos)
     {
-        for (int y = -1; y < -4; y++)
-        {
-            for (int x = -1; x < -4; x++)
-            {
-                Vector3Int currentVector = new Vector3Int(x, y);
+        _PieceData.AddObjectAt(_SelectedObject, gridPos, _SelectedObject.transform.localEulerAngles.z, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
 
-                if(_PieceData.PieceInThisPosition(currentVector) == null)
-                {
-                    _GridPos = currentVector;
-                    _SnappedPos = _Grid.GetCellCenterWorld(_GridPos);
-                    _SelectedObject.transform.position = new Vector3(_SnappedPos.x, _Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z);
-                }
-            }
-        }
+        _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = gridPos;
+
+        _PiecesPlaced.Add(_TilePieceData.piecesData[_SelectedObjectIndex]);
+
+        _Board.currentPiece = null;
+        _SelectedObject = null;
     }
 
-    private void SwitchPieces()
+    private void SwitchPieces(GameObject piece, Vector3Int gridPos)
     {
-        GameObject currentPiece = _PieceData.PieceInThisPosition(_GridPos);
+        PieceData oldData = piece.GetComponent<TilePiece>().pieceData;
 
-        currentPiece.GetComponent<TilePiece>().Interact();
-        currentPiece.GetComponent<TilePiece>().ignoreNextPiece = true;
+        _PieceData.RemoveObjectAt(oldData.currentPos);
+        _PiecesPlaced.Remove(oldData);
+
+        PlaceSelected(gridPos);
+
+        piece.GetComponent<TilePiece>().ignoreNextPiece = true;
+        piece.GetComponent<TilePiece>().Interact();
     }
 
     private bool CanPlacePiece(Vector3 gridPos)
@@ -169,13 +178,12 @@ public class PlacementSystem : MonoBehaviour
 
     private bool AllPiecesCorrectPosition()
     {
-
         if (_PiecesPlaced.Count != _TilePieceData.piecesData.Count)
             return false;
 
         foreach (PieceData pieceData in _PiecesPlaced)
         {
-            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos) && !_PieceData.PieceCorrectRotation(pieceData.currentPos, pieceData.correctRot))
+            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos) && !_PieceData.PieceCorrectRotation(pieceData.currentPos, 0f))
                 return false;
         }
 

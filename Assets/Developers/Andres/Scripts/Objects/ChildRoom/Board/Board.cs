@@ -9,26 +9,24 @@ public class Board : MonoBehaviour
     [SerializeField] private Transform _PiecesParent;
     [SerializeField] private TilePieceData tilePieceData;
     [SerializeField] private Transform _Drawer;
+    [SerializeField] private SceneReference _Scene;
 
     [Header("Animation Settings")]
     [SerializeField] private Ease _Ease;
     [SerializeField] private float _Duration = 0.3f;
-    private float _Angle;
 
     private EventSystemChildRoom _EventSystemChildRoom;
     public List<GameObject> piecesInv = new List<GameObject>();
     public List<GameObject> createdPieces = new List<GameObject>();
 
-    private InteractionDetector _InteractionDetector;
     public GameObject currentPiece;
-    private PlacementSystem _PlacementSystem;
 
     private void Start()
     {
         _EventSystemChildRoom = EventSystemChildRoom.eventSystemChildRoom;
         _EventSystemChildRoom.onPuzzleSolved += OpenDrawer;
 
-        _PlacementSystem = PlacementSystem.Instace;
+        currentPiece = null;
     }
 
     public void AddPieceToList(GameObject piece)
@@ -84,6 +82,15 @@ public class Board : MonoBehaviour
     {
         Debug.Log("Drawer opened");
         AnimateVisuals(_Ease, _Duration);
+        LoadScene();
+
+
+    }
+
+    private async void LoadScene()
+    {
+        if(_Scene != null)
+            await WorldSceneManager.Instance.LoadScene(_Scene);
     }
 
     private void AnimateVisuals(Ease ease, float duration)

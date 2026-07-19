@@ -17,16 +17,6 @@ public class GridData
         _PlacedPieces[positionToOccupy] = data;
     }
 
-        public bool PieceCorrectPosition(Vector3 gridPos, Vector3Int correctPos)
-        {
-            Vector3 positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
-
-            if (positionToOccupy == correctPos)
-                return true;
-
-            return false;
-        }
-
     public void RemoveObjectAt(Vector3Int gridPos)
     {
         Vector3 positionToOccupy = gridPos;
@@ -47,14 +37,22 @@ public class GridData
         return true;
     }
 
+    public bool PieceCorrectPosition(Vector3 gridPos, Vector3Int correctPos)
+    {
+        Vector3 positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
+
+        if (positionToOccupy == correctPos)
+            return true;
+
+        return false;
+    }
+
     public bool PieceCorrectRotation(Vector3 gridPos, float correctRot)
     {
         if (!_PlacedPieces.TryGetValue(gridPos, out var data))
             return false;
 
-        float positionToOccupy = _PlacedPieces[gridPos].rotation;
-
-        if (positionToOccupy == correctRot)
+        if (0 == correctRot)
             return true;
 
         return false;
@@ -62,7 +60,7 @@ public class GridData
 
     public bool CanPlacePiece(Vector3 gridPos, Vector2 gridMinSize, Vector3 gridMaxSize)
     {
-        if (!PieceInsideGrid(gridPos, gridMinSize, gridMaxSize))
+        if (!PieceInsideGrid(gridPos, gridMinSize, gridMaxSize) && _PlacedPieces.ContainsKey(gridPos))
             return false;
 
         return true;
@@ -77,6 +75,8 @@ public class GridData
 
         return null;
     }
+
+
 }
 
 public class PlacementData

@@ -1491,7 +1491,6 @@ Transform:
   m_Children:
   - {fileID: 18396481}
   - {fileID: 1473351308}
-  - {fileID: 2046719343}
   - {fileID: 8175820560143960886}
   - {fileID: 1169784316}
   - {fileID: 496898654}
@@ -2738,88 +2737,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24b3dc9945b11654ea8d6b28431f4867, type: 3}
---- !u!1001 &2046719342
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1245243333}
-    m_Modifications:
-    - target: {fileID: 696324899661859886, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: scenesToLoad.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 696324899661859886, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: 'scenesToLoad.Array.data[0]'
-      value: 2. Puzzle Prototype
-      objectReference: {fileID: 0}
-    - target: {fileID: 988835959820200238, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: scenesToLoad.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 988835959820200238, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: scenesToLoad.Array.data[0].scenePath
-      value: Assets/Scenes/Hall_1.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 988835959820200238, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: scenesToLoad.Array.data[0].sceneAsset
-      value: 
-      objectReference: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.567
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.717
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071064
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.70710725
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8960703514700574187, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-      propertyPath: m_Name
-      value: LoadRoomTrigger
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
---- !u!4 &2046719343 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6506068464791825649, guid: 25157a3ab6c6bf447ad5710c67508522, type: 3}
-  m_PrefabInstance: {fileID: 2046719342}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2050581832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2995,6 +2912,14 @@ PrefabInstance:
       propertyPath: _PiecesParent
       value: 
       objectReference: {fileID: 626012309}
+    - target: {fileID: 5824061076342929982, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
+      propertyPath: _Scene.scenePath
+      value: Assets/Scenes/Hall_1.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824061076342929982, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
+      propertyPath: _Scene.sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
     - target: {fileID: 7172261917882917623, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
