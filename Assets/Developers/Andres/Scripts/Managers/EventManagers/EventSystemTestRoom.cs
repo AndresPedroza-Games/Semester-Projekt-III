@@ -1,11 +1,13 @@
 using System;
-using UnityEngine;
 
 public class EventSystemTestRoom : EventSystemController
 {
     public static EventSystemTestRoom instance;
 
     public Action onInteractionWithPaper;
+    public Action onCrossAnswer;
+    public Action onPuzzleSolved;
+    public Action onRestartPuzzle;
 
     private void Awake()
     {
@@ -16,5 +18,20 @@ public class EventSystemTestRoom : EventSystemController
     public void InteractPaper()
     {
         onInteractionWithPaper?.Invoke();
+    }
+
+    public void CrossAnswer()
+    {
+        onCrossAnswer?.Invoke();
+    }
+
+    public void PuzzleSolved()
+    {
+        onPuzzleSolved?.Invoke();
+    }
+
+    public void RestartPuzzle()
+    {
+        onRestartPuzzle?.Invoke();
     }
 }

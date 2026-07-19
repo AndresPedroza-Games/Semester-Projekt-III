@@ -103,7 +103,7 @@ public class Interactor : MonoBehaviour {
 
 		if (target == null) return;
 
-		if (target.CanInteract(_holdController))
+		if (target.CanInteract(_holdController)) { }
 			target.Interact();
 	}
 

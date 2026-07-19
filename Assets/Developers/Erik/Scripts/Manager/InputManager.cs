@@ -34,6 +34,7 @@ public class InputManager : MonoBehaviour {
 	
 	[Header("Narrative Notes")]
 	public InputAction ReadNote => Controls.NarrativeNotes.ReadNote;
+	public InputAction FlipNote => Controls.NarrativeNotes.Flip;
 
 	
 	[Header("Settings")]

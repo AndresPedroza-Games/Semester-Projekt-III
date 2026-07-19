@@ -1026,6 +1026,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Flip"",
+                    ""type"": ""Button"",
+                    ""id"": ""ee426a88-f4bf-4006-8f3a-6e738b479606"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1037,6 +1046,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ReadNote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bd69040-16e6-417b-93b4-27fc95decb78"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Flip"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1083,6 +1103,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // NarrativeNotes
         m_NarrativeNotes = asset.FindActionMap("NarrativeNotes", throwIfNotFound: true);
         m_NarrativeNotes_ReadNote = m_NarrativeNotes.FindAction("ReadNote", throwIfNotFound: true);
+        m_NarrativeNotes_Flip = m_NarrativeNotes.FindAction("Flip", throwIfNotFound: true);
     }
 
     ~@PlayerControls()
@@ -1933,6 +1954,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_NarrativeNotes;
     private List<INarrativeNotesActions> m_NarrativeNotesActionsCallbackInterfaces = new List<INarrativeNotesActions>();
     private readonly InputAction m_NarrativeNotes_ReadNote;
+    private readonly InputAction m_NarrativeNotes_Flip;
     /// <summary>
     /// Provides access to input actions defined in input action map "NarrativeNotes".
     /// </summary>
@@ -1948,6 +1970,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "NarrativeNotes/ReadNote".
         /// </summary>
         public InputAction @ReadNote => m_Wrapper.m_NarrativeNotes_ReadNote;
+        /// <summary>
+        /// Provides access to the underlying input action "NarrativeNotes/Flip".
+        /// </summary>
+        public InputAction @Flip => m_Wrapper.m_NarrativeNotes_Flip;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1977,6 +2003,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReadNote.started += instance.OnReadNote;
             @ReadNote.performed += instance.OnReadNote;
             @ReadNote.canceled += instance.OnReadNote;
+            @Flip.started += instance.OnFlip;
+            @Flip.performed += instance.OnFlip;
+            @Flip.canceled += instance.OnFlip;
         }
 
         /// <summary>
@@ -1991,6 +2020,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReadNote.started -= instance.OnReadNote;
             @ReadNote.performed -= instance.OnReadNote;
             @ReadNote.canceled -= instance.OnReadNote;
+            @Flip.started -= instance.OnFlip;
+            @Flip.performed -= instance.OnFlip;
+            @Flip.canceled -= instance.OnFlip;
         }
 
         /// <summary>
@@ -2247,5 +2279,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnReadNote(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Flip" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFlip(InputAction.CallbackContext context);
     }
 }
