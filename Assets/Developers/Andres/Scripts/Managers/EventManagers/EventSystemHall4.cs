@@ -6,7 +6,7 @@ public class EventSystemHall4 : EventSystemController
     public static EventSystemHall4 instance;
 
     public Action onStart;
-    public Action onPressPlate;
+    public Action onReleaseBatery;
 
     private void Awake()
     {
@@ -24,8 +24,8 @@ public class EventSystemHall4 : EventSystemController
         onStart?.Invoke();
     }
 
-    public void PressPlate()
+    public void ReleaseBatery()
     {
-        onPressPlate?.Invoke();
+        onReleaseBatery?.Invoke();
     }
 }

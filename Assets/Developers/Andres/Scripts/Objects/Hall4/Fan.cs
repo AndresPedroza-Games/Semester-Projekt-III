@@ -16,7 +16,7 @@ public class Fan : MonoBehaviour
     private void Start()
     {
         _EventSystemHall4 = EventSystemHall4.instance;
-        _EventSystemHall4.onPressPlate += DeactivateCollision;
+        _EventSystemHall4.onReleaseBatery += DeactivateCollision;
 
         _IsActive = true;
     }
