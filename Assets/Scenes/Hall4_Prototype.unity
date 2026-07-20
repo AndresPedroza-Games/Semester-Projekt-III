@@ -455,6 +455,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381024982}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &432403074 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5436774134322344368, guid: ebc1716feab246448885560ccdb9ba09, type: 3}
+  m_PrefabInstance: {fileID: 6048479304962421707}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &597307314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1688,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5722059518861552797, guid: ebc1716feab246448885560ccdb9ba09, type: 3}
   m_PrefabInstance: {fileID: 6048479304962421707}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1572378922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432403074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73de4c4643e1bb24d95a07139e44f1e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FusilSystem
+  _CoolDown: 1
 --- !u!1 &1774138338
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,7 +2829,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5436774134322344368, guid: ebc1716feab246448885560ccdb9ba09, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1572378922}
   m_SourcePrefab: {fileID: 100100000, guid: ebc1716feab246448885560ccdb9ba09, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
