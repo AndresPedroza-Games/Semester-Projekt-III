@@ -198,8 +198,8 @@ ConfigurableJoint:
   m_ProjectionAngle: 30
   m_ConfiguredInWorldSpace: 0
   m_SwapBodies: 0
-  m_BreakForce: 1000
-  m_BreakTorque: 1000
+  m_BreakForce: 1200
+  m_BreakTorque: 1200
   m_EnableCollision: 0
   m_EnablePreprocessing: 1
   m_MassScale: 1
@@ -341,6 +341,22 @@ PrefabInstance:
     - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722043910421986574, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722043910421986574, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: InitialModule.startSizeY.minScalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722043910421986574, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: InitialModule.startSizeZ.minScalar
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3779944178177642218, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 5667787661167285814, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
       propertyPath: m_Name
