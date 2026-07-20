@@ -32,7 +32,8 @@ public class CubeFollow : MonoBehaviour {
 	private void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.CompareTag("Player")) return;
 
-		collision.gameObject.SetActive(false);
+		if (collision.gameObject.scene == gameObject.scene)
+			collision.gameObject.SetActive(false);
 	}
 
 

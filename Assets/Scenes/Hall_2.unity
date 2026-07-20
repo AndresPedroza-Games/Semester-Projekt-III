@@ -277,19 +277,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -938,7 +938,7 @@ Transform:
   m_GameObject: {fileID: 2072492451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.6, y: 1.248, z: 3.85}
+  m_LocalPosition: {x: 6.1, y: 1.248, z: 3.85}
   m_LocalScale: {x: 1, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -989,17 +989,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 981444092}
     m_Modifications:
-    - target: {fileID: 1386461507392601360, guid: ffd51524eee7a0d4286b1117795c988d, type: 3}
-      propertyPath: followSpeed
-      value: 1.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2960314016815722569, guid: ffd51524eee7a0d4286b1117795c988d, type: 3}
       propertyPath: m_Name
       value: Hall_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3687143501961140609, guid: ffd51524eee7a0d4286b1117795c988d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9222142134203724354, guid: ffd51524eee7a0d4286b1117795c988d, type: 3}
       propertyPath: m_LocalPosition.x

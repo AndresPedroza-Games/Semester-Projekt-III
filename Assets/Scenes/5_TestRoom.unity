@@ -514,6 +514,10 @@ PrefabInstance:
     - target: {fileID: 2871891712884213290, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
       propertyPath: onEnterAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 604735277}
+    - target: {fileID: 2871891712884213290, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
+      propertyPath: onEnterAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseVent
       objectReference: {fileID: 0}
     - target: {fileID: 3685657729003481949, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
       propertyPath: trigger
@@ -773,7 +777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.7500001
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalPosition.y
@@ -781,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4
+      value: -1.6500001
       objectReference: {fileID: 0}
     - target: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
       propertyPath: m_LocalRotation.w
@@ -904,6 +908,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7106765604392323739, guid: f5cfaceefc6d9b24db5346ce78e44504, type: 3}
   m_PrefabInstance: {fileID: 582913632}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &604735277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3685657729003481949, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
+  m_PrefabInstance: {fileID: 327124481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 275a9675a85bd234c930b0fd7304b332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vent
 --- !u!1001 &605659464
 PrefabInstance:
   m_ObjectHideFlags: 0

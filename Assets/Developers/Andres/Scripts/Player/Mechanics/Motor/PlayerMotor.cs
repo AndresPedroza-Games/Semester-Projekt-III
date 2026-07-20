@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 public class PlayerMotor : MonoBehaviour
 {
@@ -133,6 +133,17 @@ public class PlayerMotor : MonoBehaviour
             StartCoroutine(playerCrouch.Crouch());
         }
     }
+
+
+    public void ForceCrouch() {
+	    isCrouching = false;
+	    
+	    characterController.height = crouchHeight;
+	    characterController.center = crouchCenter;
+
+	    head.localPosition = new Vector3(head.localPosition.x, crouchHeight, head.localPosition.z);
+    }
+    
 
     private void GetComponents()
     {

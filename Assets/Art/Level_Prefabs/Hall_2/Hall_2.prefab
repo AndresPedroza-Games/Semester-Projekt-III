@@ -1006,6 +1006,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 9222142134203724354}
     m_Modifications:
     - target: {fileID: 541016915261936713, guid: 3de86b551f11040479d337eb67d24304, type: 3}
+      propertyPath: followSpeed
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 541016915261936713, guid: 3de86b551f11040479d337eb67d24304, type: 3}
       propertyPath: 'checkpoints.Array.data[0]'
       value: 
       objectReference: {fileID: 480466328161268408}
@@ -1039,7 +1043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2852179460034244824, guid: 3de86b551f11040479d337eb67d24304, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5874298185464327385, guid: 3de86b551f11040479d337eb67d24304, type: 3}
       propertyPath: m_LocalPosition.x

@@ -34,10 +34,11 @@ public class MainMenu : MenuManager {
 
 		if (!string.IsNullOrEmpty(lastScene)) {
 			await WorldSceneManager.Instance.LoadScene(lastScene);
-			
+
 			Door door = PersistentStartup.GetDoor(lastScene);
-			door.CloseDoor();
-			
+			if (door)
+				door.CloseDoor();
+
 			GameObject spawn = PersistentStartup.SearchForPlayerSpawn(lastScene);
 			if (!spawn) return;
 			SetPlayerPosAndRot(spawn.transform);
