@@ -15,6 +15,7 @@ public enum SfxEvent {
 public enum Sfx {
 
 	None,
+	KeyCollect,
 
 	DefaultInteract,
 

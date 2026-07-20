@@ -21,7 +21,7 @@ public class InteractionUI : MonoBehaviour {
 	private void Awake() {
 		_detector = GetComponent<InteractionDetector>();
 		_holdController = GetComponent<HoldController>();
-		
+
 		ApplyType(CrosshairType.Default);
 	}
 
@@ -29,12 +29,19 @@ public class InteractionUI : MonoBehaviour {
 	private void OnEnable() {
 		EventSystemController.Instance.onItemPicked += OnItemPicked;
 		EventSystemController.Instance.onItemDropped += OnItemDropped;
+		EventSystemController.Instance.onMainMenuEntered += OnMainMenuEntered;
 	}
 
 
 	private void OnDisable() {
 		EventSystemController.Instance.onItemPicked -= OnItemPicked;
 		EventSystemController.Instance.onItemDropped -= OnItemDropped;
+		EventSystemController.Instance.onMainMenuEntered -= OnMainMenuEntered;
+	}
+
+
+	private void OnMainMenuEntered() {
+		_hasItemInSocket = false;
 	}
 
 

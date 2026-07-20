@@ -21,6 +21,7 @@ public class Interactor : MonoBehaviour {
 		InputManager.Instance.PickUp.canceled += OnPickUpCanceled;
 		InputManager.Instance.InteractElementPuzzle.performed += InteractPuzzleElements;
 
+		EventSystemController.Instance.onMainMenuEntered += OnMainMenuEntered;
 	}
 
 
@@ -29,6 +30,14 @@ public class Interactor : MonoBehaviour {
 		InputManager.Instance.PickUp.performed -= OnPickUpPerformed;
 		InputManager.Instance.PickUp.canceled -= OnPickUpCanceled;
 		InputManager.Instance.InteractElementPuzzle.performed -= InteractPuzzleElements;
+
+		EventSystemController.Instance.onMainMenuEntered -= OnMainMenuEntered;
+	}
+
+
+	private void OnMainMenuEntered() {
+		if (_holdController.HasObject)
+			DropHoldable();
 	}
 
 
@@ -59,8 +68,10 @@ public class Interactor : MonoBehaviour {
 
 
 	private void DropHoldable() {
-		if (_holdController.HasObject)
-			EventSystemController.Instance.DropItem(_holdController.HoldGameObject);
+		if (!_holdController.HasObject)
+			return;
+		
+		EventSystemController.Instance.DropItem(_holdController.HoldGameObject);
 
 		_holdController.ReleaseCurrentHoldable();
 	}
@@ -103,8 +114,10 @@ public class Interactor : MonoBehaviour {
 
 		if (target == null) return;
 
-		if (target.CanInteract(_holdController)) { }
-			target.Interact();
+		if (target.CanInteract(_holdController)) {
+		}
+
+		target.Interact();
 	}
 
 }

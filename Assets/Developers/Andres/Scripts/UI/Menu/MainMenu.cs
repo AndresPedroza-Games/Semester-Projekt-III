@@ -59,11 +59,6 @@ public class MainMenu : MenuManager {
 	}
 
 
-	private Door GetDoor() {
-		return FindFirstObjectByType<Door>();
-	}
-
-
 	public override void ExitGame() {
 		Application.Quit();
 		Debug.Log("Exit");

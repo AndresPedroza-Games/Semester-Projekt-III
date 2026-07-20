@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class Event002TurnOffLights : MonoBehaviour {
 
+	[Header("---Material---")]
 	[SerializeField] private Material tubelampOffMaterial;
+
+	[Header("---Particles---")]
 	[SerializeField] private ParticleSystem _Particles;
 
 	[SerializeField] private float _CoolDown;
 
+	[Header("---Audio---")]
+	[SerializeField] private AudioClip lightbulbBurstSfx;
+
 	private Renderer _renderer;
 	private Light _light;
+	private AudioSource _audioSource;
 
 	private bool _CanPlay;
 
@@ -18,19 +25,19 @@ public class Event002TurnOffLights : MonoBehaviour {
 	private void Awake() {
 		_renderer = GetComponentInChildren<Renderer>();
 		_light = GetComponentInChildren<Light>();
+		_audioSource = GetComponent<AudioSource>();
 	}
 
-    private void Update()
-    {
-		if (_CanPlay)
-		{
-            _CanPlay = false;
-            StartCoroutine(RestartParticles());
-        }
-    }
+
+	private void Update() {
+		if (_CanPlay) {
+			_CanPlay = false;
+			StartCoroutine(RestartParticles());
+		}
+	}
 
 
-    private void OnEnable() {
+	private void OnEnable() {
 		EventSystemController.Instance.OnKey001PickedUp += TurnOffLight;
 	}
 
@@ -45,14 +52,23 @@ public class Event002TurnOffLights : MonoBehaviour {
 		_renderer.material = tubelampOffMaterial;
 		_light.enabled = false;
 		_Particles.Play();
-		_CanPlay = true;
-    }
 
-	private IEnumerator RestartParticles()
-	{
+		PlaySound();
+
+		_CanPlay = true;
+	}
+
+
+	private void PlaySound() {
+		_audioSource.loop = false;
+		_audioSource.PlayOneShot(lightbulbBurstSfx);
+	}
+
+
+	private IEnumerator RestartParticles() {
 		yield return new WaitForSeconds(_CoolDown);
-        _Particles.Play();
-        _CanPlay = true;
-    }
+		_Particles.Play();
+		_CanPlay = true;
+	}
 
 }

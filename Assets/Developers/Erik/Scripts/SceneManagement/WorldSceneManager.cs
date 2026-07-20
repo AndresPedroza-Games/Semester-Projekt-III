@@ -51,13 +51,13 @@ public class WorldSceneManager : MonoBehaviour {
 			await Task.Yield();
 		}
 
-		Debug.Log($"Loaded scene: {scene.ScenePath}");
+		// Debug.Log($"Loaded scene: {scene.ScenePath}");
 	}
 
 
 	public async Task LoadScene(string sceneName) {
 		if (IsSceneLoadedByName(sceneName)) {
-			Debug.Log($"Scene {sceneName} already loaded.");
+			// Debug.Log($"Scene {sceneName} already loaded.");
 			return;
 		}
 
@@ -72,13 +72,13 @@ public class WorldSceneManager : MonoBehaviour {
 			await Task.Yield();
 		}
 
-		Debug.Log($"Loaded scene: {sceneName}");
+		// Debug.Log($"Loaded scene: {sceneName}");
 	}
 
 
 	public async Task UnloadScene(SceneReference scene) {
 		if (!IsSceneLoadedByPath(scene)) {
-			Debug.Log($"Scene {scene.ScenePath} not loaded.");
+			// Debug.Log($"Scene {scene.ScenePath} not loaded.");
 			return;
 		}
 
@@ -95,13 +95,13 @@ public class WorldSceneManager : MonoBehaviour {
 
 		onSceneUnloaded?.Invoke();
 
-		Debug.Log($"Unloaded scene: {scene.ScenePath}");
+		// Debug.Log($"Unloaded scene: {scene.ScenePath}");
 	}
 
 
 	public async Task UnloadScene(string sceneName) {
 		if (!IsSceneLoadedByName(sceneName)) {
-			Debug.Log($"Scene {sceneName} not loaded.");
+			// Debug.Log($"Scene {sceneName} not loaded.");
 			return;
 		}
 
@@ -118,7 +118,7 @@ public class WorldSceneManager : MonoBehaviour {
 
 		onSceneUnloaded?.Invoke();
 
-		Debug.Log($"Unloaded scene: {sceneName}");
+		// Debug.Log($"Unloaded scene: {sceneName}");
 	}
 
 

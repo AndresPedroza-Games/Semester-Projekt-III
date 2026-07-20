@@ -54,10 +54,12 @@ public class Door : MonoBehaviour, IInteractable {
 	private bool HasKey => _currentPickedKey != null;
 
 	private EventSystemController _eventSystemController;
+	private ObjectSfx _sfx;
 
 
 	private void Awake() {
 		_meshCollider = GetComponent<MeshCollider>();
+		_sfx = GetComponent<ObjectSfx>();
 		_doorState = initDoorState;
 		_doorInteractionState = initDoorInteractionState;
 	}
@@ -170,7 +172,9 @@ public class Door : MonoBehaviour, IInteractable {
 	private void OpenDoor() {
 		if (_doorInteractionState == DoorInteractionState.RequiresKey)
 			_currentPickedKey.GetComponent<Key>().UseItem();
-
+		
+		_sfx.PlaySfx(SfxEvent.OnInteract);
+		
 		Rotate(ease, duration, openedRotation);
 
 		_doorState = DoorState.Open;
