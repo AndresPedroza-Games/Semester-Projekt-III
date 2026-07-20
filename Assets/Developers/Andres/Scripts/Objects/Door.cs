@@ -205,6 +205,8 @@ public class Door : MonoBehaviour, IInteractable {
 				EventSystemController.Instance.DoorClosed(gameObject.scene.name);
 				_doorState = DoorState.Closed;
 				_doorInteractionState = DoorInteractionState.Disabled;
+
+				FindFirstObjectByType<CameraShake>(FindObjectsInactive.Include).Shake();
 			}
 		});
 
