@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1273645570577325235}
   - component: {fileID: 4606891607966411106}
-  - component: {fileID: 2730779206440458867}
   m_Layer: 0
   m_Name: PrincipalsOfficeManager
   m_TagString: Untagged
@@ -26,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8500204730537913222}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -45,16 +44,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0426fd792a3b34c499244d5c808aed08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventSystemPrincipalsOffice
---- !u!114 &2730779206440458867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8500204730537913222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 421bd0f7b86308a4fbaaafb9f3bd1ea0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectorPuzzleSolvedEvent
-  doorToEnableOnSolved: {fileID: 0}

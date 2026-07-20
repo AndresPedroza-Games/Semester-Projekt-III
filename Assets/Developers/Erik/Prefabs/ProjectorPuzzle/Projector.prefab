@@ -229,6 +229,8 @@ GameObject:
   - component: {fileID: 8481637217682297086}
   - component: {fileID: 796390010725813150}
   - component: {fileID: 1746396966445201744}
+  - component: {fileID: 3879107898441594275}
+  - component: {fileID: 6738531921079603757}
   m_Layer: 6
   m_Name: Projector
   m_TagString: Untagged
@@ -274,11 +276,12 @@ MonoBehaviour:
   - {fileID: 2032606480562800813}
   - {fileID: 4820453703950061913}
   correctProjectorAngle: 90
-  scenesToLoad:
-  - sceneAsset: {fileID: 102900000, guid: 95ff75dbd553e464e9c9574e403cbb95, type: 3}
+  sceneToLoad:
+    sceneAsset: {fileID: 102900000, guid: 95ff75dbd553e464e9c9574e403cbb95, type: 3}
     scenePath: Assets/Scenes/Hall_3.unity
-  - sceneAsset: {fileID: 102900000, guid: 8bf4032aceb8c6b4f8abe336f94e500b, type: 3}
-    scenePath: Assets/Scenes/4_Bathroom.unity
+  puzzleSolvedAnimationClip: {fileID: 0}
+  wallSolid: {fileID: 0}
+  wallDoor: {fileID: 0}
   projectorRotationDuration: 0.7
   projectorEase: 10
   filmSnapDuration: 0.5
@@ -356,6 +359,125 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2, y: 0.05, z: 0.2}
   m_Center: {x: 0, y: 1.25, z: -0.1}
+--- !u!95 &3879107898441594275
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3965253087794348547}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f3ee15dbb57b394c81a483884be026d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!82 &6738531921079603757
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3965253087794348547}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 8b25eb88191ab1943b3a25935d72f863, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &4704863876744511328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,13 +1166,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6573163790868571886}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13052644, y: -0, z: -0, w: 0.9914449}
+  m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
   m_LocalPosition: {x: 0, y: 1.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7053556996945156677}
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
 --- !u!108 &2032606480562800813
 Light:
   m_ObjectHideFlags: 0

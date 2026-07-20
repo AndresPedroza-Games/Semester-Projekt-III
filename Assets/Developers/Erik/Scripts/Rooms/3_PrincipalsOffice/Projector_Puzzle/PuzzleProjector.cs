@@ -16,6 +16,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 	[Header("---On Solved---")]
 	[SerializeField] private SceneReference sceneToLoad;
+	[SerializeField] private AnimationClip puzzleSolvedAnimationClip;
 
 	[Header("---Walls---")]
 	[SerializeField] private GameObject wallSolid;
@@ -53,15 +54,19 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	private bool _solved;
 
 	private HoldController _holdController;
+	private Animator _animator;
+	private AudioSource _audioSource;
 
 
 	private void Awake() {
 		_holdController = GameManager.Instance.Interactor.GetComponent<HoldController>();
+		_animator = GetComponent<Animator>();
+		_audioSource = GetComponent<AudioSource>();
 
 		SetLights(false);
 
 		_insertedFilms = new Film[filmPositions.Count];
-		
+
 		wallSolid.SetActive(true);
 		wallDoor.SetActive(false);
 	}
@@ -268,17 +273,24 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	}
 
 
-	private async void Solve() {
-		_solved = true;
-		_selectedFilm?.RemoveHighlight();
-		SetLights(false);
-		SetAllDecals(false);
-		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
-		
+	private async void OnSolvedAnimationEnd() {
 		wallDoor.SetActive(true);
 		wallSolid.SetActive(false);
-
 		await WorldSceneManager.Instance.LoadScene(sceneToLoad);
+	}
+
+
+	private void PlayBulbBurstSound() {
+		_audioSource?.Play();
+	}
+
+
+	private void Solve() {
+		_solved = true;
+		_selectedFilm?.RemoveHighlight();
+		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
+		
+		 _animator.Play("OnProjectorSolved");
 	}
 
 
