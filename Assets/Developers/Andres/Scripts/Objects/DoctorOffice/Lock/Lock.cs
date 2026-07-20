@@ -4,10 +4,10 @@ using Unity.VisualScripting;
 
 public class Lock : MonoBehaviour
 {
+    [SerializeField] private SceneReference _Scene;
+
     [SerializeField] private List<int> _Password = new List<int>();
     public List<LockPiece> _LockPiecesList;
-
-    public GameObject temporaryReward;
 
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
 
@@ -18,7 +18,7 @@ public class Lock : MonoBehaviour
     {
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
         _EventSystemDoctorOffice.onReleasePiece += PuzzleCompleted;
-        _EventSystemDoctorOffice.onPuzzleCompleted += Test;
+        _EventSystemDoctorOffice.onPuzzleCompleted += PuzzleSolved;
 
         _AngleToPassword = new()
         {
@@ -62,8 +62,16 @@ public class Lock : MonoBehaviour
         return true;
     }
 
-    private void Test() {
-	    temporaryReward.SetActive(true);
+    private void PuzzleSolved()
+    {
+        if (_Scene != null)
+            LoadScene();
+
         Debug.Log("Puzzle Completed");
+    }
+
+    private async void LoadScene()
+    {
+        await WorldSceneManager.Instance.LoadScene(_Scene);
     }
 }

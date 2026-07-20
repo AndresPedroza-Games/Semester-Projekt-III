@@ -26,7 +26,6 @@ public class PlayerManager : MonoBehaviour {
 			InputManager.Instance.Controls.Movement.Disable();
 			InputManager.Instance.Zoom.Disable();
             InputManager.Instance.Pause.Disable();
-			InputManager.Instance.Controls.DoctorOfficePuzzle.Disable();
 			InputManager.Instance.Controls.BoardPuzzle.Disable();
 
         }
@@ -34,7 +33,6 @@ public class PlayerManager : MonoBehaviour {
 			InputManager.Instance.Controls.Movement.Enable();
 			InputManager.Instance.Zoom.Enable();
             InputManager.Instance.Pause.Enable();
-            InputManager.Instance.Controls.DoctorOfficePuzzle.Enable();
             InputManager.Instance.Controls.BoardPuzzle.Enable();
 
         }
