@@ -103,6 +103,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 	public virtual void Release() {
 		holdDefinition.Release(this, _currentHolder);
 		
+		EventSystemController.Instance.DropItem(gameObject);
+		
 		_currentHolder?.ClearCurrentHoldable();
 
 		_currentHolder = null;
