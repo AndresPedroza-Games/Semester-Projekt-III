@@ -72,13 +72,6 @@ public class Door : MonoBehaviour, IInteractable {
 
 
     private void OnEnable() {
-	    // if (NeedsToBeDisabled) {
-		   //  trigger.SetActive(false);
-		   //  colWhenClosing.SetActive(true);
-		   //  transform.eulerAngles = closedRotation;
-		   //  _doorInteractionState = DoorInteractionState.Disabled;
-	    // }
-	    
 		_eventSystemController = EventSystemController.Instance;
 		_eventSystemController.onItemPicked += OnItemPicked;
 		_eventSystemController.onItemDropped += OnItemDropped;
@@ -207,7 +200,6 @@ public class Door : MonoBehaviour, IInteractable {
 				UnloadScenes();
 				onDoorCloseAction?.Invoke();
 				EventSystemController.Instance.DoorClosed(gameObject.scene.name);
-				_doorState = DoorState.Closed;
 				_doorInteractionState = DoorInteractionState.Disabled;
 
 				FindFirstObjectByType<CameraShake>(FindObjectsInactive.Include).Shake();

@@ -69,7 +69,7 @@ PrefabInstance:
       addedObject: {fileID: 3552773568499266714}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8459f8bc0ad5c1146a0b025c622205b9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 998739047714068532}
+      addedObject: {fileID: 5928716864891226353}
   m_SourcePrefab: {fileID: 100100000, guid: 8459f8bc0ad5c1146a0b025c622205b9, type: 3}
 --- !u!1 &5093627231548853791 stripped
 GameObject:
@@ -125,7 +125,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &998739047714068532
+--- !u!114 &5928716864891226353
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,8 +134,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5093627231548853791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96ce9bca4b3bd8940a336bafb88d5510, type: 3}
+  m_Script: {fileID: 11500000, guid: 09232ca51b630e34ea98f42b84c4ad1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Key
   holdDefinition: {fileID: 11400000, guid: effbc0f642fe7e143abd69433b1171fa, type: 2}
   borderThickness: 0.02
+  CanBeHold: 1
