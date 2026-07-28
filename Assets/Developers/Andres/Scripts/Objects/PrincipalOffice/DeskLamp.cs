@@ -9,7 +9,7 @@ public class DeskLamp : Holdable
 
     private void Start()
     {
-        _IsActive = false;
+        _IsActive = true;
 
         _Bulb.enabled = _IsActive;
     }
