@@ -441,6 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683c10d5cd4e73e46b7b5f0129c2840b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EventTrigger001
+  gameEvent: {fileID: 11400000, guid: ebda90a807160ec45be392e5b62fd9ca, type: 2}
 --- !u!1 &6500608069179432544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,6 +1289,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 108273561126027927}
     m_Modifications:
+    - target: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: particles
+      value: 
+      objectReference: {fileID: 8288575647936644009}
+    - target: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: particleLoopCooldown.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120098011674907652, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1945037128108233427}
+    - target: {fileID: 2120098011674907652, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HallTubeLamp, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       propertyPath: m_Type
       value: 2
@@ -1357,7 +1374,8 @@ PrefabInstance:
       value: -0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2957039330728653892, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6949365643970149205, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       insertIndex: -1
@@ -1368,11 +1386,19 @@ PrefabInstance:
       addedObject: {fileID: 7845305391446368244}
     - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5043122991450304109}
-    - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8437187681922365440}
   m_SourcePrefab: {fileID: 100100000, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+--- !u!114 &1945037128108233427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+  m_PrefabInstance: {fileID: 1908736506058397170}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4873952529029812972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleLight
 --- !u!1 &4873952529029812972 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
@@ -1400,22 +1426,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5043122991450304109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4873952529029812972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Event002TurnOffLights
-  tubelampOffMaterial: {fileID: 2100000, guid: 2188f802435b91844811fada0862ba6a, type: 2}
-  _Particles: {fileID: 8288575647936644009}
-  _CoolDown: 3
-  lightbulbBurstSfx: {fileID: 8300000, guid: 8b25eb88191ab1943b3a25935d72f863, type: 3}
 --- !u!82 &8437187681922365440
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1715,6 +1725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Key_001
       objectReference: {fileID: 0}
+    - target: {fileID: 8894364272991786570, guid: e7adf86fd20a7484c8ca18a69f92d3b3, type: 3}
+      propertyPath: gameEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: bad64d242c1bdc642aa5c802305d9d46, type: 2}
     - target: {fileID: 8894364272991786570, guid: e7adf86fd20a7484c8ca18a69f92d3b3, type: 3}
       propertyPath: eventDelay
       value: 1
@@ -2640,6 +2654,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 3252520219519978971}
+    - targetCorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8920428339840861804}
+    - targetCorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3999117720580689463}
   m_SourcePrefab: {fileID: 100100000, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
 --- !u!4 &2746680346679385019 stripped
@@ -2652,6 +2672,53 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
   m_PrefabInstance: {fileID: 3984934409325126974}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3252520219519978971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904468021558715336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleLight
+  isOnFromBeginning: 0
+  useTurnOnDelay: 1
+  playBrokenParticles: 0
+  turnOnDelay: 0.2
+  particles: {fileID: 0}
+  particleLoopCooldown: {x: 1, y: 3}
+  lightbulbBurstSfx: {fileID: 0}
+--- !u!114 &8920428339840861804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5904468021558715336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6499c44bad9bf064dba36b6de80c815e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: ebda90a807160ec45be392e5b62fd9ca, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3252520219519978971}
+        m_TargetAssemblyTypeName: ToggleLight, Assembly-CSharp
+        m_MethodName: TurnLightOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &3999117720580689463
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3029,6 +3096,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2650933434726166491, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 4553647818638991864}
+    - targetCorrespondingSourceObject: {fileID: 2650933434726166491, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3497766752910936463}
+    - targetCorrespondingSourceObject: {fileID: 2650933434726166491, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 8596554225474492781}
   m_SourcePrefab: {fileID: 100100000, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
 --- !u!4 &1346815528735590895 stripped
@@ -3041,6 +3114,53 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2650933434726166491, guid: e65261c3c59c3f44a8ff33abe937c91d, type: 3}
   m_PrefabInstance: {fileID: 4509737579871622306}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4553647818638991864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900465744529161081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleLight
+  isOnFromBeginning: 0
+  useTurnOnDelay: 1
+  playBrokenParticles: 0
+  turnOnDelay: 0.4
+  particles: {fileID: 0}
+  particleLoopCooldown: {x: 1, y: 3}
+  lightbulbBurstSfx: {fileID: 0}
+--- !u!114 &3497766752910936463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900465744529161081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6499c44bad9bf064dba36b6de80c815e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: ebda90a807160ec45be392e5b62fd9ca, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4553647818638991864}
+        m_TargetAssemblyTypeName: ToggleLight, Assembly-CSharp
+        m_MethodName: TurnLightOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &8596554225474492781
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4282,6 +4402,10 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5369762563874838488, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0a0857c4ec945064a86b99e8eeaaa071, type: 2}
     - target: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
       propertyPath: m_Name
       value: Tubelamp_Off_001
@@ -4296,6 +4420,12 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1609892827361555890}
+    - targetCorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2953472211429519764}
+    - targetCorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 3420133750273536683}
   m_SourcePrefab: {fileID: 100100000, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
 --- !u!1 &371411250705740471 stripped
@@ -4303,6 +4433,53 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7403274412396840694, guid: fe368e4592e4aef4e90c082f6f4bcb7f, type: 3}
   m_PrefabInstance: {fileID: 7177104250017756225}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1609892827361555890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371411250705740471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleLight
+  isOnFromBeginning: 0
+  useTurnOnDelay: 1
+  playBrokenParticles: 0
+  turnOnDelay: 0
+  particles: {fileID: 0}
+  particleLoopCooldown: {x: 1, y: 3}
+  lightbulbBurstSfx: {fileID: 0}
+--- !u!114 &2953472211429519764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371411250705740471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6499c44bad9bf064dba36b6de80c815e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: ebda90a807160ec45be392e5b62fd9ca, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1609892827361555890}
+        m_TargetAssemblyTypeName: ToggleLight, Assembly-CSharp
+        m_MethodName: TurnLightOn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!82 &3420133750273536683
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4413,6 +4590,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 108273561126027927}
     m_Modifications:
+    - target: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: particles
+      value: 
+      objectReference: {fileID: 3434994644276147984}
+    - target: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: particleLoopCooldown.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120098011674907652, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7345558955084911097}
+    - target: {fileID: 2120098011674907652, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HallTubeLamp, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4478,15 +4671,13 @@ PrefabInstance:
       value: -0.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2957039330728653892, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6949365643970149205, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5389695883640056996}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4472365472218417820}
     - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 159358165385585193}
@@ -4501,22 +4692,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
   m_PrefabInstance: {fileID: 7310384225964693208}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4472365472218417820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4372221205841744326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Event002TurnOffLights
-  tubelampOffMaterial: {fileID: 2100000, guid: 2188f802435b91844811fada0862ba6a, type: 2}
-  _Particles: {fileID: 3434994644276147984}
-  _CoolDown: 3
-  lightbulbBurstSfx: {fileID: 8300000, guid: 8b25eb88191ab1943b3a25935d72f863, type: 3}
 --- !u!82 &159358165385585193
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4614,6 +4789,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7345558955084911097 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+  m_PrefabInstance: {fileID: 7310384225964693208}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4372221205841744326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleLight
 --- !u!1001 &7322805799415387950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4622,6 +4808,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 108273561126027927}
     m_Modifications:
+    - target: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: particles
+      value: 
+      objectReference: {fileID: 3389642680368208690}
+    - target: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: particleLoopCooldown.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120098011674907652, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7285922977989464079}
+    - target: {fileID: 2120098011674907652, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+      propertyPath: response.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: HallTubeLamp, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6107148283212741287, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -4683,15 +4885,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2957039330728653892, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6949365643970149205, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5363198622473863302}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1373132046582719675}
     - targetCorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3615832949530974372}
@@ -4706,22 +4906,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6475881308313487134, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
   m_PrefabInstance: {fileID: 7322805799415387950}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1373132046582719675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4341794047158718512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Event002TurnOffLights
-  tubelampOffMaterial: {fileID: 2100000, guid: 2188f802435b91844811fada0862ba6a, type: 2}
-  _Particles: {fileID: 3389642680368208690}
-  _CoolDown: 3
-  lightbulbBurstSfx: {fileID: 8300000, guid: 8b25eb88191ab1943b3a25935d72f863, type: 3}
 --- !u!82 &3615832949530974372
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4819,6 +5003,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7285922977989464079 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 36901032713258785, guid: 9aeecf70d3b0f6f4ab0ad7295e13412a, type: 3}
+  m_PrefabInstance: {fileID: 7322805799415387950}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341794047158718512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleLight
 --- !u!1001 &7480929267513938576
 PrefabInstance:
   m_ObjectHideFlags: 0

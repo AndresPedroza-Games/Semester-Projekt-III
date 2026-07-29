@@ -1,12 +1,15 @@
 using UnityEngine;
 
 
-public class EventTrigger001 : MonoBehaviour {
+public class EventTrigger : MonoBehaviour {
+
+	[Header("---Game Event---")]
+	[SerializeField] private GameEvent gameEvent;
+
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player")) {
-			Hall0EventManager.Instance.Event001();
-
+			gameEvent.Raise();
 			gameObject.SetActive(false);
 		}
 	}

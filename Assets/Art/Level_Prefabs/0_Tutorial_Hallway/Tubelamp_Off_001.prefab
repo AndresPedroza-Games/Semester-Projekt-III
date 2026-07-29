@@ -226,7 +226,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1248481720019271301}
-  - component: {fileID: 9030102029609759769}
   m_Layer: 0
   m_Name: Tubelamp_Off_001
   m_TagString: Untagged
@@ -251,16 +250,3 @@ Transform:
   - {fileID: 2632698016550479419}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9030102029609759769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7403274412396840694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e3fb03a640f9d3459cefe6bd4f28c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OnEvent001
-  tubelampOnMaterial: {fileID: 2100000, guid: 4feecc37a8d10e345845666d9693a286, type: 2}

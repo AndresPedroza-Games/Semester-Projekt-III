@@ -99,6 +99,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6949365643970149205}
+  - component: {fileID: 36901032713258785}
+  - component: {fileID: 2120098011674907652}
   m_Layer: 0
   m_Name: Tubelamp_On_001
   m_TagString: Untagged
@@ -121,8 +123,56 @@ Transform:
   m_Children:
   - {fileID: 5265706564403037589}
   - {fileID: 7771118122567720240}
+  - {fileID: 7917754280043172185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &36901032713258785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475881308313487134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85fd2a3466900cf48bd6b5d67bdfe1f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToggleLight
+  isOnFromBeginning: 1
+  useTurnOnDelay: 1
+  playBrokenParticles: 1
+  turnOnDelay: 1
+  particles: {fileID: 614184055763602157}
+  particleLoopCooldown: 1
+  lightbulbBurstSfx: {fileID: 8300000, guid: 8b25eb88191ab1943b3a25935d72f863, type: 3}
+--- !u!114 &2120098011674907652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6475881308313487134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6499c44bad9bf064dba36b6de80c815e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
+  gameEvent: {fileID: 11400000, guid: bad64d242c1bdc642aa5c802305d9d46, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ToggleLight, Assembly-CSharp
+        m_MethodName: TurnLightOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8870272935522284762
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,3 +300,74 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1001 &7467396182395282034
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6949365643970149205}
+    m_Modifications:
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.5360001
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.898
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.973001
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071069
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5667787661167285814, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: m_Name
+      value: Sparkle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8009511640405436575, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+--- !u!198 &614184055763602157 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8009511640405436575, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+  m_PrefabInstance: {fileID: 7467396182395282034}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7917754280043172185 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 738597841123554091, guid: 2ee9f85c7b269c94fb0a8a89a72131ab, type: 3}
+  m_PrefabInstance: {fileID: 7467396182395282034}
+  m_PrefabAsset: {fileID: 0}
