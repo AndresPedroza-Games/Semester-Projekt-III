@@ -3,15 +3,11 @@ using UnityEngine;
 
 public class Event001TurnOnLights : MonoBehaviour {
 
-	[SerializeField] private Material tubelampOnMaterial;
-
-	private Renderer _renderer;
 	private Light _light;
 	private AudioSource _audioSource;
 
 
 	private void Awake() {
-		_renderer = GetComponentInChildren<Renderer>();
 		_light = GetComponentInChildren<Light>();
 		_audioSource = GetComponent<AudioSource>();
 
@@ -31,7 +27,6 @@ public class Event001TurnOnLights : MonoBehaviour {
 
 
 	private void TurnOnLight() {
-		_renderer.material = tubelampOnMaterial;
 		_light.enabled = true;
 		_audioSource.Play();
 	}

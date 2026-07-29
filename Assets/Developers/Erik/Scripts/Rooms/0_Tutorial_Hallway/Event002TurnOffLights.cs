@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Event002TurnOffLights : MonoBehaviour {
 
-	[Header("---Material---")]
-	[SerializeField] private Material tubelampOffMaterial;
-
 	[Header("---Particles---")]
 	[SerializeField] private ParticleSystem _Particles;
 
@@ -15,7 +12,6 @@ public class Event002TurnOffLights : MonoBehaviour {
 	[Header("---Audio---")]
 	[SerializeField] private AudioClip lightbulbBurstSfx;
 
-	private Renderer _renderer;
 	private Light _light;
 	private AudioSource _audioSource;
 
@@ -23,7 +19,6 @@ public class Event002TurnOffLights : MonoBehaviour {
 
 
 	private void Awake() {
-		_renderer = GetComponentInChildren<Renderer>();
 		_light = GetComponentInChildren<Light>();
 		_audioSource = GetComponent<AudioSource>();
 	}
@@ -49,7 +44,6 @@ public class Event002TurnOffLights : MonoBehaviour {
 
 
 	private void TurnOffLight() {
-		_renderer.material = tubelampOffMaterial;
 		_light.enabled = false;
 		_Particles.Play();
 
