@@ -16,13 +16,12 @@ public class Event001TurnOnLights : MonoBehaviour {
 
 
 	private void OnEnable() {
-		EventSystemController.Instance.onEvent001 += TurnOnLight;
+		Hall0EventManager.Instance.onEvent001 += TurnOnLight;
 	}
 
 
 	private void OnDisable() {
-		EventSystemController.Instance.onEvent001 -= TurnOnLight;
-
+		Hall0EventManager.Instance.onEvent001 -= TurnOnLight;
 	}
 
 

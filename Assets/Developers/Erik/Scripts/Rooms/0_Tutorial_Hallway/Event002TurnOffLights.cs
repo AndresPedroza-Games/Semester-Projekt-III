@@ -33,12 +33,12 @@ public class Event002TurnOffLights : MonoBehaviour {
 
 
 	private void OnEnable() {
-		EventSystemController.Instance.OnKey001PickedUp += TurnOffLight;
+		Hall0EventManager.Instance.onKey001PickedUp += TurnOffLight;
 	}
 
 
 	private void OnDisable() {
-		EventSystemController.Instance.OnKey001PickedUp -= TurnOffLight;
+		Hall0EventManager.Instance.onKey001PickedUp -= TurnOffLight;
 
 	}
 

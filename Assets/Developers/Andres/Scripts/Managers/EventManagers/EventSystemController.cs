@@ -13,9 +13,6 @@ public class EventSystemController : MonoBehaviour {
 	public Action<GameObject> onItemDropped;
 
 
-	public Action onEvent001;
-	public Action OnKey001PickedUp;
-
 	public Action onStartGame;
 	public Action onSaveGame;
 	public Action onExitGame;
@@ -58,16 +55,6 @@ public class EventSystemController : MonoBehaviour {
 
 	public void DoorClosed(string scene) {
 		onDoorClosed?.Invoke(scene);
-	}
-
-
-	public void Event001() {
-		onEvent001?.Invoke();
-	}
-
-
-	public void Key001PickedUp() {
-		OnKey001PickedUp?.Invoke();
 	}
 
 

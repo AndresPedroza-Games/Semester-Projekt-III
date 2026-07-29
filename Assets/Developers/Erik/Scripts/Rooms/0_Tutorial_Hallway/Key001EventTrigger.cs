@@ -34,7 +34,7 @@ public class Key001EventTrigger : MonoBehaviour {
 	private IEnumerator EventDelayRoutine() {
 		_alreadyExecuted = true;
 		yield return new WaitForSeconds(eventDelay);
-		EventSystemController.Instance.Key001PickedUp();
+		Hall0EventManager.Instance.Key001PickedUp();
 		_delayRoutine = null;
 	}
 
