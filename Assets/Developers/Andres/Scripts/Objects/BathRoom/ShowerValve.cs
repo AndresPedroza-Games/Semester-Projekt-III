@@ -6,7 +6,7 @@ public class ShowerValve : MonoBehaviour, IInteractable
 {
     private EventSystemBathroom _EventSystemBathroom;
 
-    private VolumetricAdditionalLight _Fog;
+    [SerializeField] private VolumetricAdditionalLight _Fog;
 
     [Header("Fog Settings")]
     [SerializeField] private float _TransitionSpeed = 1f;
@@ -34,7 +34,6 @@ public class ShowerValve : MonoBehaviour, IInteractable
 
         _IsCompleted = false;
 
-        _Fog = FindFirstObjectByType<VolumetricAdditionalLight>(FindObjectsInactive.Include);
     }
 
     private void Update()
