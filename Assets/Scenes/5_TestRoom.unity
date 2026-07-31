@@ -828,6 +828,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3769836036907291732, guid: cf470b8db5c3333448df3a4d43358081, type: 3}
   m_PrefabInstance: {fileID: 471407595}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &496782042 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8474958194430035971, guid: 2a60991901ede4e4797cbe98455e5836, type: 3}
+  m_PrefabInstance: {fileID: 962647101}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &531811468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2244030324042617692, guid: 9a2d1a4a2f53ace4b888a03e70b91c58, type: 3}
@@ -2281,6 +2286,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gen_WallSwitch_001
       objectReference: {fileID: 0}
+    - target: {fileID: 2074989914415351446, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852770140580371162, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: enableOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852770140580371162, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: lightSources.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852770140580371162, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: 'lightSources.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1957963378}
+    - target: {fileID: 5852770140580371162, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: 'lightSources.Array.data[1]'
+      value: 
+      objectReference: {fileID: 496782042}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2422,6 +2447,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4087266219359501358, guid: da7aee0ccc4e3054790e679757d31cd6, type: 3}
   m_PrefabInstance: {fileID: 1911840515}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &1957963378 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 2402077215648400712, guid: 2a60991901ede4e4797cbe98455e5836, type: 3}
+  m_PrefabInstance: {fileID: 962647101}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1974641608
 PrefabInstance:
