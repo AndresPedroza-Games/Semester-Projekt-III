@@ -1967,43 +1967,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1409821610}
-    - targetCorrespondingSourceObject: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1409821609}
   m_SourcePrefab: {fileID: 100100000, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
 --- !u!4 &1409821608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4339717584019907471, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
   m_PrefabInstance: {fileID: 1409821607}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1409821609
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858412344}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6499c44bad9bf064dba36b6de80c815e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameEventListener
-  gameEvent: {fileID: 11400000, guid: 3b9f58a38374a9f4dbef71815549bbbd, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1409821610}
-        m_TargetAssemblyTypeName: UnityEngine.Rigidbody, UnityEngine
-        m_MethodName: set_isKinematic
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!54 &1409821610
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3069,7 +3038,7 @@ PrefabInstance:
       objectReference: {fileID: 102900000, guid: 48623634779a0ae4eb826b96f085cebc, type: 3}
     - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: onDoorCloseAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
