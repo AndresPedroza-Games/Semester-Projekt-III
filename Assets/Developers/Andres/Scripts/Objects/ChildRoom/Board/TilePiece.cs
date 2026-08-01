@@ -64,7 +64,7 @@ public class TilePiece : MonoBehaviour, IInteractable, IHighlightable {
 
 	public void Interact()
     {
-        if (_CanInteract)
+        if (_CanInteract && PlacementSystem.Instace._SelectedObject == null)
         {
             _EventSystemChildRoom.PickPiece(this.gameObject);
             Highlight();

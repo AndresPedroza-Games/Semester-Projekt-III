@@ -5,7 +5,7 @@ public class GridData
 {
     public Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
 
-    public void AddObjectAt(GameObject piece,Vector3 gridPos, float rot, int id, int pieceIndex)
+    public void AddObjectAt(GameObject piece,Vector3 gridPos, int rot, int id, int pieceIndex)
     {
         Vector3 positionToOccupy = gridPos;
         PlacementData data = new PlacementData(piece,positionToOccupy,rot,id,pieceIndex);
@@ -15,6 +15,8 @@ public class GridData
         }
 
         _PlacedPieces[positionToOccupy] = data;
+
+        Debug.Log($"Rotation: {rot}");
     }
 
     public void RemoveObjectAt(Vector3Int gridPos)
@@ -47,12 +49,9 @@ public class GridData
         return false;
     }
 
-    public bool PieceCorrectRotation(Vector3 gridPos, float correctRot)
+    public bool PieceCorrectRotation(Vector3 gridPos)
     {
-        if (!_PlacedPieces.TryGetValue(gridPos, out var data))
-            return false;
-
-        if (0 == correctRot)
+        if (0 == _PlacedPieces[gridPos].rotation)
             return true;
 
         return false;
@@ -85,11 +84,11 @@ public class PlacementData
 
     public Vector3 occupiedPositions;
 
-    public float rotation;
+    public int rotation;
     public int ID { get; private set; }
     public int PlacedPieceIndex { get; private set; }
 
-    public PlacementData(GameObject obj,Vector3 occupiedPos, float rot, int id, int placedObjectindex)
+    public PlacementData(GameObject obj,Vector3 occupiedPos, int rot, int id, int placedObjectindex)
     {
         piece = obj;
         occupiedPositions = occupiedPos;

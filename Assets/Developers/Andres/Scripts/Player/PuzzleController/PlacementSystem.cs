@@ -18,7 +18,7 @@ public class PlacementSystem : MonoBehaviour
 
     private List<PieceData> _PiecesPlaced = new List<PieceData>();
 
-    private GameObject _SelectedObject;
+    public GameObject _SelectedObject;
 
     public static bool isInteracting;
 
@@ -99,6 +99,9 @@ public class PlacementSystem : MonoBehaviour
 
     private void PickPiece(GameObject piece)
     {
+        if (_SelectedObject != null)
+            return;
+
         _SelectedObject = piece;
 
         TilePiece selectedPiece = _SelectedObject.GetComponent<TilePiece>();
@@ -148,7 +151,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void PlaceSelected(Vector3Int gridPos)
     {
-        _PieceData.AddObjectAt(_SelectedObject, gridPos, _SelectedObject.transform.localEulerAngles.z, _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
+        _PieceData.AddObjectAt(_SelectedObject, gridPos, Mathf.RoundToInt(_SelectedObject.transform.localEulerAngles.y), _TilePieceData.piecesData[_SelectedObjectIndex].ID, _SelectedObjectIndex);
 
         _TilePieceData.piecesData[_SelectedObjectIndex].currentPos = gridPos;
 
@@ -183,7 +186,7 @@ public class PlacementSystem : MonoBehaviour
 
         foreach (PieceData pieceData in _PiecesPlaced)
         {
-            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos) && !_PieceData.PieceCorrectRotation(pieceData.currentPos, 0f))
+            if (!_PieceData.PieceCorrectPosition(pieceData.currentPos, pieceData.correctPos) || !_PieceData.PieceCorrectRotation(pieceData.currentPos))
                 return false;
         }
 
