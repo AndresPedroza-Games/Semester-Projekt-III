@@ -4,17 +4,22 @@ using UnityEngine;
 
 public class CubeFollow : MonoBehaviour {
 
+	[Header("---Cube Detection---")]
+	[SerializeField] private LayerMask ignoreLayer;
+	[SerializeField] private Transform boxCenter;
+	[SerializeField] private Vector3 boxHalfExtends;
+	private readonly Collider[] _results = new Collider[20];
+
 	[Header("---Cube Config---")]
 	public float followDistance;
 	public float followSpeed;
 	public List<Transform> checkpoints;
 
-	private int _checkpointIndex = 0;
+	private int _checkpointIndex;
 
 	private Transform _playerTransform;
 	private Transform _currentTarget;
 	private float _currentDistanceToPlayer;
-	private float _currentDistanceToCheckPoint;
 
 	private Rigidbody _rb;
 
@@ -29,15 +34,33 @@ public class CubeFollow : MonoBehaviour {
 	}
 
 
-	private void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.CompareTag("Player")) return;
+	private void FixedUpdate() {
+		MoveToCheckPoints();
+		DetectCollision();
 
-		if (collision.gameObject.scene == gameObject.scene)
-			collision.gameObject.SetActive(false);
 	}
 
 
-	private void FixedUpdate() {
+	private void DetectCollision() {
+		int count = Physics.OverlapBoxNonAlloc(boxCenter.position, boxHalfExtends, _results, boxCenter.rotation);
+
+		for (int i = 0; i < count; i++) {
+			Collider hit = _results[i];
+
+			if (hit.gameObject == gameObject)
+				continue;
+
+			if ((ignoreLayer.value & (1 << hit.gameObject.layer)) != 0)
+				continue;
+
+			if (hit.gameObject.scene == gameObject.scene) {
+				hit.gameObject.SetActive(false);
+			}
+		}
+	}
+
+
+	private void MoveToCheckPoints() {
 		if (!_playerTransform || !_currentTarget)
 			return;
 
@@ -60,5 +83,16 @@ public class CubeFollow : MonoBehaviour {
 				_currentTarget = null;
 		}
 	}
+
+
+#if UNITY_EDITOR
+	private void OnDrawGizmos() {
+		if (!boxCenter || boxHalfExtends == Vector3.zero)
+			return;
+
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireCube(boxCenter.position, boxHalfExtends * 2);
+	}
+#endif
 
 }
