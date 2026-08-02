@@ -2454,6 +2454,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2056192079}
     m_Modifications:
+    - target: {fileID: 3773726923553276785, guid: b53f9935ebffe6a409b4fd9b0c2996e2, type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773726923553276785, guid: b53f9935ebffe6a409b4fd9b0c2996e2, type: 3}
+      propertyPath: m_LinearDamping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773726923553276785, guid: b53f9935ebffe6a409b4fd9b0c2996e2, type: 3}
+      propertyPath: m_AngularDamping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6728978924290537604, guid: b53f9935ebffe6a409b4fd9b0c2996e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.926629
@@ -2494,6 +2506,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7070987100344147493, guid: b53f9935ebffe6a409b4fd9b0c2996e2, type: 3}
+      propertyPath: holdDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 7208f360b1a5e5846a7b1b5b837cdf7d, type: 2}
     - target: {fileID: 7834580339508826910, guid: b53f9935ebffe6a409b4fd9b0c2996e2, type: 3}
       propertyPath: m_Name
       value: Room1_TeddyBear_005

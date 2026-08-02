@@ -49,7 +49,7 @@ public class Film : Holdable {
 
 
 	public void Insert(Transform filmPosition, Ease ease, float duration) {
-		CanBeHold = false;
+		canBeHold = false;
 
 		IsInserted = true;
 

@@ -7,14 +7,14 @@ public class Scissors : SocketItem
     {
         _EventSystemBathroom = EventSystemBathroom.instance;
         _EventSystemBathroom.onCutHair += UseItem;
-        _EventSystemBathroom.onLockDoor += () => CanBeHold = true;
+        _EventSystemBathroom.onLockDoor += () => canBeHold = true;
 
-        CanBeHold = false;
+        canBeHold = false;
     }
 
     public override void Hold(HoldController holder)
     {
-        if (!CanBeHold)
+        if (!canBeHold)
             return;
 
         base.Hold(holder);

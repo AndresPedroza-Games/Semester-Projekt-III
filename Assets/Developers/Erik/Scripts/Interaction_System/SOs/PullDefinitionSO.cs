@@ -5,7 +5,7 @@ using UnityEngine;
 public class PullDefinitionSO : HoldDefinition {
 
 	private readonly HoldPhysicsProfile profile = new HoldPhysicsProfile() {
-		useGravity = true,
+		useGravity = false,
 		constraints = RigidbodyConstraints.FreezeRotation,
 		xMotion = ConfigurableJointMotion.Free,
 		yMotion = ConfigurableJointMotion.Free,

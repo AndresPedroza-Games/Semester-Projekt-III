@@ -502,37 +502,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1541987910}
     m_Modifications:
-    - target: {fileID: 2482880748330344432, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_AngularYLimit.limit
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482880748330344432, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_AngularZLimit.limit
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482880748330344432, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_LowAngularXLimit.limit
-      value: -70
-      objectReference: {fileID: 0}
-    - target: {fileID: 2482880748330344432, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_HighAngularXLimit.limit
-      value: 70
-      objectReference: {fileID: 0}
     - target: {fileID: 3164823078654727946, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
       propertyPath: m_Name
       value: Gen_IVStand_001 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590625961679128548, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8999997
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590625961679128548, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590625961679128548, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8999997
       objectReference: {fileID: 0}
     - target: {fileID: 3590625961679128548, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -573,10 +545,6 @@ PrefabInstance:
     - target: {fileID: 3590625961679128548, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3590625961679128548, guid: bdc9a2357526f734a95ba0ea925cf0f7, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2499,6 +2467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1459189530}
     m_Modifications:
+    - target: {fileID: 415093273137476477, guid: a2ee1030a4498d34bbb8885a21b9cb31, type: 3}
+      propertyPath: holdDefinition
+      value: 
+      objectReference: {fileID: 11400000, guid: 7208f360b1a5e5846a7b1b5b837cdf7d, type: 2}
     - target: {fileID: 842063162830419934, guid: a2ee1030a4498d34bbb8885a21b9cb31, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.036
@@ -2542,6 +2514,18 @@ PrefabInstance:
     - target: {fileID: 4907977213105055995, guid: a2ee1030a4498d34bbb8885a21b9cb31, type: 3}
       propertyPath: m_Name
       value: Room1_KidsChair_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211358250959479885, guid: a2ee1030a4498d34bbb8885a21b9cb31, type: 3}
+      propertyPath: m_Mass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211358250959479885, guid: a2ee1030a4498d34bbb8885a21b9cb31, type: 3}
+      propertyPath: m_LinearDamping
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8211358250959479885, guid: a2ee1030a4498d34bbb8885a21b9cb31, type: 3}
+      propertyPath: m_AngularDamping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2618,14 +2602,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 505439433}
     m_Modifications:
-    - target: {fileID: 3942548937935790539, guid: 020be53428471de439d5f946ad2741c6, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.8000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 3942548937935790539, guid: 020be53428471de439d5f946ad2741c6, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.8000001
-      objectReference: {fileID: 0}
     - target: {fileID: 3942548937935790539, guid: 020be53428471de439d5f946ad2741c6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.997

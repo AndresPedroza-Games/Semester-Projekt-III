@@ -12,15 +12,14 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 	public Transform StartParentIfSocketHold { get; private set; }
 
-	[Header("---Highlight Config---")]
-	[SerializeField] private float borderThickness = 0.02f;
+	private float borderThickness = 0.02f;
 
 
 	private Renderer _renderer;
 	private readonly int _borderThickness = Shader.PropertyToID("_BorderThickness");
 
 	private HoldController _currentHolder;
-	public bool CanBeHold = true;
+	public bool canBeHold = true;
 
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }
@@ -70,7 +69,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CanBeHold ? CrosshairType.HandOpen : CrosshairType.Default;
+		return canBeHold ? CrosshairType.HandOpen : CrosshairType.Default;
 
 	}
 
@@ -86,9 +85,9 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 
 	public virtual void Hold(HoldController holder) {
-		if (!CanBeHold)
+		if (!canBeHold)
 			return;
-		
+
 		_sfx?.PlaySfx(SfxEvent.OnPickup);
 
 		_currentHolder = holder;
@@ -97,14 +96,14 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 		holder.SetCurrentHoldable(this);
 
-    }
+	}
 
 
 	public virtual void Release() {
 		holdDefinition.Release(this, _currentHolder);
-		
+
 		EventSystemController.Instance.DropItem(gameObject);
-		
+
 		_currentHolder?.ClearCurrentHoldable();
 
 		_currentHolder = null;
@@ -126,8 +125,9 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 		_renderer.material.SetFloat(_borderThickness, 0f);
 	}
 
-    public void Flush()
-    {
+
+	public void Flush() {
 		gameObject.SetActive(false);
-    }
+	}
+
 }

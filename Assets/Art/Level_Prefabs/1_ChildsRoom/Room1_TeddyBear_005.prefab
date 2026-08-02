@@ -111,9 +111,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7834580339508826910}
   serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
+  m_Mass: 3
+  m_LinearDamping: 3
+  m_AngularDamping: 2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -170,8 +170,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.23097733
-  m_Center: {x: -0.0077461004, y: -0.10942754, z: -0.03999999}
+  m_Radius: 0.24603993
+  m_Center: {x: -0.0077461004, y: -0.12449005, z: -0.039999932}
 --- !u!65 &3212821645225233156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -191,8 +191,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23428476, y: 0.2432037, z: 0.32234913}
-  m_Center: {x: 0.20248336, y: -0.2512106, z: 0.23492345}
+  m_Size: {x: 0.23428476, y: 0.23545474, z: 0.32234913}
+  m_Center: {x: 0.20248336, y: -0.24733612, z: 0.23492345}
 --- !u!65 &4634401294041424431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -212,8 +212,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23232827, y: 0.2432037, z: 0.29600498}
-  m_Center: {x: -0.2583698, y: -0.2512106, z: 0.22175138}
+  m_Size: {x: 0.2323283, y: 0.23545474, z: 0.29600498}
+  m_Center: {x: -0.2583698, y: -0.24733609, z: 0.22175138}
 --- !u!65 &1835878309498540805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -268,9 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ebfe4d5d641ff4b9b6102ff381e7f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Holdable
-  holdDefinition: {fileID: 11400000, guid: a6ec0041a8ec90240baa5e0bb54cad09, type: 2}
-  borderThickness: 0.02
-  CanBeHold: 1
+  holdDefinition: {fileID: 11400000, guid: 7208f360b1a5e5846a7b1b5b837cdf7d, type: 2}
+  canBeHold: 1
 --- !u!135 &7965358513821760316
 SphereCollider:
   m_ObjectHideFlags: 0
