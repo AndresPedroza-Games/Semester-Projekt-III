@@ -60,8 +60,8 @@ public class MainMenu : MenuManager {
 
 
 	public override void ExitGame() {
+		EventSystemController.Instance.ExitGame();
 		Application.Quit();
-		Debug.Log("Exit");
 	}
 
 }

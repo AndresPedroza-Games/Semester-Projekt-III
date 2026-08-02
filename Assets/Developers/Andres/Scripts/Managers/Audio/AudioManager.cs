@@ -1,10 +1,13 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager audioManager;
 
+    [Header("---SFX---")]
     [SerializeField] private SFXDataSO sfxData;
 
     public List<Audio> audioList = new List<Audio>();
@@ -16,6 +19,33 @@ public class AudioManager : MonoBehaviour
 
         SetComponentsAudio();
     }
+
+
+    private void OnEnable() {
+	    EventSystemController.Instance.onPauseGame += PauseListener;
+	    EventSystemController.Instance.onResumeGame += ResumeListener;
+	    EventSystemController.Instance.onMainMenuEntered += ResumeListener;
+	    EventSystemController.Instance.onStartGame += ResumeListener;
+    }
+
+
+    private void OnDisable() {
+	    EventSystemController.Instance.onPauseGame -= PauseListener;
+	    EventSystemController.Instance.onResumeGame -= ResumeListener;
+	    EventSystemController.Instance.onMainMenuEntered -= ResumeListener;
+	    EventSystemController.Instance.onStartGame -= ResumeListener;
+    }
+
+
+    private void PauseListener() {
+	    AudioListener.pause = true;
+    }
+
+
+    private void ResumeListener() {
+	    AudioListener.pause = false;
+    }
+
 
     private void SetComponentsAudio()
     {

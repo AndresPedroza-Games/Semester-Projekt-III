@@ -75,4 +75,9 @@ public class EventSystemController : MonoBehaviour {
 			onSaveGame.Invoke();
 	}
 
+
+	public void ExitGame() {
+		onExitGame?.Invoke();
+	}
+
 }
