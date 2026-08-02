@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -44,6 +43,12 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 			Rigidbody.isKinematic = true;
 
 		ConfigurePhysics();
+	}
+
+
+	private void OnDisable() {
+		if (_currentHolder)
+			Release();
 	}
 
 
