@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SocketHoldDefinition", menuName = "Interaction/Hold Definitions/Socket")]
 public class SocketHoldDefinitionSO : HoldDefinition {
 
-	public override void Hold(Holdable holdable, HoldController holder) {
+	public override void Hold(Holdable holdable, HoldController holder, Vector3 hitPoint) {
 		holder.Picker.Attach(holdable);
 	}
 

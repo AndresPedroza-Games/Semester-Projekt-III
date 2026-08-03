@@ -1,23 +1,22 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "PullDefinitionUnrestricted", menuName = "Interaction/Hold Definitions/PhysicsPullUnrestricted")]
-public class PullDefinitionUnrestrictedSO : HoldDefinition {
+[CreateAssetMenu(fileName = "PullDefinition", menuName = "Interaction/Hold Definitions/PhysicsPull")]
+public class PullDefinitionRestrictedSO : HoldDefinition {
 
 	public HoldPhysicsProfile profile; // = new HoldPhysicsProfile() {
-	// 	keepMomentum = true,
-	// 	useGravity = true,
-	// 	constraints = RigidbodyConstraints.None,
+	// 	useGravity = false,
+	// 	useHitPoint = false,
+	// 	constraints = RigidbodyConstraints.FreezeRotation,
 	// 	xMotion = ConfigurableJointMotion.Free,
 	// 	yMotion = ConfigurableJointMotion.Free,
 	// 	zMotion = ConfigurableJointMotion.Free,
 	// 	angularXMotion = ConfigurableJointMotion.Locked,
-	// 	angularYMotion = ConfigurableJointMotion.Free,
+	// 	angularYMotion = ConfigurableJointMotion.Locked,
 	// 	angularZMotion = ConfigurableJointMotion.Locked
 	// };
-	
-	private readonly PullHitPointTargetResolver resolver = new PullHitPointTargetResolver();
 
+	private readonly PullOriginTargetResolver resolver = new PullOriginTargetResolver();
 
 	public override void Hold(Holdable holdable, HoldController holder, Vector3 hitPoint) {
 		holder.PhysicsHolder.Hold(holdable, resolver, profile, hitPoint);

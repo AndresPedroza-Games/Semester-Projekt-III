@@ -39,7 +39,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 		if (holdDefinition is SocketHoldDefinitionSO)
 			StartParentIfSocketHold = transform.parent;
 
-		if (holdDefinition is PullDefinitionSO)
+		if (holdDefinition is PullDefinitionRestrictedSO)
 			Rigidbody.isKinematic = true;
 
 		ConfigurePhysics();
@@ -89,7 +89,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 	}
 
 
-	public virtual void Hold(HoldController holder) {
+	public virtual void Hold(HoldController holder, Vector3 hitPoint) {
 		if (!canBeHold)
 			return;
 
@@ -97,7 +97,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 		_currentHolder = holder;
 
-		holdDefinition.Hold(this, holder);
+		holdDefinition.Hold(this, holder, hitPoint);
 
 		holder.SetCurrentHoldable(this);
 

@@ -1,4 +1,7 @@
 
+using UnityEngine;
+
+
 public class Scissors : SocketItem
 {
     private EventSystemBathroom _EventSystemBathroom;
@@ -12,12 +15,12 @@ public class Scissors : SocketItem
         canBeHold = false;
     }
 
-    public override void Hold(HoldController holder)
+    public override void Hold(HoldController holder, Vector3 hitPoint)
     {
         if (!canBeHold)
             return;
 
-        base.Hold(holder);
+        base.Hold(holder, hitPoint);
         _EventSystemBathroom.TakeScissors();
 
     }

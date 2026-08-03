@@ -10,9 +10,9 @@ public class MiniPiece : Holdable
         _Particles = GetComponentInChildren<ParticleSystem>();
     }
 
-    public override void Hold(HoldController holder)
+    public override void Hold(HoldController holder, Vector3 hitPoint)
     {
-        base.Hold(holder);
+        base.Hold(holder, hitPoint);
         _Particles.Play();
     }
 

@@ -50,7 +50,7 @@ public class Interactor : MonoBehaviour {
 		IInteractable target = _detector.CurrentTarget;
 
 		if (target is IHoldable holdable) {
-			holdable.Hold(_holdController);
+			holdable.Hold(_holdController, _detector.HitPoint);
 		}
 
 		if (_holdController.HasObject)

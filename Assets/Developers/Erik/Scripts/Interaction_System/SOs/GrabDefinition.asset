@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: GrabDefinition
   m_EditorClassIdentifier: Assembly-CSharp::PhysicsHoldDefinitionSO
   profile:
-    useGravity: 0
     keepMomentum: 1
     followRotation: 1
+    useHitPoint: 0
+    useGravity: 0
     constraints: 112
     xMotion: 1
     yMotion: 1

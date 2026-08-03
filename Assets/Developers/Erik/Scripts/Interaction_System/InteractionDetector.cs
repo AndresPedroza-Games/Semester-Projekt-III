@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -13,11 +11,13 @@ public class InteractionDetector : MonoBehaviour {
 	private LayerMask layermask;
 
 	public IInteractable CurrentTarget { get; private set; }
+	public Vector3 HitPoint { get; private set; }
 
-    private Vector3 _LastPositionMouse;
+	private Vector3 _LastPositionMouse;
 	private GraphicRaycaster _GraphicRaycaster;
 
-    private void Awake() {
+
+	private void Awake() {
 		cam = Camera.main;
 
 		gameObject.layer = LayerMask.NameToLayer("Player");
@@ -25,15 +25,17 @@ public class InteractionDetector : MonoBehaviour {
 
 		_GraphicRaycaster = FindFirstObjectByType<GraphicRaycaster>(FindObjectsInactive.Include);
 
-    }
+	}
 
-    private void Update() {
+
+	private void Update() {
 		Detect();
-    }
+	}
 
 
 	private void Detect() {
 		CurrentTarget = null;
+		HitPoint = Vector3.zero;
 
 		Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
@@ -44,20 +46,22 @@ public class InteractionDetector : MonoBehaviour {
 			return;
 
 		CurrentTarget = interactable;
-    }
+		HitPoint = hit.point;
+	}
 
-    public Vector3 GetRayPosition(LayerMask layerDetector)
-    {
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, interactionDistance, layermask))
-            return new Vector3(0,0,0);
+	public Vector3 GetRayPosition(LayerMask layerDetector) {
+		Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
-        if (Physics.Raycast(ray, out hit, interactionDistance, layerDetector))
-            _LastPositionMouse = hit.point;
+		if (!Physics.Raycast(ray, out RaycastHit hit, interactionDistance, layermask))
+			return new Vector3(0, 0, 0);
 
-        return _LastPositionMouse;
-    }
+		if (Physics.Raycast(ray, out hit, interactionDistance, layerDetector))
+			_LastPositionMouse = hit.point;
+
+		return _LastPositionMouse;
+	}
+
 
 	private void OnDrawGizmos() {
 
