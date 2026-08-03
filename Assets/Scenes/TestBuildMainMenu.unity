@@ -639,6 +639,10 @@ PrefabInstance:
       propertyPath: mainMenuHUD
       value: 
       objectReference: {fileID: 286813905}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: fullscreenToggle
+      value: 
+      objectReference: {fileID: 195004525}
     - target: {fileID: 6650197340286509354, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -809,6 +813,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6304548712038708812, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
   m_PrefabInstance: {fileID: 195004523}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &195004525 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6865581497748624478, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 195004523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
 --- !u!1 &228849548
 GameObject:
   m_ObjectHideFlags: 0

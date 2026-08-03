@@ -3,9 +3,10 @@ using UnityEngine.Audio;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
+using UnityEngine.UI;
 
 
-public class AudioSettings : MenuManager {
+public class MenuSettings : MenuManager {
 
 	[Header("---Mouse---")]
 	[SerializeField] private float mouseSensitivityMinValue = 0.01f;
@@ -16,6 +17,10 @@ public class AudioSettings : MenuManager {
     [Header("---Audio---")]
     [SerializeField] private AudioMixer _AudioMixer;
     [SerializeField] private List<AudioSlider> _AudioSliders;
+
+    [Header("---Fullscreen---")]
+    [SerializeField] private Toggle fullscreenToggle;
+    
 
     private void Start()
     {
@@ -34,9 +39,21 @@ public class AudioSettings : MenuManager {
                 audioSlider.inputField.onEndEdit.AddListener((name) => OnInputFieldConfirmed(audioSlider, name));
             }
         }
-		
+
+        if (fullscreenToggle) {
+		    fullscreenToggle.isOn = Screen.fullScreen;
+	        fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+        }
+        
         SetupMouseSensitivitySlider();
     }
+    
+    private void OnDestroy()
+    {
+	    if (fullscreenToggle)
+		    fullscreenToggle.onValueChanged.RemoveListener(SetFullscreen);
+    }
+    
 
     private void SetVolume(AudioSlider audioSlider,float volume)
     {
@@ -125,5 +142,10 @@ public class AudioSettings : MenuManager {
 	    {
 		    UpdateMouseSensitivityText(_cinePov.m_HorizontalAxis.m_MaxSpeed);
 	    }
+    }
+
+
+    private void SetFullscreen(bool isFullscreen) {
+	    Screen.fullScreenMode = isFullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
     }
 }
