@@ -1,8 +1,8 @@
-using UnityEngine;
-using UnityEngine.Audio;
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
+using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 
@@ -20,24 +20,46 @@ public class MenuSettings : MenuManager {
 
     [Header("---Fullscreen---")]
     [SerializeField] private Toggle fullscreenToggle;
+
+    private const string FirstLaunchKey = "FirstLaunchDone";
     
+    
+    private void Awake() {
+	    if (!PlayerPrefs.HasKey(FirstLaunchKey)) {
+
+		    SetDefaultVolume();
+		    
+		    PlayerPrefs.SetInt(FirstLaunchKey, 1);
+		    PlayerPrefs.Save();
+	    }
+    }
+
 
     private void Start()
     {
         foreach (AudioSlider audioSlider in _AudioSliders)
         {
-            if (_AudioMixer.GetFloat(audioSlider.name, out float dbValue))
-            {
-                float linearVolume = Mathf.Pow(10f, dbValue / 20f);
-                linearVolume = Mathf.Clamp(linearVolume, audioSlider.slider.minValue, audioSlider.slider.maxValue);
-                audioSlider.slider.value = linearVolume;
+	        if (PlayerPrefs.HasKey(audioSlider.name))
+	        {
+		        float volume = PlayerPrefs.GetFloat(audioSlider.name);
+		        audioSlider.slider.value = volume;
+		        
+		        float dB = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20f;
+		        _AudioMixer.SetFloat(audioSlider.name, dB);
 
-                UpdateVolumeToText(audioSlider, linearVolume);
+		        audioSlider.slider.value = volume;
+		        UpdateVolumeToText(audioSlider, volume);
+	        } 
+	        else if (_AudioMixer.GetFloat(audioSlider.name, out float dbValue))
+	        {
+		        float volume = Mathf.Pow(10f, dbValue / 20f);
+		        audioSlider.slider.value = volume;
+		        UpdateVolumeToText(audioSlider, volume);
+	        }
 
-                audioSlider.slider.onValueChanged.AddListener((volume) => SetVolume(audioSlider, volume));
-                audioSlider.inputField.onValueChanged.AddListener((name) => OnInputFieldChanged(audioSlider, name));
-                audioSlider.inputField.onEndEdit.AddListener((name) => OnInputFieldConfirmed(audioSlider, name));
-            }
+            audioSlider.slider.onValueChanged.AddListener((volume) => SetVolume(audioSlider, volume));
+            audioSlider.inputField.onValueChanged.AddListener((name) => OnInputFieldChanged(audioSlider, name));
+            audioSlider.inputField.onEndEdit.AddListener((name) => OnInputFieldConfirmed(audioSlider, name));
         }
 
         if (fullscreenToggle) {
@@ -48,16 +70,37 @@ public class MenuSettings : MenuManager {
         SetupMouseSensitivitySlider();
     }
     
+    private void OnDisable()
+    {
+	    PlayerPrefs.Save();
+    }
+    
     private void OnDestroy()
     {
 	    if (fullscreenToggle)
 		    fullscreenToggle.onValueChanged.RemoveListener(SetFullscreen);
     }
+
+
+    private void SetDefaultVolume() {
+	    foreach (AudioSlider audioSlider in _AudioSliders)
+	    {
+		    float defaultVolume = 0.3f;
+
+		    float dB = Mathf.Log10(Mathf.Clamp(defaultVolume, 0.0001f, 1f)) * 20f;
+		    _AudioMixer.SetFloat(audioSlider.name, dB);
+		    PlayerPrefs.SetFloat(audioSlider.name, defaultVolume);
+	    }
+    }
     
 
     private void SetVolume(AudioSlider audioSlider,float volume)
     {
-        _AudioMixer.SetFloat(audioSlider.name, Mathf.Log10(volume) * 20f);
+	    float dB = Mathf.Log10(Mathf.Clamp(volume, 0.0001f, 1f)) * 20f;
+	    
+	    _AudioMixer.SetFloat(audioSlider.name, dB);
+	    PlayerPrefs.SetFloat(audioSlider.name, volume);
+	    
         UpdateVolumeToText(audioSlider, volume);
     }
 
@@ -65,7 +108,7 @@ public class MenuSettings : MenuManager {
     {
         float percent = Mathf.InverseLerp(audioSlider.slider.minValue, audioSlider.slider.maxValue, linearVolume);
         int volumeInPercent = Mathf.RoundToInt(percent * 100f);
-        audioSlider.inputField.text = $"{volumeInPercent.ToString()} %";
+        audioSlider.inputField.SetTextWithoutNotify($"{volumeInPercent} %");
     }
 
     private void OnInputFieldChanged(AudioSlider audioSlider, string name)
