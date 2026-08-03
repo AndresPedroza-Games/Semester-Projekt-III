@@ -23,7 +23,7 @@ public class TestNoteQuestion : MonoBehaviour
         yes.SetSelected(answer == AnswerType.Yes);
         no.SetSelected(answer == AnswerType.No);
 
-        EventSystemTestRoom.instance.CrossAnswer();
+        EventSystemTestRoom.instance.CrossAnswer(selectedAnswer == correctAnswer);
     }
 
     private void VanishTwin()

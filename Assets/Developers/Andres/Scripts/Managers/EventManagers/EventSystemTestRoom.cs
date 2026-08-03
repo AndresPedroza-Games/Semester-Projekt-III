@@ -1,13 +1,16 @@
 using System;
+using UnityEngine;
 
 public class EventSystemTestRoom : EventSystemController
 {
     public static EventSystemTestRoom instance;
 
     public Action onInteractionWithPaper;
-    public Action onCrossAnswer;
+    public Action<bool> onCrossAnswer;
     public Action onPuzzleSolved;
     public Action onRestartPuzzle;
+
+    public GameObject twinShadow;
 
     private void Awake()
     {
@@ -18,11 +21,12 @@ public class EventSystemTestRoom : EventSystemController
     public void InteractPaper()
     {
         onInteractionWithPaper?.Invoke();
+        twinShadow.SetActive(true);
     }
 
-    public void CrossAnswer()
+    public void CrossAnswer(bool answer)
     {
-        onCrossAnswer?.Invoke();
+        onCrossAnswer?.Invoke(answer);
     }
 
     public void PuzzleSolved()
