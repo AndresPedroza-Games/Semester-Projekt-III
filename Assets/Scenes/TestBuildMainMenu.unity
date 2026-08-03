@@ -998,6 +998,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 461
       objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.14509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.14509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.16078432
+      objectReference: {fileID: 0}
     - target: {fileID: 5168580828228244150, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1145,6 +1161,22 @@ PrefabInstance:
     - target: {fileID: 8775200259285993130, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: m_RenderMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3674,7 +3706,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907104778}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &1907104781
 Camera:
   m_ObjectHideFlags: 0

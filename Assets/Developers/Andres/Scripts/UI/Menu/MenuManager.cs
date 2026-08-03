@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour
 {
     [Header("---Btns---")]
     [SerializeField] protected Button _StartBtn;
+    [SerializeField] protected Button _LoadBtn;
     [SerializeField] protected Button _ExitBtn;
 
     [Header("---Menus---")]
@@ -21,16 +22,11 @@ public class MenuManager : MonoBehaviour
         return SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(index) ? true : false;
     }
 
-    protected async Task LoadScene(SceneReference scene)
-    {
-        await WorldSceneManager.Instance.LoadScene(scene);
-    }
-    
     protected async Task LoadScene(string sceneName)
     {
 	    await WorldSceneManager.Instance.LoadScene(sceneName);
     }
 
-    public virtual void StartGame() { }
+    public virtual void StartNewGame() { }
     public virtual void ExitGame() { }
 }

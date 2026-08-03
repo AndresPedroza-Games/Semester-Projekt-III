@@ -15,8 +15,9 @@ public class DataManager : MonoBehaviour {
 
     private EventSystemController eventSystemController;
 
-    private void Start()
-    {
+    private void Start() {
+	    LastScene = PlayerPrefs.GetString("LastScene");
+	    
         eventSystemController = EventSystemController.Instance;
 
         // eventSystemController.onItemPicked += (item) => currentGameObject = item;
@@ -26,7 +27,6 @@ public class DataManager : MonoBehaviour {
         eventSystemController.onDoorClosed += SaveGame;
 
         // eventSystemController.onSaveGame += SaveGame;
-        eventSystemController.onExitGame += ClearData;
     }
 
     private void AddData<t>(List<t> itemList, t itemPicked)
@@ -40,6 +40,9 @@ public class DataManager : MonoBehaviour {
 
     private void SaveGame(string scene) {
 	    LastScene = scene;
+	    
+	    PlayerPrefs.SetString("LastScene", scene);
+	    PlayerPrefs.Save();
 	    
 	    //dataContainer.playerPosition = this.playerPosition;
 	    //dataContainer.currentGameObject = this.currentGameObject;
@@ -55,9 +58,13 @@ public class DataManager : MonoBehaviour {
 	    // }
     }
 
-    private void ClearData()
+    public static void ClearSavedScene()
     {
 	    LastScene = null;
+	    
+	    PlayerPrefs.DeleteKey("LastScene");
+	    PlayerPrefs.Save();
+	    
         //itemsPicked.Clear();
         // doorsOpened.Clear();
         // currentGameObject = null;

@@ -1,10 +1,15 @@
 using Cinemachine;
+using TMPro;
 using UnityEngine;
 
 
 public class MainMenu : MenuManager {
 
+	[Header("---Scene To Load---")]
 	[SerializeField] private SceneReference sceneToLoadOnStart;
+
+	private TMP_Text _loadBtnText;
+
 	private CinemachinePOV _cinePovComp;
 
 
@@ -14,13 +19,37 @@ public class MainMenu : MenuManager {
 		InputManager.Instance.Pause.Disable();
 
 		if (GetScene(0)) {
-			_StartBtn.onClick.AddListener(StartGame);
+			_StartBtn.onClick.AddListener(StartNewGame);
+			_LoadBtn.onClick.AddListener(LoadGame);
 			_ExitBtn.onClick.AddListener(ExitGame);
 		}
+
+		_loadBtnText = _LoadBtn.GetComponentInChildren<TMP_Text>();
+		_loadBtnText.color = HasLastScene() ? Color.white : Color.gray;
+		_LoadBtn.interactable = HasLastScene();
 	}
 
 
-	public override async void StartGame() {
+	public override async void StartNewGame() {
+		await WorldSceneManager.Instance.UnloadScene(BuildSettingsLoader.StartupScene);
+
+		await WorldSceneManager.Instance.LoadScene(sceneToLoadOnStart);
+		GameObject spawn = PersistentStartup.SearchForPlayerSpawn(sceneToLoadOnStart);
+		if (!spawn) return;
+		SetPlayerPosAndRot(spawn.transform);
+
+		DataManager.ClearSavedScene();
+
+		EventSystemController.Instance.StartGame();
+	}
+
+
+	private async void LoadGame() {
+		if (!HasLastScene()) {
+			StartNewGame();
+			return;
+		}
+
 		CheckAndLoadScene();
 
 		await WorldSceneManager.Instance.UnloadScene(BuildSettingsLoader.StartupScene);
@@ -32,23 +61,28 @@ public class MainMenu : MenuManager {
 	private async void CheckAndLoadScene() {
 		string lastScene = DataManager.LastScene;
 
-		if (!string.IsNullOrEmpty(lastScene)) {
-			await WorldSceneManager.Instance.LoadScene(lastScene);
+		await WorldSceneManager.Instance.LoadScene(lastScene);
 
-			Door door = PersistentStartup.GetDoor(lastScene);
-			if (door)
-				door.CloseDoor();
+		Door door = PersistentStartup.GetDoor(lastScene);
+		if (door)
+			door.CloseDoor();
 
-			GameObject spawn = PersistentStartup.SearchForPlayerSpawn(lastScene);
-			if (!spawn) return;
-			SetPlayerPosAndRot(spawn.transform);
-		}
-		else {
-			await WorldSceneManager.Instance.LoadScene(sceneToLoadOnStart);
-			GameObject spawn = PersistentStartup.SearchForPlayerSpawn(sceneToLoadOnStart);
-			if (!spawn) return;
-			SetPlayerPosAndRot(spawn.transform);
-		}
+		GameObject spawn = PersistentStartup.SearchForPlayerSpawn(lastScene);
+		if (!spawn) return;
+		SetPlayerPosAndRot(spawn.transform);
+	}
+
+
+	private bool HasLastScene() {
+		string lastScene = DataManager.LastScene;
+
+		if (string.IsNullOrWhiteSpace(lastScene))
+			return false;
+
+		if (string.IsNullOrEmpty(lastScene))
+			return false;
+
+		return true;
 	}
 
 
@@ -60,7 +94,6 @@ public class MainMenu : MenuManager {
 
 
 	public override void ExitGame() {
-		EventSystemController.Instance.ExitGame();
 		Application.Quit();
 	}
 

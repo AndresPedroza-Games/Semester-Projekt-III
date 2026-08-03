@@ -182,7 +182,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348805671}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &348805673
 Camera:
   m_ObjectHideFlags: 0
@@ -10433,6 +10433,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 963540510996692122, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 963540510996692122, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 963540510996692122, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 963540510996692122, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1123828205981077557, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10457,6 +10473,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 560672422}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.14509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.14509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4657342855501894765, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.16078432
+      objectReference: {fileID: 0}
     - target: {fileID: 5168580828228244150, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -10581,6 +10625,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5575573844536209500, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575573844536209500, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575573844536209500, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575573844536209500, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: deactivatedTextColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: deactivatedTextColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: deactivatedTextColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: deactivatedTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: sceneToLoadOnStart.scenePath
       value: Assets/Scenes/0_TutorialHallway.unity
@@ -10604,6 +10680,22 @@ PrefabInstance:
     - target: {fileID: 8775200259285993130, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: m_RenderMode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8967884874041033128, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

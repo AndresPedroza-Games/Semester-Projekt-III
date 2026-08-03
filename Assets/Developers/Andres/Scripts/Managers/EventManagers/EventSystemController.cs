@@ -15,7 +15,6 @@ public class EventSystemController : MonoBehaviour {
 
 	public Action onStartGame;
 	public Action onSaveGame;
-	public Action onExitGame;
 
 	public Action onMainMenuEntered;
 
@@ -73,11 +72,6 @@ public class EventSystemController : MonoBehaviour {
 	public void SaveGame() {
 		if (onSaveGame != null)
 			onSaveGame.Invoke();
-	}
-
-
-	public void ExitGame() {
-		onExitGame?.Invoke();
 	}
 
 }
