@@ -16,7 +16,6 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 	[Header("---On Solved---")]
 	[SerializeField] private SceneReference sceneToLoad;
-	[SerializeField] private AnimationClip puzzleSolvedAnimationClip;
 
 	[Header("---Walls---")]
 	[SerializeField] private GameObject wallSolid;
@@ -69,6 +68,8 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 		wallSolid.SetActive(true);
 		wallDoor.SetActive(false);
+
+		_projectorAngle = (int)transform.eulerAngles.y;
 	}
 
 
@@ -288,9 +289,10 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	private void Solve() {
 		_solved = true;
 		_selectedFilm?.RemoveHighlight();
+		_selectedFilm?.SetDecalSelectedMaterial(false);
 		EventSystemPrincipalsOffice.Instance.PuzzleSolved(true);
-		
-		 _animator.Play("OnProjectorSolved");
+
+		_animator.Play("OnProjectorSolved");
 	}
 
 
