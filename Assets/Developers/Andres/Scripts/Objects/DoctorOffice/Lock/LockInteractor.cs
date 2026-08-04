@@ -30,7 +30,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
 
 
     public CrosshairType GetCrosshairType(HoldController holdController) {
-	    return CrosshairType.Interactable;
+	    return _CanInteract ? CrosshairType.Interactable : CrosshairType.Default;
     }
 
 
