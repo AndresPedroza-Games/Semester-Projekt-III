@@ -46,6 +46,7 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
         InputManager.Instance.FlipNote.performed -= Flip;
 
         InputManager.Instance.ReadNote.Disable();
+        GameManager.Instance.miniGameActive = false;
 	}
 
 
@@ -124,6 +125,8 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 
         isInteracting = false;
 
+        GameManager.Instance.miniGameActive = false;
+
 		InputManager.Instance.FlipNote.performed -= Flip;
     }
 
@@ -137,12 +140,10 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 		if (activate) {
 			InputManager.Instance.Controls.Movement.Enable();
 			InputManager.Instance.Controls.Interaction.Enable();
-			InputManager.Instance.Controls.Game.Enable();
 		}
 		else {
 			InputManager.Instance.Controls.Movement.Disable();
 			InputManager.Instance.Controls.Interaction.Disable();
-			InputManager.Instance.Controls.Game.Disable();
 		}
 	}
 
