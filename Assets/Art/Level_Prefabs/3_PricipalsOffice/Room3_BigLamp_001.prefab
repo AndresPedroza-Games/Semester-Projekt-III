@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2894097585168689925}
   - component: {fileID: 3854743726096628727}
   - component: {fileID: 3482399929707373814}
-  - component: {fileID: 8539155919635597392}
+  - component: {fileID: 2447778059940964355}
   m_Layer: 0
   m_Name: Room3_BigLamp_001
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 604230367884804030}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12, y: -0.0905754, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -186,7 +186,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8539155919635597392
+--- !u!114 &2447778059940964355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,11 +195,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 604230367884804030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ebfe4d5d641ff4b9b6102ff381e7f6, type: 3}
+  m_Script: {fileID: 11500000, guid: c76484766b9556b4e8c84b62a057ab8b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Holdable
+  m_EditorClassIdentifier: Assembly-CSharp::DeskLamp
   holdDefinition: {fileID: 11400000, guid: 7208f360b1a5e5846a7b1b5b837cdf7d, type: 2}
   canBeHold: 1
+  _Bulb: {fileID: 8687990942141890752}
 --- !u!1 &5414404568014294157
 GameObject:
   m_ObjectHideFlags: 0

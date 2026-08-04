@@ -5703,6 +5703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Gen_DeskLamp_001
       objectReference: {fileID: 0}
+    - target: {fileID: 7947895451238280710, guid: 987bd6b7b8cb5f54fb838d861a274fd3, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9866fda0e61a7904087eb0ec5ab17e03, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6786,6 +6790,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4221475827652040219, guid: 58fe386beb2e6c749a0197818eb1e529, type: 3}
   m_PrefabInstance: {fileID: 1549141474}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1557552067
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.88101
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.324
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.597
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229935953443929989, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2074989914415351446, guid: 15669e8dfc751d14999533774911dd40, type: 3}
+      propertyPath: m_Name
+      value: Gen_WallSwitch_001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 15669e8dfc751d14999533774911dd40, type: 3}
 --- !u!1001 &1569676968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12717,3 +12778,4 @@ SceneRoots:
   - {fileID: 437846311}
   - {fileID: 2066259351}
   - {fileID: 765223222}
+  - {fileID: 1557552067}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3024514462409938327}
   - component: {fileID: 4802959425537310665}
   - component: {fileID: 1855420387442759634}
-  - component: {fileID: 5852770140580371162}
+  - component: {fileID: 7125676258004524635}
   m_Layer: 0
   m_Name: Gen_WallSwitch_001
   m_TagString: Untagged
@@ -113,7 +113,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09608351, y: 0.14025827, z: 0.03631701}
   m_Center: {x: 0, y: 0, z: -0.01385303}
---- !u!114 &5852770140580371162
+--- !u!114 &7125676258004524635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightSwitch
   lightSources: []
-  enableOnAwake: 0
+  enableLightOnAwake: 1

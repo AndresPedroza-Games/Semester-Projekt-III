@@ -6,7 +6,7 @@ public class LightSwitch : MonoBehaviour, IInteractable {
 
 	[Header("---Light---")]
 	[SerializeField] private List<Light> lightSources;
-	[SerializeField] private bool enableOnAwake;
+	[SerializeField] private bool enableLightOnAwake = true;
 
 	private bool _lightIsEnabled;
 
@@ -14,10 +14,25 @@ public class LightSwitch : MonoBehaviour, IInteractable {
 	private void Awake() {
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
 
-		_lightIsEnabled = enableOnAwake;
+		_lightIsEnabled = enableLightOnAwake;
 
-		if (!enableOnAwake)
+		if (!enableLightOnAwake)
 			RotateSwitch();
+
+		if (enableLightOnAwake) {
+			foreach (Light lightSource in lightSources) {
+				lightSource.enabled = true;
+			}
+
+			_lightIsEnabled = true;
+		}
+		else {
+			foreach (Light lightSource in lightSources) {
+				lightSource.enabled = false;
+			}
+
+			_lightIsEnabled = false;
+		}
 	}
 
 
@@ -32,7 +47,7 @@ public class LightSwitch : MonoBehaviour, IInteractable {
 
 
 	private void RotateSwitch() {
-		transform.eulerAngles = new Vector3(0, 0, (transform.eulerAngles.z + 180 + 360) % 360);
+		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, (transform.eulerAngles.z + 180 + 360) % 360);
 	}
 
 
