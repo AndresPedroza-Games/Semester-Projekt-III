@@ -38,7 +38,10 @@ public class Lock : MonoBehaviour
     private void PuzzleCompleted()
     {
         if (CheckIfPuzzleCompleted())
+        {
             _EventSystemDoctorOffice.PuzzleCompleted();
+            GameManager.Instance.miniGameActive = false;
+        }
     }
 
     private bool CheckIfPuzzleCompleted()

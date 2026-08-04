@@ -96,7 +96,6 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
 
     private void AnimateVisuals(Ease ease, float duration)
     {
-
         Sequence seq = DOTween.Sequence();
 
         seq.SetEase(ease);
