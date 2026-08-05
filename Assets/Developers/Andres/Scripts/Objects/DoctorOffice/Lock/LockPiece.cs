@@ -1,6 +1,7 @@
-using DG.Tweening;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
+
 
 public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
 {
@@ -8,14 +9,17 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
     [SerializeField] private Ease _Ease;
     [SerializeField] private float _Duration = 0.3f;
     private float _Angle;
+    private bool _canRotate = true;
 
+    [Header("---On Piece Selected")]
+    [SerializeField] float scaleMultiplier = 1.03f;
+    
     [Header("---Highlight Config---")]
     [SerializeField] private float borderThickness = 0.02f;
 
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
 
-    private float _StartPos;
-    private float _MoveDistance = 0.01f;
+    private Vector3 _initialLocalScale;
     private bool _PieceIsSelected = false;
 
     public int _Steps;
@@ -37,7 +41,7 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
         _EventSystemDoctorOffice.onReleasePiece += ReleasePiece;
         _EventSystemDoctorOffice.onPuzzleCompleted += () => _CanInteract = false;
 
-        _StartPos = transform.position.y;
+        _initialLocalScale = transform.localScale;
     }
 
     public bool CanInteract(HoldController holdController)
@@ -55,20 +59,20 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
     {
         if (!_PieceIsSelected && _CanInteract)
         {
-            MovePiece(_MoveDistance);
+            HighLightPiece(true);
             StartCoroutine(SetActive(true));
             Debug.Log($"Selected Piece {gameObject.name}");
         }
     }
 
-    private void MovePiece(float moveDistance)
-    {
-        transform.position = new Vector3(transform.position.x, _StartPos + moveDistance, transform.position.z);
+    private void HighLightPiece(bool shouldHighlight) {
+	    transform.localScale = shouldHighlight ? transform.localScale * scaleMultiplier : transform.localScale = _initialLocalScale;
+	    //transform.position = new Vector3(transform.position.x, _StartPos + moveDistance, transform.position.z);
     }
 
     private void RotatePiece(Vector2 scroll)
     {
-        if (!_PieceIsSelected)
+        if (!_PieceIsSelected || !_canRotate)
             return;
 
         float scrollY = scroll.y;
@@ -91,26 +95,22 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
 
         _Angle = _Steps * 36f;
 
+        _canRotate = false;
         AnimateVisuals(_Ease, _Duration);
     }
 
     private void AnimateVisuals(Ease ease, float duration)
     {
-        Sequence seq = DOTween.Sequence();
-
-        seq.SetEase(ease);
-
-        seq.Join(transform.DOLocalRotateQuaternion(Quaternion.Euler(_Angle, 0f, 0f), duration));
+        transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).OnComplete(() => _canRotate = true);
     }
 
     public void ReleasePiece()
     {
         if (_PieceIsSelected)
         {
-            MovePiece(0f);
+            HighLightPiece(false);
             StartCoroutine(SetActive(false));
             Debug.Log("Release");
-            //RemoveHighlight();
         }
     }
 
