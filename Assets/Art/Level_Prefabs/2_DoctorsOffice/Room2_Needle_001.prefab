@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2384987754201830825}
   - component: {fileID: 815554991245108392}
   - component: {fileID: 1172255758185272871}
-  - component: {fileID: 3839202584268609922}
   - component: {fileID: 7411354219058176039}
   - component: {fileID: 98366681230080832}
+  - component: {fileID: 4988336133398319822}
   m_Layer: 0
   m_Name: Room2_Needle_001
   m_TagString: Untagged
@@ -93,28 +93,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3839202584268609922
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4347623370461030369}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1509932905228599265, guid: a7eaec7b868bff84a9610d75dd3ef903, type: 3}
 --- !u!54 &7411354219058176039
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,5 +133,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Holdable
   holdDefinition: {fileID: 11400000, guid: 8aeb682200f257d4e9b7c317e1799c39, type: 2}
-  borderThickness: 0.02
-  CanBeHold: 1
+  canBeHold: 1
+--- !u!136 &4988336133398319822
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347623370461030369}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.02
+  m_Height: 0.22
+  m_Direction: 0
+  m_Center: {x: 0, y: -9.313226e-10, z: -9.313226e-10}

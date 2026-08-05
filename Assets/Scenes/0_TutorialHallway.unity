@@ -554,6 +554,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1006976541442624124, guid: b5db57a8a588d3b48b49c3f8570e91a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 12.67
+      objectReference: {fileID: 0}
     - target: {fileID: 1371112198241338358, guid: b5db57a8a588d3b48b49c3f8570e91a7, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.5
@@ -581,6 +585,18 @@ PrefabInstance:
     - target: {fileID: 2518197228886968782, guid: b5db57a8a588d3b48b49c3f8570e91a7, type: 3}
       propertyPath: m_Name
       value: Hall_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731606699609706065, guid: b5db57a8a588d3b48b49c3f8570e91a7, type: 3}
+      propertyPath: MaxDistance
+      value: 17.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731606699609706065, guid: b5db57a8a588d3b48b49c3f8570e91a7, type: 3}
+      propertyPath: MinDistance
+      value: 11.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 2731606699609706065, guid: b5db57a8a588d3b48b49c3f8570e91a7, type: 3}
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

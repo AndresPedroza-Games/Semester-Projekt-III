@@ -62,8 +62,9 @@ public class GameManager : MonoBehaviour {
 
 	private void OnMainMenuEntered() {
 		InputManager.Instance.Pause.Disable();
-		
-		playerSetup.SetActive(false);
+		miniGameActive = false;
+
+        playerSetup.SetActive(false);
 		player.SetActive(false);
 	}
 	
