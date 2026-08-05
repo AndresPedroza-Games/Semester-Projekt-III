@@ -41809,6 +41809,12 @@ MonoBehaviour:
   sounds:
   - trigger: 2
     sfx: 1
+    overrides:
+      useOverrides: 1
+      loop: 0
+      volume: 1
+      pitchRange: {x: 1, y: 1}
+      spatialBlend: 0
 --- !u!33 &5370523620689602670
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -80810,13 +80816,57 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: _CreditMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
       propertyPath: mainMenuHUD
       value: 
       objectReference: {fileID: 666965861}
     - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: _SettingsMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
       propertyPath: fullscreenToggle
       value: 
       objectReference: {fileID: 8985008624743852708}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[0].slider
+      value: 
+      objectReference: {fileID: 8985008624743852714}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[1].slider
+      value: 
+      objectReference: {fileID: 8985008624743852712}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[2].slider
+      value: 
+      objectReference: {fileID: 8985008624743852710}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[0].inputField
+      value: 
+      objectReference: {fileID: 8985008624743852713}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[1].inputField
+      value: 
+      objectReference: {fileID: 8985008624743852711}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[2].inputField
+      value: 
+      objectReference: {fileID: 8985008624743852709}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[1].mixerChannel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[2].mixerChannel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6650197340286509354, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -80997,6 +81047,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
+--- !u!114 &8985008624743852709 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3046497083716084025, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 8985008624743852707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+--- !u!114 &8985008624743852710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 29990170412635224, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 8985008624743852707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &8985008624743852711 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 974346531933693637, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 8985008624743852707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+--- !u!114 &8985008624743852712 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 387221819424205092, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 8985008624743852707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &8985008624743852713 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8438413835415200133, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 8985008624743852707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+--- !u!114 &8985008624743852714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7682935570795571735, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 8985008624743852707}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!4 &8988572154635408073
 Transform:
   m_ObjectHideFlags: 0

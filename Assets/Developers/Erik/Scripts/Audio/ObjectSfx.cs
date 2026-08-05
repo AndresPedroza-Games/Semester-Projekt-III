@@ -40,7 +40,7 @@ public class ObjectSfx : MonoBehaviour {
 		if (!_lookup.TryGetValue(trigger, out SfxEventEntry entry))
 			return;
 
-		Audio audio = AudioManager.audioManager.GetSfx(entry.sfx);
+		Audio audio = AudioManager.Instance.GetSfx(entry.sfx);
 
 		if (audio == null)
 			return;

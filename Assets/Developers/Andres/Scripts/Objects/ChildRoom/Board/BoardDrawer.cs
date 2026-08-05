@@ -15,7 +15,7 @@ public class BoardDrawer : Holdable {
 	}
 
 
-	private void OnEnable() {
+	private void Start() {
 		EventSystemChildRoom.eventSystemChildRoom.onPuzzleSolved += OpenDrawer;
 	}
 

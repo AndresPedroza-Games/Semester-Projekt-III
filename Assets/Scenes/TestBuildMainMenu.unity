@@ -643,6 +643,42 @@ PrefabInstance:
       propertyPath: fullscreenToggle
       value: 
       objectReference: {fileID: 195004525}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[0].slider
+      value: 
+      objectReference: {fileID: 195004531}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[1].slider
+      value: 
+      objectReference: {fileID: 195004529}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[2].slider
+      value: 
+      objectReference: {fileID: 195004527}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[0].inputField
+      value: 
+      objectReference: {fileID: 195004530}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[1].inputField
+      value: 
+      objectReference: {fileID: 195004528}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[2].inputField
+      value: 
+      objectReference: {fileID: 195004526}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[1].mixerChannel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6424573859765090645, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+      propertyPath: audioSliders.Array.data[2].mixerChannel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6650197340286509354, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -824,6 +860,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
+--- !u!114 &195004526 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3046497083716084025, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 195004523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+--- !u!114 &195004527 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 29990170412635224, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 195004523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &195004528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 974346531933693637, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 195004523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+--- !u!114 &195004529 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 387221819424205092, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 195004523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &195004530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8438413835415200133, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 195004523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_InputField
+--- !u!114 &195004531 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7682935570795571735, guid: 0d8aadc564759a348a7830a5dd20b68a, type: 3}
+  m_PrefabInstance: {fileID: 195004523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &228849548
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,6 +1255,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: _CreditMenu
+      value: 
+      objectReference: {fileID: 481103700}
+    - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
+      propertyPath: _SettingsMenu
+      value: 
+      objectReference: {fileID: 195004524}
     - target: {fileID: 5747042254372806970, guid: 25f20f8712b946a46a200e3bff775a45, type: 3}
       propertyPath: sceneToLoadOnStart.scenePath
       value: Assets/Scenes/0_TutorialHallway.unity
