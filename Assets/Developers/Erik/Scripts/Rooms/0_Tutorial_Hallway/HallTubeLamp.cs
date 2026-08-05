@@ -8,6 +8,7 @@ public class HallTubeLamp : MonoBehaviour {
 	[SerializeField] private bool isOnFromBeginning = true;
 	[SerializeField] private bool useTurnOnDelay = true;
 	[SerializeField] private bool playBrokenParticlesWhenTurnedOff = true;
+	[SerializeField] private bool playParticlesInLoopFromBeginning;
 
 	[Header("---On Turned On---")]
 	[SerializeField] private float turnOnDelay = 1f;
@@ -32,6 +33,9 @@ public class HallTubeLamp : MonoBehaviour {
 		_audioSource = GetComponent<AudioSource>();
 
 		_light.enabled = isOnFromBeginning;
+
+		if (playParticlesInLoopFromBeginning)
+			_particleRoutine ??= StartCoroutine(PlayParticleLoopCoroutine());
 	}
 
 
@@ -41,7 +45,7 @@ public class HallTubeLamp : MonoBehaviour {
 
 
 	private void PlayParticleLooped() {
-		_particleRoutine ??= StartCoroutine(PlayParticleLoop());
+		_particleRoutine ??= StartCoroutine(PlayParticleLoopCoroutine());
 	}
 
 
@@ -104,9 +108,13 @@ public class HallTubeLamp : MonoBehaviour {
 	}
 
 
-	private IEnumerator PlayParticleLoop() {
-		yield return new WaitForSeconds(Random.Range(particleLoopCooldown.x, particleLoopCooldown.y));
-		particles?.Play();
+	private IEnumerator PlayParticleLoopCoroutine() {
+		while (gameObject.activeSelf) {
+			yield return new WaitForSeconds(Random.Range(particleLoopCooldown.x, particleLoopCooldown.y));
+			particles?.Play();
+		}
+
+		_particleRoutine = null;
 	}
 
 
