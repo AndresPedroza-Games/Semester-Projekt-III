@@ -7,14 +7,14 @@ public class HallTubeLamp : MonoBehaviour {
 	[Header("---Config---")]
 	[SerializeField] private bool isOnFromBeginning = true;
 	[SerializeField] private bool useTurnOnDelay = true;
-	[SerializeField] private bool playBrokenParticles = true;
+	[SerializeField] private bool playBrokenParticlesWhenTurnedOff = true;
 
 	[Header("---On Turned On---")]
 	[SerializeField] private float turnOnDelay = 1f;
 
 	[Header("---Particles---")]
 	[SerializeField] private ParticleSystem particles;
-	[SerializeField] private Vector2 particleLoopCooldown = new(1f, 3f);
+	[SerializeField] private Vector2 particleLoopCooldown = new(1f, 5f);
 
 	[Header("---Audio---")]
 	[SerializeField] private AudioClip lightbulbBurstSfx;
@@ -35,6 +35,21 @@ public class HallTubeLamp : MonoBehaviour {
 	}
 
 
+	private void PlayParticleOnce() {
+		particles?.Play();
+	}
+
+
+	private void PlayParticleLooped() {
+		_particleRoutine ??= StartCoroutine(PlayParticleLoop());
+	}
+
+
+	private void PlaySfx(AudioClip clip) {
+		_audioSource?.PlayOneShot(clip);
+	}
+
+
 	public void TurnLightOn() {
 		if (!useTurnOnDelay) {
 			SetLightActive(true);
@@ -47,20 +62,20 @@ public class HallTubeLamp : MonoBehaviour {
 
 
 	public void TurnLightOff() {
-		if (!playBrokenParticles) {
+		if (!playBrokenParticlesWhenTurnedOff) {
 			SetLightActive(false);
 			SetAudioSourceActive(false);
 			return;
 		}
 
-		particles.Play();
+		particles?.Play();
 		PlayBulbBurstSfx();
 
 		SetLightActive(false);
 
 		_disableAudioAfterClipRoutine ??= StartCoroutine(DisableAudioAfterClip());
 
-		_particleRoutine ??= StartCoroutine(PlayParticlesLoopCoroutine());
+		_particleRoutine ??= StartCoroutine(PlayParticlesLoopWhileLampOffCoroutine());
 	}
 
 
@@ -79,13 +94,19 @@ public class HallTubeLamp : MonoBehaviour {
 	}
 
 
-	private IEnumerator PlayParticlesLoopCoroutine() {
+	private IEnumerator PlayParticlesLoopWhileLampOffCoroutine() {
 		while (!_light.enabled) {
 			yield return new WaitForSeconds(Random.Range(particleLoopCooldown.x, particleLoopCooldown.y));
-			particles.Play();
+			particles?.Play();
 		}
 
 		_particleRoutine = null;
+	}
+
+
+	private IEnumerator PlayParticleLoop() {
+		yield return new WaitForSeconds(Random.Range(particleLoopCooldown.x, particleLoopCooldown.y));
+		particles?.Play();
 	}
 
 
