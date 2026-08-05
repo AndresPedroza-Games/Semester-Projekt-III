@@ -549,8 +549,8 @@ AudioReverbZone:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3791521719779735299}
   m_Enabled: 1
-  m_MinDistance: 9.52
-  m_MaxDistance: 9.7
+  m_MinDistance: 14.1
+  m_MaxDistance: 14.1
   m_ReverbPreset: 13
   m_Room: -1000
   m_RoomHF: -300
@@ -2215,6 +2215,68 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2994526026527927591, guid: 1288be0c8b456a844bc306a722db183d, type: 3}
   m_PrefabInstance: {fileID: 1111944948626540770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1180049880567975481
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8384892515353982874}
+    m_Modifications:
+    - target: {fileID: 2567410032534349258, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_Name
+      value: Hall_TubelampFlickerOff_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.499998
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+--- !u!4 &5323371370462714936 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6449166845505507841, guid: f153af5391923a74cb90a1c826c92674, type: 3}
+  m_PrefabInstance: {fileID: 1180049880567975481}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1259317954309790860
 PrefabInstance:
@@ -5086,68 +5148,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2994526026527927591, guid: 1288be0c8b456a844bc306a722db183d, type: 3}
   m_PrefabInstance: {fileID: 6773416910475495969}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &6818859262656165459
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 8384892515353982874}
-    m_Modifications:
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.499998
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.52
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7881387928470183328, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-      propertyPath: m_Name
-      value: Hall_Tubelamp_001
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
---- !u!4 &5323371370462714936 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
-  m_PrefabInstance: {fileID: 6818859262656165459}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7160139416479104888
 PrefabInstance:
