@@ -1,7 +1,7 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
+using UnityEngine;
+
 
 public class Board : MonoBehaviour
 {
@@ -10,10 +10,6 @@ public class Board : MonoBehaviour
     [SerializeField] private TilePieceData tilePieceData;
     [SerializeField] private Transform _Drawer;
     [SerializeField] private SceneReference _Scene;
-
-    [Header("Animation Settings")]
-    [SerializeField] private Ease _Ease;
-    [SerializeField] private float _Duration = 0.3f;
 
     private EventSystemChildRoom _EventSystemChildRoom;
     public List<GameObject> piecesInv = new List<GameObject>();
@@ -80,26 +76,13 @@ public class Board : MonoBehaviour
 
     private void OpenDrawer()
     {
-        Debug.Log("Drawer opened");
-        AnimateVisuals(_Ease, _Duration);
         LoadScene();
-
-
     }
 
     private async void LoadScene()
     {
         if(_Scene != null)
             await WorldSceneManager.Instance.LoadScene(_Scene);
-    }
-
-    private void AnimateVisuals(Ease ease, float duration)
-    {
-        Sequence seq = DOTween.Sequence();
-
-        seq.SetEase(ease);
-
-        seq.Join(_Drawer.DOLocalMoveX(-0.5f, duration));
     }
 
 }

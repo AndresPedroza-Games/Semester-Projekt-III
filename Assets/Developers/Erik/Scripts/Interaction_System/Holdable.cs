@@ -46,7 +46,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 	}
 
 
-	private void OnDisable() {
+	protected virtual void OnDisable() {
 		if (_currentHolder)
 			Release();
 	}
@@ -73,9 +73,8 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 	}
 
 
-	public CrosshairType GetCrosshairType(HoldController holdController) {
+	public virtual CrosshairType GetCrosshairType(HoldController holdController) {
 		return canBeHold ? CrosshairType.HandOpen : CrosshairType.Default;
-
 	}
 
 
