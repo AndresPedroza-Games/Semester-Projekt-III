@@ -187,8 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniPiece
   holdDefinition: {fileID: 11400000, guid: 8aeb682200f257d4e9b7c317e1799c39, type: 2}
-  borderThickness: 0.02
-  CanBeHold: 1
+  canBeHold: 1
   pieceData: {fileID: 11400000, guid: 23ec13a72c85a0240b996c1030822d8b, type: 2}
 --- !u!1001 &8831868433413771110
 PrefabInstance:
@@ -212,15 +211,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4594021593500844438, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.17832643
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4594021593500844438, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.060000237
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4594021593500844438, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.3766594
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4594021593500844438, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
       propertyPath: m_LocalRotation.w

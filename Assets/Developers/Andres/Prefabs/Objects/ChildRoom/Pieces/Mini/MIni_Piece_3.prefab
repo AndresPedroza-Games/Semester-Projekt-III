@@ -187,10 +187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MiniPiece
   holdDefinition: {fileID: 11400000, guid: 8aeb682200f257d4e9b7c317e1799c39, type: 2}
-  borderThickness: 0.02
-  CanBeHold: 1
+  canBeHold: 1
   pieceData: {fileID: 11400000, guid: 89156d9c3f370104e82a10451565487a, type: 2}
-  _Particles: {fileID: 6393011783502048139}
 --- !u!1001 &2739980444428511571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,10 +265,5 @@ PrefabInstance:
 --- !u!4 &1857563317824530629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4594021593500844438, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
-  m_PrefabInstance: {fileID: 2739980444428511571}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &6393011783502048139 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 9132974494530077400, guid: 4b53ce99e06d6e541b7777dc9fb38059, type: 3}
   m_PrefabInstance: {fileID: 2739980444428511571}
   m_PrefabAsset: {fileID: 0}
