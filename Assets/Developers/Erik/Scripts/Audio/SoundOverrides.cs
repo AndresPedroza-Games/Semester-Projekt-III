@@ -12,6 +12,6 @@ public class SoundOverrides {
 	public bool loop;
 	[Range(0f, 1f)] public float volume = 1f;
 	public Vector2 pitchRange = Vector2.one;
-	[Range(0f, 1f)] public float spatialBlend;
+	[Range(0f, 1f)] public float spatialBlend = 1f;
 
 }
