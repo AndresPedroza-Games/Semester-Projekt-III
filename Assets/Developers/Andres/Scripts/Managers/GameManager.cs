@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 
-	private void FreezeCharacter(bool status) {
+	public void FreezeCharacter(bool status) {
 		if (status) {
 
 			InputManager.Instance.Controls.Movement.Disable();

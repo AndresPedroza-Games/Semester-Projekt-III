@@ -9,8 +9,6 @@ public class PlayerManager : MonoBehaviour {
 	public GameObject cinemachine;
 	public GameObject designMC;
 
-	private EventSystemChildRoom _EventSystemChildRoom;
-
     private void Awake()
     {
         if (playerManager == null)
@@ -25,14 +23,11 @@ public class PlayerManager : MonoBehaviour {
 		if (status) {
 			InputManager.Instance.Controls.Movement.Disable();
 			InputManager.Instance.Zoom.Disable();
-            InputManager.Instance.Pause.Disable();
 
         }
         else {
 			InputManager.Instance.Controls.Movement.Enable();
 			InputManager.Instance.Zoom.Enable();
-            InputManager.Instance.Pause.Enable();
-
         }
 	}
 
