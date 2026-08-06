@@ -817,15 +817,6 @@
             "id": "521cd1e8-8163-4b1c-8da4-0743c30a5f5d",
             "actions": [
                 {
-                    "name": "Place",
-                    "type": "Button",
-                    "id": "599ac43e-037c-4096-888b-5cbc35f68872",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Rotate",
                     "type": "Value",
                     "id": "2781e3e6-7fb1-4491-a58c-f891113f7116",
@@ -836,17 +827,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "e5d67042-b2ba-43bd-ac65-e65f2381e0e8",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Place",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "6ab23c34-6ba0-4bbf-8a07-a8a45f8c40ed",
@@ -881,15 +861,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "ReleasePiece",
-                    "type": "Button",
-                    "id": "21392cb2-cc62-44b0-bcee-c096c3018662",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -901,17 +872,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Exit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7d1cb79e-38d1-4fd3-b6cb-da3f70b1a006",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ReleasePiece",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

@@ -19,7 +19,7 @@ public class Interactor : MonoBehaviour {
 		InputManager.Instance.Interact.performed += Interact;
 		InputManager.Instance.PickUp.performed += OnPickUpPerformed;
 		InputManager.Instance.PickUp.canceled += OnPickUpCanceled;
-		InputManager.Instance.InteractElementPuzzle.performed += InteractPuzzleElements;
+		// InputManager.Instance.InteractElementPuzzle.performed += InteractPuzzleElements;
 
 		EventSystemController.Instance.onMainMenuEntered += OnMainMenuEntered;
 	}
@@ -29,7 +29,7 @@ public class Interactor : MonoBehaviour {
 		InputManager.Instance.Interact.performed -= Interact;
 		InputManager.Instance.PickUp.performed -= OnPickUpPerformed;
 		InputManager.Instance.PickUp.canceled -= OnPickUpCanceled;
-		InputManager.Instance.InteractElementPuzzle.performed -= InteractPuzzleElements;
+		// InputManager.Instance.InteractElementPuzzle.performed -= InteractPuzzleElements;
 
 		EventSystemController.Instance.onMainMenuEntered -= OnMainMenuEntered;
 	}
@@ -42,14 +42,22 @@ public class Interactor : MonoBehaviour {
 
 
 	private void OnPickUpPerformed(InputAction.CallbackContext ctx) {
-		if (HoldableIsKey() && _holdController.HasObject) {
+		if (HoldableIsSocketItem() && _holdController.HasObject) {
 			DropHoldable();
 			return;
 		}
 
-		IInteractable target = _detector.CurrentTarget;
+		if (!_detector.CurrentTarget)
+			return;
 
-		if (target is IHoldable holdable) {
+		if (_detector.CurrentTarget.TryGetComponent(out ILeftClickable leftClickable)) {
+			if (leftClickable.CanInteractWithLeftClick(_holdController)) {
+				leftClickable.OnLeftClick();
+				return;
+			}
+		}
+
+		if (_detector.CurrentTarget.TryGetComponent(out Holdable holdable)) {
 			holdable.Hold(_holdController, _detector.HitPoint);
 		}
 
@@ -59,7 +67,7 @@ public class Interactor : MonoBehaviour {
 
 
 	private void OnPickUpCanceled(InputAction.CallbackContext ctx) {
-		if (HoldableIsKey() && _holdController.HasObject)
+		if (HoldableIsSocketItem() && _holdController.HasObject)
 			return;
 
 		if (_holdController.HasObject)
@@ -70,25 +78,25 @@ public class Interactor : MonoBehaviour {
 	private void DropHoldable() {
 		if (!_holdController.HasObject)
 			return;
-		
+
 		EventSystemController.Instance.DropItem(_holdController.HoldGameObject);
 
 		_holdController.ReleaseCurrentHoldable();
 	}
 
 
-	private bool HoldableIsKey() {
+	private bool HoldableIsSocketItem() {
 		if (_holdController.HasObject)
 			return _holdController.HoldGameObject.GetComponent<Holdable>().HoldDefinition is SocketHoldDefinitionSO;
-		else
-			return false;
+
+		return false;
 	}
 
 
 	private void Interact(InputAction.CallbackContext ctx) {
 
-		if (GameManager.Instance.miniGameActive)
-			return;
+		// if (GameManager.Instance.miniGameActive)
+		// 	return;
 
 		if (_holdController.HasObject)
 			if (_holdController.CurrentHoldable.CanInteract(_holdController)) {
@@ -96,28 +104,28 @@ public class Interactor : MonoBehaviour {
 				return;
 			}
 
-		IInteractable target = _detector.CurrentTarget;
-
-		if (target == null) return;
-
-		if (target.CanInteract(_holdController))
-			target.Interact();
-
-	}
-
-
-	private void InteractPuzzleElements(InputAction.CallbackContext ctx) {
-		if (!GameManager.Instance.miniGameActive)
+		if (!_detector.CurrentTarget)
 			return;
 
-		IInteractable target = _detector.CurrentTarget;
-
-		if (target == null) return;
-
-		if (target.CanInteract(_holdController)) {
+		if (_detector.CurrentTarget.TryGetComponent(out IInteractable interactable)) {
+			if (interactable.CanInteract(_holdController))
+				interactable.Interact();
 		}
-
-		target.Interact();
 	}
+
+
+	// private void InteractPuzzleElements(InputAction.CallbackContext ctx) {
+	// 	if (!GameManager.Instance.miniGameActive)
+	// 		return;
+	//
+	// 	IInteractable target = _detector.CurrentTarget;
+	//
+	// 	if (target == null) return;
+	//
+	// 	if (target.CanInteract(_holdController)) {
+	// 	}
+	//
+	// 	target.Interact();
+	// }
 
 }

@@ -1,9 +1,8 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
 
-public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
+public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClickable 
 {
     [Header("Animation Settings")]
     [SerializeField] private Ease _Ease;
@@ -20,7 +19,7 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
 
     private Vector3 _initialLocalScale;
-    private bool _PieceIsSelected = false;
+    private bool IsSelected => Lock.SelectedPiece == gameObject;
 
     public int _Steps;
 
@@ -38,41 +37,68 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
     {
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
         _EventSystemDoctorOffice.onRotateLock += RotatePiece;
-        _EventSystemDoctorOffice.onReleasePiece += ReleasePiece;
+        _EventSystemDoctorOffice.onPieceSelected += OnPieceSelected;
         _EventSystemDoctorOffice.onPuzzleCompleted += () => _CanInteract = false;
 
         _initialLocalScale = transform.localScale;
     }
 
-    public bool CanInteract(HoldController holdController)
-    {
-        return true;
+
+    private void OnDisable() {
+	    _EventSystemDoctorOffice.onRotateLock -= RotatePiece;
+        _EventSystemDoctorOffice.onPieceSelected -= OnPieceSelected;
+    }
+
+
+    public bool CanInteractWithLeftClick(HoldController holdController) {
+	    return true;
+    }
+
+
+    public void OnLeftClick() {
+	    if (!_CanInteract)
+		    return;
+	    
+	    if(!IsSelected)
+			SelectPiece();
+	    else 
+		    ReleasePiece();
+    }
+
+
+    public void Interact() {
+	    
+    }
+
+
+    public bool CanInteract(HoldController holdController) {
+	    return !IsSelected;
     }
 
 
     public CrosshairType GetCrosshairType(HoldController holdController) {
-	    return _PieceIsSelected ? CrosshairType.HandClosed : CrosshairType.Interactable;
+	    return IsSelected ? CrosshairType.HandClosed : CrosshairType.Interactable;
     }
 
 
-    public void Interact()
+    public void SelectPiece()
     {
-        if (!_PieceIsSelected && _CanInteract)
-        {
-            HighLightPiece(true);
-            StartCoroutine(SetActive(true));
-            Debug.Log($"Selected Piece {gameObject.name}");
-        }
+        _EventSystemDoctorOffice.PieceSelected(gameObject);
+    }
+
+
+    private void OnPieceSelected(GameObject obj) {
+	    HighLightPiece(obj == gameObject);
     }
 
     private void HighLightPiece(bool shouldHighlight) {
-	    transform.localScale = shouldHighlight ? transform.localScale * scaleMultiplier : transform.localScale = _initialLocalScale;
+	    transform.localScale = shouldHighlight ? _initialLocalScale * scaleMultiplier : _initialLocalScale;
 	    //transform.position = new Vector3(transform.position.x, _StartPos + moveDistance, transform.position.z);
     }
 
     private void RotatePiece(Vector2 scroll)
     {
-        if (!_PieceIsSelected || !_canRotate)
+        if (!IsSelected || !_canRotate)
             return;
 
         float scrollY = scroll.y;
@@ -106,12 +132,13 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
 
     public void ReleasePiece()
     {
-        if (_PieceIsSelected)
-        {
-            HighLightPiece(false);
-            StartCoroutine(SetActive(false));
-            Debug.Log("Release");
-        }
+        HighLightPiece(false);
+        _EventSystemDoctorOffice.ReleasePiece();
+    }
+
+
+    public void ReleasePieceWithoutEventCall() {
+        HighLightPiece(false);
     }
 
     public void Highlight()
@@ -128,11 +155,5 @@ public class LockPiece : MonoBehaviour, IInteractable, IHighlightable
             return;
 
         _Renderer.material.SetFloat(_BorderThickness, 0);
-    }
-
-    private IEnumerator SetActive(bool status)
-    {
-        yield return new WaitForSeconds(0.1f);
-        _PieceIsSelected = status;
     }
 }

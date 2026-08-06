@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class ProjectorPowerButton : MonoBehaviour, IInteractable {
+public class ProjectorPowerButton : MonoBehaviour, IInteractable, ILeftClickable {
 
 	private bool _state;
 	private bool _canInteract = true;
@@ -23,7 +23,7 @@ public class ProjectorPowerButton : MonoBehaviour, IInteractable {
 
 
 	public bool CanInteract(HoldController holdController) {
-		return !holdController.HasObject && _canInteract;
+		return false;
 	}
 
 
@@ -36,6 +36,16 @@ public class ProjectorPowerButton : MonoBehaviour, IInteractable {
 		_state = !_state;
 
 		EventSystemPrincipalsOffice.Instance.ProjectorPowerButtonPressed(_state);
+	}
+
+
+	public bool CanInteractWithLeftClick(HoldController holdController) {
+		return !holdController.HasObject && _canInteract;
+	}
+
+
+	public void OnLeftClick() {
+		Interact();
 	}
 
 }

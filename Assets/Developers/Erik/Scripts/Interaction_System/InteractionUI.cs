@@ -87,11 +87,14 @@ public class InteractionUI : MonoBehaviour {
 	private CrosshairType DetermineType() {
 
 		if (_hasItemInSocket) {
-			if (_detector.CurrentTarget == null)
+			if (!_detector.CurrentTarget)
 				return CrosshairType.HandClosed;
 
-			if (_detector.CurrentTarget.CanInteract(_holdController))
-				return _detector.CurrentTarget.GetCrosshairType(_holdController);
+			if (_detector.CurrentTarget.TryGetComponent(out IInteractable interactable)) {
+				if (interactable.CanInteract(_holdController)) {
+					return interactable.GetCrosshairType(_holdController);
+				}
+			}
 
 			return CrosshairType.HandClosed;
 		}
@@ -99,10 +102,13 @@ public class InteractionUI : MonoBehaviour {
 		if (_holdController.HasObject)
 			return CrosshairType.HandClosed;
 
-		if (_detector.CurrentTarget == null)
+		if (!_detector.CurrentTarget)
 			return CrosshairType.Default;
 
-		return _detector.CurrentTarget.GetCrosshairType(_holdController);
+		if (_detector.CurrentTarget.TryGetComponent(out IInteractable i))
+			return i.GetCrosshairType(_holdController);
+
+		return CrosshairType.Default;
 
 	}
 

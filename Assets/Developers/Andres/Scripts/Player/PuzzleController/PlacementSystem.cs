@@ -1,9 +1,10 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 public class PlacementSystem : MonoBehaviour
 {
-    public static PlacementSystem Instace;
+    public static PlacementSystem Instance;
 
     [SerializeField] private TilePieceData _TilePieceData;
     [SerializeField] private GameObject _TilePreview;
@@ -19,8 +20,6 @@ public class PlacementSystem : MonoBehaviour
     private List<PieceData> _PiecesPlaced = new List<PieceData>();
 
     public GameObject _SelectedObject;
-
-    public static bool isInteracting;
 
     private GridData _PieceData;
     private Board _Board;
@@ -40,13 +39,13 @@ public class PlacementSystem : MonoBehaviour
 
         _PuzzleSolved = false;
 
-        if (Instace != null && Instace != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        Instace = this;
+        Instance = this;
     }
 
     private void Start()
@@ -61,7 +60,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (_EventSystemChildRoom == null)
+        if (!_EventSystemChildRoom)
             return;
 
         _EventSystemChildRoom.onPiecePicked -= PickPiece;
@@ -85,7 +84,7 @@ public class PlacementSystem : MonoBehaviour
 
         _SnappedPos = _Grid.GetCellCenterWorld(_GridPos);
 
-        if (_SelectedObject != null)
+        if (_SelectedObject)
         {
             _LastPos = new Vector3(_SelectedObject.transform.position.x, _Grid.gameObject.transform.position.y, _SelectedObject.transform.position.z);
             _SelectedObject.transform.position = _PieceData.PieceInsideGrid(_GridPos, _GridMinSize, _GridMaxSize) ? new Vector3(_SnappedPos.x,_Grid.gameObject.transform.position.y + 0.05f, _SnappedPos.z) : _LastPos;
@@ -99,7 +98,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void PickPiece(GameObject piece)
     {
-        if (_SelectedObject != null)
+        if (_SelectedObject)
             return;
 
         _SelectedObject = piece;
@@ -127,7 +126,7 @@ public class PlacementSystem : MonoBehaviour
 
     private void AddToGrid(Vector3Int gridPos)
     {
-        if (_SelectedObject == null)
+        if (!_SelectedObject)
             return;
 
         GameObject piece = _PieceData.PieceInThisPosition(gridPos);
@@ -170,8 +169,7 @@ public class PlacementSystem : MonoBehaviour
 
         PlaceSelected(gridPos);
 
-        piece.GetComponent<TilePiece>().ignoreNextPiece = true;
-        piece.GetComponent<TilePiece>().Interact();
+        piece.GetComponent<TilePiece>().SelectTile();
     }
 
     private bool CanPlacePiece(Vector3 gridPos)

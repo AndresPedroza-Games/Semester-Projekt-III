@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class DoctorOfficePuzzleController : MonoBehaviour
 {
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
@@ -28,8 +29,6 @@ public class DoctorOfficePuzzleController : MonoBehaviour
 
         InputManager.Instance.RotateLock.performed += RotateLock;
         InputManager.Instance.RotateLock.canceled += RotateLock;
-
-        InputManager.Instance.ReleasePiece.performed += RelasePiece;
     }
 
     private void OnDisable()
@@ -38,8 +37,6 @@ public class DoctorOfficePuzzleController : MonoBehaviour
 
         InputManager.Instance.RotateLock.performed -= RotateLock;
         InputManager.Instance.RotateLock.canceled -= RotateLock;
-
-        InputManager.Instance.ReleasePiece.performed -= RelasePiece;
     }
 
     private void InteractLock()
@@ -68,10 +65,6 @@ public class DoctorOfficePuzzleController : MonoBehaviour
         _EventSystemDoctorOffice.RotateLock(direction);
     }
 
-    private void RelasePiece(InputAction.CallbackContext ctx)
-    {
-        _EventSystemDoctorOffice.ReleasePiece();
-    }
     
     private void ExitLockOnComplete()
     {

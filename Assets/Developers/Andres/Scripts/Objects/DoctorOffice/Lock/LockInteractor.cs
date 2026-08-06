@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class LockInteractor : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject _Camera;
@@ -51,7 +52,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
 
         foreach (LockPiece lockPiece in _Lock._LockPiecesList)
         {
-            lockPiece.ReleasePiece();
+            lockPiece.ReleasePieceWithoutEventCall();
         }
     }
 }

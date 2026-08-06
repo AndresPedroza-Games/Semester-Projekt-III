@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class FilmRotationButton : MonoBehaviour, IInteractable {
+public class FilmRotationButton : MonoBehaviour, IInteractable, ILeftClickable {
 
 	private bool _canInteract;
 
@@ -29,7 +29,7 @@ public class FilmRotationButton : MonoBehaviour, IInteractable {
 
 
 	public bool CanInteract(HoldController holdController) {
-		return !holdController.HasObject && _canInteract;
+		return false;
 	}
 
 
@@ -40,6 +40,16 @@ public class FilmRotationButton : MonoBehaviour, IInteractable {
 
 	public void Interact() {
 		EventSystemPrincipalsOffice.Instance.FilmRotationButtonPressed();
+	}
+
+
+	public bool CanInteractWithLeftClick(HoldController holdController) {
+		return _canInteract;
+	}
+
+
+	public void OnLeftClick() {
+		Interact();
 	}
 
 }

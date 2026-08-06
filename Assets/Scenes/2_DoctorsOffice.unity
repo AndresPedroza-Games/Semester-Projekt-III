@@ -316,10 +316,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2033359489}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
 --- !u!1001 &265972096
 PrefabInstance:
@@ -2052,23 +2049,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2406353713650683513, guid: 30ac2564954cf7047b24ce759a880fc2, type: 3}
   m_PrefabInstance: {fileID: 1916923313}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2033359485 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
-  m_PrefabInstance: {fileID: 240678510}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2033359489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033359485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729f407d8ba00034a894b7fcb704e8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DisableCamInputOnPause
 --- !u!1001 &2095383514
 PrefabInstance:
   m_ObjectHideFlags: 0

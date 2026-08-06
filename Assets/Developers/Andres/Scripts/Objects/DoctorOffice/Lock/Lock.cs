@@ -1,6 +1,7 @@
-using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using Cinemachine;
+using UnityEngine;
+
 
 public class Lock : MonoBehaviour
 {
@@ -14,11 +15,27 @@ public class Lock : MonoBehaviour
     private List<int> _CurrentCombination = new List<int>();
     private Dictionary<int, int> _AngleToPassword = new Dictionary<int, int>();
 
+    public static GameObject SelectedPiece;
+
+    
+    private CinemachineVirtualCamera _puzzleCam;
+    private CinemachineVirtualCamera _playerCam;
+
+
+    private void Awake() {
+	    _puzzleCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
+	    _playerCam = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>();
+    }
+
+
     private void Start()
     {
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
         _EventSystemDoctorOffice.onReleasePiece += PuzzleCompleted;
         _EventSystemDoctorOffice.onPuzzleCompleted += PuzzleSolved;
+        _EventSystemDoctorOffice.onPieceSelected += OnPieceSelected;
+        _EventSystemDoctorOffice.onReleasePiece += OnPieceRelease;
+        _EventSystemDoctorOffice.onInteractWithLock += SyncSensitivity;
 
         _AngleToPassword = new()
         {
@@ -35,12 +52,30 @@ public class Lock : MonoBehaviour
         };
     }
 
+
+    private void OnDisable() {
+	    _EventSystemDoctorOffice.onReleasePiece -= PuzzleCompleted;
+	    _EventSystemDoctorOffice.onPuzzleCompleted -= PuzzleSolved;
+	    _EventSystemDoctorOffice.onPieceSelected -= OnPieceSelected;
+	    _EventSystemDoctorOffice.onReleasePiece -= OnPieceRelease;
+	    _EventSystemDoctorOffice.onInteractWithLock -= SyncSensitivity;
+    }
+
+
+    private void OnPieceSelected(GameObject obj) {
+	    SelectedPiece = obj;
+    }
+
+    private void OnPieceRelease() {
+	    SelectedPiece = null;
+    }
+
+    
     private void PuzzleCompleted()
     {
         if (CheckIfPuzzleCompleted())
         {
             _EventSystemDoctorOffice.PuzzleCompleted();
-            GameManager.Instance.miniGameActive = false;
         }
     }
 
@@ -51,7 +86,7 @@ public class Lock : MonoBehaviour
         foreach (LockPiece piece in _LockPiecesList)
         {
             float angle = piece._Steps * 36f;
-            int currentAngle = Mathf.DeltaAngle(0f, angle).ConvertTo<int>();
+            int currentAngle =Mathf.RoundToInt(Mathf.DeltaAngle(0f, angle));
             int number = _AngleToPassword[currentAngle];
             _CurrentCombination.Add(number);
         }
@@ -65,8 +100,9 @@ public class Lock : MonoBehaviour
         return true;
     }
 
-    private void PuzzleSolved()
-    {
+    private void PuzzleSolved() {
+	    SelectedPiece = null;
+	    
         if (_Scene != null)
             LoadScene();
 
@@ -77,4 +113,10 @@ public class Lock : MonoBehaviour
     {
         await WorldSceneManager.Instance.LoadScene(_Scene);
     }
+    
+    private void SyncSensitivity() {
+	    _puzzleCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = _playerCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed;
+	    _puzzleCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = _playerCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed;
+    }
+    
 }

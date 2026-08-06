@@ -10,7 +10,7 @@ public class InteractionDetector : MonoBehaviour {
 	private Camera cam;
 	private LayerMask layermask;
 
-	public IInteractable CurrentTarget { get; private set; }
+	public GameObject CurrentTarget { get; private set; }
 	public Vector3 HitPoint { get; private set; }
 
 	private Vector3 _LastPositionMouse;
@@ -42,10 +42,11 @@ public class InteractionDetector : MonoBehaviour {
 		if (!Physics.Raycast(ray, out RaycastHit hit, interactionDistance, layermask, QueryTriggerInteraction.Ignore))
 			return;
 
-		if (!hit.collider.TryGetComponent(out IInteractable interactable))
-			return;
+		// if (!hit.collider.TryGetComponent(out IInteractable interactable))
+		// 	return;
 
-		CurrentTarget = interactable;
+		CurrentTarget = hit.collider.gameObject;
+
 		HitPoint = hit.point;
 	}
 
