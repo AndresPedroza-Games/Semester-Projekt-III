@@ -313,10 +313,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room2_Lock_001
       objectReference: {fileID: 0}
+    - target: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 615310172}
   m_SourcePrefab: {fileID: 100100000, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
 --- !u!1001 &265972096
 PrefabInstance:
@@ -667,6 +674,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8121222874927964680, guid: 7345bdc335e58c54c824c638b4d63415, type: 3}
   m_PrefabInstance: {fileID: 609852929}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &615310167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
+  m_PrefabInstance: {fileID: 240678510}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &615310172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615310167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f03d9294a37f844fba89e1f2d96d413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraLock
 --- !u!1001 &616134412
 PrefabInstance:
   m_ObjectHideFlags: 0

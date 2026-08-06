@@ -1,5 +1,5 @@
 using TMPro;
-
+using UnityEngine;
 
 public class PauseMenu : MenuManager {
 
@@ -49,13 +49,15 @@ public class PauseMenu : MenuManager {
 
 
 	public override async void ExitGame() {
-		EventSystemController.Instance.MainMenuEntered();
+
+        EventSystemController.Instance.MainMenuEntered();
 		
 		HideMenu();
 		
 		await LoadScene(BuildSettingsLoader.StartupScene);
 
 		await WorldSceneManager.Instance.UnloadAllExcept(WorldSceneManager.persistent, BuildSettingsLoader.StartupScene);
-	}
+
+    }
 
 }

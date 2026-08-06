@@ -26,27 +26,14 @@ public class PlayerManager : MonoBehaviour {
 			InputManager.Instance.Controls.Movement.Disable();
 			InputManager.Instance.Zoom.Disable();
             InputManager.Instance.Pause.Disable();
-			InputManager.Instance.Controls.BoardPuzzle.Disable();
 
         }
         else {
 			InputManager.Instance.Controls.Movement.Enable();
 			InputManager.Instance.Zoom.Enable();
             InputManager.Instance.Pause.Enable();
-            InputManager.Instance.Controls.BoardPuzzle.Enable();
 
         }
-
-        //designMC.SetActive(!status);
-
-        Debug.Log("Player Freeze");
 	}
-
-
-	// private void OnTriggerEnter(Collider collision) {
-	// 	if (collision.CompareTag("Trigger"))
-	// 		EventSystemController.Instance.CloseDoor();
-	//
-	// }
 
 }

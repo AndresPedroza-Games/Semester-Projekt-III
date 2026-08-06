@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class LockInteractor : MonoBehaviour, IInteractable, ICrosshair
 {
-    [SerializeField] private GameObject _Camera;
+    public static LockInteractor instance;
+
+    public static GameObject cameraLock;
 
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
     private Lock _Lock;
@@ -12,9 +14,18 @@ public class LockInteractor : MonoBehaviour, IInteractable, ICrosshair
 
     private void Awake()
     {
-	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+        if (instance && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+
+        gameObject.layer = LayerMask.NameToLayer("Interactable");
         _Lock = GetComponentInParent<Lock>();
         _CanInteract = true;
+
     }
 
     private void Start()
@@ -41,19 +52,21 @@ public class LockInteractor : MonoBehaviour, IInteractable, ICrosshair
         if (_CanInteract)
         {
             _EventSystemDoctorOffice.InteractWithLock();
-            _Camera.SetActive(true);
-            gameObject.SetActive(false);
+            cameraLock.SetActive(true);
+            instance.gameObject.SetActive(false);
         }
     }
 
     public void ExitInteraction()
     {
-        _Camera.SetActive(false);
-        gameObject.SetActive(true);
+        cameraLock.SetActive(false);
+        instance.gameObject.SetActive(true);
 
-        foreach (LockPiece lockPiece in _Lock._LockPiecesList)
-        {
-            lockPiece.ReleasePieceWithoutEventCall();
-        }
+        if(_Lock._LockPiecesList.Count > 0)
+            foreach (LockPiece lockPiece in _Lock._LockPiecesList)
+            {
+                if(lockPiece)
+                    lockPiece.ReleasePieceWithoutEventCall();
+            }
     }
 }

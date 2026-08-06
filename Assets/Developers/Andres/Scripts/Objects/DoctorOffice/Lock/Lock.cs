@@ -16,7 +16,6 @@ public class Lock : MonoBehaviour
     private Dictionary<int, int> _AngleToPassword = new Dictionary<int, int>();
 
     public static GameObject SelectedPiece;
-
     
     private CinemachineVirtualCamera _puzzleCam;
     private CinemachineVirtualCamera _playerCam;

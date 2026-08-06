@@ -21,6 +21,7 @@ public class DoctorOfficePuzzleController : MonoBehaviour
         _PlayerManager = PlayerManager.playerManager;
 
         _Camera = _PlayerManager.cinemachine.gameObject;
+
     }
 
     private void OnEnable()
@@ -43,7 +44,8 @@ public class DoctorOfficePuzzleController : MonoBehaviour
     {
         _Camera.SetActive(false);
         _PlayerManager.FreezeCharacter(true);
-        
+        InputManager.Instance.Pause.Enable();
+
         StartCoroutine(SetActive(true));
     }
 
@@ -57,6 +59,17 @@ public class DoctorOfficePuzzleController : MonoBehaviour
         _PlayerManager.FreezeCharacter(false);
 
         StartCoroutine(SetActive(false));
+    }
+
+    public void ExitLockWithoutCall()
+    {
+        if (!_IsActive)
+            return;
+
+        _EventSystemDoctorOffice.ExitLock();
+        _Camera.SetActive(true);
+        _PlayerManager.FreezeCharacter(false);
+
     }
 
     private void RotateLock(InputAction.CallbackContext ctx)
@@ -79,6 +92,5 @@ public class DoctorOfficePuzzleController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         _IsActive = status;
-        GameManager.Instance.miniGameActive = status;
     }
 }

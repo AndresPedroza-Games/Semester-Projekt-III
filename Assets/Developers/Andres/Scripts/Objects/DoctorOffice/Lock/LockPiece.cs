@@ -94,7 +94,6 @@ public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClic
 
     private void HighLightPiece(bool shouldHighlight) {
 	    transform.localScale = shouldHighlight ? _initialLocalScale * scaleMultiplier : _initialLocalScale;
-	    //transform.position = new Vector3(transform.position.x, _StartPos + moveDistance, transform.position.z);
     }
 
     private void RotatePiece(Vector2 scroll)
