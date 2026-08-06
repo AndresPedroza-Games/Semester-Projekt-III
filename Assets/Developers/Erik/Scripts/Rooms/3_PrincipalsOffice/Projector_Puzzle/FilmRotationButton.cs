@@ -1,9 +1,15 @@
+using System;
 using UnityEngine;
 
 
-public class FilmRotationButton : MonoBehaviour, IInteractable {
+public class FilmRotationButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
 	private bool _canInteract;
+
+
+	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
+	}
 
 
 	private void OnEnable() {
@@ -29,7 +35,7 @@ public class FilmRotationButton : MonoBehaviour, IInteractable {
 
 
 	public bool CanInteract(HoldController holdController) {
-		return !holdController.HasObject && _canInteract;
+		return false;
 	}
 
 
@@ -40,6 +46,16 @@ public class FilmRotationButton : MonoBehaviour, IInteractable {
 
 	public void Interact() {
 		EventSystemPrincipalsOffice.Instance.FilmRotationButtonPressed();
+	}
+
+
+	public bool CanInteractWithLeftClick(HoldController holdController) {
+		return _canInteract;
+	}
+
+
+	public void OnLeftClick() {
+		Interact();
 	}
 
 }

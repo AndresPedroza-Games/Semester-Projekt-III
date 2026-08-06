@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 
 
-public class Mirror : MonoBehaviour, IInteractable
+public class Mirror : MonoBehaviour, IInteractable, ICrosshair
 {
     [Header("Fog Settings")]
     [SerializeField] private float _TransitionSpeed = 1f;
@@ -14,6 +15,12 @@ public class Mirror : MonoBehaviour, IInteractable
     private EventSystemBathroom _EventSystemBathroom;
     private InteractionDetector _InteractionDetector;
     private bool _canInteract;
+
+
+    private void Awake() {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+    }
+
 
     private void Start()
     {

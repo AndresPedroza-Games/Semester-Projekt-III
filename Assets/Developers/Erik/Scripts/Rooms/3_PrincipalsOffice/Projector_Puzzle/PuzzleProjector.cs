@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 
 
-public class PuzzleProjector : MonoBehaviour, IInteractable {
+public class PuzzleProjector : MonoBehaviour /*,IInteractable*/ {
 
 #if UNITY_EDITOR
 	[Header("---Editor---")]
@@ -12,7 +12,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 
 	[Header("---Projector---")]
 	[SerializeField] private List<Light> projectorLights;
-	[SerializeField] private int correctProjectorAngle;
+	// [SerializeField] private int correctProjectorAngle;
 
 	[Header("---On Solved---")]
 	[SerializeField] private SceneReference sceneToLoad;
@@ -22,20 +22,20 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	[SerializeField] private GameObject wallDoor;
 
 	[Header(("---Animation---"))]
-	[SerializeField] private float projectorRotationDuration = 1f;
-	[SerializeField] private Ease projectorEase;
-	[Space(5)]
+	// [SerializeField] private float projectorRotationDuration = 1f;
+	// [SerializeField] private Ease projectorEase;
+	// [Space(5)]
 	[SerializeField] private float filmSnapDuration = 1f;
 	[SerializeField] private Ease filmSnapEase;
 	[Space(5)]
 	[SerializeField] private float filmRotationDuration = 1f;
 	[SerializeField] private Ease filmRotationEase;
 
-	private bool _isRotating;
+	// private bool _isRotating;
 	private bool _isOn;
 
-	private int _projectorAngle;
-	private const int RotationIncrement = 90;
+	// private int _projectorAngle;
+	// private const int RotationIncrement = 90;
 
 	[Header("---CheckBox---")]
 	[SerializeField] private Transform boxCenter;
@@ -69,7 +69,7 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		wallSolid.SetActive(true);
 		wallDoor.SetActive(false);
 
-		_projectorAngle = (int)transform.eulerAngles.y;
+		// _projectorAngle = (int)transform.eulerAngles.y;
 	}
 
 
@@ -98,19 +98,19 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	}
 
 
-	public bool CanInteract(HoldController holdController) {
-		return !holdController.HasObject && !_solved;
-	}
-
-
-	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return _solved ? CrosshairType.Default : CrosshairType.Interactable;
-	}
-
-
-	public void Interact() {
-		RotateProjector();
-	}
+	// public bool CanInteract(HoldController holdController) {
+	// 	return !holdController.HasObject && !_solved;
+	// }
+	//
+	//
+	// public CrosshairType GetCrosshairType(HoldController holdController) {
+	// 	return _solved ? CrosshairType.Default : CrosshairType.Interactable;
+	// }
+	//
+	//
+	// public void Interact() {
+	// 	RotateProjector();
+	// }
 
 
 	private void SetLights(bool state) {
@@ -151,21 +151,21 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 	}
 
 
-	private void RotateProjector() {
-		if (_solved || _isRotating)
-			return;
-
-		_isRotating = true;
-
-		_projectorAngle = (_projectorAngle + RotationIncrement + 360) % 360;
-
-		Vector3 target = new(0f, _projectorAngle, 0f);
-
-		transform.DORotate(target, projectorRotationDuration).SetEase(projectorEase).OnComplete(() => {
-			_isRotating = false;
-			CheckCondition();
-		});
-	}
+	// private void RotateProjector() {
+	// 	if (_solved || _isRotating)
+	// 		return;
+	//
+	// 	_isRotating = true;
+	//
+	// 	_projectorAngle = (_projectorAngle + RotationIncrement + 360) % 360;
+	//
+	// 	Vector3 target = new(0f, _projectorAngle, 0f);
+	//
+	// 	transform.DORotate(target, projectorRotationDuration).SetEase(projectorEase).OnComplete(() => {
+	// 		_isRotating = false;
+	// 		CheckCondition();
+	// 	});
+	// }
 
 
 	private void OnFilmSelectionButtonPressed(bool upwards) {
@@ -259,8 +259,8 @@ public class PuzzleProjector : MonoBehaviour, IInteractable {
 		if (_solved || !_isOn)
 			return;
 
-		if (_projectorAngle != correctProjectorAngle)
-			return;
+		// if (_projectorAngle != correctProjectorAngle)
+		// 	return;
 
 		foreach (Film film in _insertedFilms) {
 			if (!film)

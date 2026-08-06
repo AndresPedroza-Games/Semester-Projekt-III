@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class LightSwitch : MonoBehaviour, IInteractable {
+public class LightSwitch : MonoBehaviour, IInteractable, ICrosshair {
 
 	[Header("---Light---")]
 	[SerializeField] private List<Light> lightSources;

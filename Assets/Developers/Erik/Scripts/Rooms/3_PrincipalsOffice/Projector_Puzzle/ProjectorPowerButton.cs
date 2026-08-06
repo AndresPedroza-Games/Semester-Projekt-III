@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
 
 
-public class ProjectorPowerButton : MonoBehaviour, IInteractable {
+public class ProjectorPowerButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
 	private bool _state;
 	private bool _canInteract = true;
+
+
+	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
+	}
 
 
 	private void OnEnable() {
@@ -23,7 +29,7 @@ public class ProjectorPowerButton : MonoBehaviour, IInteractable {
 
 
 	public bool CanInteract(HoldController holdController) {
-		return !holdController.HasObject && _canInteract;
+		return false;
 	}
 
 
@@ -36,6 +42,16 @@ public class ProjectorPowerButton : MonoBehaviour, IInteractable {
 		_state = !_state;
 
 		EventSystemPrincipalsOffice.Instance.ProjectorPowerButtonPressed(_state);
+	}
+
+
+	public bool CanInteractWithLeftClick(HoldController holdController) {
+		return !holdController.HasObject && _canInteract;
+	}
+
+
+	public void OnLeftClick() {
+		Interact();
 	}
 
 }

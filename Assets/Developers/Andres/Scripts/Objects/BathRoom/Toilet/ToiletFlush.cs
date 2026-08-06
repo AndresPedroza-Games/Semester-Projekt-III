@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
-public class ToiletFlush : MonoBehaviour, IInteractable
+public class ToiletFlush : MonoBehaviour, IInteractable, ICrosshair
 {
     [SerializeField] private ParticleSystem _ParticleSystem;
     [SerializeField] private float _CoolDown;
@@ -9,6 +10,12 @@ public class ToiletFlush : MonoBehaviour, IInteractable
     private ToiletDetector _ToiletDetector;
 
     private bool _CanInteract;
+
+
+    private void Awake() {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+    }
+
 
     private void Start()
     {
@@ -21,12 +28,8 @@ public class ToiletFlush : MonoBehaviour, IInteractable
         return !holdController.HasObject && _CanInteract;
     }
 
-    public CrosshairType GetCrosshairType(HoldController holdController)
-    {
-        if (!holdController.HasObject)
-            return CrosshairType.Interactable;
-
-        return CrosshairType.Default;
+    public CrosshairType GetCrosshairType(HoldController holdController) {
+	    return holdController.HasObject ? CrosshairType.Default : CrosshairType.Interactable;
     }
 
     public void Interact()

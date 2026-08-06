@@ -15,7 +15,7 @@ public class PuzzleController : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.PlacePiece.performed += PlacePiece;
+        // InputManager.Instance.PlacePiece.performed += PlacePiece;
         InputManager.Instance.RotatePiece.performed += RotatePiece;
 
         _InteractionDetector = FindAnyObjectByType<InteractionDetector>(FindObjectsInactive.Include);
@@ -24,15 +24,15 @@ public class PuzzleController : MonoBehaviour
 
     private void OnDisable()
     {
-        InputManager.Instance.PlacePiece.performed -= PlacePiece;
+        // InputManager.Instance.PlacePiece.performed -= PlacePiece;
         InputManager.Instance.RotatePiece.performed -= RotatePiece;
     }
 
 
-    private void PlacePiece(InputAction.CallbackContext ctx)
-    {
-        EventSystemChildRoom.eventSystemChildRoom?.PlacePiece();
-    }
+    // private void PlacePiece(InputAction.CallbackContext ctx)
+    // {
+    //     EventSystemChildRoom.eventSystemChildRoom?.PlacePiece();
+    // }
 
     private void RotatePiece(InputAction.CallbackContext ctx)
     {

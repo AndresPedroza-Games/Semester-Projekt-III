@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 
-public class Vent : MonoBehaviour, IInteractable {
+public class Vent : MonoBehaviour, IInteractable, ICrosshair {
 
 	[Header("Animation Settings")]
 	[SerializeField] private Ease _Transition;
@@ -21,6 +21,7 @@ public class Vent : MonoBehaviour, IInteractable {
 
 
 	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
 		_Collider = GetComponent<Collider>();
 		_state = DoorState.Closed;
 	}

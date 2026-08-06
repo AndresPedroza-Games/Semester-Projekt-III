@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class LockInteractor : MonoBehaviour, IInteractable
+
+public class LockInteractor : MonoBehaviour, IInteractable, ICrosshair
 {
     [SerializeField] private GameObject _Camera;
 
@@ -11,6 +12,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
         _Lock = GetComponentInParent<Lock>();
         _CanInteract = true;
     }
@@ -51,7 +53,7 @@ public class LockInteractor : MonoBehaviour, IInteractable
 
         foreach (LockPiece lockPiece in _Lock._LockPiecesList)
         {
-            lockPiece.ReleasePiece();
+            lockPiece.ReleasePieceWithoutEventCall();
         }
     }
 }

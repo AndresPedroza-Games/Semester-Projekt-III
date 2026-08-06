@@ -1,8 +1,9 @@
+using System;
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
-public class ShowerValve : MonoBehaviour, IInteractable
+public class ShowerValve : MonoBehaviour, IInteractable, ICrosshair
 {
     private EventSystemBathroom _EventSystemBathroom;
 
@@ -27,6 +28,12 @@ public class ShowerValve : MonoBehaviour, IInteractable
     private float yAxis = 0;
 
     public static bool _IsCompleted;
+
+
+    private void Awake() {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+    }
+
 
     private void Start()
     {

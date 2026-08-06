@@ -1,12 +1,18 @@
+using System;
 using UnityEngine;
 
 
-public class FilmSelectionButton : MonoBehaviour, IInteractable {
+public class FilmSelectionButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
 	[Header("---Button Config---")]
 	[SerializeField] private bool selectUpwards;
 
 	private bool _canInteract;
+
+
+	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
+	}
 
 
 	private void OnEnable() {
@@ -32,7 +38,7 @@ public class FilmSelectionButton : MonoBehaviour, IInteractable {
 
 
 	public bool CanInteract(HoldController holdController) {
-		return !holdController.HasObject && _canInteract;
+		return false;
 	}
 
 
@@ -46,6 +52,16 @@ public class FilmSelectionButton : MonoBehaviour, IInteractable {
 
 	public void Interact() {
 		EventSystemPrincipalsOffice.Instance.FilmSelectionButtonPressed(selectUpwards);
+	}
+
+
+	public bool CanInteractWithLeftClick(HoldController holdController) {
+		return !holdController.HasObject && _canInteract;
+	}
+
+
+	public void OnLeftClick() {
+		Interact();	
 	}
 
 }
