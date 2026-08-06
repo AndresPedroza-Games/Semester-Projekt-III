@@ -22,7 +22,7 @@ public enum DoorInteractionState {
 }
 
 
-public class Door : MonoBehaviour, IInteractable {
+public class Door : MonoBehaviour, IInteractable, ICrosshair {
 
 	[Header("---Trigger---")]
 	[SerializeField] private GameObject trigger;
@@ -58,6 +58,7 @@ public class Door : MonoBehaviour, IInteractable {
 
 
 	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
 		_meshCollider = GetComponent<MeshCollider>();
 		_sfx = GetComponent<ObjectSfx>();
 		_doorState = initDoorState;

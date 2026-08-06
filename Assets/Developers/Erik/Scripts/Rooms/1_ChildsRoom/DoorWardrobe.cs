@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 
 
-public class DoorWardrobe : MonoBehaviour, IInteractable {
+public class DoorWardrobe : MonoBehaviour, IInteractable, ICrosshair {
 
 	[Header("---Doors---")]
 	[SerializeField] private GameObject[] wardrobeDoors = new GameObject[2];
@@ -33,6 +33,7 @@ public class DoorWardrobe : MonoBehaviour, IInteractable {
 
 
 	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
 		_interactionCollider = GetComponent<Collider>();
 
 		_sfx = GetComponent<ObjectSfx>();

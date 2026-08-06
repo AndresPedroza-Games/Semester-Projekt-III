@@ -1,12 +1,18 @@
+using System;
 using UnityEngine;
 
 
-public class FilmSelectionButton : MonoBehaviour, IInteractable, ILeftClickable {
+public class FilmSelectionButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
 	[Header("---Button Config---")]
 	[SerializeField] private bool selectUpwards;
 
 	private bool _canInteract;
+
+
+	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
+	}
 
 
 	private void OnEnable() {

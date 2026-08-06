@@ -1,9 +1,15 @@
+using System;
 using UnityEngine;
 
 
-public class FilmRotationButton : MonoBehaviour, IInteractable, ILeftClickable {
+public class FilmRotationButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
 	private bool _canInteract;
+
+
+	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
+	}
 
 
 	private void OnEnable() {

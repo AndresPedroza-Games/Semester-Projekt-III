@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 
-public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClickable 
+public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClickable , ICrosshair
 {
     [Header("Animation Settings")]
     [SerializeField] private Ease _Ease;
@@ -30,6 +30,7 @@ public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClic
 
     private void Awake()
     {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
         _CanInteract = true;
     }
 

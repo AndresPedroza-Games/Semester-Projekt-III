@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public class NarrativeNote : MonoBehaviour, IInteractable {
+public class NarrativeNote : MonoBehaviour, IInteractable, ICrosshair {
 
 	[Header("---Cam---")]
 	[SerializeField] private CinemachineVirtualCamera noteCam;
@@ -25,6 +25,8 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 
 	private void Awake() {
 		InputManager.Instance.ReadNote.Disable();
+		
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
 
 		_playerCam = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>();
 
@@ -32,7 +34,6 @@ public class NarrativeNote : MonoBehaviour, IInteractable {
 		noteCam.LookAt = transform;
 
 		_CanExitInteraction = true;
-
     }
 
 

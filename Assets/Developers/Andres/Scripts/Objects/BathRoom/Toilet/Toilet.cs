@@ -1,8 +1,8 @@
 using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 
-public class Toilet : MonoBehaviour, IInteractable
+
+public class Toilet : MonoBehaviour, IInteractable, ICrosshair
 {
     [Header("Animation Settings")]
 
@@ -19,6 +19,7 @@ public class Toilet : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
         _IsOpen = false;
     }
 

@@ -7,8 +7,9 @@ public class InteractionDetector : MonoBehaviour {
 	[Header(("---Interaction Distance---"))]
 	public float interactionDistance = 2.0f;
 
+	[Header("---LayerMask---")]
 	private Camera cam;
-	private LayerMask layermask;
+	[SerializeField] private LayerMask layermask;
 
 	public GameObject CurrentTarget { get; private set; }
 	public Vector3 HitPoint { get; private set; }
@@ -21,7 +22,6 @@ public class InteractionDetector : MonoBehaviour {
 		cam = Camera.main;
 
 		gameObject.layer = LayerMask.NameToLayer("Player");
-		layermask = ~LayerMask.GetMask("Player");
 
 		_GraphicRaycaster = FindFirstObjectByType<GraphicRaycaster>(FindObjectsInactive.Include);
 
@@ -41,9 +41,6 @@ public class InteractionDetector : MonoBehaviour {
 
 		if (!Physics.Raycast(ray, out RaycastHit hit, interactionDistance, layermask, QueryTriggerInteraction.Ignore))
 			return;
-
-		// if (!hit.collider.TryGetComponent(out IInteractable interactable))
-		// 	return;
 
 		CurrentTarget = hit.collider.gameObject;
 

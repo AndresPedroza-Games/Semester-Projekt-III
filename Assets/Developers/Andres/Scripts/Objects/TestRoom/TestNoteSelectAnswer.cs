@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static TestNoteQuestion;
 
-public class TestNoteSelectAnswer : MonoBehaviour, IInteractable
+public class TestNoteSelectAnswer : MonoBehaviour, IInteractable, ICrosshair
 {
     [SerializeField] private NarrativeNote _NarrativeNote;
     [SerializeField] private TestNoteQuestion question;
@@ -12,6 +12,7 @@ public class TestNoteSelectAnswer : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
         image = GetComponent<Image>();
     }
 

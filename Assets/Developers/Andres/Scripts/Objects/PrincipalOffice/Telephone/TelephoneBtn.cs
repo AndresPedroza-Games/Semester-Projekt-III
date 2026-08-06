@@ -1,14 +1,21 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using System.Collections;
 
-public class TelephoneBtn : MonoBehaviour, IInteractable
+public class TelephoneBtn : MonoBehaviour, IInteractable, ICrosshair
 {
     [SerializeField] private Ease _Transition;
     [SerializeField] private float _Duration;
     [SerializeField] private float _Depth = 0.003f;
 
     private float _Pos;
+
+
+    private void Awake() {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+    }
+
 
     public bool CanInteract(HoldController holdController)
     {

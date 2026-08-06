@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class TilePiece : MonoBehaviour, IHighlightable, ILeftClickable {
+public class TilePiece : MonoBehaviour, IHighlightable, ILeftClickable, ICrosshair {
 
 	private EventSystemChildRoom _EventSystemChildRoom;
 
@@ -19,6 +19,7 @@ public class TilePiece : MonoBehaviour, IHighlightable, ILeftClickable {
 
 
 	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
 		_Renderer = GetComponentInChildren<Renderer>();
 		_CanInteract = true;
 

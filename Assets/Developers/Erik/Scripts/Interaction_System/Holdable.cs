@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable, IFlushable {
+public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable, IFlushable, ICrosshair {
 
 	[Header("---Hold Definition---")]
 	[SerializeField] private HoldDefinition holdDefinition;

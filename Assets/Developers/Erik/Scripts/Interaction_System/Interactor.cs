@@ -19,7 +19,6 @@ public class Interactor : MonoBehaviour {
 		InputManager.Instance.Interact.performed += Interact;
 		InputManager.Instance.PickUp.performed += OnPickUpPerformed;
 		InputManager.Instance.PickUp.canceled += OnPickUpCanceled;
-		// InputManager.Instance.InteractElementPuzzle.performed += InteractPuzzleElements;
 
 		EventSystemController.Instance.onMainMenuEntered += OnMainMenuEntered;
 	}
@@ -29,7 +28,6 @@ public class Interactor : MonoBehaviour {
 		InputManager.Instance.Interact.performed -= Interact;
 		InputManager.Instance.PickUp.performed -= OnPickUpPerformed;
 		InputManager.Instance.PickUp.canceled -= OnPickUpCanceled;
-		// InputManager.Instance.InteractElementPuzzle.performed -= InteractPuzzleElements;
 
 		EventSystemController.Instance.onMainMenuEntered -= OnMainMenuEntered;
 	}
@@ -94,10 +92,6 @@ public class Interactor : MonoBehaviour {
 
 
 	private void Interact(InputAction.CallbackContext ctx) {
-
-		// if (GameManager.Instance.miniGameActive)
-		// 	return;
-
 		if (_holdController.HasObject)
 			if (_holdController.CurrentHoldable.CanInteract(_holdController)) {
 				_holdController.CurrentHoldable.Interact();
@@ -112,20 +106,5 @@ public class Interactor : MonoBehaviour {
 				interactable.Interact();
 		}
 	}
-
-
-	// private void InteractPuzzleElements(InputAction.CallbackContext ctx) {
-	// 	if (!GameManager.Instance.miniGameActive)
-	// 		return;
-	//
-	// 	IInteractable target = _detector.CurrentTarget;
-	//
-	// 	if (target == null) return;
-	//
-	// 	if (target.CanInteract(_holdController)) {
-	// 	}
-	//
-	// 	target.Interact();
-	// }
 
 }

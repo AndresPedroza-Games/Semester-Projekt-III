@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class WaterDispenser : MonoBehaviour, IInteractable
+public class WaterDispenser : MonoBehaviour, IInteractable, ICrosshair
 {
     [SerializeField] private GameObject _CupPrefab;
     [SerializeField] private Transform _CupSpawner;
@@ -9,6 +10,12 @@ public class WaterDispenser : MonoBehaviour, IInteractable
     [SerializeField] private int _MaxNumber;
 
     private List<GameObject> _CupList = new List<GameObject>();
+
+
+    private void Awake() {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+    }
+
 
     public bool CanInteract(HoldController holdController)
     {

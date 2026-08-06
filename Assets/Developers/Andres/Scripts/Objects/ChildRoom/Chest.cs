@@ -1,7 +1,8 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Chest : MonoBehaviour, IInteractable
+
+public class Chest : MonoBehaviour, IInteractable, ICrosshair
 {
     [Header("Animation")]
     [SerializeField] private Ease _Ease;
@@ -9,6 +10,12 @@ public class Chest : MonoBehaviour, IInteractable
 
     private bool _IsOpened;
     private float _Angle;
+
+
+    private void Awake() {
+	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+    }
+
 
     public bool CanInteract(HoldController holdController)
     {

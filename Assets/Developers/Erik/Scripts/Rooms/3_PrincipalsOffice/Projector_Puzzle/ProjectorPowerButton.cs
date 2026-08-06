@@ -1,10 +1,16 @@
+using System;
 using UnityEngine;
 
 
-public class ProjectorPowerButton : MonoBehaviour, IInteractable, ILeftClickable {
+public class ProjectorPowerButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
 	private bool _state;
 	private bool _canInteract = true;
+
+
+	private void Awake() {
+		gameObject.layer = LayerMask.NameToLayer("Interactable");
+	}
 
 
 	private void OnEnable() {
