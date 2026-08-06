@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TwinShadow : MonoBehaviour
 {
-    private int _Steps = 6;
+    private int _Steps = 0;
     private Material _Mat;
 
     private void Start()
@@ -24,17 +24,17 @@ public class TwinShadow : MonoBehaviour
 
     private void Vanish(bool answer)
     {
-        if (answer && _Steps > 0)
-            _Steps--;
-        else if (!answer && _Steps < 6)
+        if (answer && _Steps < 6)
             _Steps++;
+        else if (!answer && _Steps > 0)
+            _Steps--;
 
         ChangeMat(_Steps);
     }
 
     private void Restart()
     {
-        _Steps = 6;
+        _Steps = 0;
         ChangeMat(_Steps);
     }
 

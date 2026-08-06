@@ -9,6 +9,7 @@ public class TestNoteQuestion : MonoBehaviour
     [field: SerializeField] public AnswerType correctAnswer { get; private set; }
 
     public bool questionAnswered;
+    private AnswerType? _LastAnswer = null;
 
     private void Start()
     {
@@ -23,12 +24,15 @@ public class TestNoteQuestion : MonoBehaviour
         yes.SetSelected(answer == AnswerType.Yes);
         no.SetSelected(answer == AnswerType.No);
 
-        EventSystemTestRoom.instance.CrossAnswer(selectedAnswer == correctAnswer);
-    }
+        bool answerChanged = _LastAnswer == null || _LastAnswer != answer;
 
-    private void VanishTwin()
-    {
+        if (answer == correctAnswer && answerChanged)
+        {
+            EventSystemTestRoom.instance.CrossAnswer(selectedAnswer == correctAnswer);
+            Debug.Log("Correct");
+        }
 
+        _LastAnswer = answer;
     }
 
     private void RestartPuzzle()

@@ -16,6 +16,12 @@ public class EventSystemTestRoom : EventSystemController
     {
         if (instance == null)
             instance = this;
+
+    }
+
+    private void Start()
+    {
+        FindFirstObjectByType<NarrativeNote>(FindObjectsInactive.Include).ExitNoteWithouCall();
     }
 
     public void InteractPaper()

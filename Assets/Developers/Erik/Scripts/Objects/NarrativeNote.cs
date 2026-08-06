@@ -94,6 +94,18 @@ public class NarrativeNote : MonoBehaviour, IInteractable, ICrosshair {
         isInteracting = false;
 	}
 
+	public void ExitNoteWithouCall()
+	{
+        InputManager.Instance.ReadNote.Disable();
+        SetInputMapsActive(true);
+
+        noteCam.gameObject.SetActive(false);
+
+        _playerCam.gameObject.SetActive(true);
+
+        isInteracting = false;
+    }
+
 	private void Flip(InputAction.CallbackContext ctx)
 	{
 		_IsFlip = !_IsFlip;
@@ -107,7 +119,6 @@ public class NarrativeNote : MonoBehaviour, IInteractable, ICrosshair {
 	{
         InputManager.Instance.Controls.Interaction.Enable();
         _CanExitInteraction = false;
-        GameManager.Instance.miniGameActive = true;
         EventSystemTestRoom.instance.InteractPaper();
         _Questions.SetActive(true);
         EventSystemTestRoom.instance.onPuzzleSolved += PuzzleSolved;
