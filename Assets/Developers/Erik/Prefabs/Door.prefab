@@ -437,10 +437,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   scenesToUnload:
-  - sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
-    scenePath: Assets/Scenes/Hall_1.unity
-  initDoorState: 0
-  initDoorInteractionState: 0
+  - sceneAsset: {fileID: 102900000, guid: fdda6d1eba358594bbd0ccf8651b9806, type: 3}
+    scenePath: Assets/Scenes/3_PrincipalsOffice.unity
+  initDoorState: 1
+  initDoorInteractionState: 2
   openedRotation: {x: 0, y: 100, z: 0}
   closedRotation: {x: 0, y: 0, z: 0}
   ease: 10
@@ -558,3 +558,17 @@ MonoBehaviour:
   sounds:
   - trigger: 1
     sfx: 5
+    overrides:
+      useOverrides: 1
+      loop: 0
+      volume: 1
+      pitchRange: {x: 1, y: 1}
+      spatialBlend: 1
+  - trigger: 3
+    sfx: 6
+    overrides:
+      useOverrides: 1
+      loop: 0
+      volume: 1
+      pitchRange: {x: 1, y: 1}
+      spatialBlend: 1

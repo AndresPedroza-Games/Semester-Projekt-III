@@ -25,10 +25,10 @@ public class PuzzleProjector : MonoBehaviour /*,IInteractable*/ {
 	// [SerializeField] private float projectorRotationDuration = 1f;
 	// [SerializeField] private Ease projectorEase;
 	// [Space(5)]
-	[SerializeField] private float filmSnapDuration = 1f;
+	[SerializeField] private float filmSnapDuration = 0.5f;
 	[SerializeField] private Ease filmSnapEase;
 	[Space(5)]
-	[SerializeField] private float filmRotationDuration = 1f;
+	public float filmRotationDuration = 0.3f;
 	[SerializeField] private Ease filmRotationEase;
 
 	// private bool _isRotating;

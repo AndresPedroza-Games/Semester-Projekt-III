@@ -1,14 +1,23 @@
-using System;
+using DG.Tweening;
 using UnityEngine;
 
 
 public class ProjectorPowerButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
+	[Header("---Animation---")]
+	[SerializeField] private Vector3 endPosition;
+	[SerializeField] private float animationDuration;
+
+	private bool _isAnimating;
 	private bool _state;
 	private bool _canInteract = true;
 
+	private ObjectSfx _sfx;
+
 
 	private void Awake() {
+		_sfx = GetComponent<ObjectSfx>();
+
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
 	}
 
@@ -39,9 +48,15 @@ public class ProjectorPowerButton : MonoBehaviour, IInteractable, ILeftClickable
 
 
 	public void Interact() {
+		if (_isAnimating)
+			return;
+
 		_state = !_state;
 
 		EventSystemPrincipalsOffice.Instance.ProjectorPowerButtonPressed(_state);
+
+		_sfx?.PlaySfx(SfxEvent.OnInteract);
+		AnimateVisuals();
 	}
 
 
@@ -52,6 +67,13 @@ public class ProjectorPowerButton : MonoBehaviour, IInteractable, ILeftClickable
 
 	public void OnLeftClick() {
 		Interact();
+	}
+
+
+	private void AnimateVisuals() {
+		_isAnimating = true;
+
+		transform.DOLocalMove(endPosition, animationDuration).SetLoops(2, LoopType.Yoyo).OnComplete(() => { _isAnimating = false; });
 	}
 
 }

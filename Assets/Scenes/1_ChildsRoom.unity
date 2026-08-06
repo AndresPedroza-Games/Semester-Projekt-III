@@ -3541,6 +3541,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room1_ChildsDoor_001
       objectReference: {fileID: 0}
+    - target: {fileID: 3563547158378584299, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563547158378584299, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
+      propertyPath: MinDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563547158378584299, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6315295963772342109, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

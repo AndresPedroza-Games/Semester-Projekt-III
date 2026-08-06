@@ -26,7 +26,7 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 
 	[Header("---Trigger---")]
 	[SerializeField] private GameObject trigger;
-	
+
 	[Header("---On Door Closed Event---")]
 	public UnityEvent onDoorCloseAction;
 
@@ -50,8 +50,8 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 
 	private DoorState _doorState;
 	private DoorInteractionState _doorInteractionState;
-	
-	private bool HasKey => _currentPickedKey != null;
+
+	private bool HasKey => _currentPickedKey;
 
 	private EventSystemController _eventSystemController;
 	private ObjectSfx _sfx;
@@ -65,17 +65,22 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 		_doorInteractionState = initDoorInteractionState;
 	}
 
-    private void Start()
-    {
-		if (EventSystemBathroom.instance != null)
+
+	private void Start() {
+		if (EventSystemBathroom.instance)
 			EventSystemBathroom.instance.onTurnOnShower += () => _doorInteractionState = DoorInteractionState.Interactable;
-    }
+	}
 
 
-    private void OnEnable() {
+	private void OnEnable() {
 		_eventSystemController = EventSystemController.Instance;
 		_eventSystemController.onItemPicked += OnItemPicked;
 		_eventSystemController.onItemDropped += OnItemDropped;
+
+
+		HoldController holdController = GameManager.Instance.Interactor.GetComponent<HoldController>();
+		if (holdController && holdController.HasObject)
+			OnItemPicked(holdController.HoldGameObject);
 	}
 
 
@@ -146,7 +151,7 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 
 	public void Interact() {
 
-		if (EventSystemBathroom.instance != null && ShowerValve._IsCompleted) {
+		if (EventSystemBathroom.instance && ShowerValve._IsCompleted) {
 			EventSystemBathroom.instance.LockDoor();
 			_doorInteractionState = DoorInteractionState.Locked;
 			Debug.Log("Locked");
@@ -166,9 +171,9 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 	private void OpenDoor() {
 		if (_doorInteractionState == DoorInteractionState.RequiresKey)
 			_currentPickedKey.GetComponent<Key>().UseItem();
-		
+
 		_sfx.PlaySfx(SfxEvent.OnInteract);
-		
+
 		Rotate(ease, duration, openedRotation);
 
 		_doorState = DoorState.Open;
@@ -179,8 +184,8 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 
 	public void CloseDoor() {
 		colWhenClosing.SetActive(true);
-		
-		if(trigger.activeSelf)
+
+		if (trigger.activeSelf)
 			trigger.SetActive(false);
 
 		_meshCollider.enabled = false;
@@ -198,6 +203,7 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 			_meshCollider.enabled = true;
 
 			if (_doorState == DoorState.Closed) {
+				_sfx?.PlaySfx(SfxEvent.OnDoorClose);
 				UnloadScenes();
 				onDoorCloseAction?.Invoke();
 				EventSystemController.Instance.DoorClosed(gameObject.scene.name);
@@ -219,7 +225,25 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 	}
 
 
+	public void CloseDoorWithoutExtras() {
+		colWhenClosing.SetActive(true);
+
+		if (trigger.activeSelf)
+			trigger.SetActive(false);
+
+		_meshCollider.enabled = true;
+
+		_doorState = DoorState.Closed;
+		_doorInteractionState = DoorInteractionState.Disabled;
+		transform.localEulerAngles = closedRotation;
+
+		onDoorCloseAction?.Invoke();
+		EventSystemController.Instance.DoorClosed(gameObject.scene.name);
+	}
+
+
 	public void SetDoorInteractionState(DoorInteractionState newState) {
 		_doorInteractionState = newState;
 	}
+
 }

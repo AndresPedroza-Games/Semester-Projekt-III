@@ -40,27 +40,27 @@ public class ObjectSfx : MonoBehaviour {
 		if (!_lookup.TryGetValue(trigger, out SfxEventEntry entry))
 			return;
 
-		Audio audio = AudioManager.Instance.GetSfx(entry.sfx);
+		Audio a = AudioManager.Instance.GetSfx(entry.sfx);
 
-		if (audio == null)
+		if (a == null)
 			return;
 
-		_source.outputAudioMixerGroup = audio.group;
+		_source.outputAudioMixerGroup = a.group;
 
-		ApplyOverrides(audio, entry.overrides, entry.overrides.useOverrides);
+		ApplyOverrides(a, entry.overrides, entry.overrides.useOverrides);
 
 		if (_source.loop) {
-			_source.clip = audio.clip;
+			_source.clip = a.clip;
 			_source.Play();
 		}
 		else {
-			_source.PlayOneShot(audio.clip, audio.volume);
+			_source.PlayOneShot(a.clip, a.volume);
 		}
 
 	}
 
 
-	private void ApplyOverrides(Audio audio, SoundOverrides overrides, bool useOverrides) {
+	private void ApplyOverrides(Audio a, SoundOverrides overrides, bool useOverrides) {
 		if (useOverrides) {
 			_source.loop = overrides.loop;
 			_source.volume = overrides.volume;
@@ -68,10 +68,10 @@ public class ObjectSfx : MonoBehaviour {
 			_source.spatialBlend = overrides.spatialBlend;
 		}
 		else {
-			_source.loop = audio.loop;
-			_source.volume = audio.volume;
-			_source.pitch = audio.pitch;
-			_source.spatialBlend = audio.spatialBlend;
+			_source.loop = a.loop;
+			_source.volume = a.volume;
+			_source.pitch = a.pitch;
+			_source.spatialBlend = a.spatialBlend;
 		}
 	}
 

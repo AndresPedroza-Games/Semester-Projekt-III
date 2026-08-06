@@ -809,8 +809,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.5
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -900,6 +900,14 @@ MonoBehaviour:
   sounds:
   - trigger: 1
     sfx: 5
+    overrides:
+      useOverrides: 1
+      loop: 0
+      volume: 1
+      pitchRange: {x: 1, y: 1}
+      spatialBlend: 1
+  - trigger: 3
+    sfx: 6
     overrides:
       useOverrides: 1
       loop: 0

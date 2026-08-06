@@ -7,7 +7,8 @@ public enum SfxEvent {
 
 	OnCollision,
 	OnInteract,
-	OnPickup
+	OnPickup,
+	OnDoorClose
 
 }
 
@@ -25,6 +26,11 @@ public enum Sfx {
 	DoorOpen,
 	DoorClose,
 	DoorLocked,
+
+	ProjectorButton,
+	ProjectorPowerButton,
+
+	LightSwitch
 
 }
 

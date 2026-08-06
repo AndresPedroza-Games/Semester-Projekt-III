@@ -56,7 +56,7 @@ public class Film : Holdable {
 		Rigidbody.isKinematic = true;
 		Rigidbody.interpolation = RigidbodyInterpolation.None;
 		Rigidbody.collisionDetectionMode = CollisionDetectionMode.Discrete;
-		
+
 		decal.transform.localRotation = Quaternion.Euler(0f, 0f, -(Angle - CorrectAngle));
 
 		Sequence seq = DOTween.Sequence();
@@ -83,7 +83,9 @@ public class Film : Holdable {
 
 		seq.Join(decal.transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, 0f, -(Angle - CorrectAngle)), duration));
 
-		seq.OnComplete(() => IsAnimating = false);
+		seq.OnComplete(() => {
+			IsAnimating = false;
+		});
 	}
 
 

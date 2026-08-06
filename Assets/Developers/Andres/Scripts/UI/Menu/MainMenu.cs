@@ -65,7 +65,7 @@ public class MainMenu : MenuManager {
 
 		Door door = PersistentStartup.GetDoor(lastScene);
 		if (door)
-			door.CloseDoor();
+			door.CloseDoorWithoutExtras();
 
 		GameObject spawn = PersistentStartup.SearchForPlayerSpawn(lastScene);
 		if (!spawn) return;

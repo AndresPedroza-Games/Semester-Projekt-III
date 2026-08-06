@@ -1,13 +1,28 @@
-using System;
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 
 public class FilmRotationButton : MonoBehaviour, IInteractable, ILeftClickable, ICrosshair {
 
+	[Header("---PuzzleProjector---")]
+	[SerializeField] private PuzzleProjector puzzleProjector;
+	private Coroutine _waitRoutine;
+
+	[Header("---Animation---")]
+	[SerializeField] private Vector3 endPosition;
+	[SerializeField] private float animationDuration;
+
+	private bool _isAnimating;
+
 	private bool _canInteract;
+
+	private ObjectSfx _sfx;
 
 
 	private void Awake() {
+		_sfx = GetComponent<ObjectSfx>();
+
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
 	}
 
@@ -45,7 +60,14 @@ public class FilmRotationButton : MonoBehaviour, IInteractable, ILeftClickable, 
 
 
 	public void Interact() {
+		if (_isAnimating)
+			return;
+
 		EventSystemPrincipalsOffice.Instance.FilmRotationButtonPressed();
+
+		_sfx?.PlaySfx(SfxEvent.OnInteract);
+		AnimateVisuals();
+		_waitRoutine ??= StartCoroutine(WaitForAnimationEnd());
 	}
 
 
@@ -56,6 +78,19 @@ public class FilmRotationButton : MonoBehaviour, IInteractable, ILeftClickable, 
 
 	public void OnLeftClick() {
 		Interact();
+	}
+
+
+	private void AnimateVisuals() {
+		_isAnimating = true;
+		transform.DOLocalMove(endPosition, animationDuration).SetLoops(2, LoopType.Yoyo);
+	}
+
+
+	private IEnumerator WaitForAnimationEnd() {
+		yield return new WaitForSeconds(puzzleProjector.filmRotationDuration);
+		_isAnimating = false;
+		_waitRoutine = null;
 	}
 
 }
