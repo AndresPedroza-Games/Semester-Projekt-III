@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 5869970093539907651}
   - component: {fileID: 4125107869854763646}
   - component: {fileID: 766486694387435466}
-  - component: {fileID: 2975795323456996320}
+  - component: {fileID: 3272337281321734745}
+  - component: {fileID: 7807945366923792464}
   - component: {fileID: 4735485910982925313}
   - component: {fileID: 2835711594251812388}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Room4_Scissor_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4755258495452583094}
-  m_Mesh: {fileID: 11190837189551161, guid: a7eaec7b868bff84a9610d75dd3ef903, type: 3}
+  m_Mesh: {fileID: 11190837189551161, guid: 5e6143c7badd46e44a4d347b6116cffb, type: 3}
 --- !u!23 &766486694387435466
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -94,8 +95,8 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2975795323456996320
-MeshCollider:
+--- !u!65 &3272337281321734745
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -112,10 +113,30 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 11190837189551161, guid: a7eaec7b868bff84a9610d75dd3ef903, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.10632134, y: 0.008740926, z: 0.058216386}
+  m_Center: {x: 0.002961222, y: 0.004370463, z: -0.040012922}
+--- !u!65 &7807945366923792464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4755258495452583094}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.027693253, y: 0.008686663, z: 0.1742941}
+  m_Center: {x: -0.0008766912, y: 0.0043433313, z: 0.06262285}
 --- !u!54 &4735485910982925313
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -156,8 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Scissors
   holdDefinition: {fileID: 11400000, guid: effbc0f642fe7e143abd69433b1171fa, type: 2}
-  borderThickness: 0.02
-  CanBeHold: 1
+  canBeHold: 1
 --- !u!1 &8327712330767225039
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,8 +189,7 @@ GameObject:
   - component: {fileID: 1894151839297502698}
   - component: {fileID: 1713244319383294910}
   - component: {fileID: 5754571599453219293}
-  - component: {fileID: 7147631639768794565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Room4_Scissor_001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,13 +204,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8327712330767225039}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.043619405, y: 0, z: 0.9990483, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0073, y: 0.00407, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5869970093539907651}
-  m_LocalEulerAnglesHint: {x: 0, y: 5, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1713244319383294910
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -199,7 +218,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8327712330767225039}
-  m_Mesh: {fileID: 11190837189551161, guid: a7eaec7b868bff84a9610d75dd3ef903, type: 3}
+  m_Mesh: {fileID: 9123646257569442207, guid: 5e6143c7badd46e44a4d347b6116cffb, type: 3}
 --- !u!23 &5754571599453219293
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -249,25 +268,3 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7147631639768794565
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8327712330767225039}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 11190837189551161, guid: a7eaec7b868bff84a9610d75dd3ef903, type: 3}

@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 public class ToiletDetector : MonoBehaviour
 {
@@ -24,18 +25,21 @@ public class ToiletDetector : MonoBehaviour
 
         foreach (GameObject obj in _DetectedObjects)
         {
+            if (obj.GetComponent<Scissors>()) {
+	            obj.transform.rotation = Quaternion.identity;
+	            obj.transform.position = _ScissorsStartPos;
+	            continue;
+            }
+            
             IFlushable isFlushable = obj.GetComponent<IFlushable>();
 
-            isFlushable.Flush();
+            isFlushable?.Flush();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponent<Scissors>() != null)
-            other.transform.position = _ScissorsStartPos;
-
-        if (Toilet._IsOpen && other.GetComponent<IFlushable>() != null && other.gameObject.GetComponent<Scissors>() == null)
+        if (Toilet._IsOpen && other.GetComponent<IFlushable>() != null)
         {
             _DetectedObjects.Add(other.gameObject);
 
