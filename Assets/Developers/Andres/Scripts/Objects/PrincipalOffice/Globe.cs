@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
+
 public class Globe : Holdable
 {
     [SerializeField] private Transform _PivotPoint;
@@ -14,6 +15,12 @@ public class Globe : Holdable
     {
         Rotate();
     }
+
+
+    public override CrosshairType GetCrosshairType(HoldController holdController) {
+	    return canBeHold ? CrosshairType.Interactable : CrosshairType.Default;
+    }
+
 
     private void Rotate()
     {

@@ -1,6 +1,6 @@
-using System;
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 public class WaterDispenser : MonoBehaviour, IInteractable, ICrosshair
 {
@@ -9,6 +9,7 @@ public class WaterDispenser : MonoBehaviour, IInteractable, ICrosshair
     [SerializeField] private Transform _CupParent;
     [SerializeField] private int _MaxNumber;
 
+    private bool _canInteract = true;
     private List<GameObject> _CupList = new List<GameObject>();
 
 
@@ -24,12 +25,18 @@ public class WaterDispenser : MonoBehaviour, IInteractable, ICrosshair
 
     public CrosshairType GetCrosshairType(HoldController holdController)
     {
-        return CrosshairType.Interactable; 
+        return _canInteract ? CrosshairType.Interactable : CrosshairType.Default; 
     }
 
-    public void Interact()
-    {
+    public void Interact() {
+	    if (!_canInteract)
+		    return;
+	        
         CreateCup();
+
+        if (_CupList.Count >= _MaxNumber)
+	        _canInteract = false;
+
     }
 
     private void CreateCup()

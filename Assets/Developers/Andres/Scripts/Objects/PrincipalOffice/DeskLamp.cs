@@ -27,6 +27,12 @@ public class DeskLamp : Holdable
         TurnOffOnLight(_IsActive);
     }
 
+
+    public override CrosshairType GetCrosshairType(HoldController holdController) {
+	    return canBeHold ? CrosshairType.Interactable : CrosshairType.Default;
+    }
+
+
     private void TurnOffOnLight(bool status)
     {
         _Bulb.enabled = status;

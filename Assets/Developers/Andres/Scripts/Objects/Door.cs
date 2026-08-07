@@ -172,7 +172,7 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 		if (_doorInteractionState == DoorInteractionState.RequiresKey)
 			_currentPickedKey.GetComponent<Key>().UseItem();
 
-		_sfx.PlaySfx(SfxEvent.OnInteract);
+		_sfx?.PlaySfx(SfxEvent.OnInteract);
 
 		Rotate(ease, duration, openedRotation);
 
@@ -183,9 +183,9 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 
 
 	public void CloseDoor() {
-		colWhenClosing.SetActive(true);
+		colWhenClosing?.SetActive(true);
 
-		if (trigger.activeSelf)
+		if (trigger && trigger.activeSelf)
 			trigger.SetActive(false);
 
 		_meshCollider.enabled = false;
@@ -226,7 +226,7 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 
 
 	public void CloseDoorWithoutExtras() {
-		colWhenClosing.SetActive(true);
+		colWhenClosing?.SetActive(true);
 
 		if (trigger.activeSelf)
 			trigger.SetActive(false);
