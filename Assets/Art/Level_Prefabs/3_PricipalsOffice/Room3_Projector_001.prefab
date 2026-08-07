@@ -450,8 +450,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.3
-  MaxDistance: 2
+  MinDistance: 0.1
+  MaxDistance: 1.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1045,8 +1045,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.3
-  MaxDistance: 2
+  MinDistance: 0.1
+  MaxDistance: 1.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1522,8 +1522,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.3
-  MaxDistance: 2
+  MinDistance: 0.1
+  MaxDistance: 1.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1616,7 +1616,7 @@ MonoBehaviour:
     overrides:
       useOverrides: 1
       loop: 0
-      volume: 0.2
+      volume: 0.3
       pitchRange: {x: 1, y: 1}
       spatialBlend: 1
 --- !u!1 &3990786738058139128
@@ -2299,8 +2299,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.3
-  MaxDistance: 2
+  MinDistance: 0.1
+  MaxDistance: 1.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

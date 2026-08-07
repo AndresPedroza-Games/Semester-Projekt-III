@@ -30,7 +30,8 @@ public enum Sfx {
 	ProjectorButton,
 	ProjectorPowerButton,
 
-	LightSwitch
+	LightSwitch,
+	WallClock
 
 }
 
