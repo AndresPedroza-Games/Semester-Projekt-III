@@ -71,7 +71,6 @@ public class DoctorOfficePuzzleController : MonoBehaviour
 
         _EventSystemDoctorOffice.ExitLock();
         _Camera.SetActive(true);
-        GameManager.Instance.FreezeCharacter(false);
 
         _IsActive = false;
     }
