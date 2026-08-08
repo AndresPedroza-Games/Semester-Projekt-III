@@ -25,6 +25,8 @@ public class Zoom : MonoBehaviour {
 	private void OnEnable() {
 		InputManager.Instance.Zoom.performed += ZoomPerformed;
 		InputManager.Instance.Zoom.canceled += ZoomCanceled;
+
+		cineCam.m_Lens.FieldOfView = defaultFOV;
 	}
 
 
@@ -39,7 +41,7 @@ public class Zoom : MonoBehaviour {
 			StopCoroutine(zoomRoutine);
 			zoomRoutine = null;
 		}
-		
+
 		zoomRoutine = StartCoroutine(ZoomCoroutine(zoomFOV));
 	}
 
