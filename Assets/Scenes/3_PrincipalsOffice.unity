@@ -1518,9 +1518,25 @@ PrefabInstance:
       propertyPath: wallSolid
       value: 
       objectReference: {fileID: 1828554497}
+    - target: {fileID: 59939837939511302, guid: eade7b2f9b0b7514c9b8f4995134ee0b, type: 3}
+      propertyPath: sfxLightHum
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a66821758403e943a66e40698d221ea, type: 3}
     - target: {fileID: 2272754955012359759, guid: eade7b2f9b0b7514c9b8f4995134ee0b, type: 3}
       propertyPath: m_Name
       value: Room3_Projector_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551301299900148169, guid: eade7b2f9b0b7514c9b8f4995134ee0b, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551301299900148169, guid: eade7b2f9b0b7514c9b8f4995134ee0b, type: 3}
+      propertyPath: MaxDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551301299900148169, guid: eade7b2f9b0b7514c9b8f4995134ee0b, type: 3}
+      propertyPath: MinDistance
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 9103993431117709898, guid: eade7b2f9b0b7514c9b8f4995134ee0b, type: 3}
       propertyPath: m_LocalPosition.x

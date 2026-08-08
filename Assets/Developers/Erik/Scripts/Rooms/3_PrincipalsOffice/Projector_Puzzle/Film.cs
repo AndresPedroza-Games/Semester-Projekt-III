@@ -16,14 +16,24 @@ public class Film : Holdable {
 	[SerializeField] private int rotationIncrement = 30;
 	[SerializeField] private int correctAngle;
 
+	[Header("---SFX---")]
+	[SerializeField] private AudioClip insertSfx;
+	[SerializeField] [Range(0f, 1f)] private float volume;
+	[SerializeField] [Range(-3f, 3f)] private float pitch;
+	[SerializeField] [Range(0f, 1f)] private float spatialBlend;
+
 	public bool IsAnimating { get; private set; }
 	public int CorrectAngle => correctAngle;
 	public int Angle { get; private set; }
 	public bool IsInserted { get; private set; }
 
+	private AudioSource _audioSource;
+
 
 	protected override void Awake() {
 		base.Awake();
+
+		_audioSource = GetComponent<AudioSource>();
 
 		decal.SetActive(false);
 		_decalProjector = decal.GetComponent<DecalProjector>();
@@ -49,6 +59,13 @@ public class Film : Holdable {
 
 
 	public void Insert(Transform filmPosition, Ease ease, float duration) {
+		if (_audioSource) {
+			_audioSource.volume = volume;
+			_audioSource.pitch = pitch;
+			_audioSource.spatialBlend = spatialBlend;
+			_audioSource?.PlayOneShot(insertSfx);
+		}
+
 		canBeHold = false;
 
 		IsInserted = true;
@@ -83,9 +100,7 @@ public class Film : Holdable {
 
 		seq.Join(decal.transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, 0f, -(Angle - CorrectAngle)), duration));
 
-		seq.OnComplete(() => {
-			IsAnimating = false;
-		});
+		seq.OnComplete(() => { IsAnimating = false; });
 	}
 
 
