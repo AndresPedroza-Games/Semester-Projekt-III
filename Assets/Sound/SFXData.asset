@@ -13,10 +13,21 @@ MonoBehaviour:
   m_Name: SFXData
   m_EditorClassIdentifier: Assembly-CSharp::SFXDataSO
   entries:
-  - sfx: 5
+  - sfx: 3
     audio:
       audioName: 
-      clip: {fileID: 8300000, guid: 53229b89a9851b647b671b7de4fca407, type: 3}
+      clip: {fileID: 8300000, guid: 8de6e881d5c942b4d92b0c620f4b1824, type: 3}
+      group: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
+      loop: 0
+      volume: 0.1
+      pitch: 1
+      spatialBlend: 0.2
+      source: {fileID: 0}
+      originalVolume: 0
+  - sfx: 1
+    audio:
+      audioName: 
+      clip: {fileID: 8300000, guid: 89b51119922461b42b489a41cff8c3b3, type: 3}
       group: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
       loop: 0
       volume: 1
@@ -24,10 +35,10 @@ MonoBehaviour:
       spatialBlend: 0
       source: {fileID: 0}
       originalVolume: 0
-  - sfx: 1
+  - sfx: 5
     audio:
       audioName: 
-      clip: {fileID: 8300000, guid: 89b51119922461b42b489a41cff8c3b3, type: 3}
+      clip: {fileID: 8300000, guid: 53229b89a9851b647b671b7de4fca407, type: 3}
       group: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
       loop: 0
       volume: 1
@@ -74,7 +85,7 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 796edb3931c843c4da15c1d61f1fda2e, type: 3}
       group: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
       loop: 0
-      volume: 1
+      volume: 0.2
       pitch: 1
       spatialBlend: 1
       source: {fileID: 0}
@@ -93,11 +104,22 @@ MonoBehaviour:
   - sfx: 3
     audio:
       audioName: 
-      clip: {fileID: 8300000, guid: 050c1a113e9de1849adb2a781aec4968, type: 3}
+      clip: {fileID: 8300000, guid: 8de6e881d5c942b4d92b0c620f4b1824, type: 3}
       group: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
       loop: 0
-      volume: 0.2
+      volume: 0.5
       pitch: 1
       spatialBlend: 0
+      source: {fileID: 0}
+      originalVolume: 0
+  - sfx: 12
+    audio:
+      audioName: 
+      clip: {fileID: 8300000, guid: edabc0a3c413740468c275b7e6f7a9b0, type: 3}
+      group: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
+      loop: 0
+      volume: 0.5
+      pitch: 1
+      spatialBlend: 1
       source: {fileID: 0}
       originalVolume: 0

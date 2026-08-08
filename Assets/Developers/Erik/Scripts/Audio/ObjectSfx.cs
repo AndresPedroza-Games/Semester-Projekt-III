@@ -18,15 +18,17 @@ public class ObjectSfx : MonoBehaviour {
 	}
 
 
+	[Header("---AudioSource---")]
+	[SerializeField] private AudioSource audioSource;
+
 	[SerializeField] private List<SfxEventEntry> sounds = new();
 
 	private Dictionary<SfxEvent, SfxEventEntry> _lookup;
 
-	private AudioSource _source;
-
 
 	private void Awake() {
-		_source = GetComponent<AudioSource>();
+		if (!audioSource)
+			audioSource = GetComponent<AudioSource>();
 
 		_lookup = new Dictionary<SfxEvent, SfxEventEntry>();
 
@@ -45,16 +47,16 @@ public class ObjectSfx : MonoBehaviour {
 		if (a == null)
 			return;
 
-		_source.outputAudioMixerGroup = a.group;
+		audioSource.outputAudioMixerGroup = a.group;
 
 		ApplyOverrides(a, entry.overrides, entry.overrides.useOverrides);
 
-		if (_source.loop) {
-			_source.clip = a.clip;
-			_source.Play();
+		if (audioSource.loop) {
+			audioSource.clip = a.clip;
+			audioSource?.Play();
 		}
 		else {
-			_source.PlayOneShot(a.clip, a.volume);
+			audioSource?.PlayOneShot(a.clip, a.volume);
 		}
 
 	}
@@ -62,16 +64,16 @@ public class ObjectSfx : MonoBehaviour {
 
 	private void ApplyOverrides(Audio a, SoundOverrides overrides, bool useOverrides) {
 		if (useOverrides) {
-			_source.loop = overrides.loop;
-			_source.volume = overrides.volume;
-			_source.pitch = Random.Range(overrides.pitchRange.x, overrides.pitchRange.y);
-			_source.spatialBlend = overrides.spatialBlend;
+			audioSource.loop = overrides.loop;
+			audioSource.volume = overrides.volume;
+			audioSource.pitch = Random.Range(overrides.pitchRange.x, overrides.pitchRange.y);
+			audioSource.spatialBlend = overrides.spatialBlend;
 		}
 		else {
-			_source.loop = a.loop;
-			_source.volume = a.volume;
-			_source.pitch = a.pitch;
-			_source.spatialBlend = a.spatialBlend;
+			audioSource.loop = a.loop;
+			audioSource.volume = a.volume;
+			audioSource.pitch = a.pitch;
+			audioSource.spatialBlend = a.spatialBlend;
 		}
 	}
 

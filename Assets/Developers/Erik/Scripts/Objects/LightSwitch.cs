@@ -60,7 +60,7 @@ public class LightSwitch : MonoBehaviour, IInteractable, ICrosshair {
 
 
 	public CrosshairType GetCrosshairType(HoldController holdController) {
-		return CrosshairType.HandPointer;
+		return CrosshairType.Interactable;
 	}
 
 }

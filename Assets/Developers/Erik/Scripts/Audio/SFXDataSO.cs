@@ -8,7 +8,7 @@ public enum SfxEvent {
 	OnCollision,
 	OnInteract,
 	OnPickup,
-	OnDoorClose
+	OnDoorClose,
 
 }
 
@@ -31,7 +31,8 @@ public enum Sfx {
 	ProjectorPowerButton,
 
 	LightSwitch,
-	WallClock
+	WallClock,
+	FlashLightToggle
 
 }
 
