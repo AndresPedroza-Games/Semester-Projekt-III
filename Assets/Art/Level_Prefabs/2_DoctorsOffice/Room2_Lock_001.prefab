@@ -501,8 +501,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2903348986103641638}
   - {fileID: 6577020283379671555}
@@ -530,6 +530,10 @@ MonoBehaviour:
   _Scene:
     sceneAsset: {fileID: 102900000, guid: 50dc0f7b0e404504b8af2931b0a426a9, type: 3}
     scenePath: Assets/Scenes/Hall_2.unity
+  door: {fileID: 0}
+  openedRotation: {x: 90, y: 0, z: 105}
+  ease: 10
+  duration: 1
   _Password: 05000000000000000600000000000000
   _LockPiecesList:
   - {fileID: 6622453393212023286}
@@ -712,7 +716,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b07a4afa55ecfa45abe0295d8565516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lock
-  _Camera: {fileID: 6376795191183595888}
 --- !u!65 &8985303712357137448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -732,7 +735,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.25, y: 0.4, z: 0.2}
+  m_Size: {x: 0.25, y: 0.4, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5760079820180637899
 GameObject:
@@ -877,13 +880,14 @@ GameObject:
   - component: {fileID: 1643384996732732162}
   - component: {fileID: 386070511169328481}
   - component: {fileID: 6296682619240613089}
+  - component: {fileID: 3502416046931298755}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2451370338403227329
 Transform:
   m_ObjectHideFlags: 0
@@ -967,6 +971,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729f407d8ba00034a894b7fcb704e8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisableCamInputOnPause
+--- !u!114 &3502416046931298755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376795191183595888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f03d9294a37f844fba89e1f2d96d413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraLock
 --- !u!1 &6584082966527314796
 GameObject:
   m_ObjectHideFlags: 0

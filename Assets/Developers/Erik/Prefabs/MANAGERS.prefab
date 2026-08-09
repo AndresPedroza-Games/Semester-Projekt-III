@@ -44,10 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d229ead69cc63e45ac1d78db5e72f69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataManager
-  dataContainer: {fileID: 0}
-  doorsOpened: []
-  currentGameObject: {fileID: 0}
-  playerPosition: {fileID: 0}
 --- !u!1 &3544350587951421169
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +135,7 @@ MonoBehaviour:
   playerSetup: {fileID: 0}
   player: {fileID: 0}
   <Camera>k__BackingField: {fileID: 0}
+  <MainCamera>k__BackingField: {fileID: 0}
   <Interactor>k__BackingField: {fileID: 0}
   miniGameActive: 0
 --- !u!1 &4906225115397296542
@@ -391,6 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4edbea2e69149574d9c08dfe30ded253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  audioMixer: {fileID: 24100000, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
   sfxData: {fileID: 11400000, guid: 68f9e0ef95974bb429b170546c9e3c74, type: 2}
   audioList: []
 --- !u!1001 &1455585852789852628

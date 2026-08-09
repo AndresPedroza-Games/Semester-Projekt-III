@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] private GameObject player;
 	public GameObject Player => player;
 	[field: SerializeField] public GameObject Camera { get; private set; }
+	[field: SerializeField] public GameObject MainCamera { get; private set; }
 
 	[field: SerializeField] public Interactor Interactor { get; private set; }
 

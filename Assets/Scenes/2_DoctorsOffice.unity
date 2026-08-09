@@ -590,23 +590,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4563198
+      value: -0.831
       objectReference: {fileID: 0}
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0110452
+      value: 0.1527
       objectReference: {fileID: 0}
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.24483109
+      value: 3.8447
       objectReference: {fileID: 0}
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99470717
       objectReference: {fileID: 0}
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.102750674
       objectReference: {fileID: 0}
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalRotation.y
@@ -618,7 +618,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -11.795
       objectReference: {fileID: 0}
     - target: {fileID: 1427476599211081144, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -632,17 +632,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room2_Lock_001
       objectReference: {fileID: 0}
-    - target: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+    - target: {fileID: 8696877161647868082, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 332330142}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 615310172}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
 --- !u!4 &243187434 stripped
 Transform:
@@ -845,6 +842,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3246283946846582247, guid: 8760595dff4850c4f8cf1e6e4e13f22d, type: 3}
   m_PrefabInstance: {fileID: 318152592}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &332330142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7539629399343397081, guid: 85b600b0d070ad74fb570bcf86259e69, type: 3}
+  m_PrefabInstance: {fileID: 810399144}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &337474785
 PrefabInstance:
@@ -1787,23 +1789,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8121222874927964680, guid: 7345bdc335e58c54c824c638b4d63415, type: 3}
   m_PrefabInstance: {fileID: 609852929}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &615310167 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6376795191183595888, guid: 036453324bfa8ec4b864b2d954103ff5, type: 3}
-  m_PrefabInstance: {fileID: 240678510}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &615310172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615310167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f03d9294a37f844fba89e1f2d96d413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraLock
 --- !u!1001 &616134412
 PrefabInstance:
   m_ObjectHideFlags: 0

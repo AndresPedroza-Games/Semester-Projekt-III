@@ -1,12 +1,23 @@
 using System.Collections.Generic;
 using Cinemachine;
+using DG.Tweening;
 using UnityEngine;
 
 
 public class Lock : MonoBehaviour
 {
+	[Header("---Scene To Load----")]
     [SerializeField] private SceneReference _Scene;
 
+	[Header("---Door---")]
+	[SerializeField] private GameObject door;
+	[SerializeField] private Vector3 openedRotation;
+	[SerializeField] private Ease ease;
+	[SerializeField] private float duration = 1f;
+	private Tween _rotationTween;
+	private Collider _doorCollider;
+
+	[Header("---Puzzle Config---")]
     [SerializeField] private List<int> _Password = new List<int>();
     public List<LockPiece> _LockPiecesList;
 
@@ -24,6 +35,8 @@ public class Lock : MonoBehaviour
     private void Awake() {
 	    _puzzleCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
 	    _playerCam = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>();
+
+	    _doorCollider = door.GetComponent<Collider>();
     }
 
 
@@ -105,7 +118,17 @@ public class Lock : MonoBehaviour
         if (_Scene != null)
             LoadScene();
 
-        Debug.Log("Puzzle Completed");
+        OpenDoor();
+    }
+
+
+    private void OpenDoor() {
+	    _doorCollider.enabled = false;
+	    _rotationTween = door.transform.DOLocalRotateQuaternion(Quaternion.Euler(openedRotation), duration).SetEase(ease).SetLink(gameObject);
+
+	    _rotationTween.OnComplete(() => {
+		    _doorCollider.enabled = true;
+	    });
     }
 
     private async void LoadScene()
