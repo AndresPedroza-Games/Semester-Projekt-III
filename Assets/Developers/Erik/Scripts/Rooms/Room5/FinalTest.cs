@@ -12,6 +12,9 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 	[SerializeField] private SceneReference endingScene1;
 	[SerializeField] private SceneReference endingScene2;
 
+	[Header("---Door To Endings---")]
+	[SerializeField] private Door door;
+
 	[Header("---Cam---")]
 	[SerializeField] private CinemachineVirtualCamera testCam;
 	private CinemachineVirtualCamera _playerCam;
@@ -39,6 +42,8 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 		_cam = GameManager.Instance.MainCamera.GetComponent<Camera>();
 		_graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
+
+		signatureToggle.interactable = false;
 	}
 
 
@@ -71,6 +76,8 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 		_canInteract = false;
 		canvas.worldCamera = null;
+
+		door.OpenDoorSimple();
 	}
 
 
@@ -99,7 +106,8 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		if (!AllTogglesSet())
 			return;
 
-		//LoadEnding();
+		LoadEnding(question5ToggleYes.isOn ? endingScene1 : endingScene2);
+
 		ExitNote();
 	}
 
@@ -115,11 +123,19 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 	}
 
 
-	private async void LoadEnding() {
-		if (question5ToggleYes.isOn)
-			await WorldSceneManager.Instance.LoadScene(endingScene1);
-		else
-			await WorldSceneManager.Instance.LoadScene(endingScene2);
+	public void CheckIfAllTogglesAreSet() {
+		if (!AllTogglesSet()) {
+			if (signatureToggle.interactable)
+				signatureToggle.interactable = false;
+			return;
+		}
+
+		signatureToggle.interactable = true;
+	}
+
+
+	private async void LoadEnding(SceneReference endingScene) {
+		await WorldSceneManager.Instance.LoadScene(endingScene);
 	}
 
 

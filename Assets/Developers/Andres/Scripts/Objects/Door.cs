@@ -182,6 +182,14 @@ public class Door : MonoBehaviour, IInteractable, ICrosshair {
 	}
 
 
+	public void OpenDoorSimple() {
+		_sfx?.PlaySfx(SfxEvent.OnInteract);
+		_doorState = DoorState.Open;
+		Rotate(ease, duration, openedRotation);
+		_meshCollider.enabled = false;
+	}
+
+
 	public void CloseDoor() {
 		colWhenClosing?.SetActive(true);
 
