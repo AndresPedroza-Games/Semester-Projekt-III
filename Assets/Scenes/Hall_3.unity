@@ -718,7 +718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2523905761903843588, guid: 81f43e81980ba0f43bc0a3ac233cc40b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.5
+      value: 3.342
       objectReference: {fileID: 0}
     - target: {fileID: 2523905761903843588, guid: 81f43e81980ba0f43bc0a3ac233cc40b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1043,7 +1043,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1140,7 +1140,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1376,9 +1376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
+  audioSource: {fileID: 0}
   sounds:
   - trigger: 0
-    sfx: 5
+    sfx: 6
     overrides:
       useOverrides: 1
       loop: 0
@@ -1397,9 +1398,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
+  audioSource: {fileID: 0}
   sounds:
   - trigger: 0
-    sfx: 5
+    sfx: 6
     overrides:
       useOverrides: 1
       loop: 0

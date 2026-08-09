@@ -54,8 +54,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5069014, y: 0.014469147, z: 0.50091016}
-  m_Center: {x: 0.0004336089, y: -0.0052273273, z: 0.0016040802}
+  m_Size: {x: 0.5069014, y: 0.01792103, z: 0.50091016}
+  m_Center: {x: 0.0004336238, y: -0.0035013855, z: 0.0016040802}
 --- !u!65 &7249061512950368096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -297,8 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Holdable
   holdDefinition: {fileID: 11400000, guid: a6ec0041a8ec90240baa5e0bb54cad09, type: 2}
-  borderThickness: 0.02
-  CanBeHold: 1
+  canBeHold: 1
 --- !u!153 &8025823248826953344
 ConfigurableJoint:
   m_ObjectHideFlags: 0

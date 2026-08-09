@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.88
+      value: 13.001
       objectReference: {fileID: 0}
     - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -47,6 +47,10 @@ PrefabInstance:
     - target: {fileID: 1675653871947131499, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2350083811461133874, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
+      propertyPath: m_Volume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2350083811461133874, guid: 423e97e86bdb9124c97ed58b3a15f33f, type: 3}
       propertyPath: m_Enabled
@@ -96,7 +100,7 @@ MonoBehaviour:
   turnOnDelay: 1
   particles: {fileID: 6514604434388827078}
   particleLoopCooldown: {x: 1, y: 3}
-  lightbulbBurstSfx: {fileID: 0}
+  lightbulbBurstSfx: {fileID: 8300000, guid: 8b25eb88191ab1943b3a25935d72f863, type: 3}
 --- !u!1001 &3841295952356234073
 PrefabInstance:
   m_ObjectHideFlags: 0
