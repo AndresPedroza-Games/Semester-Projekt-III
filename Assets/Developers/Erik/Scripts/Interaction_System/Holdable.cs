@@ -48,7 +48,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 	protected virtual void OnDisable() {
 		if (_currentHolder)
-			Release();
+			Destroy(gameObject);
 	}
 
 

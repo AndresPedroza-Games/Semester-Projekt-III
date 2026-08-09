@@ -1,7 +1,7 @@
-using System;
-using DG.Tweening;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
+
 
 public class ShowerValve : MonoBehaviour, IInteractable, ICrosshair
 {
@@ -10,23 +10,25 @@ public class ShowerValve : MonoBehaviour, IInteractable, ICrosshair
     [SerializeField] private VolumetricAdditionalLight _Fog;
 
     [Header("Fog Settings")]
-    [SerializeField] private float _TransitionSpeed = 1f;
+    [SerializeField] private float _TransitionSpeed = 5f;
 
     [Header("Animation Settings")]
     [SerializeField] private Ease _Trasition;
     [SerializeField] private float _Duration;
     [SerializeField] private Transform _PivotPoint;
+    [SerializeField] private float _Angle = 50f;
 
     [Header("Water Settings")]
     [SerializeField] private ParticleSystem _ParticleSystem;
     [SerializeField] private GameObject _WaterPrefab;
-    [SerializeField] private float _TransitionSpeedWater = 1f;
+    [SerializeField] private float _TransitionSpeedWater = 5f;
+    [SerializeField] private float maxWaterLevel = 5f;
 
-    private float _Angle;
-    private int _Steps;
+    // private int _Steps;
     private float _Timer;
-    private float yAxis = 0;
+    private float yAxis;
 
+    private bool _canInteract = true;
     public static bool _IsCompleted;
 
 
@@ -40,26 +42,11 @@ public class ShowerValve : MonoBehaviour, IInteractable, ICrosshair
         _EventSystemBathroom = EventSystemBathroom.instance;
 
         _IsCompleted = false;
-
     }
 
-    private void Update()
-    {
-        if (_Steps == 5 && !_IsCompleted)
-        {
-            _IsCompleted = true;
-            _EventSystemBathroom.TurnOnShower();
-            _ParticleSystem.Stop();
-        }
 
-    }
-
-    public bool CanInteract(HoldController holdController)
-    {
-        if (holdController.HasObject || _IsCompleted)
-            return false;
-
-        return true;
+    public bool CanInteract(HoldController holdController) {
+	    return !holdController.HasObject && _canInteract;
     }
 
     public CrosshairType GetCrosshairType(HoldController holdController)
@@ -70,8 +57,9 @@ public class ShowerValve : MonoBehaviour, IInteractable, ICrosshair
         return CrosshairType.Default;
     }
 
-    public void Interact()
-    {
+    public void Interact() {
+	    _canInteract = false;
+	    
         _EventSystemBathroom.InteractValve();
         Rotate();
 
@@ -83,56 +71,57 @@ public class ShowerValve : MonoBehaviour, IInteractable, ICrosshair
 
     private void Rotate()
     {
-        _Steps++;
+        // _Steps++;
 
-        _Steps = Mathf.Clamp(_Steps, 0, 5);
+        // _Steps = Mathf.Clamp(_Steps, 0, 5);
 
-        _Angle = _Steps * 10f;
+        // _Angle = _Steps * 10f;
 
-        AnimateVisuals(_Trasition, _Duration);
+        _PivotPoint.DOLocalRotateQuaternion(Quaternion.Euler(0f, 0f, _Angle), _Duration).SetEase(_Trasition).SetLink(gameObject);
     }
-
-    private void AnimateVisuals(Ease ease, float duration)
-    {
-        _PivotPoint.DOLocalRotateQuaternion(Quaternion.Euler(0f, 0f, _Angle), duration).SetEase(ease).SetLink(gameObject);
-    }
-
 
 
     private IEnumerator IncreaseFog()
     {
         float timeElapsed = 0f;
+        float startScattering = _Fog.Scattering;
 
         while (timeElapsed < _TransitionSpeed)
         {
             float t = timeElapsed / _TransitionSpeed;
             t = Mathf.SmoothStep(0f, 1f, t);
 
-            _Fog.Scattering = Mathf.Lerp(_Fog.Scattering, _Steps * 3, t);
-
+            _Fog.Scattering = Mathf.Lerp(startScattering, 16f, t);
+	
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-
+        _Fog.Scattering = 16f;
     }
 
     private IEnumerator IncreaseWater()
     {
         float timeElapsed = 0f;
-        float lastY = yAxis;
+        float startY = yAxis;
 
         while (timeElapsed < _TransitionSpeedWater)
         {
             float t = timeElapsed / _TransitionSpeedWater;
             t = Mathf.SmoothStep(0f, 1f, t);
 
-            yAxis = lastY;
-            yAxis = Mathf.Lerp(yAxis, _Steps, t);
+            yAxis = Mathf.Lerp(startY, maxWaterLevel, t);
 
             _WaterPrefab.transform.position = new Vector3(_WaterPrefab.transform.position.x, yAxis / 10, _WaterPrefab.transform.position.z);
 
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+        yAxis = maxWaterLevel;
+        _WaterPrefab.transform.position = new Vector3(_WaterPrefab.transform.position.x, yAxis / 10, _WaterPrefab.transform.position.z );
+        
+        _IsCompleted = true;
+        _EventSystemBathroom.TurnOnShower();
+        _ParticleSystem.Stop();
+        
     }
 }

@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 33794531}
   - component: {fileID: 33794532}
   m_Layer: 6
-  m_Name: ToogleGroup1 (2)
+  m_Name: ToogleGroup_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1137,7 +1137,7 @@ GameObject:
   - component: {fileID: 284501372}
   - component: {fileID: 284501373}
   m_Layer: 6
-  m_Name: ToogleGroup1 (1)
+  m_Name: ToogleGroup_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1405,7 +1405,7 @@ GameObject:
   - component: {fileID: 372320400}
   - component: {fileID: 372320401}
   m_Layer: 6
-  m_Name: ToogleGroup1 (3)
+  m_Name: ToogleGroup_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2156,7 +2156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 677695060}
   - component: {fileID: 677695062}
-  - component: {fileID: 677695061}
+  - component: {fileID: 677695064}
   - component: {fileID: 677695063}
   m_Layer: 0
   m_Name: Cam
@@ -2181,22 +2181,6 @@ Transform:
   - {fileID: 1100869536}
   m_Father: {fileID: 726245143}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &677695061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677695059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineInputProvider
-  PlayerIndex: -1
-  AutoEnableInputs: 1
-  XYAxis: {fileID: -5630151704836100654, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  ZAxis: {fileID: 0}
 --- !u!114 &677695062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2215,7 +2199,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 531811468}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
@@ -2248,6 +2232,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729f407d8ba00034a894b7fcb704e8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisableCamInputOnPause
+--- !u!114 &677695064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677695059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachineInputProvider
+  PlayerIndex: -1
+  AutoEnableInputs: 0
+  XYAxis: {fileID: 5438931051305161067, guid: 9eb5555c05bce174ab539a009f4580d3, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!1 &713492265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,7 +2259,7 @@ GameObject:
   - component: {fileID: 713492266}
   - component: {fileID: 713492267}
   m_Layer: 6
-  m_Name: ToogleGroup1
+  m_Name: ToogleGroup_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3818,7 +3818,7 @@ GameObject:
   - component: {fileID: 1222018801}
   - component: {fileID: 1222018802}
   m_Layer: 6
-  m_Name: ToogleGroup1 (4)
+  m_Name: ToogleGroup_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4430,6 +4430,12 @@ MonoBehaviour:
   canvas: {fileID: 1915615000}
   question5ToggleYes: {fileID: 1034043493}
   signatureToggle: {fileID: 1404109968}
+  toggleGroups:
+  - {fileID: 713492267}
+  - {fileID: 284501373}
+  - {fileID: 33794532}
+  - {fileID: 372320401}
+  - {fileID: 1222018802}
 --- !u!65 &1455142281
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5,7 +5,6 @@ using UnityEngine;
 public class DisableCamInputOnPause : MonoBehaviour {
 
 	private CinemachineInputProvider _input;
-	private bool _b = true;
 
 
 	private void Awake() {
@@ -14,21 +13,21 @@ public class DisableCamInputOnPause : MonoBehaviour {
 
 
 	private void OnEnable() {
-		EventSystemController.Instance.onPauseGame += ToggleInputProvider;
+		EventSystemController.Instance.onPauseGame += DisableInput;
 		EventSystemController.Instance.onStartGame += ActivateInput;
+		EventSystemController.Instance.onResumeGame += ActivateInput;
 	}
 
 
 	private void OnDisable() {
-		EventSystemController.Instance.onPauseGame -= ToggleInputProvider;
+		EventSystemController.Instance.onPauseGame -= DisableInput;
 		EventSystemController.Instance.onStartGame -= ActivateInput;
+		EventSystemController.Instance.onResumeGame -= ActivateInput;
 	}
 
 
-	private void ToggleInputProvider() {
-		_b = !_b;
-
-		_input.enabled = _b;
+	private void DisableInput() {
+		_input.enabled = false;
 	}
 
 

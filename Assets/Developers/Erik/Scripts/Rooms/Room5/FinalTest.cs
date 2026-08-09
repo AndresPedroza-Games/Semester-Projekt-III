@@ -22,6 +22,9 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 	[SerializeField] private Toggle signatureToggle;
 	private GraphicRaycaster _graphicRaycaster;
 
+	[Header("---Toggle Groups---")]
+	[SerializeField] private List<ToggleGroup> toggleGroups;
+
 	private Collider _collider;
 	private Camera _cam;
 
@@ -51,10 +54,7 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 	}
 
 
-	public void Interact() {
-		if (!_canInteract)
-			return;
-
+	private void EnterNote() {
 		testCam.gameObject.SetActive(true);
 		_playerCam.gameObject.SetActive(false);
 
@@ -62,6 +62,23 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		_canInteract = false;
 
 		canvas.worldCamera = _cam;
+	}
+
+
+	private void ExitNote() {
+		testCam.gameObject.SetActive(false);
+		_playerCam.gameObject.SetActive(true);
+
+		_canInteract = false;
+		canvas.worldCamera = null;
+	}
+
+
+	public void Interact() {
+		if (!_canInteract)
+			return;
+
+		EnterNote();
 	}
 
 
@@ -79,17 +96,22 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		if (!isOn)
 			return;
 
+		if (!AllTogglesSet())
+			return;
+
 		//LoadEnding();
-		ExitTest();
+		ExitNote();
 	}
 
 
-	private void ExitTest() {
-		testCam.gameObject.SetActive(false);
-		_playerCam.gameObject.SetActive(true);
+	private bool AllTogglesSet() {
+		foreach (ToggleGroup toggleGroup in toggleGroups) {
+			if (!toggleGroup.AnyTogglesOn()) {
+				return false;
+			}
+		}
 
-		_canInteract = false;
-		canvas.worldCamera = null;
+		return true;
 	}
 
 
