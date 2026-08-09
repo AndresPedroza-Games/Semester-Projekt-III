@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 15803255522897964}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 3.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -55,8 +55,8 @@ MonoBehaviour:
     serializedVersion: 0
     m_Bits: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 2.5}
-  m_Size: {x: 2, y: 3, z: 5}
+  m_Offset: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 2, y: 3, z: 1}
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
@@ -86,7 +86,7 @@ Transform:
   m_GameObject: {fileID: 474206834648180502}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 3.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -115,8 +115,8 @@ MonoBehaviour:
     serializedVersion: 0
     m_Bits: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 2.5}
-  m_Size: {x: 2, y: 3, z: 5}
+  m_Offset: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 2, y: 3, z: 1}
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
@@ -538,6 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
+  audioSource: {fileID: 0}
   sounds:
   - trigger: 1
     sfx: 8
@@ -1133,6 +1134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
+  audioSource: {fileID: 0}
   sounds:
   - trigger: 1
     sfx: 8
@@ -1204,7 +1206,7 @@ Transform:
   m_GameObject: {fileID: 3165742709197596198}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 3.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1233,8 +1235,8 @@ MonoBehaviour:
     serializedVersion: 0
     m_Bits: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 2.5}
-  m_Size: {x: 2, y: 3, z: 5}
+  m_Offset: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 2, y: 3, z: 1}
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
@@ -1610,6 +1612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
+  audioSource: {fileID: 0}
   sounds:
   - trigger: 1
     sfx: 9
@@ -1803,7 +1806,7 @@ Transform:
   m_GameObject: {fileID: 4357194547260073188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 3.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1832,8 +1835,8 @@ MonoBehaviour:
     serializedVersion: 0
     m_Bits: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 2.5}
-  m_Size: {x: 2, y: 3, z: 5}
+  m_Offset: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 2, y: 3, z: 1}
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
@@ -2387,6 +2390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
+  audioSource: {fileID: 0}
   sounds:
   - trigger: 1
     sfx: 8
@@ -2589,7 +2593,7 @@ Transform:
   m_GameObject: {fileID: 7286010702709031556}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 3.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2618,8 +2622,8 @@ MonoBehaviour:
     serializedVersion: 0
     m_Bits: 1
   m_ScaleMode: 0
-  m_Offset: {x: 0, y: 0, z: 2.5}
-  m_Size: {x: 2, y: 3, z: 5}
+  m_Offset: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 2, y: 3, z: 1}
   m_FadeFactor: 1
   version: 1
   m_DecalLayerMask: 1
