@@ -2477,11 +2477,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 717783294541727981, guid: aca43966c81845043bcc82eebf75960e, type: 3}
   m_PrefabInstance: {fileID: 848740002}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &858412344 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
-  m_PrefabInstance: {fileID: 1409821607}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &878607162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4827,50 +4822,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room1_WallDecor_001
       objectReference: {fileID: 0}
-    - target: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1409821610}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
 --- !u!4 &1409821608 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4339717584019907471, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
   m_PrefabInstance: {fileID: 1409821607}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1409821610
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858412344}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!4 &1412807713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849043119951817942, guid: f030944cbf94cc449b5cd2c95dea302a, type: 3}
@@ -5577,53 +5538,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 0
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1586302622}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
 --- !u!4 &1586302620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4339717584019907471, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
   m_PrefabInstance: {fileID: 1586302619}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1586302621 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8351392481864516396, guid: 390ca66889b4c7345b2bc4ccbe1078b9, type: 3}
-  m_PrefabInstance: {fileID: 1586302619}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1586302622
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586302621}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 1
 --- !u!1001 &1592165713
 PrefabInstance:
   m_ObjectHideFlags: 0

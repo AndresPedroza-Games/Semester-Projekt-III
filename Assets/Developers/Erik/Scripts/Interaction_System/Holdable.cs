@@ -42,6 +42,12 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 		if (holdDefinition is PullDefinitionRestrictedSO)
 			Rigidbody.isKinematic = true;
 
+		if (holdDefinition is PullDefinitionUnrestrictedSO) {
+			Rigidbody.mass = 3f;
+			Rigidbody.linearDamping = 2f;
+			Rigidbody.angularDamping = 2f;
+		}
+
 		ConfigurePhysics();
 	}
 

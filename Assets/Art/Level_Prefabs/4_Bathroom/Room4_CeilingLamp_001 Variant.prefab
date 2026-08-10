@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4042541265556705299
 Transform:
@@ -44,8 +44,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.7649021, g: 1, b: 0.5896226, a: 1}
+  m_Intensity: 0.69
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 172
@@ -159,7 +159,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &559048426296792682
 Transform:
@@ -186,8 +186,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 12
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 6.26
+  m_Color: {r: 0.7647059, g: 1, b: 0.5882353, a: 1}
+  m_Intensity: 0.04
   m_Range: 10
   m_SpotAngle: 179
   m_InnerSpotAngle: 163.43478
@@ -280,7 +280,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 396423243250280037, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
       propertyPath: m_Name
-      value: Room2_CeilingLamp_001 Variant
+      value: Room4_CeilingLamp_001 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 396423243250280037, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 676376045472177725, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
       propertyPath: m_Color.b
@@ -296,15 +300,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1066139776850361567, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.513
+      value: 1.582
       objectReference: {fileID: 0}
     - target: {fileID: 1066139776850361567, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.995189
+      value: 2.9999998
       objectReference: {fileID: 0}
     - target: {fileID: 1066139776850361567, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.836
+      value: 0.571
       objectReference: {fileID: 0}
     - target: {fileID: 1066139776850361567, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -339,13 +343,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6315926271650077636, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1066139776850361567, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
-      insertIndex: 0
+      insertIndex: -1
       addedObject: {fileID: 4042541265556705299}
     - targetCorrespondingSourceObject: {fileID: 1066139776850361567, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
-      insertIndex: 1
+      insertIndex: -1
       addedObject: {fileID: 559048426296792682}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 800fcab33965b9346b132f899d4a13d6, type: 3}
