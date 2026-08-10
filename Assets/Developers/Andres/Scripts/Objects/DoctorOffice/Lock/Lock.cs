@@ -13,13 +13,17 @@ public class Lock : MonoBehaviour
 	[SerializeField] private GameObject door;
 	[SerializeField] private Vector3 openedRotation;
 	[SerializeField] private Ease ease;
-	[SerializeField] private float duration = 1f;
+	[SerializeField] private float _DurationDoor = 1f;
 	private Tween _rotationTween;
 	private Collider _doorCollider;
 
 	[Header("---Puzzle Config---")]
     [SerializeField] private List<int> _Password = new List<int>();
     public List<LockPiece> _LockPiecesList;
+
+    [Header("---Top---")]
+    [SerializeField] private Transform _Top;
+    [SerializeField] private float _DurationTop = 0.1f;
 
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
 
@@ -31,12 +35,14 @@ public class Lock : MonoBehaviour
     private CinemachineVirtualCamera _puzzleCam;
     private CinemachineVirtualCamera _playerCam;
 
+    private float _MoveUpAnim = 0.006f;
 
-    private void Awake() {
-	    _puzzleCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
-	    _playerCam = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>();
+    private void Awake() 
+    {
+        _puzzleCam = GetComponentInChildren<CinemachineVirtualCamera>(true);
+        _playerCam = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>();
 
-	    _doorCollider = door.GetComponent<Collider>();
+        _doorCollider = door.GetComponent<Collider>();
     }
 
 
@@ -88,6 +94,7 @@ public class Lock : MonoBehaviour
         if (CheckIfPuzzleCompleted())
         {
             _EventSystemDoctorOffice.PuzzleCompleted();
+            MoveUpAnim(ease, _DurationTop);
         }
     }
 
@@ -124,7 +131,7 @@ public class Lock : MonoBehaviour
 
     private void OpenDoor() {
 	    _doorCollider.enabled = false;
-	    _rotationTween = door.transform.DOLocalRotateQuaternion(Quaternion.Euler(openedRotation), duration).SetEase(ease).SetLink(gameObject);
+	    _rotationTween = door.transform.DOLocalRotateQuaternion(Quaternion.Euler(openedRotation), _DurationDoor).SetEase(ease).SetLink(gameObject);
 
 	    _rotationTween.OnComplete(() => {
 		    _doorCollider.enabled = true;
@@ -140,5 +147,15 @@ public class Lock : MonoBehaviour
 	    _puzzleCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = _playerCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed;
 	    _puzzleCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = _playerCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed;
     }
-    
+
+    private void MoveUpAnim(Ease ease, float duration)
+    {
+        _Top.DOLocalMoveZ(_MoveUpAnim, duration).SetEase(ease).OnComplete(() => RotateAnim(ease,duration));
+    }
+
+    private void RotateAnim(Ease ease, float duration)
+    {
+        _Top.DOLocalRotateQuaternion(Quaternion.Euler(0f, 180f, 0f), duration).SetEase(ease);
+    }
+
 }

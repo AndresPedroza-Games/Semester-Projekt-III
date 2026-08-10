@@ -41,7 +41,9 @@ public class EventSystemDoctorOffice : EventSystemController
 
 
         LockInteractor.instance.gameObject.SetActive(true);
-        FindFirstObjectByType<DoctorOfficePuzzleController>(FindObjectsInactive.Include).ExitLockWithoutCall();
+
+        if (FindFirstObjectByType<DoctorOfficePuzzleController>(FindObjectsInactive.Include))
+            FindFirstObjectByType<DoctorOfficePuzzleController>(FindObjectsInactive.Include).ExitLockWithoutCall();
     }
 
     public void InteractWithLock()
