@@ -12,6 +12,10 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
     [SerializeField] private float _MaxAlphaValue = 2f;
     [SerializeField] private TMP_Text _Text;
 
+    [Header("Camera")]
+    [SerializeField] private GameObject _Camera;
+    private Transform _Player;
+
     private EventSystemBathroom _EventSystemBathroom;
     private InteractionDetector _InteractionDetector;
     private bool _canInteract;
@@ -19,6 +23,7 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
 
     private void Awake() {
 	    gameObject.layer = LayerMask.NameToLayer("Interactable");
+        _Player = FindAnyObjectByType<PlayerMotor>(FindObjectsInactive.Include).head;
     }
 
 
@@ -45,6 +50,11 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
     private void OnDisable() {
 	    EventSystemController.Instance.onItemPicked -= OnItemPicked;
 	    EventSystemController.Instance.onItemDropped -= OnItemDropped;
+    }
+
+    private void Update()
+    {
+        RotateCamera();
     }
 
 
@@ -102,5 +112,17 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+    }
+    
+    private void RotateCamera()
+    {
+        Vector3 cameraPos = _Camera.transform.position;
+        Vector3 target = _Player.position;
+
+        Vector3 direction = target - cameraPos;
+
+        float angle = Mathf.Atan2(direction.y, direction.z) * Mathf.Rad2Deg;
+
+        _Camera.transform.localRotation = Quaternion.Euler(angle - 90f, direction.y, 0f);
     }
 }

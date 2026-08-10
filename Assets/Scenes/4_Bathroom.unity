@@ -1152,6 +1152,11 @@ Transform:
   - {fileID: 451926236}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &721011113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2303503931431084346, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
+  m_PrefabInstance: {fileID: 1380174574285426686}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &722245462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3710,12 +3715,24 @@ PrefabInstance:
       value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 4684705785911092047, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4684705785911092047, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062854819562950233, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
+      propertyPath: orthographic
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6062854819562950233, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
       propertyPath: field of view
       value: 70.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6062854819562950233, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
+      propertyPath: m_FOVAxisMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6062854819562950233, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
       propertyPath: far clip plane
@@ -3737,6 +3754,10 @@ PrefabInstance:
       propertyPath: _Text
       value: 
       objectReference: {fileID: 1843437519}
+    - target: {fileID: 8101255992827585561, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
+      propertyPath: _Camera
+      value: 
+      objectReference: {fileID: 721011113}
     - target: {fileID: 8353167119442556992, guid: 404ccb87e251ed84e8e28582ffcac1ea, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
