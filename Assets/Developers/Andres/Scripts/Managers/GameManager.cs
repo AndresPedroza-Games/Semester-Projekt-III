@@ -17,8 +17,6 @@ public class GameManager : MonoBehaviour {
 
 	private bool _MenuOpen = false;
 
-	public bool miniGameActive;
-
 
 	private void Awake() {
 		if (Instance && Instance != this) {
@@ -27,7 +25,6 @@ public class GameManager : MonoBehaviour {
 		}
 
 		Instance = this;
-		miniGameActive = false;
 	}
 
 
@@ -55,7 +52,7 @@ public class GameManager : MonoBehaviour {
 
 		playerSetup.SetActive(true);
 		player.SetActive(true);
-		
+
 		FreezeCharacter(false);
 		_MenuOpen = false;
 	}
@@ -63,12 +60,12 @@ public class GameManager : MonoBehaviour {
 
 	private void OnMainMenuEntered() {
 		InputManager.Instance.Pause.Disable();
-		miniGameActive = false;
 
-        playerSetup.SetActive(false);
+		ShowCursor();
+
+		playerSetup.SetActive(false);
 		player.SetActive(false);
 	}
-	
 
 
 	private void HideCursor() {

@@ -47,7 +47,6 @@ public class NarrativeNote : MonoBehaviour, IInteractable, ICrosshair {
         InputManager.Instance.FlipNote.performed -= Flip;
 
         InputManager.Instance.ReadNote.Disable();
-        GameManager.Instance.miniGameActive = false;
 	}
 
 
@@ -136,8 +135,6 @@ public class NarrativeNote : MonoBehaviour, IInteractable, ICrosshair {
         _playerCam.gameObject.SetActive(true);
 
         isInteracting = false;
-
-        GameManager.Instance.miniGameActive = false;
 
 		InputManager.Instance.FlipNote.performed -= Flip;
     }

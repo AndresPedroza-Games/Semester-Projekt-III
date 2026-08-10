@@ -26,7 +26,6 @@ public class BathRoomController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         _IsActive = status;
-        GameManager.Instance.miniGameActive = status;
     }
 
 }

@@ -64,7 +64,7 @@ public class MainMenu : MenuManager {
 		await WorldSceneManager.Instance.LoadScene(lastScene);
 
 		Door door = PersistentStartup.GetDoor(lastScene);
-		if (door)
+		if (door && lastScene != "5_TestRoom")
 			door.CloseDoorWithoutExtras();
 
 		GameObject spawn = PersistentStartup.SearchForPlayerSpawn(lastScene);
