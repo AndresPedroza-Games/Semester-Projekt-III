@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 6180659225544085170}
   - component: {fileID: 8616296912708125306}
   - component: {fileID: 8662507306674860224}
-  - component: {fileID: 4667606395251159092}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -187,20 +186,6 @@ MonoBehaviour:
   transitionSpeed: 0.5
   <coolDownCrouch>k__BackingField: 0.1
   animationPlaying: 0
---- !u!114 &4667606395251159092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836171029925591291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8f28a9535529d94c957605762fc4986, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Zoom
-  zoomFOV: 20
-  zoomDuration: 0.2
 --- !u!1 &2049869879686194560
 GameObject:
   m_ObjectHideFlags: 0

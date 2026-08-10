@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+[RequireComponent(typeof(CinemachineVirtualCamera))]
 public class Zoom : MonoBehaviour {
 
 	[Header("---Zoom Config---")]
@@ -17,7 +18,7 @@ public class Zoom : MonoBehaviour {
 
 
 	private void Awake() {
-		cineCam = FindAnyObjectByType<CinemachineVirtualCamera>();
+		cineCam = GetComponent<CinemachineVirtualCamera>();
 		defaultFOV = cineCam.m_Lens.FieldOfView;
 	}
 

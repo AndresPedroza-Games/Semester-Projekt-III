@@ -480,6 +480,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8676288989520763037, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2068600997618313009}
+    - targetCorrespondingSourceObject: {fileID: 8676288989520763037, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5202056588830826463}
   m_SourcePrefab: {fileID: 100100000, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}
 --- !u!1 &4761111912470066859 stripped
 GameObject:
@@ -498,6 +501,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 729f407d8ba00034a894b7fcb704e8db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisableCamInputOnPause
+--- !u!114 &5202056588830826463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4761111912470066859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f28a9535529d94c957605762fc4986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Zoom
+  zoomFOV: 20
+  zoomDuration: 0.2
 --- !u!4 &6825206437053527629 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7260508233136396411, guid: c84bfb063b134ec40bff91c9ab444d7f, type: 3}

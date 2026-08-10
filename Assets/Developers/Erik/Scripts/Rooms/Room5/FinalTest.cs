@@ -68,12 +68,19 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 
 	private void OnDisable() {
+		testCam.gameObject.SetActive(false);
+		if (_playerCam)
+			_playerCam.gameObject.SetActive(true);
+		InputManager.Instance.Controls.Movement.Enable();
+
 		signatureToggle.onValueChanged.RemoveListener(OnSignatureToggleChanged);
 		InputManager.Instance.PickUp.performed -= UiClick;
 	}
 
 
 	private void EnterNote() {
+		InputManager.Instance.Controls.Movement.Disable();
+
 		testCam.gameObject.SetActive(true);
 		_playerCam.gameObject.SetActive(false);
 
@@ -87,6 +94,8 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 
 	private void ExitNote() {
+		InputManager.Instance.Controls.Movement.Enable();
+
 		testCam.gameObject.SetActive(false);
 		_playerCam.gameObject.SetActive(true);
 

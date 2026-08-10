@@ -2307,6 +2307,7 @@ GameObject:
   - component: {fileID: 677695062}
   - component: {fileID: 677695064}
   - component: {fileID: 677695063}
+  - component: {fileID: 677695065}
   m_Layer: 0
   m_Name: Cam
   m_TagString: Untagged
@@ -2397,6 +2398,20 @@ MonoBehaviour:
   AutoEnableInputs: 0
   XYAxis: {fileID: 5438931051305161067, guid: 9eb5555c05bce174ab539a009f4580d3, type: 3}
   ZAxis: {fileID: 0}
+--- !u!114 &677695065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677695059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f28a9535529d94c957605762fc4986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Zoom
+  zoomFOV: 20
+  zoomDuration: 0.2
 --- !u!1 &713492265
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,7 +2489,7 @@ Transform:
   m_GameObject: {fileID: 726245142}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 40, z: -0.5}
+  m_LocalPosition: {x: -0, y: 45, z: -0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3552,7 +3567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Cinemachine::Cinemachine.CinemachinePOV
   m_RecenterTarget: 0
   m_VerticalAxis:
-    Value: 80
+    Value: 70
     m_SpeedMode: 1
     m_MaxSpeed: 0.1
     m_AccelTime: 0.1
@@ -3560,8 +3575,8 @@ MonoBehaviour:
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: 10
-    m_MaxValue: 100
+    m_MinValue: -10
+    m_MaxValue: 90
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
