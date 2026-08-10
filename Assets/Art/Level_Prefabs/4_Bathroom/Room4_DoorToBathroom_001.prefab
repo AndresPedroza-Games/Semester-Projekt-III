@@ -658,6 +658,7 @@ GameObject:
   - component: {fileID: 7525793498207817853}
   - component: {fileID: 3668321576979904993}
   - component: {fileID: 737537510399915959}
+  - component: {fileID: 4192001717616884241}
   m_Layer: 0
   m_Name: BathroomDoor
   m_TagString: Untagged
@@ -897,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
+  audioSource: {fileID: 0}
   sounds:
   - trigger: 1
     sfx: 5
@@ -914,3 +916,24 @@ MonoBehaviour:
       volume: 1
       pitchRange: {x: 1, y: 1}
       spatialBlend: 1
+--- !u!65 &4192001717616884241
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439848456512778857}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.054332286, y: 0.18113375, z: 0.102500916}
+  m_Center: {x: 0.0071661323, y: 1.0794778, z: 0.878315}
