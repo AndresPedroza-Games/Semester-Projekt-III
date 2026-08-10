@@ -8,6 +8,12 @@ using UnityEngine.UI;
 
 public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
+	[Header("---Twin---")]
+	[SerializeField] private GameObject twin;
+	[SerializeField] private float baseAlpha = 0.5f;
+	[SerializeField] private float transparencyStep = 0.1f;
+	private Material _twinMaterial;
+
 	[Header("---Ending Scenes---")]
 	[SerializeField] private SceneReference endingScene1;
 	[SerializeField] private SceneReference endingScene2;
@@ -25,8 +31,9 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 	[SerializeField] private Toggle signatureToggle;
 	private GraphicRaycaster _graphicRaycaster;
 
-	[Header("---Toggle Groups---")]
+	[Header("---Toggles---")]
 	[SerializeField] private List<ToggleGroup> toggleGroups;
+	[SerializeField] private List<Toggle> correctToggles;
 
 	private Collider _collider;
 	private Camera _cam;
@@ -43,7 +50,14 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		_cam = GameManager.Instance.MainCamera.GetComponent<Camera>();
 		_graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
 
+		_twinMaterial = twin.GetComponent<Renderer>().material;
+		Color color = _twinMaterial.color;
+		color.a = baseAlpha;
+		_twinMaterial.color = color;
+
 		signatureToggle.interactable = false;
+
+		twin.SetActive(false);
 	}
 
 
@@ -67,6 +81,8 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		_canInteract = false;
 
 		canvas.worldCamera = _cam;
+
+		twin.SetActive(true);
 	}
 
 
@@ -78,6 +94,31 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		canvas.worldCamera = null;
 
 		door.OpenDoorSimple();
+	}
+
+
+	public void UpdateTwinMaterial() {
+		float alpha = baseAlpha;
+
+		foreach (ToggleGroup toggleGroup in toggleGroups) {
+			Toggle selectedToggle = toggleGroup.GetFirstActiveToggle();
+
+			if (!selectedToggle)
+				continue;
+
+			if (correctToggles.Contains(selectedToggle)) {
+				alpha += transparencyStep;
+			}
+			else {
+				alpha -= transparencyStep;
+			}
+		}
+
+		alpha = Mathf.Clamp01(alpha);
+
+		Color color = _twinMaterial.color;
+		color.a = alpha;
+		_twinMaterial.color = color;
 	}
 
 
@@ -109,6 +150,7 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		LoadEnding(question5ToggleYes.isOn ? endingScene1 : endingScene2);
 
 		ExitNote();
+		twin.SetActive(false);
 	}
 
 

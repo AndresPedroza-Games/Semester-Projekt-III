@@ -319,7 +319,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
-        m_MethodName: CheckIfAllTogglesAreSet
+        m_MethodName: SetMaterialMoreTransparent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1748,7 +1760,7 @@ GameObject:
   - component: {fileID: 510179140}
   - component: {fileID: 510179141}
   m_Layer: 6
-  m_Name: Toggle1No
+  m_Name: Toggle4No
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1824,6 +1836,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
         m_MethodName: CheckIfAllTogglesAreSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1928,7 +1952,7 @@ GameObject:
   - component: {fileID: 589558673}
   - component: {fileID: 589558674}
   m_Layer: 6
-  m_Name: Toggle1No
+  m_Name: Toggle5No
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2004,6 +2028,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
         m_MethodName: CheckIfAllTogglesAreSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3155,7 +3191,19 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
-        m_MethodName: CheckIfAllTogglesAreSet
+        m_MethodName: SetMaterialMoreVisible
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3834,7 +3882,7 @@ GameObject:
   - component: {fileID: 1208288386}
   - component: {fileID: 1208288387}
   m_Layer: 6
-  m_Name: Toggle1No
+  m_Name: Toggle2No
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3910,6 +3958,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
         m_MethodName: CheckIfAllTogglesAreSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4308,7 +4368,7 @@ GameObject:
   - component: {fileID: 1295535301}
   - component: {fileID: 1295535302}
   m_Layer: 6
-  m_Name: Toggle1Yes
+  m_Name: Toggle4Yes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4393,6 +4453,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1380051205
 GameObject:
@@ -4405,7 +4477,7 @@ GameObject:
   - component: {fileID: 1380051206}
   - component: {fileID: 1380051207}
   m_Layer: 6
-  m_Name: Toggle1Yes
+  m_Name: Toggle3Yes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4481,6 +4553,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
         m_MethodName: CheckIfAllTogglesAreSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4695,6 +4779,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd333b9b91cac704f8237e2ac081c4c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinalTest
+  twin: {fileID: 1856715193}
+  baseAlpha: 0.5
+  transparencyStep: 0.1
   endingScene1:
     sceneAsset: {fileID: 102900000, guid: 2861748873d200b4596dcc3ae7e73014, type: 3}
     scenePath: Assets/Scenes/Ending_1.unity
@@ -4712,6 +4799,12 @@ MonoBehaviour:
   - {fileID: 33794532}
   - {fileID: 372320401}
   - {fileID: 1222018802}
+  correctToggles:
+  - {fileID: 1034043493}
+  - {fileID: 1208288387}
+  - {fileID: 1380051207}
+  - {fileID: 1295535302}
+  - {fileID: 1951749275}
 --- !u!65 &1455142281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6204,7 +6297,7 @@ GameObject:
   - component: {fileID: 1882461937}
   - component: {fileID: 1882461938}
   m_Layer: 6
-  m_Name: Toggle1Yes
+  m_Name: Toggle2Yes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6280,6 +6373,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
         m_MethodName: CheckIfAllTogglesAreSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6693,7 +6798,7 @@ GameObject:
   - component: {fileID: 1951749274}
   - component: {fileID: 1951749275}
   m_Layer: 6
-  m_Name: Toggle1Yes
+  m_Name: Toggle5Yes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6769,6 +6874,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
         m_MethodName: CheckIfAllTogglesAreSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7135,7 +7252,7 @@ GameObject:
   - component: {fileID: 2132140280}
   - component: {fileID: 2132140281}
   m_Layer: 6
-  m_Name: Toggle1No
+  m_Name: Toggle3No
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7211,6 +7328,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1455142280}
         m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
         m_MethodName: CheckIfAllTogglesAreSet
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1455142280}
+        m_TargetAssemblyTypeName: FinalTest, Assembly-CSharp
+        m_MethodName: UpdateTwinMaterial
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7838,11 +7967,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4299742372906917978, guid: ce545e69bb76d1a4aa374c92633e8ec9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.922
+      value: 0.422
       objectReference: {fileID: 0}
     - target: {fileID: 4299742372906917978, guid: ce545e69bb76d1a4aa374c92633e8ec9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.018
+      value: -1.5180001
       objectReference: {fileID: 0}
     - target: {fileID: 4299742372906917978, guid: ce545e69bb76d1a4aa374c92633e8ec9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7878,7 +8007,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7264773452259622486, guid: ce545e69bb76d1a4aa374c92633e8ec9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
