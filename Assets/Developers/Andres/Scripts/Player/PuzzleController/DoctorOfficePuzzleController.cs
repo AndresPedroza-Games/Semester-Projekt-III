@@ -70,7 +70,8 @@ public class DoctorOfficePuzzleController : MonoBehaviour
             return;
 
         _EventSystemDoctorOffice.ExitLock();
-        _Camera.SetActive(true);
+        if(_Camera)
+            _Camera.SetActive(true);
 
         _IsActive = false;
     }

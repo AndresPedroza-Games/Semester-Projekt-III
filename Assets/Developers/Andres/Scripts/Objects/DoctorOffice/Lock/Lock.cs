@@ -22,7 +22,7 @@ public class Lock : MonoBehaviour
     public List<LockPiece> _LockPiecesList;
 
     [Header("---Top---")]
-    [SerializeField] private Transform _Top;
+    [SerializeField] private Transform _Bar;
     [SerializeField] private float _DurationTop = 0.1f;
 
     private EventSystemDoctorOffice _EventSystemDoctorOffice;
@@ -93,8 +93,9 @@ public class Lock : MonoBehaviour
     {
         if (CheckIfPuzzleCompleted())
         {
-            _EventSystemDoctorOffice.PuzzleCompleted();
             MoveUpAnim(ease, _DurationTop);
+            _EventSystemDoctorOffice.PuzzleCompleted();
+            ActivatePhysics();
         }
     }
 
@@ -150,12 +151,18 @@ public class Lock : MonoBehaviour
 
     private void MoveUpAnim(Ease ease, float duration)
     {
-        _Top.DOLocalMoveZ(_MoveUpAnim, duration).SetEase(ease).OnComplete(() => RotateAnim(ease,duration));
+        _Bar.DOLocalMoveZ(_MoveUpAnim, duration).SetEase(ease).OnComplete(() => RotateAnim(ease,duration));
     }
 
     private void RotateAnim(Ease ease, float duration)
     {
-        _Top.DOLocalRotateQuaternion(Quaternion.Euler(0f, 180f, 0f), duration).SetEase(ease);
+        _Bar.DOLocalRotateQuaternion(Quaternion.Euler(0f, 180f, 0f), duration).SetEase(ease);
+    }
+
+    private void ActivatePhysics()
+    {
+        GetComponent<Rigidbody>().useGravity = true;
+        GetComponent<Rigidbody>().isKinematic = false;
     }
 
 }
