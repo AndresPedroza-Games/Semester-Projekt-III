@@ -20,7 +20,7 @@ public class MenuSettings : MenuManager {
 	[SerializeField] private Toggle fullscreenToggle;
 
 
-	private void Start() {
+	private void OnEnable() {
 		foreach (AudioSlider slider in audioSliders) {
 			float volume = AudioManager.Instance.GetVolume(slider.mixerChannel);
 

@@ -33,6 +33,7 @@ RectTransform:
   m_Children:
   - {fileID: 912787453378495890}
   - {fileID: 7553015439774478800}
+  - {fileID: 8789667373494658219}
   - {fileID: 7378961610757480127}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -209,8 +210,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8789667373494658219}
+  m_Children: []
   m_Father: {fileID: 8798742956572634826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -425,7 +425,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 7378961610757480127}
+    m_TransformParent: {fileID: 8798742956572634826}
     m_Modifications:
     - target: {fileID: 1461478493686624145, guid: 1898155e8625fb54db8313be478c2f73, type: 3}
       propertyPath: m_text
@@ -584,8 +584,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9188104106206014542, guid: 1898155e8625fb54db8313be478c2f73, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.8695958
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188104106206014542, guid: 1898155e8625fb54db8313be478c2f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188104106206014542, guid: 1898155e8625fb54db8313be478c2f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188104106206014542, guid: 1898155e8625fb54db8313be478c2f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188104106206014542, guid: 1898155e8625fb54db8313be478c2f73, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 709.99994
+      value: 959.99994
       objectReference: {fileID: 0}
     - target: {fileID: 9188104106206014542, guid: 1898155e8625fb54db8313be478c2f73, type: 3}
       propertyPath: m_AnchoredPosition.y
