@@ -7,7 +7,7 @@ public class BoardDetector : MonoBehaviour
         if (collision.TryGetComponent<MiniPiece>(out var miniPiece) && GetComponentInParent<Board>().currentPiece == null)
         {
             GetComponentInParent<Board>().AddPieceToList(collision.gameObject);
-            collision.gameObject.SetActive(false);
+            miniPiece.Deactivate();
         }
     }
 }

@@ -533,13 +533,15 @@ MonoBehaviour:
   door: {fileID: 0}
   openedRotation: {x: 90, y: 0, z: 105}
   ease: 10
-  duration: 1
+  _DurationDoor: 1
   _Password: 05000000000000000600000000000000
   _LockPiecesList:
   - {fileID: 6622453393212023286}
   - {fileID: 6920163649268725194}
   - {fileID: 5227270208512886705}
   - {fileID: 5056165186606814473}
+  _Top: {fileID: 2763069171286505894}
+  _DurationTop: 0.1
 --- !u!1 &3563005286546279069
 GameObject:
   m_ObjectHideFlags: 0

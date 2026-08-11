@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MiniPiece : Holdable
@@ -21,5 +22,17 @@ public class MiniPiece : Holdable
         base.Release();
         _Particles.Stop();
 
+    }
+
+    public void Deactivate()
+    {
+        transform.GetChild(0).gameObject.SetActive(false);
+        StartCoroutine(Disable());
+    }
+
+    private IEnumerator Disable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameObject.SetActive(false);
     }
 }
