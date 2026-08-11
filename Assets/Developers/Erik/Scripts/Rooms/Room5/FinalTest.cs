@@ -21,6 +21,11 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 	[Header("---Door To Endings---")]
 	[SerializeField] private Door door;
 
+	[Header("---Blocking Object Detection---")]
+	[SerializeField] private Transform boxCenter;
+	[SerializeField] private Vector3 halfExtends;
+	private Collider[] _blockingObjects;
+
 	[Header("---Cam---")]
 	[SerializeField] private CinemachineVirtualCamera testCam;
 	private CinemachineVirtualCamera _playerCam;
@@ -90,6 +95,8 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		canvas.worldCamera = _cam;
 
 		twin.SetActive(true);
+
+		CheckForBlockingObjectsAndDisable();
 	}
 
 
@@ -99,10 +106,33 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		testCam.gameObject.SetActive(false);
 		_playerCam.gameObject.SetActive(true);
 
+		_collider.enabled = true;
+
 		_canInteract = false;
 		canvas.worldCamera = null;
 
 		door.OpenDoorSimple();
+
+		EnableBlockingObjects();
+	}
+
+
+	private void CheckForBlockingObjectsAndDisable() {
+		_blockingObjects = Physics.OverlapBox(boxCenter.position, halfExtends, Quaternion.identity);
+
+		foreach (Collider col in _blockingObjects) {
+			if (col.gameObject == this.gameObject)
+				continue;
+
+			col.gameObject.SetActive(false);
+		}
+	}
+
+
+	private void EnableBlockingObjects() {
+		foreach (Collider col in _blockingObjects) {
+			col.gameObject.SetActive(true);
+		}
 	}
 
 
@@ -191,44 +221,36 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 
 	private void UiClick(InputAction.CallbackContext ctx) {
-		if (!canvas.worldCamera)
-			return;
-
-		if (!_cam)
-			return;
-
-		if (!_graphicRaycaster)
+		if (!canvas.worldCamera || !_cam || !_graphicRaycaster)
 			return;
 
 		Ray ray = _cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
 
-		Plane canvasPlane = new Plane(canvas.transform.forward, canvas.transform.position);
-
-		if (!canvasPlane.Raycast(ray, out float distance)) {
-			return;
-		}
-
-		Vector3 worldPoint = ray.GetPoint(distance);
-
-		Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(_cam, worldPoint);
-
-		PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = screenPoint };
+		PointerEventData pointerData = new PointerEventData(EventSystem.current) { position = _cam.WorldToScreenPoint(ray.GetPoint(new Plane(canvas.transform.forward, canvas.transform.position).Raycast(ray, out float distance) ? distance : 0f)) };
 
 		List<RaycastResult> results = new List<RaycastResult>();
-
 		_graphicRaycaster.Raycast(pointerData, results);
 
 		foreach (RaycastResult result in results) {
 			Toggle toggle = result.gameObject.GetComponentInParent<Toggle>();
 
 			if (toggle && toggle.interactable) {
-
-				ExecuteEvents.Execute(toggle.gameObject, pointerData, ExecuteEvents.pointerClickHandler);
-
+				toggle.isOn = !toggle.isOn;
 				return;
 			}
 		}
 	}
 
+
+#if UNITY_EDITOR
+
+	private void OnDrawGizmos() {
+		if (!boxCenter || halfExtends == Vector3.zero)
+			return;
+
+		Gizmos.color = Color.blue;
+		Gizmos.DrawWireCube(boxCenter.position, halfExtends * 2);
+	}
+#endif
 
 }

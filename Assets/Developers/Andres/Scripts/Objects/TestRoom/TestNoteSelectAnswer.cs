@@ -18,7 +18,7 @@ public class TestNoteSelectAnswer : MonoBehaviour, IInteractable, ICrosshair
 
     public bool CanInteract(HoldController holdController)
     {
-        return _NarrativeNote.isInteracting;
+        return false;
     }
 
     public CrosshairType GetCrosshairType(HoldController holdController)

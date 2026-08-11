@@ -19,10 +19,10 @@ public class EventSystemTestRoom : EventSystemController
 
     }
 
-    private void OnDisable()
-    {
-        FindFirstObjectByType<NarrativeNote>(FindObjectsInactive.Include).ExitNoteWithouCall();
-    }
+    // private void OnDisable()
+    // {
+    //     FindFirstObjectByType<NarrativeNote>(FindObjectsInactive.Include).ExitNoteWithoutCall();
+    // }
 
     public void InteractPaper()
     {
