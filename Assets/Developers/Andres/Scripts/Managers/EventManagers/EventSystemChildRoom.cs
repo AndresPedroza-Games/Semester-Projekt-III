@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+
 public class EventSystemChildRoom : EventSystemController
 {
     public static EventSystemChildRoom eventSystemChildRoom;
@@ -11,6 +12,7 @@ public class EventSystemChildRoom : EventSystemController
     public Action onExitBoard;
     public Action<Vector2> onRotatePiece;
     public Action onPuzzleSolved;
+    public Action onPuzzlePieceEventTriggerd;
 
     private PuzzleController _PuzzleController;
 
@@ -30,6 +32,10 @@ public class EventSystemChildRoom : EventSystemController
     {
         if(_PuzzleController != null)
             _PuzzleController.gameObject.SetActive(false);
+    }
+
+    public void PuzzlePieceEventTrigger() {
+	    onPuzzlePieceEventTriggerd?.Invoke();
     }
 
     public void PlacePiece()

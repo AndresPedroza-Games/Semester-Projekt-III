@@ -15,6 +15,8 @@ public class Board : MonoBehaviour
     public List<GameObject> piecesInv = new List<GameObject>();
     public List<GameObject> createdPieces = new List<GameObject>();
 
+    [SerializeField] [Range(1, 9)] private int ballerinaEventTriggerPieceCount;
+
     public GameObject currentPiece;
 
     private void Start()
@@ -31,8 +33,11 @@ public class Board : MonoBehaviour
             return;
 
         piecesInv.Add(piece);
-        CreatePieces();
 
+        if (piecesInv.Count == ballerinaEventTriggerPieceCount) 
+	        EventSystemChildRoom.eventSystemChildRoom.PuzzlePieceEventTrigger();
+        
+        CreatePieces();
     }
 
     private void CreatePieces()
