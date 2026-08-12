@@ -31,13 +31,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8570564611526347950}
   serializedVersion: 2
-  m_LocalRotation: {x: -6.123235e-17, y: 1, z: 6.123235e-17, w: 0.00000019470718}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1094766, y: 0.1094766, z: 0.1094766}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &5360985650551646402
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -266,10 +266,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
-  audioSource: {fileID: 0}
+  <AudioSource>k__BackingField: {fileID: 0}
   sounds:
   - trigger: 2
     sfx: 3
+    overrides:
+      useOverrides: 0
+      loop: 0
+      volume: 0
+      pitchRange: {x: 0, y: 0}
+      spatialBlend: 0
+  - trigger: 0
+    sfx: 4
     overrides:
       useOverrides: 0
       loop: 0

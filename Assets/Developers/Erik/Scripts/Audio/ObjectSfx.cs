@@ -19,7 +19,7 @@ public class ObjectSfx : MonoBehaviour {
 
 
 	[Header("---AudioSource---")]
-	[SerializeField] private AudioSource audioSource;
+	[field: SerializeField] public AudioSource AudioSource { get; private set; }
 
 	[SerializeField] private List<SfxEventEntry> sounds = new();
 
@@ -27,8 +27,8 @@ public class ObjectSfx : MonoBehaviour {
 
 
 	private void Awake() {
-		if (!audioSource)
-			audioSource = GetComponent<AudioSource>();
+		if (!AudioSource)
+			AudioSource = GetComponent<AudioSource>();
 
 		_lookup = new Dictionary<SfxEvent, SfxEventEntry>();
 
@@ -47,16 +47,16 @@ public class ObjectSfx : MonoBehaviour {
 		if (a == null)
 			return;
 
-		audioSource.outputAudioMixerGroup = a.group;
+		AudioSource.outputAudioMixerGroup = a.group;
 
 		ApplyOverrides(a, entry.overrides, entry.overrides.useOverrides);
 
-		if (audioSource.loop) {
-			audioSource.clip = a.clip;
-			audioSource?.Play();
+		if (AudioSource.loop) {
+			AudioSource.clip = a.clip;
+			AudioSource?.Play();
 		}
 		else {
-			audioSource?.PlayOneShot(a.clip, a.volume);
+			AudioSource?.PlayOneShot(a.clip, a.volume);
 		}
 
 	}
@@ -64,16 +64,16 @@ public class ObjectSfx : MonoBehaviour {
 
 	private void ApplyOverrides(Audio a, SoundOverrides overrides, bool useOverrides) {
 		if (useOverrides) {
-			audioSource.loop = overrides.loop;
-			audioSource.volume = overrides.volume;
-			audioSource.pitch = Random.Range(overrides.pitchRange.x, overrides.pitchRange.y);
-			audioSource.spatialBlend = overrides.spatialBlend;
+			AudioSource.loop = overrides.loop;
+			AudioSource.volume = overrides.volume;
+			AudioSource.pitch = Random.Range(overrides.pitchRange.x, overrides.pitchRange.y);
+			AudioSource.spatialBlend = overrides.spatialBlend;
 		}
 		else {
-			audioSource.loop = a.loop;
-			audioSource.volume = a.volume;
-			audioSource.pitch = a.pitch;
-			audioSource.spatialBlend = a.spatialBlend;
+			AudioSource.loop = a.loop;
+			AudioSource.volume = a.volume;
+			AudioSource.pitch = a.pitch;
+			AudioSource.spatialBlend = a.spatialBlend;
 		}
 	}
 

@@ -268,10 +268,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
-  audioSource: {fileID: 0}
+  <AudioSource>k__BackingField: {fileID: 0}
   sounds:
   - trigger: 2
     sfx: 3
+    overrides:
+      useOverrides: 0
+      loop: 0
+      volume: 0
+      pitchRange: {x: 0, y: 0}
+      spatialBlend: 0
+  - trigger: 0
+    sfx: 4
     overrides:
       useOverrides: 0
       loop: 0
@@ -328,6 +336,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6271606084926609502, guid: 32aac3c2178867d4a8685e55ac871819, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173841189657737433, guid: 32aac3c2178867d4a8685e55ac871819, type: 3}
+      propertyPath: sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173841189657737433, guid: 32aac3c2178867d4a8685e55ac871819, type: 3}
+      propertyPath: sounds.Array.data[1].sfx
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9173841189657737433, guid: 32aac3c2178867d4a8685e55ac871819, type: 3}
+      propertyPath: sounds.Array.data[1].trigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

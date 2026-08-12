@@ -19,7 +19,7 @@ public class BallerinaMusicBox : Holdable {
 	}
 
 
-	private void OnEnable() {
+	private void Start() {
 		EventSystemChildRoom.eventSystemChildRoom.onPuzzlePieceEventTriggerd += PlayMusicAndAnimation;
 	}
 

@@ -90,6 +90,18 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 
 	private void OnCollisionEnter(Collision collision) {
+		if (_currentHolder)
+			return;
+
+		if (!_sfx)
+			return;
+
+		if (_sfx.AudioSource.isPlaying)
+			return;
+
+		if (collision.relativeVelocity.magnitude < 0.5f)
+			return;
+
 		_sfx?.PlaySfx(SfxEvent.OnCollision);
 	}
 
