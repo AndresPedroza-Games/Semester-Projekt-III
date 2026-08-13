@@ -2,18 +2,23 @@ using DG.Tweening;
 using UnityEngine;
 
 
+[RequireComponent(typeof(AudioSource))]
 public class Vent : MonoBehaviour, IInteractable, ICrosshair {
 
 	[Header("Animation Settings")]
 	[SerializeField] private Ease _Transition;
 	[SerializeField] private float _Duration;
-    private Tween _rotationTween;
+	private Tween _rotationTween;
 
-    [Header("---Trigger---")]
-    [SerializeField] private GameObject trigger;
-    [SerializeField] private GameObject colWhenClosing;
+	[Header("---Trigger---")]
+	[SerializeField] private GameObject trigger;
+	[SerializeField] private GameObject colWhenClosing;
 
-    private Collider _Collider;
+	[Header("---Audio---")]
+	[SerializeField] private AudioClip sfxVentOpening;
+
+	private AudioSource _audioSource;
+	private Collider _Collider;
 	private float _Angle;
 
 	private Screwdriver _screwDriver;
@@ -24,6 +29,7 @@ public class Vent : MonoBehaviour, IInteractable, ICrosshair {
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
 		_Collider = GetComponent<Collider>();
 		_state = DoorState.Closed;
+		_audioSource = GetComponent<AudioSource>();
 	}
 
 
@@ -75,11 +81,11 @@ public class Vent : MonoBehaviour, IInteractable, ICrosshair {
 
 	private void OpenVent() {
 		_screwDriver.UseItem();
+		_audioSource?.PlayOneShot(sfxVentOpening);
 
 		_Angle = -100f;
 		AnimateVisuals(_Transition, _Duration);
 		_Collider.enabled = false;
-		Debug.Log("Opened");
 	}
 
 
@@ -87,19 +93,17 @@ public class Vent : MonoBehaviour, IInteractable, ICrosshair {
 		_Angle = 0f;
 		AnimateVisuals(_Transition, _Duration);
 
-        colWhenClosing.SetActive(true);
+		colWhenClosing.SetActive(true);
 
-        if (trigger.activeSelf)
-            trigger.SetActive(false);
-    }
+		if (trigger.activeSelf)
+			trigger.SetActive(false);
+	}
 
 
 	private void AnimateVisuals(Ease ease, float duration) {
-        _rotationTween = transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject);
+		_rotationTween = transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).SetLink(gameObject);
 
-        _rotationTween.OnComplete(() => {
-            EventSystemController.Instance.DoorClosed(gameObject.scene.name);
-        });
-    }
+		_rotationTween.OnComplete(() => { EventSystemController.Instance.DoorClosed(gameObject.scene.name); });
+	}
 
 }

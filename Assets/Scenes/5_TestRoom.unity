@@ -1519,22 +1519,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vent
       objectReference: {fileID: 0}
-    - target: {fileID: 2871891712884213290, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: onEnterAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 604735277}
-    - target: {fileID: 2871891712884213290, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: onEnterAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseVent
-      objectReference: {fileID: 0}
-    - target: {fileID: 3685657729003481949, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: trigger
-      value: 
-      objectReference: {fileID: 744449650}
-    - target: {fileID: 3685657729003481949, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-      propertyPath: colWhenClosing
-      value: 
-      objectReference: {fileID: 1418386580}
     - target: {fileID: 8973554602660173955, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.0000002
@@ -2560,17 +2544,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
---- !u!114 &604735277 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3685657729003481949, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-  m_PrefabInstance: {fileID: 327124481}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 275a9675a85bd234c930b0fd7304b332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Vent
 --- !u!1001 &605659464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3265,11 +3238,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 735631284}
   m_CullTransparentMesh: 1
---- !u!1 &744449650 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1146444520745412186, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-  m_PrefabInstance: {fileID: 327124481}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &760309955 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4972125284380166538, guid: f6da401026af29f46a2d8b462f173df3, type: 3}
@@ -5465,11 +5433,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408343316}
   m_CullTransparentMesh: 1
---- !u!1 &1418386580 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2697932270660802551, guid: 6eb1a34034c994347a7d151bbb82ff25, type: 3}
-  m_PrefabInstance: {fileID: 327124481}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1455142279
 GameObject:
   m_ObjectHideFlags: 0
