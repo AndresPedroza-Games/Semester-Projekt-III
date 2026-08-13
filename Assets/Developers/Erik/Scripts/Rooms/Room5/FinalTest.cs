@@ -92,14 +92,14 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 		testCam.gameObject.SetActive(true);
 		_playerCam.gameObject.SetActive(false);
-
-		_collider.enabled = false;
+		
 		_canInteract = false;
 
 		canvas.worldCamera = _cam;
 
 		twin.SetActive(true);
 
+		SyncSensitivity();
 		CheckForBlockingObjectsAndDisable();
 	}
 
@@ -109,8 +109,6 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 		testCam.gameObject.SetActive(false);
 		_playerCam.gameObject.SetActive(true);
-
-		_collider.enabled = true;
 
 		_canInteract = false;
 		canvas.worldCamera = null;
@@ -243,6 +241,11 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 				return;
 			}
 		}
+	}
+	
+	private void SyncSensitivity() {
+		testCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = _playerCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed;
+		testCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = _playerCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed;
 	}
 
 
