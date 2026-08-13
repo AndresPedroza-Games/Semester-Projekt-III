@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -17,7 +16,6 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
     private Transform _Player;
 
     private EventSystemBathroom _EventSystemBathroom;
-    private InteractionDetector _InteractionDetector;
     private bool _canInteract;
 
 
@@ -33,11 +31,9 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
 
         _EventSystemBathroom.onTurnOnShower += () => StartCoroutine(AppearText());
 
-        _EventSystemBathroom.onLockDoor += () => ChangeText("Pick scissors");
-        _EventSystemBathroom.onTakeScissors += () => ChangeText("Interact with mirror");
+        _EventSystemBathroom.onLockDoor += () => ChangeText("Scissors");
+        _EventSystemBathroom.onTakeScissors += () => ChangeText("cut");
         _EventSystemBathroom.onCutHair += () => ChangeText("");
-
-        _InteractionDetector = FindFirstObjectByType<InteractionDetector>(FindObjectsInactive.Include);
     }
 
 
@@ -85,7 +81,6 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
     public void Interact()
     {
         _EventSystemBathroom.CutHair();
-        Debug.Log("Start Cutscene");
     }
 
     private void ChangeText(string text)

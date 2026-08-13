@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+
 public class EventSystemBathroom : EventSystemController
 {
     public static EventSystemBathroom instance;
@@ -12,14 +13,10 @@ public class EventSystemBathroom : EventSystemController
     public Action onTakeScissors;
     public Action onCutHair;
 
-    public Door door;
-
     private void Awake()
     {
-        if (instance == null)
+        if (!instance)
             instance = this;
-
-        door = FindFirstObjectByType<Door>(FindObjectsInactive.Include);
     }
 
     private void OnEnable()
@@ -30,7 +27,7 @@ public class EventSystemBathroom : EventSystemController
 
     private void OnDisable()
     {
-        if (_BathRoomController != null)
+        if (_BathRoomController)
             _BathRoomController.gameObject.SetActive(false);
     }
 
