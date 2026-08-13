@@ -14,15 +14,23 @@ public class Credits : MonoBehaviour {
 
 	private Animator _animator;
 	private Coroutine _delayRoutine;
+	private AudioSource _audioSource;
 
 
 	private void Awake() {
 		_animator = GetComponent<Animator>();
+		_audioSource = GetComponent<AudioSource>();
+		_audioSource.ignoreListenerPause = true;
 	}
 
 
 	public void MuteSound() {
 		AudioListener.pause = true;
+	}
+
+
+	public void PlayAudio() {
+		_audioSource?.Play();
 	}
 
 
