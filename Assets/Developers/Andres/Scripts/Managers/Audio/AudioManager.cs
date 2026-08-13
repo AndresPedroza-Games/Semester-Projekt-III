@@ -142,7 +142,6 @@ public class AudioManager : MonoBehaviour {
 			if (audio.audioName == audioName) {
 				audio.source.Play();
 				audio.source.pitch = SetRandomPitch();
-				Debug.Log("Audio is played");
 			}
 
 		}

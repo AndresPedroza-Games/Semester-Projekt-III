@@ -55,7 +55,7 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 		_cam = GameManager.Instance.MainCamera.GetComponent<Camera>();
 		_graphicRaycaster = canvas.GetComponent<GraphicRaycaster>();
 
-		_twinMaterial = twin.GetComponent<Renderer>().material;
+		_twinMaterial = twin.GetComponentInChildren<Renderer>().sharedMaterial;
 		Color color = _twinMaterial.color;
 		color.a = baseAlpha;
 		_twinMaterial.color = color;
@@ -80,6 +80,10 @@ public class FinalTest : MonoBehaviour, IInteractable, ICrosshair {
 
 		signatureToggle.onValueChanged.RemoveListener(OnSignatureToggleChanged);
 		InputManager.Instance.PickUp.performed -= UiClick;
+
+		Color color = _twinMaterial.color;
+		color.a = 1f;
+		_twinMaterial.color = color;
 	}
 
 

@@ -45,6 +45,14 @@ public class PlayerMotor : MonoBehaviour
     public bool isCrouching { get; set;}
     public bool animationPlaying;
 
+    [Header("---Footstep Config---")]
+    [SerializeField] private float walkStepDistance = 1.0f;
+    [SerializeField] private AudioClip footstepSfx;
+    [SerializeField] private Vector2 pitchRange = Vector2.one;
+    private Vector3 _lastStepPosition;
+    private AudioSource _audioSource;
+
+    
     private void Awake()
     {
         if (playerMotor == null)
@@ -71,6 +79,12 @@ public class PlayerMotor : MonoBehaviour
 
         externalForce = Vector3.zero;
     }
+
+
+    private void Start() {
+	    _lastStepPosition = transform.position;
+    }
+
 
     private void OnEnable() {
         InputManager.Instance.Move.performed += OnMoveInputPerformed;
@@ -106,6 +120,7 @@ public class PlayerMotor : MonoBehaviour
     private void Update()
     {
         Movement();
+        HandleFootstepSound();
         HandleGravity();
     }
 
@@ -149,6 +164,7 @@ public class PlayerMotor : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         mainCamera = Camera.main;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private IEnumerator StopForce()
@@ -165,6 +181,26 @@ public class PlayerMotor : MonoBehaviour
 
             yield return null;
         }
+    }
+
+
+    private void HandleFootstepSound() {
+	    if (!characterController.isGrounded || !isCrouching)
+		    return;
+
+	    Vector3 velocity = characterController.velocity;
+	    velocity.y = 0f;
+
+	    if (velocity.magnitude < 0.1f)
+		    return;
+
+	    float distance = Vector3.Distance( transform.position, _lastStepPosition );
+
+	    if (distance >= walkStepDistance) {
+		    _audioSource.pitch = Random.Range(pitchRange.x, pitchRange.y);
+		    _audioSource?.PlayOneShot(footstepSfx);
+		    _lastStepPosition = transform.position;
+	    }
     }
 
     private void OnDrawGizmos()
