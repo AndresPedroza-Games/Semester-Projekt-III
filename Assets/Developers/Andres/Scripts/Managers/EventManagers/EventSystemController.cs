@@ -17,6 +17,8 @@ public class EventSystemController : MonoBehaviour {
 	public Action onSaveGame;
 
 	public Action onMainMenuEntered;
+	public Action onCutsceneStart;
+	public Action onCutsceneEnd;
 
 	public Action onPauseGame;
 	public Action onResumeGame;
@@ -73,5 +75,16 @@ public class EventSystemController : MonoBehaviour {
 		if (onSaveGame != null)
 			onSaveGame.Invoke();
 	}
+
+
+	public void CutSceneStart() {
+		onCutsceneStart?.Invoke();
+	}
+
+
+	public void CutsceneEnd() {
+		onCutsceneEnd?.Invoke();
+	}
+
 
 }

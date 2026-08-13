@@ -9,7 +9,6 @@ public class Scissors : SocketItem
     private void Start()
     {
         _EventSystemBathroom = EventSystemBathroom.instance;
-        _EventSystemBathroom.onCutHair += UseItem;
         _EventSystemBathroom.onLockDoor += () => canBeHold = true;
 
         canBeHold = false;

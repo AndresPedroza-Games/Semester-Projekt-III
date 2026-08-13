@@ -17,6 +17,7 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
 
     private EventSystemBathroom _EventSystemBathroom;
     private bool _canInteract;
+    private Scissors _scissors;
 
 
     private void Awake() {
@@ -32,7 +33,7 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
         _EventSystemBathroom.onTurnOnShower += () => StartCoroutine(AppearText());
 
         _EventSystemBathroom.onLockDoor += () => ChangeText("Scissors");
-        _EventSystemBathroom.onTakeScissors += () => ChangeText("cut");
+        _EventSystemBathroom.onTakeScissors += () => ChangeText("Cut");
         _EventSystemBathroom.onCutHair += () => ChangeText("");
     }
 
@@ -59,6 +60,9 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
 	    
 	    if (holdable.HoldDefinition is SocketHoldDefinitionSO)
 		    _canInteract = true;
+
+	    if (obj.TryGetComponent(out Scissors scissors))
+		    _scissors = scissors;
     }
     
     
@@ -67,6 +71,9 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
 	    
 	    if (holdable.HoldDefinition is SocketHoldDefinitionSO)
 		    _canInteract = false;
+
+	    if (_scissors)
+		    _scissors = null;
     }
 
 
@@ -78,8 +85,8 @@ public class Mirror : MonoBehaviour, IInteractable, ICrosshair
 	    return _canInteract ? CrosshairType.Interactable : CrosshairType.Default;
     }
 
-    public void Interact()
-    {
+    public void Interact() {
+	    _scissors.UseItem();
         _EventSystemBathroom.CutHair();
     }
 

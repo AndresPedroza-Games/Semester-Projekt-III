@@ -30,6 +30,9 @@ public class InteractionUI : MonoBehaviour {
 		EventSystemController.Instance.onItemPicked += OnItemPicked;
 		EventSystemController.Instance.onItemDropped += OnItemDropped;
 		EventSystemController.Instance.onMainMenuEntered += OnMainMenuEntered;
+
+		EventSystemController.Instance.onCutsceneStart += OnCutsceneStart;
+		EventSystemController.Instance.onCutsceneEnd += OnCutsceneEnd;
 	}
 
 
@@ -37,6 +40,19 @@ public class InteractionUI : MonoBehaviour {
 		EventSystemController.Instance.onItemPicked -= OnItemPicked;
 		EventSystemController.Instance.onItemDropped -= OnItemDropped;
 		EventSystemController.Instance.onMainMenuEntered -= OnMainMenuEntered;
+
+		EventSystemController.Instance.onCutsceneStart -= OnCutsceneStart;
+		EventSystemController.Instance.onCutsceneEnd -= OnCutsceneEnd;
+	}
+
+
+	private void OnCutsceneStart() {
+		crosshairImage.enabled = false;
+	}
+
+
+	private void OnCutsceneEnd() {
+		crosshairImage.enabled = true;
 	}
 
 

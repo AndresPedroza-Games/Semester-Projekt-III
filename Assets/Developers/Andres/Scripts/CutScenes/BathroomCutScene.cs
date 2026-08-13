@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -12,18 +13,22 @@ public class BathroomCutScene : MonoBehaviour
 
     private GameObject _Player;
     private Transform playerCam;
+    private CinemachinePOV _cinePovComp;
 
     private void Start()
     {
         EventSystemBathroom.instance.onCutHair += PlayScene;
         _Player = FindFirstObjectByType<PlayerManager>(FindObjectsInactive.Include).gameObject;
         playerCam = GameManager.Instance.Camera.transform;
+        _cinePovComp = GameManager.Instance.Camera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachinePOV>();
     }
 
     private void PlayScene() {
+	    EventSystemController.Instance.CutSceneStart();
+	    SetPlayerPositionAndRotation();
+	    
         _Director.Play();
 
-        _Player.transform.position = _StartPosPlayer.position;
         GameManager.Instance.Camera.transform.position = new Vector3(_StartPosPlayer.position.x, playerCam.position.y, _StartPosPlayer.position.z);
         
         InputManager.Instance.Controls.Movement.Disable();
@@ -31,6 +36,12 @@ public class BathroomCutScene : MonoBehaviour
         InputManager.Instance.Controls.Game.Disable();
         // FindFirstObjectByType<PlayerManager>().cinemachine.SetActive(false);
 	    _Player.SetActive(false);
+    }
+    
+    private void SetPlayerPositionAndRotation() {
+        _Player.transform.position = _StartPosPlayer.position;
+	    _cinePovComp.m_HorizontalAxis.Value = _StartPosPlayer.eulerAngles.y;
+	    _cinePovComp.m_VerticalAxis.Value = 0f;
     }
 
     public void LoadScene()
@@ -55,6 +66,8 @@ public class BathroomCutScene : MonoBehaviour
     {
 	    _Player.SetActive(true);
         _Player.transform.position = _EndPosPlayer.position;
+        
+	    EventSystemController.Instance.CutsceneEnd();
         
         InputManager.Instance.Controls.Movement.Enable();
         InputManager.Instance.Controls.Interaction.Enable();
