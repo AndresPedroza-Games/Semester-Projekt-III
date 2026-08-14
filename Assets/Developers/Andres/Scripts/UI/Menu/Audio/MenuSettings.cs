@@ -16,8 +16,8 @@ public class MenuSettings : MenuManager {
 	[Header("---Audio---")]
 	[SerializeField] private List<AudioSlider> audioSliders;
 
-	[Header("---Fullscreen---")]
-	[SerializeField] private Toggle fullscreenToggle;
+	// [Header("---Fullscreen---")]
+	// [SerializeField] private Toggle fullscreenToggle;
 
 
 	private void OnEnable() {
@@ -35,10 +35,10 @@ public class MenuSettings : MenuManager {
 			slider.inputField.onEndEdit.AddListener((value) => OnInputFieldConfirmed(slider, value));
 		}
 
-		if (fullscreenToggle) {
-			fullscreenToggle.isOn = Screen.fullScreen;
-			fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
-		}
+		// if (fullscreenToggle) {
+		// 	fullscreenToggle.isOn = Screen.fullScreen;
+		// 	fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+		// }
 
 		SetupMouseSensitivitySlider();
 	}
@@ -53,8 +53,8 @@ public class MenuSettings : MenuManager {
 			slider.inputField.onEndEdit.RemoveAllListeners();
 		}
 
-		if (fullscreenToggle)
-			fullscreenToggle.onValueChanged.RemoveListener(SetFullscreen);
+		// if (fullscreenToggle)
+		// 	fullscreenToggle.onValueChanged.RemoveListener(SetFullscreen);
 
 		mouseSensitivitySlider.slider.onValueChanged.RemoveListener(SetMouseSensitivity);
 		mouseSensitivitySlider.inputField.onEndEdit.RemoveListener(OnMouseSensitivityConfirmed);
