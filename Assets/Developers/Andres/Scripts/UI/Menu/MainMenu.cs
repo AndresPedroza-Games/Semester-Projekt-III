@@ -25,7 +25,7 @@ public class MainMenu : MenuManager {
 		}
 
 		_loadBtnText = _LoadBtn.GetComponentInChildren<TMP_Text>();
-		_loadBtnText.color = HasLastScene() ? Color.white : Color.gray;
+		_loadBtnText.color = HasLastScene() ? Color.white : Color.lightGray;
 		_LoadBtn.interactable = HasLastScene();
 	}
 
