@@ -7210,9 +7210,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3203143360244876304, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4124222442228013010, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
       propertyPath: m_Name
       value: Room1_Board_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580307531150082677, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
+      propertyPath: MaxDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580307531150082677, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
+      propertyPath: MinDistance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580307531150082677, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5824061076342929982, guid: 55cefeec18364d149b0cd00acf4f6647, type: 3}
       propertyPath: _PiecesParent
