@@ -18,10 +18,11 @@ public class HallTubeLamp : MonoBehaviour {
 	[SerializeField] private Vector2 particleLoopCooldown = new(1f, 5f);
 
 	[Header("---Audio---")]
+	[SerializeField] private AudioSource audioSourceForBulbBurst;
 	[SerializeField] private AudioClip lightbulbBurstSfx;
+	[SerializeField] private AudioSource generalAudioSource;
 
 	private Light _light;
-	private AudioSource _audioSource;
 	private Coroutine _particleRoutine;
 
 	private Coroutine _turnLightOnRoutine;
@@ -30,9 +31,10 @@ public class HallTubeLamp : MonoBehaviour {
 
 	private void Awake() {
 		_light = GetComponentInChildren<Light>();
-		_audioSource = GetComponent<AudioSource>();
-
 		_light.enabled = isOnFromBeginning;
+
+		if (!generalAudioSource)
+			generalAudioSource = GetComponent<AudioSource>();
 
 		if (playParticlesInLoopFromBeginning)
 			_particleRoutine ??= StartCoroutine(PlayParticleLoopCoroutine());
@@ -50,7 +52,7 @@ public class HallTubeLamp : MonoBehaviour {
 
 
 	private void PlaySfx(AudioClip clip) {
-		_audioSource?.PlayOneShot(clip);
+		generalAudioSource?.PlayOneShot(clip);
 	}
 
 
@@ -76,15 +78,14 @@ public class HallTubeLamp : MonoBehaviour {
 		PlayBulbBurstSfx();
 
 		SetLightActive(false);
-
-		_disableAudioAfterClipRoutine ??= StartCoroutine(DisableAudioAfterClip());
+		SetAudioSourceActive(false);
 
 		_particleRoutine ??= StartCoroutine(PlayParticlesLoopWhileLampOffCoroutine());
 	}
 
 
 	private void PlayBulbBurstSfx() {
-		_audioSource.PlayOneShot(lightbulbBurstSfx);
+		audioSourceForBulbBurst?.PlayOneShot(lightbulbBurstSfx);
 	}
 
 
@@ -94,7 +95,7 @@ public class HallTubeLamp : MonoBehaviour {
 
 
 	private void SetAudioSourceActive(bool toggle) {
-		_audioSource.enabled = toggle;
+		generalAudioSource.enabled = toggle;
 	}
 
 
@@ -126,14 +127,5 @@ public class HallTubeLamp : MonoBehaviour {
 
 		_turnLightOnRoutine = null;
 	}
-
-
-	private IEnumerator DisableAudioAfterClip() {
-		while (_audioSource.isPlaying)
-			yield return null;
-
-		SetAudioSourceActive(false);
-	}
-
 
 }

@@ -1933,7 +1933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8941dd36866f94b99317107b2b0e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectSfx
-  audioSource: {fileID: 0}
+  <AudioSource>k__BackingField: {fileID: 0}
   sounds:
   - trigger: 2
     sfx: 1
@@ -4716,9 +4716,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2712605760375072369, guid: 6f5e5a4d30250ea4683ef59a5371f1b8, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5560014192941414906, guid: 6f5e5a4d30250ea4683ef59a5371f1b8, type: 3}
       propertyPath: m_Name
       value: Room2_DoorToDoctorsOffice_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171045419844723129, guid: 6f5e5a4d30250ea4683ef59a5371f1b8, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171045419844723129, guid: 6f5e5a4d30250ea4683ef59a5371f1b8, type: 3}
+      propertyPath: sounds.Array.data[1].overrides.useOverrides
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

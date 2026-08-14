@@ -385,7 +385,7 @@ AudioSource:
   m_GameObject: {fileID: 225998049}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
@@ -1406,6 +1406,26 @@ PrefabInstance:
     - target: {fileID: 68607282854819013, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 421203356551627750, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 421203356551627750, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: MinDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 421203356551627750, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003754200631033409, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003754200631033409, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: sounds.Array.data[1].overrides.useOverrides
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8773917145655839014, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2810,7 +2830,7 @@ AudioSource:
   m_GameObject: {fileID: 927883991545450217}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0

@@ -1267,6 +1267,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2056192079}
     m_Modifications:
+    - target: {fileID: 362229098552071716, guid: 4b6f25c85de64394c8646efcb74fdf14, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763776398453661126, guid: 4b6f25c85de64394c8646efcb74fdf14, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763776398453661126, guid: 4b6f25c85de64394c8646efcb74fdf14, type: 3}
+      propertyPath: MinDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763776398453661126, guid: 4b6f25c85de64394c8646efcb74fdf14, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2025175002275156857, guid: 4b6f25c85de64394c8646efcb74fdf14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4999998
@@ -5142,6 +5158,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2056192079}
     m_Modifications:
+    - target: {fileID: 2007596494749752593, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2007596494749752593, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
+      propertyPath: sounds.Array.data[1].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3492933085261367874, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
       propertyPath: m_Name
       value: Room1_ChildsDoor_001
@@ -5153,6 +5177,10 @@ PrefabInstance:
     - target: {fileID: 3563547158378584299, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
       propertyPath: MinDistance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563547158378584299, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3563547158378584299, guid: 2fdea4bc01e85e44492874f24c1ae3ee, type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value

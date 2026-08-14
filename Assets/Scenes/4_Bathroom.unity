@@ -706,6 +706,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1514171140}
     m_Modifications:
+    - target: {fileID: 737537510399915959, guid: 5aa5713c00addfb4bb6f7cfc9f96006d, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 737537510399915959, guid: 5aa5713c00addfb4bb6f7cfc9f96006d, type: 3}
+      propertyPath: sounds.Array.data[1].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3668321576979904993, guid: 5aa5713c00addfb4bb6f7cfc9f96006d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6228771115230852727, guid: 5aa5713c00addfb4bb6f7cfc9f96006d, type: 3}
       propertyPath: m_Name
       value: Room4_DoorToBathroom_001

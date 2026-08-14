@@ -14616,6 +14616,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4984386099704747222}
     m_Modifications:
+    - target: {fileID: 860526390794096239, guid: 87e86f6e75e470e47ae4a21ce7bca09a, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 860526390794096239, guid: 87e86f6e75e470e47ae4a21ce7bca09a, type: 3}
+      propertyPath: sounds.Array.data[1].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3746757521191796401, guid: 87e86f6e75e470e47ae4a21ce7bca09a, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6052461681742952339, guid: 87e86f6e75e470e47ae4a21ce7bca09a, type: 3}
       propertyPath: m_Name
       value: Room3_OfficeDoor_001

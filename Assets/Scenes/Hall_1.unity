@@ -2646,6 +2646,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 421203356551627750, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: MaxDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 421203356551627750, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: MinDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 421203356551627750, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 421203356551627750, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
     - target: {fileID: 3018246816217643867, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: scenesToUnload.Array.data[0].scenePath
       value: Assets/Scenes/1_ChildsRoom.unity
@@ -2665,6 +2681,14 @@ PrefabInstance:
     - target: {fileID: 5746060091719740828, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003754200631033409, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003754200631033409, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
+      propertyPath: sounds.Array.data[1].overrides.useOverrides
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7486256841288211468, guid: 375e55f1d8418e0408a2504c15483e9c, type: 3}
       propertyPath: m_IsActive
@@ -3024,6 +3048,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8d1c00a10cf1ec34cbef4e11d86eab7e, type: 2}
+    - target: {fileID: 4265918541897668008, guid: ce23b39967bddfc418b39d2187a43da3, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -2020957515290342614, guid: 75ef8738fb49eb749abac2d6b5c08f1c, type: 2}
     - target: {fileID: 6616602310476821249, guid: ce23b39967bddfc418b39d2187a43da3, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
