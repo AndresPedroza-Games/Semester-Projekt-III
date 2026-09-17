@@ -20,14 +20,14 @@ public class BallerinaMusicBox : Holdable {
 
 
 	private void Start() {
-		EventSystemChildRoom.eventSystemChildRoom.onPuzzlePieceEventTriggerd += PlayMusicAndAnimation;
+		EventSystemChildRoom.Instance.OnPuzzlePieceEventTriggered += PlayMusicAndAnimation;
 	}
 
 
 	protected override void OnDisable() {
 		base.OnDisable();
 
-		EventSystemChildRoom.eventSystemChildRoom.onPuzzlePieceEventTriggerd -= PlayMusicAndAnimation;
+		EventSystemChildRoom.Instance.OnPuzzlePieceEventTriggered -= PlayMusicAndAnimation;
 	}
 
 

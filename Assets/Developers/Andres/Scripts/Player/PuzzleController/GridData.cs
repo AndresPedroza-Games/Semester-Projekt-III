@@ -1,99 +1,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridData
-{
-    public Dictionary<Vector3, PlacementData> _PlacedPieces = new Dictionary<Vector3, PlacementData>();
 
-    public void AddObjectAt(GameObject piece,Vector3 gridPos, int rot, int id, int pieceIndex)
-    {
-        Vector3 positionToOccupy = gridPos;
-        PlacementData data = new PlacementData(piece,positionToOccupy,rot,id,pieceIndex);
+public class GridData {
 
-        if (_PlacedPieces.ContainsKey(positionToOccupy)){
-            return;
-        }
-
-        _PlacedPieces[positionToOccupy] = data;
-
-        Debug.Log($"Rotation: {rot}");
-    }
-
-    public void RemoveObjectAt(Vector3Int gridPos)
-    {
-        Vector3 positionToOccupy = gridPos;
-
-        if (_PlacedPieces.ContainsKey(positionToOccupy)){
-            _PlacedPieces.Remove(positionToOccupy);
-        }
-    }
+	private readonly Dictionary<Vector2Int, Piece> _pieces = new();
+	public IEnumerable<Piece> Pieces => _pieces.Values;
+	public int Count => _pieces.Count;
 
 
-    public bool PieceInsideGrid(Vector3 gridPos, Vector2 gridMin, Vector2 gridMax)   
-    {
-        Vector3 positionToOccupy = gridPos;
-
-        if (positionToOccupy.x < gridMin.x || positionToOccupy.x >= gridMax.x || positionToOccupy.z >= gridMax.y || positionToOccupy.z < gridMin.y)
-            return false;
-
-        return true;
-    }
-
-    public bool PieceCorrectPosition(Vector3 gridPos, Vector3Int correctPos)
-    {
-        Vector3 positionToOccupy = _PlacedPieces[gridPos].occupiedPositions;
-
-        if (positionToOccupy == correctPos)
-            return true;
-
-        return false;
-    }
-
-    public bool PieceCorrectRotation(Vector3 gridPos)
-    {
-        if (0 == _PlacedPieces[gridPos].rotation)
-            return true;
-
-        return false;
-    }
-
-    public bool CanPlacePiece(Vector3 gridPos, Vector2 gridMinSize, Vector3 gridMaxSize)
-    {
-        if (!PieceInsideGrid(gridPos, gridMinSize, gridMaxSize) && _PlacedPieces.ContainsKey(gridPos))
-            return false;
-
-        return true;
-    }
-
-    public GameObject PieceInThisPosition(Vector3 gridPos)
-    {
-        Vector3 positionToOccupy = gridPos;
-
-        if (_PlacedPieces.ContainsKey(positionToOccupy))
-            return _PlacedPieces[gridPos].piece;
-
-        return null;
-    }
+	public Piece GetPiece(Vector2Int position) {
+		_pieces.TryGetValue(position, out Piece piece);
+		return piece;
+	}
 
 
-}
+	public void SetPiece(Vector2Int position, Piece piece) {
+		_pieces[position] = piece;
+	}
 
-public class PlacementData
-{
-    public GameObject piece;
 
-    public Vector3 occupiedPositions;
+	public void RemovePiece(Piece piece) {
+		Vector2Int? positionToRemove = null;
 
-    public int rotation;
-    public int ID { get; private set; }
-    public int PlacedPieceIndex { get; private set; }
+		foreach (var pair in _pieces) {
+			if (pair.Value == piece) {
+				positionToRemove = pair.Key;
+				break;
+			}
+		}
 
-    public PlacementData(GameObject obj,Vector3 occupiedPos, int rot, int id, int placedObjectindex)
-    {
-        piece = obj;
-        occupiedPositions = occupiedPos;
-        rotation = rot;
-        ID = id;
-        PlacedPieceIndex = placedObjectindex;
-    }
+		if (positionToRemove.HasValue)
+			_pieces.Remove(positionToRemove.Value);
+	}
+
+
+	public bool IsInside(Vector2Int position) {
+		return position.x is >= 0 and < 3 && position.y is >= 0 and < 3;
+	}
+
 }

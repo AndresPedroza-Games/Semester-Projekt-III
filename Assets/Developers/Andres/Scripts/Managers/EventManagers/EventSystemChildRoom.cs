@@ -2,75 +2,37 @@ using System;
 using UnityEngine;
 
 
-public class EventSystemChildRoom : EventSystemController
-{
-    public static EventSystemChildRoom eventSystemChildRoom;
+public class EventSystemChildRoom : MonoBehaviour {
 
-    public Action onPiecePlaced;
-    public Action<GameObject> onPiecePicked;
-    public Action<GameObject> onInteractWithBoard;
-    public Action onExitBoard;
-    public Action<Vector2> onRotatePiece;
-    public Action onPuzzleSolved;
-    public Action onPuzzlePieceEventTriggerd;
+	public static EventSystemChildRoom Instance;
 
-    private PuzzleController _PuzzleController;
+	public event Action OnPuzzleSolved;
+	public event Action OnPuzzlePieceEventTriggered;
+	public event Action<Piece> OnPieceAddedToBoard;
 
-    private void Awake()
-    {
-        if (eventSystemChildRoom == null)
-            eventSystemChildRoom = this;
-    }
 
-    private void OnEnable()
-    {
-        _PuzzleController = FindFirstObjectByType<PuzzleController>(FindObjectsInactive.Include);
-        _PuzzleController.gameObject.SetActive(true);
-    }
+	private void Awake() {
+		if (Instance && Instance != this) {
+			Destroy(gameObject);
+			return;
+		}
 
-    private void OnDisable()
-    {
-        if(_PuzzleController != null)
-            _PuzzleController.gameObject.SetActive(false);
-    }
+		Instance = this;
+	}
 
-    public void PuzzlePieceEventTrigger() {
-	    onPuzzlePieceEventTriggerd?.Invoke();
-    }
 
-    public void PlacePiece()
-    {
-        if (onPiecePlaced != null)
-            onPiecePlaced.Invoke();
-    }
+	public void PuzzlePieceEventTrigger() {
+		OnPuzzlePieceEventTriggered?.Invoke();
+	}
 
-    public void InteractWithBoard(GameObject obj)
-    {
-        if (onInteractWithBoard != null)
-            onInteractWithBoard.Invoke(obj);
-    }
 
-    public void PickPiece(GameObject piece)
-    {
-        if (onPiecePicked != null)
-            onPiecePicked.Invoke(piece);
-    }
+	public void PuzzleSolved() {
+		OnPuzzleSolved?.Invoke();
+	}
 
-    public void RotatePiece(Vector2 scroll)
-    {
-        if (onRotatePiece != null)
-            onRotatePiece.Invoke(scroll);
-    }
 
-    public void ExitBoard()
-    {
-        if (onExitBoard != null)
-            onExitBoard.Invoke();
-    }
+	public void AddedPieceToBoard(Piece piece) {
+		OnPieceAddedToBoard?.Invoke(piece);
+	}
 
-    public void PuzzleSolved()
-    {
-        if (onPuzzleSolved != null)
-            onPuzzleSolved.Invoke();
-    }
 }

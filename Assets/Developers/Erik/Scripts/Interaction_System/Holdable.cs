@@ -11,7 +11,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 	public Transform StartParentIfSocketHold { get; private set; }
 
-	private float borderThickness = 0.02f;
+	private const float OutlineThickness = 0.02f;
 
 
 	private Renderer _renderer;
@@ -136,7 +136,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 		if (!_renderer)
 			return;
 
-		_renderer.material.SetFloat(_borderThickness, borderThickness);
+		_renderer.material.SetFloat(_borderThickness, OutlineThickness);
 	}
 
 

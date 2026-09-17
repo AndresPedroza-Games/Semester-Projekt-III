@@ -189,37 +189,6 @@ Transform:
   - {fileID: 3322513306322945772}
   m_Father: {fileID: 1893500437114708042}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
---- !u!1 &4033048130425562093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5894656581804023395}
-  m_Layer: 7
-  m_Name: Spawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5894656581804023395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4033048130425562093}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.199, y: -0.172, z: -0.383}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1893500437114708042}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4124222442228013010
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +198,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1893500437114708042}
-  - component: {fileID: 5824061076342929982}
   m_Layer: 0
   m_Name: Room1_Board_001
   m_TagString: Untagged
@@ -250,35 +218,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5894656581804023395}
   - {fileID: 5623134936118265610}
   - {fileID: 1028869491872769501}
   - {fileID: 5137516335937354640}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &5824061076342929982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4124222442228013010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b2feba678d81da49958e033c9601eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Board
-  _PieceSpawn: {fileID: 5894656581804023395}
-  _PiecesParent: {fileID: 0}
-  tilePieceData: {fileID: 11400000, guid: a13c23d68cb42b240a8033d7ac264b6d, type: 2}
-  _Drawer: {fileID: 3060354274498466217}
-  _Scene:
-    sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
-    scenePath: Assets/Scenes/Hall_1.unity
-  piecesInv: []
-  createdPieces: []
-  ballerinaEventTriggerPieceCount: 5
-  currentPiece: {fileID: 0}
 --- !u!1 &5724499347522703444
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,10 +232,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5137516335937354640}
-  - component: {fileID: 356793393479318537}
   - component: {fileID: 5989442792134616308}
   m_Layer: 4
-  m_Name: Pivot
+  m_Name: PieceDetector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,36 +249,16 @@ Transform:
   m_GameObject: {fileID: 5724499347522703444}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5129, y: -0.3, z: -0.0516}
+  m_LocalPosition: {x: -0.087070465, y: -0.29657927, z: -0.6505661}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8157755819394737124}
+  - {fileID: 2164078467988491858}
   - {fileID: 2127138851799798234}
+  - {fileID: 8157755819394737124}
   - {fileID: 5219642752897674988}
   m_Father: {fileID: 1893500437114708042}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &356793393479318537
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5724499347522703444}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.6, y: 0.1, z: 0.6}
-  m_Center: {x: -0.3, y: 0.1, z: -0.3}
 --- !u!114 &5989442792134616308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,6 +271,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8480753d438d3c840a438f0670174b86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoardDetector
+  boxCenter: {fileID: 2164078467988491858}
+  boxHalfExtends: {x: 0.3, y: 0.1, z: 0.3}
+--- !u!1 &5774927050692996751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2164078467988491858}
+  m_Layer: 4
+  m_Name: DetectionBoxCenter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2164078467988491858
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5774927050692996751}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 0.1, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5137516335937354640}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6983912933823744424
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +365,7 @@ Transform:
   m_GameObject: {fileID: 7969021537057575316}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0.013999999, z: -0.295}
+  m_LocalPosition: {x: 0.3, y: 0.001, z: 0.3}
   m_LocalScale: {x: 0.06, y: 0.06, z: 0.06}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -498,13 +454,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8355156133240777343}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.28899997, y: 0.025, z: -0.2910015}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.3, y: 0.002, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5137516335937354640}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!64 &6605827576468650486
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -526,7 +482,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &4525948452058962717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,15 +495,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4158cef90365e4f9f468b251dfd535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementSystem
-  _TilePieceData: {fileID: 11400000, guid: a13c23d68cb42b240a8033d7ac264b6d, type: 2}
-  _TilePreview: {fileID: 8847949718325686556}
-  _Grid: {fileID: 8606248358938142989}
-  _GridMinSize: {x: -3, y: 0}
-  _GridMaxSize: {x: 0, y: 1}
+  scene:
+    sceneAsset: {fileID: 102900000, guid: 80fdd921da5f7554a94e15bd0f802a61, type: 3}
+    scenePath: Assets/Scenes/Hall_1.unity
+  ballerinaEventTriggerPieceCount: 5
+  placementDuration: 0.2
+  placementEase: 10
+  rotationDuration: 0.2
+  rotationEase: 10
+  hoverSmoothTime: 0.03
+  grid: {fileID: 8606248358938142989}
+  pieceHoverHeight: 0.08
   layerDetector:
     serializedVersion: 2
     m_Bits: 128
-  _SelectedObject: {fileID: 0}
 --- !u!1 &8847949718325686556
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +521,7 @@ GameObject:
   - component: {fileID: 3193375013409978400}
   - component: {fileID: 5332227599444999586}
   m_Layer: 0
-  m_Name: TilPreview
+  m_Name: TilePreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -646,6 +607,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3322513306322945772}
     m_Modifications:
+    - target: {fileID: 2687123337369772455, guid: 6577436b7226c6b42bde1a2e58f56b90, type: 3}
+      propertyPath: sounds.Array.data[0].overrides.useOverrides
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938900303229036482, guid: 6577436b7226c6b42bde1a2e58f56b90, type: 3}
+      propertyPath: MaxDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938900303229036482, guid: 6577436b7226c6b42bde1a2e58f56b90, type: 3}
+      propertyPath: MinDistance
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938900303229036482, guid: 6577436b7226c6b42bde1a2e58f56b90, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5093627231548853791, guid: 6577436b7226c6b42bde1a2e58f56b90, type: 3}
       propertyPath: m_Name
       value: Room1_Key_001

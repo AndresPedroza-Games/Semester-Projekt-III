@@ -16,14 +16,14 @@ public class BoardDrawer : Holdable {
 
 
 	private void Start() {
-		EventSystemChildRoom.eventSystemChildRoom.onPuzzleSolved += OpenDrawer;
+		EventSystemChildRoom.Instance.OnPuzzleSolved += OpenDrawer;
 	}
 
 
 	protected override void OnDisable() {
 		base.OnDisable();
 		
-		EventSystemChildRoom.eventSystemChildRoom.onPuzzleSolved -= OpenDrawer;
+		EventSystemChildRoom.Instance.OnPuzzleSolved -= OpenDrawer;
 	}
 
 
