@@ -104,6 +104,7 @@ public class PuzzleBoard : MonoBehaviour {
 		_gridData.RemovePiece(piece);
 
 		HeldPiece = piece;
+		HeldPiece.Highlight();
 
 		_hoverVelocity = Vector3.zero;
 
@@ -129,6 +130,8 @@ public class PuzzleBoard : MonoBehaviour {
 		HeldPiece.SetGridPosition(_gridPos);
 		MovePieceToGridPosition(HeldPiece, _gridPos);
 
+		HeldPiece.RemoveHighlight();
+
 		if (!occupyingPiece) {
 			HeldPiece = null;
 		}
@@ -136,6 +139,8 @@ public class PuzzleBoard : MonoBehaviour {
 			HeldPiece = occupyingPiece;
 			_hoverVelocity = Vector3.zero;
 			MovePieceToHoverPosition(HeldPiece, _gridPos);
+
+			HeldPiece.Highlight();
 		}
 
 		CheckPuzzleWinCondition();
@@ -180,7 +185,8 @@ public class PuzzleBoard : MonoBehaviour {
 		if (PieceCount >= 9)
 			return;
 
-		Vector2Int position = GetRandomFreePosition();
+		// Vector2Int position = GetRandomFreePosition();
+		Vector2Int position = GetFreePosition();
 
 		_gridData.SetPiece(position, piece);
 		piece.SetGridPosition(position);
@@ -210,6 +216,22 @@ public class PuzzleBoard : MonoBehaviour {
 		}
 
 		return freePositions[Random.Range(0, freePositions.Count)];
+	}
+
+
+	private Vector2Int GetFreePosition() {
+
+		for (int y = 2; y >= 0; y--) {
+			for (int x = 0; x < 3; x++) {
+				Vector2Int pos = new Vector2Int(x, y);
+
+				if (!_gridData.GetPiece(pos)) {
+					return pos;
+				}
+			}
+		}
+
+		return default;
 	}
 
 
