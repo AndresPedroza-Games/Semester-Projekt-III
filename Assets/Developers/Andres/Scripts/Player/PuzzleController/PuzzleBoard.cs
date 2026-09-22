@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -28,6 +27,7 @@ public class PuzzleBoard : MonoBehaviour {
 	[SerializeField] private float pieceHoverHeight = 0.03f;
 	[SerializeField] private LayerMask layerDetector;
 
+
 	public int PieceCount { get; private set; }
 	public Piece HeldPiece { get; private set; }
 
@@ -36,6 +36,8 @@ public class PuzzleBoard : MonoBehaviour {
 	private GridData _gridData;
 	private Vector3 _hoverVelocity;
 	private Vector2Int _gridPos;
+
+	private readonly Vector2Int[] _flashOrder = { new(0, 2), new(1, 2), new(2, 2), new(2, 1), new(2, 0), new(1, 0), new(0, 0), new(0, 1), new(1, 1) };
 
 	private bool _isValidGridPosition;
 	private bool _puzzleSolved;
@@ -83,7 +85,7 @@ public class PuzzleBoard : MonoBehaviour {
 
 		int scroll = Mathf.RoundToInt(ctx.ReadValue<Vector2>().y);
 
-		HeldPiece.Rotate(scroll, rotationDuration, rotationEase);
+		HeldPiece.Rotate(-scroll, rotationDuration, rotationEase);
 	}
 
 
@@ -104,7 +106,6 @@ public class PuzzleBoard : MonoBehaviour {
 		_gridData.RemovePiece(piece);
 
 		HeldPiece = piece;
-		HeldPiece.Highlight();
 
 		_hoverVelocity = Vector3.zero;
 
@@ -128,9 +129,8 @@ public class PuzzleBoard : MonoBehaviour {
 
 		_gridData.SetPiece(_gridPos, HeldPiece);
 		HeldPiece.SetGridPosition(_gridPos);
-		MovePieceToGridPosition(HeldPiece, _gridPos);
 
-		HeldPiece.RemoveHighlight();
+		Tween placementTween = MovePieceToGridPosition(HeldPiece, _gridPos);
 
 		if (!occupyingPiece) {
 			HeldPiece = null;
@@ -139,11 +139,9 @@ public class PuzzleBoard : MonoBehaviour {
 			HeldPiece = occupyingPiece;
 			_hoverVelocity = Vector3.zero;
 			MovePieceToHoverPosition(HeldPiece, _gridPos);
-
-			HeldPiece.Highlight();
 		}
 
-		CheckPuzzleWinCondition();
+		CheckPuzzleWinCondition(placementTween);
 	}
 
 
@@ -174,10 +172,11 @@ public class PuzzleBoard : MonoBehaviour {
 	}
 
 
-	private void MovePieceToGridPosition(Piece piece, Vector2Int position) {
+	private Tween MovePieceToGridPosition(Piece piece, Vector2Int position) {
 		Vector3 worldPosition = GetWorldPosition(position);
 		Vector3 target = new(worldPosition.x, grid.transform.position.y + 0.02f, worldPosition.z);
-		piece.MoveTo(target, placementDuration, placementEase);
+
+		return piece.MoveTo(target, placementDuration, placementEase, true);
 	}
 
 
@@ -203,20 +202,20 @@ public class PuzzleBoard : MonoBehaviour {
 	}
 
 
-	private Vector2Int GetRandomFreePosition() {
-		List<Vector2Int> freePositions = new();
-
-		for (int x = 0; x < 3; x++) {
-			for (int y = 0; y < 3; y++) {
-				Vector2Int position = new Vector2Int(x, y);
-
-				if (!_gridData.GetPiece(position))
-					freePositions.Add(position);
-			}
-		}
-
-		return freePositions[Random.Range(0, freePositions.Count)];
-	}
+	// private Vector2Int GetRandomFreePosition() {
+	// 	List<Vector2Int> freePositions = new();
+	//
+	// 	for (int x = 0; x < 3; x++) {
+	// 		for (int y = 0; y < 3; y++) {
+	// 			Vector2Int position = new Vector2Int(x, y);
+	//
+	// 			if (!_gridData.GetPiece(position))
+	// 				freePositions.Add(position);
+	// 		}
+	// 	}
+	//
+	// 	return freePositions[Random.Range(0, freePositions.Count)];
+	// }
 
 
 	private Vector2Int GetFreePosition() {
@@ -256,13 +255,18 @@ public class PuzzleBoard : MonoBehaviour {
 
 	private void UpdateLockedPieces() {
 		foreach (Piece piece in _gridData.Pieces) {
-			if (piece.GridPosition == piece.PieceData.CorrectPosition && piece.RotationSteps == piece.PieceData.CorrectRotationStep)
+			if (piece.GridPosition == piece.PieceData.CorrectPosition && piece.RotationSteps == piece.PieceData.CorrectRotationStep) {
+				if (piece.IsLocked)
+					continue;
+
 				piece.IsLocked = true;
+				_flashOrder[_gridData.Count - 1] = piece.GridPosition;
+			}
 		}
 	}
 
 
-	private void CheckPuzzleWinCondition() {
+	private void CheckPuzzleWinCondition(Tween placementTween = null) {
 		if (_puzzleSolved)
 			return;
 
@@ -272,8 +276,40 @@ public class PuzzleBoard : MonoBehaviour {
 			return;
 
 		_puzzleSolved = true;
-		EventSystemChildRoom.Instance.PuzzleSolved();
-		LoadScene();
+
+		if (placementTween != null && placementTween.IsActive())
+			placementTween.OnComplete(OnPuzzleSolved);
+		else
+			OnPuzzleSolved();
+	}
+
+
+	private void OnPuzzleSolved() {
+		Sequence sequence = DOTween.Sequence();
+
+		const float waveDelay = 0.08f;
+		float time = 0f;
+
+		foreach (Vector2Int position in _flashOrder) {
+			Piece piece = _gridData.GetPiece(position);
+
+			if (!piece)
+				continue;
+
+			sequence.Insert(time, piece.Flash());
+			time += waveDelay;
+		}
+
+		sequence.OnComplete(() => {
+			foreach (Piece p in _gridData.Pieces) {
+				if (!p)
+					continue;
+				p.Flash();
+			}
+
+			EventSystemChildRoom.Instance.PuzzleSolved();
+			LoadScene();
+		});
 	}
 
 

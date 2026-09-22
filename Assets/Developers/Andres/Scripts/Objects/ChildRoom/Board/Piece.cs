@@ -5,8 +5,8 @@ using Random = UnityEngine.Random;
 
 public class Piece : Holdable, ILeftClickable {
 
-	[field: SerializeField]
-	public PieceData PieceData { get; private set; }
+	[Header("PIECE DATA")]
+	[field: SerializeField] public PieceData PieceData { get; private set; }
 
 	public bool IsOnBoard { get; private set; }
 	public bool IsLocked { get; set; }
@@ -15,6 +15,17 @@ public class Piece : Holdable, ILeftClickable {
 
 	private bool _isRotating;
 	public Tween MoveTween { get; private set; }
+
+
+	[Header("FLASH CONFIG")]
+	[SerializeField] private float flashDuration = 0.5f;
+	[SerializeField] private float flashIntensity = 0.5f;
+	[SerializeField] private Color flashColor = Color.white;
+
+	[Header("PARTICLES")]
+	[SerializeField] private ParticleSystem particles;
+
+	private readonly int _emissionColor = Shader.PropertyToID("_EmissionColor");
 
 
 	private void OnEnable() {
@@ -41,9 +52,16 @@ public class Piece : Holdable, ILeftClickable {
 	}
 
 
-	public void MoveTo(Vector3 target, float duration, Ease ease) {
+	public Tween MoveTo(Vector3 target, float duration, Ease ease, bool playParticle = false) {
 		MoveTween?.Kill();
-		MoveTween = transform.DOMove(target, duration).SetEase(ease);
+		MoveTween = transform.DOMove(target, duration).SetEase(ease).OnComplete(() => {
+			if (IsLocked)
+				Flash();
+
+			if (playParticle)
+				PlayParticles();
+		});
+		return MoveTween;
 	}
 
 
@@ -56,6 +74,11 @@ public class Piece : Holdable, ILeftClickable {
 		_isRotating = true;
 
 		transform.DORotateQuaternion(targetRotation, duration).SetEase(ease).OnComplete(() => _isRotating = false);
+	}
+
+
+	public void PlayParticles() {
+		particles?.Play();
 	}
 
 
@@ -98,6 +121,37 @@ public class Piece : Holdable, ILeftClickable {
 			return CrosshairType.HandClosed;
 
 		return IsLocked ? CrosshairType.Default : CrosshairType.HandOpen;
+	}
+
+
+	public Tween Flash() {
+		MaterialPropertyBlock props = new MaterialPropertyBlock();
+		ren.GetPropertyBlock(props);
+		Color originalEmission = props.GetColor(_emissionColor);
+
+		Sequence sequence = DOTween.Sequence();
+
+		sequence.Append(transform.DOScale(1.1f, flashDuration * 0.5f).SetEase(Ease.OutQuad));
+
+		sequence.Join(DOTween.To(() => 0f, value => {
+			props.SetColor(_emissionColor, flashColor * (value * flashIntensity));
+			ren.SetPropertyBlock(props);
+		}, 1f, flashDuration * 0.5f).SetEase(Ease.OutQuad));
+
+		sequence.Append(transform.DOScale(1f, flashDuration * 0.5f).SetEase(Ease.InQuad));
+
+		sequence.Join(DOTween.To(() => 1f, value => {
+			props.SetColor(_emissionColor, flashColor * (value * flashIntensity));
+
+			ren.SetPropertyBlock(props);
+		}, 0f, flashDuration * 0.5f).SetEase(Ease.InQuad));
+
+		sequence.OnComplete(() => {
+			props.SetColor(_emissionColor, originalEmission);
+			ren.SetPropertyBlock(props);
+		});
+
+		return sequence;
 	}
 
 }

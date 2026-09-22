@@ -14,7 +14,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 	private const float OutlineThickness = 0.02f;
 
 
-	private Renderer _renderer;
+	protected Renderer ren;
 	private readonly int _borderThickness = Shader.PropertyToID("_BorderThickness");
 
 	private HoldController _currentHolder;
@@ -31,7 +31,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 		_sfx = GetComponent<ObjectSfx>();
 
-		_renderer = GetComponent<Renderer>();
+		ren = GetComponent<Renderer>();
 
 		Rigidbody = GetComponent<Rigidbody>();
 		Collider = GetComponent<Collider>();
@@ -133,18 +133,18 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 
 	public void Highlight() {
-		if (!_renderer)
+		if (!ren)
 			return;
 
-		_renderer.material.SetFloat(_borderThickness, OutlineThickness);
+		ren.material.SetFloat(_borderThickness, OutlineThickness);
 	}
 
 
 	public void RemoveHighlight() {
-		if (!_renderer)
+		if (!ren)
 			return;
 
-		_renderer.material.SetFloat(_borderThickness, 0f);
+		ren.material.SetFloat(_borderThickness, 0f);
 	}
 
 
