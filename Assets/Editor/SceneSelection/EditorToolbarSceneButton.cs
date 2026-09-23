@@ -1,11 +1,10 @@
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
-using UnityEditor.SceneManagement;
 using UnityEditor.Toolbars;
 using UnityEngine;
 
 
-public class EditorToolbarSceneButton {
+public static class EditorToolbarSceneButton {
 
 	[MainToolbarElement("Scenes Button", defaultDockPosition = MainToolbarDockPosition.Right)]
 	public static MainToolbarElement GetScenesButton() {
@@ -15,12 +14,7 @@ public class EditorToolbarSceneButton {
 
 
 	private static void OpenSearchableMenu() {
-		SearchWindow.Open(new SearchWindowContext(EditorGUIUtility.GUIToScreenPoint(Event.current.mousePosition)), ScriptableObject.CreateInstance<SceneSearchableMenu>());
-	}
-
-
-	private static void OpenScene(string path) {
-		EditorSceneManager.OpenScene(path);
+		SearchWindow.Open(new SearchWindowContext(GUIUtility.GUIToScreenPoint(Event.current.mousePosition)), ScriptableObject.CreateInstance<SceneSearchableMenu>());
 	}
 
 }
