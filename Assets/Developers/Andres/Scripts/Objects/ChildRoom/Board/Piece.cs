@@ -52,14 +52,16 @@ public class Piece : Holdable, ILeftClickable {
 	}
 
 
-	public Tween MoveTo(Vector3 target, float duration, Ease ease, bool playParticle = false) {
+	public Tween MoveTo(Vector3 target, float duration, Ease ease, bool juicy = false) {
 		MoveTween?.Kill();
 		MoveTween = transform.DOMove(target, duration).SetEase(ease).OnComplete(() => {
 			if (IsLocked)
 				Flash();
 
-			if (playParticle)
+			if (juicy) {
+				sfx?.PlaySfx(SfxEvent.OnCollision);
 				PlayParticles();
+			}
 		});
 		return MoveTween;
 	}
@@ -96,6 +98,9 @@ public class Piece : Holdable, ILeftClickable {
 
 	public void SetRandomRotation() {
 		RotationSteps = Random.Range(0, 4);
+		if (RotationSteps == PieceData.CorrectRotationStep)
+			RotationSteps = (RotationSteps + 1) % 4;
+
 		transform.rotation = Quaternion.Euler(0f, RotationSteps * 90f, 0f);
 	}
 
@@ -106,11 +111,11 @@ public class Piece : Holdable, ILeftClickable {
 
 
 	public void OnLeftClick() {
-		if (IsLocked)
+		if (IsLocked || !IsOnBoard)
 			return;
 
-		if (!IsOnBoard)
-			return;
+		if (!PuzzleBoard.Instance.HeldPiece)
+			sfx?.PlaySfx(SfxEvent.OnPickup);
 
 		PuzzleBoard.Instance.SelectOrPlace(this);
 	}

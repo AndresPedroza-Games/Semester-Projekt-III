@@ -23,13 +23,13 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 	public Rigidbody Rigidbody { get; private set; }
 	public Collider Collider { get; private set; }
 
-	private ObjectSfx _sfx;
+	protected ObjectSfx sfx;
 
 
 	protected virtual void Awake() {
 		gameObject.layer = LayerMask.NameToLayer("Interactable");
 
-		_sfx = GetComponent<ObjectSfx>();
+		sfx = GetComponent<ObjectSfx>();
 
 		ren = GetComponent<Renderer>();
 
@@ -85,7 +85,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 
 
 	public virtual void Interact() {
-		_sfx?.PlaySfx(SfxEvent.OnInteract);
+		sfx?.PlaySfx(SfxEvent.OnInteract);
 	}
 
 
@@ -93,16 +93,16 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 		if (_currentHolder)
 			return;
 
-		if (!_sfx)
+		if (!sfx)
 			return;
 
-		if (_sfx.AudioSource.isPlaying)
+		if (sfx.AudioSource.isPlaying)
 			return;
 
 		if (collision.relativeVelocity.magnitude < 0.5f)
 			return;
 
-		_sfx?.PlaySfx(SfxEvent.OnCollision);
+		sfx?.PlaySfx(SfxEvent.OnCollision);
 	}
 
 
@@ -110,7 +110,7 @@ public class Holdable : MonoBehaviour, IInteractable, IHoldable, IHighlightable,
 		if (!canBeHold)
 			return;
 
-		_sfx?.PlaySfx(SfxEvent.OnPickup);
+		sfx?.PlaySfx(SfxEvent.OnPickup);
 
 		_currentHolder = holder;
 
