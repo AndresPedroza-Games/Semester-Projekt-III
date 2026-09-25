@@ -72,8 +72,7 @@ public class EventSystemController : MonoBehaviour {
 
 
 	public void SaveGame() {
-		if (onSaveGame != null)
-			onSaveGame.Invoke();
+		onSaveGame?.Invoke();
 	}
 
 

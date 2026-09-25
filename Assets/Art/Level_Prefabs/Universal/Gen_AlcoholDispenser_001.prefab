@@ -116,7 +116,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1358,7 +1358,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 0
+    enabled: 1
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1367,7 +1367,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -1391,7 +1391,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minGradient:
@@ -4905,7 +4905,6 @@ GameObject:
   - component: {fileID: 6862789758191864620}
   - component: {fileID: 5817274224173255947}
   - component: {fileID: 6871363409034932785}
-  - component: {fileID: 2116322554370979422}
   m_Layer: 0
   m_Name: Gen_AlcoholDispenser_001
   m_TagString: Untagged
@@ -4987,27 +4986,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2116322554370979422
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3191565495402124903}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.22624877, y: 0.022793613, z: 0.3145712}
-  m_Center: {x: -0.000000029802322, y: 0.00053361617, z: -0.044161446}
 --- !u!1 &4196931597974550273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5019,7 +4997,6 @@ GameObject:
   - component: {fileID: 3299410769319441667}
   - component: {fileID: 5795542512838973574}
   - component: {fileID: 8484522082183281272}
-  - component: {fileID: 1945895461857438324}
   m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
@@ -5099,29 +5076,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1945895461857438324
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4196931597974550273}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.09554447
-  m_Height: 0.31075552
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.15537773, z: 0.000000011175871}
 --- !u!1 &5940468214417060218
 GameObject:
   m_ObjectHideFlags: 0
@@ -5134,6 +5088,7 @@ GameObject:
   - component: {fileID: 1172377087855916524}
   - component: {fileID: 4400918596030432869}
   - component: {fileID: 4323996131318191812}
+  - component: {fileID: 8996236781850316121}
   - component: {fileID: 8354211727268882621}
   m_Layer: 6
   m_Name: Animatable
@@ -5236,6 +5191,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.05837155, y: 0.10119757, z: 0.13551192}
   m_Center: {x: 0, y: 0.35732573, z: 0.038571134}
+--- !u!65 &8996236781850316121
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5940468214417060218}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.22624877, y: 0.3, z: 0.3145712}
+  m_Center: {x: -0.000000029802322, y: 0.16, z: -0.044161446}
 --- !u!114 &8354211727268882621
 MonoBehaviour:
   m_ObjectHideFlags: 0
