@@ -39,7 +39,7 @@ public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClic
         _EventSystemDoctorOffice = EventSystemDoctorOffice.instace;
         _EventSystemDoctorOffice.onRotateLock += RotatePiece;
         _EventSystemDoctorOffice.onPieceSelected += OnPieceSelected;
-        _EventSystemDoctorOffice.onPuzzleCompleted += () => _CanInteract = false;
+        _EventSystemDoctorOffice.onPuzzleCompleted += OnPuzzleCompleted;
 
         _initialLocalScale = transform.localScale;
     }
@@ -48,6 +48,15 @@ public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClic
     private void OnDisable() {
 	    _EventSystemDoctorOffice.onRotateLock -= RotatePiece;
         _EventSystemDoctorOffice.onPieceSelected -= OnPieceSelected;
+        _EventSystemDoctorOffice.onPuzzleCompleted -= OnPuzzleCompleted;
+    }
+
+
+    private void OnPuzzleCompleted() {
+	    enabled = false;
+
+	    if (TryGetComponent(out Collider col))
+		    col.enabled = false;
     }
 
 
@@ -68,7 +77,6 @@ public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClic
 
 
     public void Interact() {
-	    
     }
 
 
@@ -82,7 +90,7 @@ public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClic
     }
 
 
-    public void SelectPiece()
+    private void SelectPiece()
     {
         _EventSystemDoctorOffice.PieceSelected(gameObject);
     }
@@ -130,7 +138,8 @@ public class LockPiece : MonoBehaviour, IHighlightable, IInteractable, ILeftClic
         transform.DOLocalRotateQuaternion(Quaternion.Euler(0f, _Angle, 0f), duration).SetEase(ease).OnComplete(() => _canRotate = true);
     }
 
-    public void ReleasePiece()
+
+    private void ReleasePiece()
     {
         HighLightPiece(false);
         _EventSystemDoctorOffice.ReleasePiece();
